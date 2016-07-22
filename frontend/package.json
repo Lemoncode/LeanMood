@@ -4,6 +4,7 @@
   "description": "LeanMood web application",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,11 +23,13 @@
   },
   "homepage": "https://github.com/MasterLemon2016/LeanMood#readme",
   "devDependencies": {
+    "ts-loader": "^0.8.2",
     "typescript": "^1.8.10",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "html-webpack-plugin": "^2.22.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
