@@ -8,7 +8,7 @@ module.exports = {
 	resolve: {
 	      extensions: ['', '.js', '.ts']
 	},
-	entry: ["./index.ts"],
+	entry: ["./index.tsx"],
 	output: {
 		path: path.join(basePath, "dist"),
 		filename: "bundle.js"
@@ -19,7 +19,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-	      test: /\.(ts)$/,
+	      test: /\.(ts|tsx)$/,
 	      exclude: /node_modules/,
 	      loader: 'ts-loader'
       }

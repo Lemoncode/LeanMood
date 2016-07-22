@@ -5,6 +5,7 @@
       "declaration": false,
       "noImplicitAny": false,
       "sourceMap": true,
+      "jsx": "react",
       "noLib": false,
       "suppressImplicitAnyIndexErrors": true
     },
