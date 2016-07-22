@@ -1,0 +1,24 @@
+{
+  "name": "lm-app",
+  "version": "1.0.0",
+  "description": "LeanMood web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MasterLemon2016/LeanMood.git"
+  },
+  "keywords": [
+    "LeanMood",
+    "Online",
+    "Training"
+  ],
+  "author": "Lemoncode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MasterLemon2016/LeanMood/issues"
+  },
+  "homepage": "https://github.com/MasterLemon2016/LeanMood#readme"
+}
