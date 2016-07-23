@@ -9,7 +9,8 @@ export class Home extends React.Component<Props, {}> {
    public render() {
        return (
           <div>
-            <span> Home page</span>
+            <span> Home page: </span>
+             <Link to="/students">Go to students page</Link>
           </div>
        );
   }

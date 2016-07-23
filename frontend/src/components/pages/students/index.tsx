@@ -9,7 +9,8 @@ export class Students extends React.Component<Props, {}> {
    public render() {
        return (
          <div>
-           <span> Students page</span>
+           <span> Students page: </span>
+           <Link to="/home">Go to home page</Link>
          </div>
         );
   }
