@@ -4,6 +4,7 @@
   "description": "LeanMood web application",
   "main": "index.js",
   "scripts": {
+    "postinstall": "typings install",
     "start": "webpack-dev-server --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
