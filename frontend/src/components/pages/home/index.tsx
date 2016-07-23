@@ -5,7 +5,7 @@ interface Props extends React.Props<Home> {
 }
 
 
-export default class Home extends React.Component<Props, {}> {
+export class Home extends React.Component<Props, {}> {
    public render() {
        return (
           <div>

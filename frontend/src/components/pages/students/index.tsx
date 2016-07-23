@@ -5,11 +5,11 @@ interface Props extends React.Props<Students> {
 }
 
 
-export default class Students extends React.Component<Props, {}> {
+export class Students extends React.Component<Props, {}> {
    public render() {
        return (
          <div>
-           <span> Home page</span>
+           <span> Students page</span>
          </div>
         );
   }
