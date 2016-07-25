@@ -35,11 +35,10 @@ ReactDOM.render(
       <IndexRoute component={component(Home)}/>
       <Route path="/home" component={component(Home)} />
       <Route path="/students" getComponent={(location, cb) => {
-         const nonTypedRrequired : any = require;
 
-         nonTypedRrequired.ensure([], require => {
-         // Retrieve checkout page component
-           cb(null, require('./components/pages/students').default);
+        (require as any).ensure([], require => {
+              // Retrieve product page component
+              cb(null, require('./components/pages/students').default);
          });
        }} />
     </Route>
