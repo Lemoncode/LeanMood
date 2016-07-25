@@ -18,6 +18,11 @@ module.exports = {
 
 	module: {
 		loaders: [
+      {
+          include: [path.resolve(__dirname, './src/components/pages/students')],
+          loader: 'bundle?lazy&name=students'
+      },
+
 			{
 	      test: /\.(ts|tsx)$/,
 	      exclude: /node_modules/,

@@ -2,9 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {App} from './components/app'
 import {Home} from './components/pages/home'
-import {Students} from './components/pages/students'
+//import {Students} from './components/pages/students'
 
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
+
+
 
 
 const component = (component : any) : any => {
@@ -15,8 +17,9 @@ const component = (component : any) : any => {
   if(isReactComponent(component)) {
     return component;
   } else {
-    return (loc, cb)=> component(
-         comp=> cb(null, comp.default || comp));
+    return {getComponent: (loc, cb)=> component(
+         comp=> cb(null, comp.default || comp))
+       };
   }
   /*
   return isReactComponent(component)
@@ -31,7 +34,14 @@ ReactDOM.render(
     <Route  path="/" component={App} >
       <IndexRoute component={component(Home)}/>
       <Route path="/home" component={component(Home)} />
-      <Route path="/students"  component={component(Students)} />
+      <Route path="/students" getComponent={(location, cb) => {
+         const nonTypedRrequired : any = require;
+
+         nonTypedRrequired.ensure([], require => {
+         // Retrieve checkout page component
+           cb(null, require('./components/pages/students').default);
+         });
+       }} />
     </Route>
   </Router>
 
