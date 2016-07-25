@@ -9,13 +9,13 @@ import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory
 
 // If it needs async loading it will just call require.ensure (webpack)
 const component = (component : any) : any => {
-  // TODO:Removed ... and {} in return check why this is needed
   // https://medium.com/@Nadav.Dav/implementing-lazy-loading-with-webpack-and-react-router-f8497f895892#.mq4ug0c15
   const isReactComponent = (obj) => Boolean(obj && obj.prototype && Boolean(obj.prototype.isReactComponent));
 
   if(isReactComponent(component)) {
     return component;
   } else {
+    // Async chunk loading
     return {
       getComponent: (location, cb) => {
         (require as any).ensure([], require => {
@@ -37,5 +37,4 @@ ReactDOM.render(
       <Route path="/students" {...component('./components/pages/students')}/>
     </Route>
   </Router>
-
   , document.getElementById('root'));
