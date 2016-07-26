@@ -18,9 +18,9 @@ const component = (component : any) : any => {
     // Async chunk loading
     return {
       getComponent: (location, cb) => {
-        (require as any).ensure([], require => {
+        require.ensure([], require => {
               // Retrieve product page component
-              cb(null, require('./components/pages/students').default);
+              cb(null, require('./components/pages/students')["default"]);
         });
       }
     }
