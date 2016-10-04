@@ -1,10 +1,6 @@
-# LeanMood
+# LeanMood Backend
 
-Master Front End Lemoncode students + lecturers project.
+LeanMood frontend project will be a React / Redux based project.
 
-The goal of LeanMood is to become a lightweight, easy to use, online training
-platform.
-
-The bulk of this project will start 15th September 2016, right now we are on
-definition + plumbing phase if you want to learn more about the project, feel
-free to visit our [wiki](https://github.com/MasterLemon2016/LeanMood/wiki).
+Right now backend and front end are residing in the same GitHub project,
+depending on how this evolves we will split them in to two separate projects.
