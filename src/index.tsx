@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {App} from './components/app'
-import {Home} from './components/pages/home'
+import {Login} from './components/pages/login'
+import {Admin} from './components/pages/admin'
 
 
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
@@ -39,10 +40,11 @@ const componentTrainers = () : any => {
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route  path="/" component={App} >
-      <IndexRoute component={Home}/>
-      <Route path="/home" component={Home} />
+      <IndexRoute component={Login}/>
+      <Route path="/home" component={Login} />
       <Route path="/students" {...componentStudents()}/>
       <Route path="/trainers" {...componentTrainers()}/>
+      <Route path="/admin" component={Admin}/>
     </Route>
   </Router>
   , document.getElementById('root'));

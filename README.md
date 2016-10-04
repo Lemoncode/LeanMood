@@ -1,5 +1,4 @@
-# LeanMood Backend
-
+# LeanMood Front end
 LeanMood frontend project will be a React / Redux based project.
 
 Right now backend and front end are residing in the same GitHub project,
