@@ -4,7 +4,6 @@ import {App} from './components/app'
 import {Login} from './components/pages/login'
 import {Admin} from './components/pages/admin'
 
-
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
 
 

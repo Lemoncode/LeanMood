@@ -18,6 +18,9 @@ module.exports = {
              "react-router",
              "redux"
     ],
+    vendorstyles : [
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
+    ]
   },
 	output: {
 		path: path.join(basePath, "dist"),
@@ -30,8 +33,29 @@ module.exports = {
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,
-	      exclude: /node_modules/,
 	      loader: 'ts-loader'
+      },
+      {
+        test: /\.css$/,  
+        loader: "style-loader!css-loader"
+      },
+      // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+      // Using here url-loader and file-loader
+      {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml'
       }
 		]
 	},
