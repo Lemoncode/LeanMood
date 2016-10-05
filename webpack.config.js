@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var basePath = __dirname;
 
@@ -18,13 +19,13 @@ module.exports = {
              "react-router",
              "redux"
     ],
-    vendorstyles : [
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
-    ]
+    vendorStyles: [
+        '../node_modules/bootstrap/dist/css/bootstrap.css'
+      ]
   },
 	output: {
 		path: path.join(basePath, "dist"),
-		filename: "bundle.js"
+		filename: "[name].js"
 	},
 
 	devtool: 'source-map',
@@ -36,8 +37,8 @@ module.exports = {
 	      loader: 'ts-loader'
       },
       {
-        test: /\.css$/,  
-        loader: "style-loader!css-loader"
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style','css')
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
@@ -61,6 +62,7 @@ module.exports = {
 	},
 	plugins:[
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+     new ExtractTextPlugin('[name].css'),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html', //Name of file in ./dist/

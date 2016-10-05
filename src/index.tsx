@@ -7,6 +7,7 @@ import {Admin} from './components/pages/admin'
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
 
 
+console.log("Hello from root index");
 
 // If it needs async loading it will just call require.ensure (webpack)
 const componentStudents = () : any => {
