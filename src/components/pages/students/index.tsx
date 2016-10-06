@@ -15,6 +15,7 @@ export default class Students extends React.Component<Props, {}> {
            <StChild/>
            <br/>
            <Link to="/home">Go to home page</Link>
+           <Link to="/students/traning">Go to edit training</Link>
          </div>
         );
   }

@@ -23,3 +23,8 @@ npm start
 ```
 
 The open a browser and navigate to http://localhost:8080
+
+# Project info
+
+About the project definition you can visit our
+[wiki](https://github.com/MasterLemon2016/LeanMood/wiki)
