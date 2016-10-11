@@ -1,3 +1,7 @@
+// Temporary workaroind issue with webpack-env.d.ts
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/10578
+/// <reference path="../node_modules/@types/webpack-env/index.d.ts" />
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {App} from './components/app'
@@ -5,7 +9,9 @@ import {Login} from './components/pages/login'
 import {Admin} from './components/pages/admin'
 import {Training as stTraining} from './components/pages/students/training'
 
+
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
+
 
 
 console.log("Hello from root index");
