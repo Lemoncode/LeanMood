@@ -1,22 +1,7 @@
-import * as React from 'react';
-import {Link} from 'react-router';
-import {StChild} from './stchild';
+import { StudentsPage } from "./home";
+import { TrainingPage } from './training';
 
-interface Props extends React.Props<Students> {
-}
-
-
-export default class Students extends React.Component<Props, {}> {
-   public render() {
-       return (
-         <div>
-           <span> Students page: </span>
-           <br/>
-           <StChild/>
-           <br/>
-           <Link to="/home">Go to home page</Link>
-           <Link to="/students/traning">Go to edit training</Link>
-         </div>
-        );
-  }
-}
+export {
+    StudentsPage,
+    TrainingPage,
+    }

@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import {App} from './components/app'
 import {Login} from './components/pages/login'
 import {Admin} from './components/pages/admin'
-import {Training as stTraining} from './components/pages/students/training'
+import {TrainingPage} from './components/pages/students'
 
 
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory  } from 'react-router'
@@ -49,7 +49,7 @@ ReactDOM.render(
     <Route  path="/" component={App} >
       <IndexRoute component={Login}/>
       <Route path="/home" component={Login} />
-      <Route path="/students/traning" component={stTraining}/>
+      <Route path="/students/traning" component={TrainingPage}/>
       <Route path="/students" {...componentStudents()}/>
       <Route path="/trainers" {...componentTrainers()}/>
       <Route path="/admin" component={Admin}/>
