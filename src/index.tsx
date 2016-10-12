@@ -53,6 +53,7 @@ ReactDOM.render(
       <Route path="/trainers" {...componentTrainers()}/>
       <Route path="/admin" component={Admin}/>
       {studentsRoutes}
+      <Route path="*" component={NoMatch} />
     </Route>
   </Router>
   , document.getElementById('root'));

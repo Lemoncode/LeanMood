@@ -5,10 +5,11 @@ import { Route  } from 'react-router'
 
 // http://stackoverflow.com/questions/35048738/react-router-import-routes
 // AssembliesRoutes.js
+// http://randycoulman.com/blog/2016/02/02/composing-routes-in-react-router/
 
 export const studentsRoutes = (
     <Route path='students' component={StudentsPage}>
-      <Route path='training' component={TrainingPage}/>
+      <Route path='/students/training/' component={TrainingPage}/>
     </Route>
 )
 /*

@@ -9,7 +9,7 @@ export class TrainingPage extends React.Component<Props, {}> {
    public render() {
        return (
          <div>
-           <span> Single Training page: </span>
+           <span> ******Single Training page: </span>
            <br/>
            <br/>
            <Link to="/home">Go to home page</Link>
