@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {Link} from 'react-router';
+import {AdminRoutes} from './adminRoutes';
 
 interface Props extends React.Props<Admin> {
 }
 
 
-export class Admin extends React.Component<Props, {}> {
+class Admin extends React.Component<Props, {}> {
    public render() {
        return (
           <div>
@@ -13,4 +14,9 @@ export class Admin extends React.Component<Props, {}> {
           </div>
        );
   }
+}
+
+export {
+  Admin,
+  AdminRoutes
 }
