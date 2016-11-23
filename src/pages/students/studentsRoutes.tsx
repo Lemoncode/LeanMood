@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { StudentsPage, TrainingPage } from '.'
+import { TrainingsPage, MainTocPage } from '.'
 import { Route } from 'react-router'
 
 
@@ -21,7 +21,8 @@ import { Route } from 'react-router'
 // AssembliesRoutes.js
 // http://randycoulman.com/blog/2016/02/02/composing-routes-in-react-router/
 export const StudentsRoutes = (
-    <Route path='students' component={StudentsPage}>
-      <Route path='/students/training/' component={TrainingPage}/>
+    <Route path='students' component={TrainingsPage}>
+      <Route path='/students/maintoc/' component={MainTocPage}/>
     </Route>
+
 )

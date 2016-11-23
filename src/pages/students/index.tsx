@@ -1,11 +1,11 @@
-import { StudentsPage } from "./home";
-import { TrainingPage } from './training';
+import { TrainingsPage } from "./trainings";
+import { MainTocPage } from './main-toc';
 import { NoMatchPage } from '../noMatch'
 import { StudentsRoutes } from './studentsRoutes'
 
 export {
-    StudentsPage,
-    TrainingPage,
+    TrainingsPage,
+    MainTocPage,
     NoMatchPage,
     StudentsRoutes
     }

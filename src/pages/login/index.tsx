@@ -10,11 +10,11 @@ export class Login extends React.Component<Props, {}> {
        return (
           <div>
             <span> Login: </span>
-             <Link to="/students">Go to students page</Link>
+             <Link to="/students">Go to students MODULE</Link>
              <br/>
-             <Link to="/trainers">Go to trainers page</Link>
+             <Link to="/trainers">Go to trainers MODULE</Link>
              <br/>
-             <Link to="/admin">Go to admin page</Link>
+             <Link to="/admin">Go to admin MODULE</Link>
           </div>
        );
   }

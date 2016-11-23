@@ -30,6 +30,17 @@ module.exports = {
 
 	devtool: 'source-map',
 
+  devServer: {
+       contentBase: './dist', //Content base
+       inline: true, //Enable watch and live reload
+       hot: true,
+       noInfo: true,
+       host: 'localhost',
+       port: 8080,
+       stats: 'errors-only'
+  },
+
+
 	module: {
 		loaders: [
 			{
