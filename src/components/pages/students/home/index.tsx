@@ -14,7 +14,7 @@ export class StudentsPage extends React.Component<Props, {}> {
            <br/>
            <br/>
            <Link to="/home">Go to home page</Link>
-           <Link to="/students/traning">Go to edit training</Link>
+           <Link to="/students/training">Go to edit training</Link>
          </div>
         );
   }
