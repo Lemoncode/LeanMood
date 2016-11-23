@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "LeanMood web application",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "typings install",
+  "scripts": {    
     "start": "webpack-dev-server --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
