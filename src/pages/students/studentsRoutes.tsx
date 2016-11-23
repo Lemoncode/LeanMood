@@ -21,8 +21,9 @@ import { Route } from 'react-router'
 // AssembliesRoutes.js
 // http://randycoulman.com/blog/2016/02/02/composing-routes-in-react-router/
 export const StudentsRoutes = (
-    <Route path='students' component={TrainingsPage}>
-      <Route path='/students/maintoc/' component={MainTocPage}/>
-    </Route>
+  <div>
+    <Route path='students' component={TrainingsPage}/>
+    <Route path='/students/maintoc/' component={MainTocPage}/>
+  </div>
 
 )

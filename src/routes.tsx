@@ -25,16 +25,18 @@ const componentTrainers = () : any => {
 
 
 // {StudentsRoutes}
+/*
+<Route path='students' component={TrainingsPage}/>
+<Route path='/students/maintoc/' component={MainTocPage}/>
+*/
+
 export const AppRoutes = (
     <Route  path="/" component={App} >
       <IndexRoute component={Login}/>
       <Route path="/home" component={Login} />
       <Route path="/trainers" {...componentTrainers}/>
       {AdminRoutes}
-
-
-      <Route path='students' component={TrainingsPage}/>
-      <Route path='/students/maintoc/' component={MainTocPage}/>
+      {StudentsRoutes}
 
       <Route path="*" component={NoMatchPage} />
     </Route>
