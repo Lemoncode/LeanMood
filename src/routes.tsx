@@ -2,14 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import {App} from './app';
-import {Login} from './pages/login';
-import {AdminRoutes} from './pages/admin';
-import {StudentsRoutes} from './pages/students';
-import {NoMatchPage} from './pages/noMatch';
+import { App } from './app';
+import { GeneralRoutes, NotFoundPage } from './pages/general'
+import { AdminRoutes } from './pages/admin';
+import { StudentsRoutes } from './pages/students';
+import { TrainingsPage } from './pages/students/trainings'
 
-import {MainTocPage} from './pages/students/main-toc'
-import {TrainingsPage} from './pages/students/trainings'
 
 const componentTrainers = () : any => {
   // https://medium.com/@Nadav.Dav/implementing-lazy-loading-with-webpack-and-react-router-f8497f895892#.mq4ug0c15
@@ -24,20 +22,23 @@ const componentTrainers = () : any => {
 };
 
 
-// {StudentsRoutes}
 /*
-<Route path='students' component={TrainingsPage}/>
-<Route path='/students/maintoc/' component={MainTocPage}/>
+<IndexRoute component={Login}/>
+<Route path="/home" component={Login} />
+<Route path="/trainers" {...componentTrainers}/>
+
 */
 
+/*
+<Route path="*" component={NoMatchPage} />
+*/
 export const AppRoutes = (
     <Route  path="/" component={App} >
-      <IndexRoute component={Login}/>
-      <Route path="/home" component={Login} />
-      <Route path="/trainers" {...componentTrainers}/>
+
+      {GeneralRoutes}
       {AdminRoutes}
       {StudentsRoutes}
 
-      <Route path="*" component={NoMatchPage} />
+      <Route path="*" component={NotFoundPage} />
     </Route>
 )
