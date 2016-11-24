@@ -12,7 +12,7 @@ export class MainTocPage extends React.Component<Props, {}> {
            <span> ##### Main Toc Page: </span>
            <br/>
            <br/>
-           <Link to="/trainings">Back to trainings</Link>
+           <Link to="/training/list">Back to trainings</Link>
          </div>
         );
   }

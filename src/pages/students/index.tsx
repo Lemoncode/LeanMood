@@ -1,11 +1,9 @@
-import { TrainingsPage } from "./trainings";
-import { MainTocPage } from './main-toc';
-import { NoMatchPage } from '../noMatch'
+import { MainTocPage } from './main-toc/page'
+import { TrainingListPage } from './training/list/page'
 import { StudentsRoutes } from './routes'
 
 export {
-    TrainingsPage,
+    TrainingListPage,
     MainTocPage,
-    NoMatchPage,
     StudentsRoutes
     }

@@ -19,7 +19,7 @@ export class LoginPage extends React.Component<Props, {}> {
              <br/>
              <Link to="/students">Go to students MODULE</Link>
              <br/>
-             <Link to="/trainers">Go to trainers MODULE</Link>
+             <span> PENDING Trainers module navigation, any volunteer?</span>
              <br/>
 
           </div>
