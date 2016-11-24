@@ -15,6 +15,9 @@ export class ListTrainingPage extends React.Component<Props, {}> {
            <span> List Training Page: </span>
            <br/>
            <br/>
+           <Link to="/admin/training/edit">Go to training edit</Link>
+           <Link to="/admin">Back to Dashboard</Link>
+           
          </div>
         );
   }

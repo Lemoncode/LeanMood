@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DashboardPage} from './dashboard/dashboardPage'
-import { ListStudentPage } from './student/list/listPage'
-import { EditStudentPage } from './student/edit/editPage'
-import { ListTrainingPage } from './training/list/listPage'
-import { EditTrainingPage } from './training/edit/editPage'
+import { DashboardPage} from './dashboard/page'
+import { ListStudentPage } from './student/list/page'
+import { EditStudentPage } from './student/edit/page'
+import { ListTrainingPage } from './training/list/page'
+import { EditTrainingPage } from './training/edit/page'
 
 
 import { Route } from 'react-router'

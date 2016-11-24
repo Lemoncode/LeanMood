@@ -2,19 +2,20 @@ import * as React from 'react';
 import {Link} from 'react-router';
 
 
-interface Props extends React.Props<EditStudentPage> {
+interface Props extends React.Props<ListStudentPage> {
 }
 
 
 //<Link to="/students/training">Go to students</Link>
 //<Link to="/students/training">Go to trainings</Link>
-export class EditStudentPage extends React.Component<Props, {}> {
+export class ListStudentPage extends React.Component<Props, {}> {
    public render() {
        return (
          <div>
-           <span> Edit Student Page: </span>
+           <span> List Student Page: </span>
            <br/>
            <br/>
+           <Link to="/admin/student/edit">Go to student Edit</Link>
          </div>
         );
   }
