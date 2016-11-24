@@ -5,11 +5,15 @@ import {} from 'mocha'
 import {} from 'core-js'
 
 describe('userProfile', () => {
+  let userProfile = null;
+
+  beforeEach(() => {
+    userProfile = new UserProfile();
+  })
+
   it('Is instantiated and exists', () => {
     // Arrange
     // Act
-    const userProfile = new UserProfile();
-
     // Assert
     expect(userProfile).not.to.be.undefined;
     expect(userProfile).not.to.be.null;
@@ -19,8 +23,6 @@ describe('userProfile', () => {
     it('Is initializaed with the expected fields and default values', () => {
       // Arrange
       // Act
-      const userProfile = new UserProfile();
-
       // Assert
       expect(userProfile.id).to.be.equal(-1);
       expect(userProfile.fullname).to.be.equal('');
