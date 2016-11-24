@@ -11,13 +11,13 @@ export class LoginPage extends React.Component<Props, {}> {
           <div>
             <span> Login: </span>
              <br/>
-             <span> Up and running:</span><Link to="/admin">Go to admin MODULE</Link>
+             <span> Navigation Skeleton:</span><Link to="/admin">Go to admin MODULE</Link>
              <br/>
+             <span> Navigation Skeleton:</span><Link to="/students">Go to students MODULE</Link>
              <span>*****</span>
              <br/>
              <Link to="/nonexistingpage">Navigate to a 404 page.</Link>
              <br/>
-             <Link to="/students">Go to students MODULE</Link>
              <br/>
              <span> PENDING Trainers module navigation, any volunteer?</span>
              <br/>
