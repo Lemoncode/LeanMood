@@ -15,7 +15,7 @@ describe('userProfile', () => {
     // Arrange
     // Act
     // Assert
-    expect(userProfile).to.be.undefined;
+    expect(userProfile).not.to.be.undefined;
     expect(userProfile).not.to.be.null;
   });
 
