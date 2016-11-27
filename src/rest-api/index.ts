@@ -1,4 +1,4 @@
-import {studentApi} from './studentApi'
+import {studentApi} from './student'
 
 export {
   studentApi
