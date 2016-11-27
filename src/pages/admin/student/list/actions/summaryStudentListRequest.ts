@@ -1,6 +1,6 @@
 import { adminActionEnums } from '../../../../../common/actionEnums/admin'
 import { StudentSummary} from '../../../../../model/studentSummary'
-import { studentApi } from '../../../../../api'
+import { studentApi } from '../../../../../rest-api'
 
 export const summaryStudentListRequestStarted = () => {
   return function(dispatcher) {
