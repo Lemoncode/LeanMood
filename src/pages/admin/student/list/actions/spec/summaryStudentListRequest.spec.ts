@@ -94,8 +94,7 @@ describe('summaryStudentListRequestStarted', () => {
       }
     });
 
-    //studentApi.getSummaryStudentList
-
+    
     // Act
     const store = mockStore([]);
     store.dispatch(summaryStudentListRequestStarted())
