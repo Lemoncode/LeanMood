@@ -23,10 +23,14 @@ describe('Training', () => {
       expect(training.id).to.be.equal(-1);
       expect(training.name).to.be.equal('');
       expect(training.isActive).to.be.false;
-      expect(training.start.toString()).to.be.equal(new Date().toString());
-      expect(training.end.toString()).to.be.equal(new Date().toString());
-      expect(training.trainers.length).to.be.equal(new Array<Trainer>().length);
-      expect(training.students.length).to.be.equal(new Array<Student>().length);
+      expect(training.start.getDay()).to.be.equal(new Date().getDay());
+      expect(training.start.getMonth()).to.be.equal(new Date().getMonth());
+      expect(training.start.getFullYear()).to.be.equal(new Date().getFullYear());
+      expect(training.end.getDay()).to.be.equal(new Date().getDay());
+      expect(training.end.getMonth()).to.be.equal(new Date().getMonth());
+      expect(training.end.getFullYear()).to.be.equal(new Date().getFullYear());
+      expect(training.trainers).to.have.lengthOf(0);
+      expect(training.students).to.have.lengthOf(0);
   });
 });
 

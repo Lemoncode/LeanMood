@@ -4,13 +4,13 @@ import {} from 'core-js'
 import { Training } from '../../model/training';
 import { Student } from '../../model/student';
 import { Trainer } from '../../model/trainer';
+import {TrainingSummary} from '../../model/trainingSummary';
 import { trainingApi } from '../training'
 
 let trainingList : Training[];
 
 beforeEach(() => {
-  trainingList =
-  [
+  trainingList =  [
     {
       id: 32,
       name: 'React/Redux',
@@ -43,7 +43,8 @@ beforeEach(() => {
 
 describe('TrainingApi', () => {
   it('is defined', () => {
-      expect(trainingApi).not.to.be.undefined;
+    // Assert
+    expect(trainingApi).not.to.be.undefined;
   })
 
   describe('setMockDataSeed', () => {
@@ -58,26 +59,29 @@ describe('TrainingApi', () => {
 
   describe('getSummaryTrainingList', () => {
     it('Get the expected summary training list', sinon.test((done) => {
+      // Arrange
+      let expectedSummaryList : TrainingSummary [];
+
+      // Act
+      expectedSummaryList= trainingList.map(training => {
+        const summary = new TrainingSummary();
+        summary.id = training.id;
+        summary.name = training.name;
+        summary.isActive = training.isActive;
+        return summary;
+      });
 
       trainingApi.setMockDataSeed(trainingList);
 
-      // Act
       const summaryListPromise = trainingApi.getSummaryTrainingList();
 
       summaryListPromise.then((summaryList) => {
         // Assert
         expect(summaryList).not.to.be.undefined;
         expect(summaryList.length).to.be.equal(trainingList.length);
-        expect(summaryList[0].id).to.be.equal(trainingList[0].id);
-        expect(summaryList[0].name).to.be.equal(trainingList[0].name);
-        expect(summaryList[0].isActive).to.be.equal(trainingList[0].isActive);
-        expect(summaryList[1].id).to.be.equal(trainingList[1].id);
-        expect(summaryList[1].name).to.be.equal(trainingList[1].name);
-        expect(summaryList[1].isActive).to.be.equal(trainingList[1].isActive);
-
+        expect(summaryList).to.eql(expectedSummaryList);
         done();
       });
-
     }).bind(this))
   });
 });

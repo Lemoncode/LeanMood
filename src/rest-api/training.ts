@@ -14,7 +14,7 @@ class TrainingApi {
   }
 
   getSummaryTrainingList() : Promise<TrainingSummary[]> {
-    const trainingSummaryList : TrainingSummary[] = this.trainingList.map((training) => {
+    const trainingSummaryList : TrainingSummary[] = this.trainingList.map(training => {
       const summary = new TrainingSummary();
       summary.id = training.id;
       summary.name = training.name;
