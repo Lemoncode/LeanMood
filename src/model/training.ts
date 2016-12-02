@@ -4,7 +4,7 @@ import {Trainer} from "./trainer";
 export class Training {
   id : number;
   name : string;
-  active : boolean;
+  isActive : boolean;
   start : Date;
   end : Date;
   trainers : Array<Trainer>;
@@ -13,7 +13,7 @@ export class Training {
   constructor() {
     this.id = -1;
     this.name = '';
-    this.active = false;
+    this.isActive = false;
     this.start = new Date();
     this.end = new Date();
     this.trainers = new Array<Trainer>();

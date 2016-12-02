@@ -22,7 +22,7 @@ describe('Training', () => {
     it('Is initialized with the expected values on properties', () => {
       expect(training.id).to.be.equal(-1);
       expect(training.name).to.be.equal('');
-      expect(training.active).to.be.false;
+      expect(training.isActive).to.be.false;
       expect(training.start.toString()).to.be.equal(new Date().toString());
       expect(training.end.toString()).to.be.equal(new Date().toString());
       expect(training.trainers.length).to.be.equal(new Array<Trainer>().length);
