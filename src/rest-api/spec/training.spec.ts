@@ -64,11 +64,11 @@ describe('TrainingApi', () => {
 
       // Act
       expectedSummaryList= trainingList.map(training => {
-        const summary = new TrainingSummary();
-        summary.id = training.id;
-        summary.name = training.name;
-        summary.isActive = training.isActive;
-        return summary;
+        return {
+          id : training.id,
+          name : training.name,
+          isActive : training.isActive
+        };
       });
 
       trainingApi.setMockDataSeed(trainingList);
