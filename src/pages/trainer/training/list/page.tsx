@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router';
 
 
-interface Props extends React.Props<DashboardPage> {
+interface Props extends React.Props<TrainingListPage> {
 }
 
 
@@ -15,6 +15,7 @@ export class TrainingListPage extends React.Component<Props, {}> {
            <span> Choose training from training list (this page will be skipe if only one training): </span>
            <br/>
            <br/>
+           <Link to="/trainers/dashboard">Go dashboard</Link>
          </div>
         );
   }

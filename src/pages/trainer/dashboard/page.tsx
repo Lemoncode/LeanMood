@@ -15,6 +15,7 @@ export class DashboardPage extends React.Component<Props, {}> {
            <span> Dashboard page: </span>
            <br/>
            <br/>
+           <Link to="/training/">Go back to training</Link>
          </div>
         );
   }
