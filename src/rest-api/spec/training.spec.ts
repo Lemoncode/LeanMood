@@ -77,8 +77,6 @@ describe('TrainingApi', () => {
 
       summaryListPromise.then((summaryList) => {
         // Assert
-        expect(summaryList).not.to.be.undefined;
-        expect(summaryList.length).to.be.equal(trainingList.length);
         expect(summaryList).to.eql(expectedSummaryList);
         done();
       });

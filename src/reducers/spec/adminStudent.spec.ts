@@ -61,9 +61,6 @@ describe('adminStudentReducer', () => {
     const newState = adminStudentReducer(originalState, actionResult);
 
     // Assert
-    expect(newState.studentSummaryList).not.to.be.undefined;
-    expect(newState.studentSummaryList.length).to.be.equal(2);
-    expect(newState.studentSummaryList[0].id).to.be.equal(2);
-    expect(newState.studentSummaryList[1].id).to.be.equal(3);
+    expect(newState.studentSummaryList).to.eql(students);
   })
 });
