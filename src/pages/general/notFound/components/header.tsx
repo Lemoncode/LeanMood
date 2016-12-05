@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const Header404 =  () => {
+export const NotFoundHeader =  () => {
   return (
     <div className="panel-heading">
       <h3 className="text-center">
