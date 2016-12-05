@@ -6,7 +6,8 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
       './test/test_index.js',
-      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js'
+      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
+      './node_modules/es6-promise/dist/es6-promise.auto.js',
     ],
     exclude: [
     ],
