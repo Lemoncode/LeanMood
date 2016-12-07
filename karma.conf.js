@@ -66,8 +66,7 @@ module.exports = function (config) {
 
     reporters: ['mocha', 'coverage'],
     coverageReporter: {
-        type : 'html',
-        dir : 'coverage/'
+        type : 'text'
     },
     port: 9876,
     colors: true,
