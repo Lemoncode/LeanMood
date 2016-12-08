@@ -1,8 +1,8 @@
-import { Training } from '../model/training'
+import { TrainingEntity } from '../model/training'
 import { Student } from '../model/student'
 import { Trainer } from '../model/trainer'
 
-export const trainingMockData : Training[] =
+export const trainingMockData : TrainingEntity[] =
 [
   {
     id: 32,

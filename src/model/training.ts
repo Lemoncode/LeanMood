@@ -1,7 +1,7 @@
 import {Student} from "./student";
 import {Trainer} from "./trainer";
 
-export class Training {
+export class TrainingEntity {
   id : number;
   name : string;
   isActive : boolean;

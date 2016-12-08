@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import {} from 'mocha'
 import {} from 'core-js'
-import {Training} from '../training';
+import {TrainingEntity} from '../training';
 import {Student} from '../student';
 import {Trainer} from '../trainer';
 
 describe('Training', () => {
-  let training : Training = null;
+  let training : TrainingEntity = null;
 
   beforeEach(() => {
-    training = new Training();
+    training = new TrainingEntity();
   });
 
   it('Is instantiated and exists', () => {

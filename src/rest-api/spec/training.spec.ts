@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import {} from 'mocha'
 import {} from 'core-js'
-import { Training } from '../../model/training';
+import { TrainingEntity } from '../../model/training';
 import { Student } from '../../model/student';
 import { Trainer } from '../../model/trainer';
 import {TrainingSummary} from '../../model/trainingSummary';
 import { trainingApi } from '../training'
 
-let trainingList : Training[];
+let trainingList : TrainingEntity[];
 
 beforeEach(() => {
   trainingList =  [
@@ -80,6 +80,25 @@ describe('TrainingApi', () => {
         expect(summaryList).to.eql(expectedSummaryList);
         done();
       });
-    }).bind(this))
+    }).bind(this));
+  });
+  describe('getTrainingById', () => {
+    it('Get the expected training', sinon.test((done) => {
+      // Arrange
+      const id: number = 32;
+      let expectedTraining : TrainingEntity;
+
+      // Act
+      expectedTraining = trainingList.find(training => training.id === id);
+
+
+      const fetchTraining = trainingApi.getTrainingById(id);
+
+      fetchTraining.then((training) => {
+        // Assert
+        expect(training).to.eql(expectedTraining);
+        done();
+      });
+    }).bind(this));
   });
 });
