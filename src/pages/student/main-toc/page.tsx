@@ -1,11 +1,8 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 
-interface Props extends React.Props<MainTocPage> {
-}
 
-
-export class MainTocPage extends React.Component<Props, {}> {
+export class MainTocPage extends React.Component<{}, {}> {
    public render() {
        return (
          <div>

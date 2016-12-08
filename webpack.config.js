@@ -11,7 +11,7 @@ module.exports = {
 	      extensions: ['', '.js','.ts', '.tsx']
 	},
 	entry: {
-    app:"./index.tsx",
+    app: "./index.tsx",
     vendor: [
              "react",
              "react-dom",
@@ -20,7 +20,8 @@ module.exports = {
              "redux"
     ],
     vendorStyles: [
-        '../node_modules/bootstrap/dist/css/bootstrap.css'
+        '../node_modules/bootstrap/dist/css/bootstrap.css',
+        "./content/css/styles.css"
       ]
   },
 	output: {
@@ -32,7 +33,7 @@ module.exports = {
 
   devServer: {
        contentBase: './dist', //Content base
-       inline: true, //Enable watch and live reload       
+       inline: true, //Enable watch and live reload
        noInfo: true,
        host: 'localhost',
        port: 8080,

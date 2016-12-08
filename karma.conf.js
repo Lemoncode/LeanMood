@@ -6,7 +6,8 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
       './test/test_index.js',
-      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js'
+      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
+      './node_modules/es6-promise/dist/es6-promise.auto.js',
     ],
     exclude: [
     ],
@@ -65,8 +66,7 @@ module.exports = function (config) {
 
     reporters: ['mocha', 'coverage'],
     coverageReporter: {
-        type : 'html',
-        dir : 'coverage/'
+        type : 'text'
     },
     port: 9876,
     colors: true,

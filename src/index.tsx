@@ -5,13 +5,25 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {AppRoutes} from './routes';
-
+import { Provider } from 'react-redux';
 import { Router,  hashHistory  } from 'react-router'
+import { createStore, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
 
-console.log("Hello from root index");
+import { reducers } from './reducers'
+
+let store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(reduxThunk)
+  )
+);
+
 
 // The ...component, spread operator: like object assign just add the new
 // properties to the Route control (and preserves the existing ones)
 ReactDOM.render(
-  <Router history={hashHistory} routes={AppRoutes}/>
+  <Provider store={store}>
+    <Router history={hashHistory} routes={AppRoutes}/>
+  </Provider>
   , document.getElementById('root'));
