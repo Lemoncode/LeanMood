@@ -5,7 +5,8 @@ import { TrainingEntity } from '../../model/training';
 import { Student } from '../../model/student';
 import { Trainer } from '../../model/trainer';
 import {TrainingSummary} from '../../model/trainingSummary';
-import { trainingApi } from '../training'
+import { trainingApi } from '../training';
+import {} from 'es6-promise';
 
 let trainingList : TrainingEntity[];
 
@@ -90,7 +91,6 @@ describe('TrainingApi', () => {
 
       // Act
       expectedTraining = trainingList.find(training => training.id === id);
-
 
       const fetchTraining = trainingApi.getTrainingById(id);
 
