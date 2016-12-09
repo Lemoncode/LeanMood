@@ -82,6 +82,7 @@ describe('TrainingApi', () => {
       });
     }).bind(this));
   });
+
   describe('getTrainingById', () => {
     it('Get the expected training', sinon.test((done) => {
       // Arrange

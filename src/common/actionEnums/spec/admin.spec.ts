@@ -12,8 +12,13 @@ describe('adminActionEnums', () => {
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).not.to.be.undefined;
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).to.be.a('string');
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).equals('GET_SUMMARY_STUDENT_REQUEST_COMPLETED');
+
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).not.to.be.undefined;
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).to.be.a('string');
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).equals('GET_TRAINING_REQUEST_COMPLETED');
+
+    expect(adminActionEnums.GET_TRAINING_REQUEST_STARTED).not.to.be.undefined;
+    expect(adminActionEnums.GET_TRAINING_REQUEST_STARTED).to.be.a('string');
+    expect(adminActionEnums.GET_TRAINING_REQUEST_STARTED).equals('GET_TRAINING_REQUEST_STARTED');
   })
 })

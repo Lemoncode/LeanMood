@@ -1,5 +1,5 @@
-import {Student} from "./student";
-import {Trainer} from "./trainer";
+import {StudentSummary} from "./studentSummary";
+import {TrainerSummary} from "./TrainerSummary";
 
 export class TrainingEntity {
   id : number;
@@ -7,8 +7,8 @@ export class TrainingEntity {
   isActive : boolean;
   start : Date;
   end : Date;
-  trainers : Array<Trainer>;
-  students : Array<Student>;
+  trainers : Array<TrainerSummary>;
+  students : Array<StudentSummary>;
 
   constructor() {
     this.id = -1;
@@ -16,7 +16,7 @@ export class TrainingEntity {
     this.isActive = false;
     this.start = new Date();
     this.end = new Date();
-    this.trainers = new Array<Trainer>();
-    this.students = new Array<Student>();
+    this.trainers = new Array<TrainerSummary>();
+    this.students = new Array<StudentSummary>();
   }
 }

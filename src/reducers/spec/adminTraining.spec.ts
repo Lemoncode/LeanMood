@@ -55,7 +55,7 @@ describe('adminTrainingReducer', () => {
       const newState = adminTrainingReducer(originalState, actionResult);
 
       // Assert
-      expect(newState).not.to.be.equal(originalState);
+      expect(newState).not.to.be.eql(originalState);
       expect(newState.editTraining).to.be.eql(expectedTraining);
 
     });

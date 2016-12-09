@@ -4,7 +4,7 @@ import { DashboardPage} from './dashboard/page'
 import { ListStudentPageContainer } from './student/list/pageContainer'
 import { EditStudentPage } from './student/edit/page'
 import { ListTrainingPage } from './training/list/page'
-import { EditTrainingPage } from './training/edit/page'
+import { EditTrainingPageContainer } from './training/edit/pageContainer'
 
 
 import { Route } from 'react-router'
@@ -19,7 +19,7 @@ export const AdminRoutes = (
       <Route path='/admin/student/list' component={ListStudentPageContainer}/>
       <Route path='/admin/student/edit' component={EditStudentPage}/>
       <Route path='/admin/training/list' component={ListTrainingPage}/>
-      <Route path='/admin/training/edit' component={EditTrainingPage}/>
+      <Route path='/admin/training/edit/:id' component={EditTrainingPageContainer}/>
     </div>
 
 );
