@@ -13,7 +13,7 @@ export class AdminStudentState {
 
 export const adminStudentReducer = (state : AdminStudentState = new AdminStudentState(), action) => {
   switch(action.type) {
-    case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
+    case adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED:
       return handleGetSummaryTrainingRequestCompleted(state, action.payload);
   }
 

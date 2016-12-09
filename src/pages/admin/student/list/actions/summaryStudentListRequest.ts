@@ -15,6 +15,6 @@ export const summaryStudentListRequestStarted = () => {
 }
 
 export const summaryStudentListRequestCompleted = (studentSummaryList : StudentSummary[]) => ({
-    type: adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED,
+    type: adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED,
     payload: studentSummaryList
 });
