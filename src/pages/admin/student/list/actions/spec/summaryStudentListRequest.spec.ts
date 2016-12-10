@@ -44,8 +44,8 @@ describe('summaryStudentListRequestCompleted', () => {
 
     // Assert
     expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload.length).not.to.be.undefined;
-    expect(actionResult.payload).to.be.equal(students);
+    expect(actionResult.payload.length).equal(2);
+    expect(actionResult.payload).eql(students);
   });
 })
 

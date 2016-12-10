@@ -4,16 +4,14 @@ import { adminActionEnums } from './../../common/actionEnums/admin';
 import { TrainingSummary } from './../../model/trainingSummary';
 import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
 
-    describe('adminTrainigReducer', () => {
+    describe('adminTrainingReducer', () => {
 
     let originalState: AdminTrainingState = null;
 
     beforeEach(() => {
         originalState = new AdminTrainingState();
         deepFreeze(originalState);
-    });
-
-    
+    });    
 
     it('is defined', () => {
         //Arrange

@@ -9,5 +9,5 @@ export interface IAppState {
 
 export const reducers = combineReducers<IAppState>({
   adminStudent: adminStudentReducer,
-  adminTrainig: adminTrainingReducer
+  adminTraining: adminTrainingReducer
 });

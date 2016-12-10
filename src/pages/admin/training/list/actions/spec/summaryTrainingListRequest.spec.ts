@@ -3,7 +3,7 @@ import { adminActionEnums } from './../../../../../../common/actionEnums/admin';
 import { summaryTrainingListRequestCompleted } from './../../../../training/list/actions/summaryTrainingListRequest';
 
 
-describe('summaryTrainingListRequest', () => {
+describe('summaryTrainingListRequestCompleted', () => {
   it('is defined', () => {
     //Assert
     expect(summaryTrainingListRequestCompleted).not.to.be.undefined;
@@ -14,7 +14,7 @@ describe('summaryTrainingListRequest', () => {
     expect(summaryTrainingListRequestCompleted([]).type).to.be.equal(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED);
   });
 
-  it('contains the expexted payload including training summary list', () => {
+  it('contains the expected payload including training summary list', () => {
     //Arrange
     const trainings : TrainingSummary[] = [
       {
@@ -31,6 +31,9 @@ describe('summaryTrainingListRequest', () => {
     //Act
     const actionResult = summaryTrainingListRequestCompleted(trainings);
     //Assert
+    expect(actionResult.payload).not.to.be.undefined;
+    expect(actionResult.payload.length).equal(2);
+    expect(actionResult.payload).eql(trainings);
   });
-
+  //TODO hacer pruebas de summaryTrainingListRequestStarted
 });

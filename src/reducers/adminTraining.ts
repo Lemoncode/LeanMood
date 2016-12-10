@@ -9,7 +9,7 @@ export class AdminTrainingState {
     }
 }
 
-export const adminTrainingReducer = (state, action) => {
+export const adminTrainingReducer = (state: AdminTrainingState = new AdminTrainingState(), action) => {
     switch(action.type) {
         case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
             return handleGetSummaryTrainingRequestCompleted(state, action.payload);
