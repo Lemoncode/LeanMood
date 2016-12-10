@@ -1,7 +1,7 @@
 import { adminActionEnums } from './../common/actionEnums/admin';
 import { TrainingSummary } from './../model/trainingSummary';
 
-export class AdminTrainigState {
+export class AdminTrainingState {
     trainingSummaryList: TrainingSummary[];
 
     public constructor() {
@@ -19,7 +19,7 @@ export const adminTrainingReducer = (state, action) => {
 }
 
 const handleGetSummaryTrainingRequestCompleted =
-  (state : AdminTrainigState, payload : TrainingSummary[]) => {
+  (state : AdminTrainingState, payload : TrainingSummary[]) => {
       const newState = Object.assign({}, state, {trainingSummaryList: payload});
       return newState;
 }

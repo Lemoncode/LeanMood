@@ -2,17 +2,18 @@ import { expect } from 'chai';
 import * as deepFreeze from 'deep-freeze';
 import { adminActionEnums } from './../../common/actionEnums/admin';
 import { TrainingSummary } from './../../model/trainingSummary';
-import { adminTrainingReducer, AdminTrainigState } from './../adminTraining';
+import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
 
     describe('adminTrainigReducer', () => {
 
-    let originalState: AdminTrainigState = null;
+    let originalState: AdminTrainingState = null;
 
     beforeEach(() => {
-        originalState = new AdminTrainigState();
+        originalState = new AdminTrainingState();
+        deepFreeze(originalState);
     });
 
-    deepFreeze(originalState);
+    
 
     it('is defined', () => {
         //Arrange
@@ -52,7 +53,7 @@ import { adminTrainingReducer, AdminTrainigState } from './../adminTraining';
             payload: trainings
         };
         //Act
-        const newState: AdminTrainigState = adminTrainingReducer(originalState, actionResult);
+        const newState: AdminTrainingState = adminTrainingReducer(originalState, actionResult);
         //Assert
         expect(newState.trainingSummaryList).equal(trainings);
     });
