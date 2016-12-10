@@ -19,9 +19,9 @@ describe('summaryStudentListRequestCompleted', () => {
     expect(summaryStudentListRequestCompleted).not.to.be.undefined;
   });
 
-  it('contains the expected type GET_SUMMARY_TRAINING_REQUEST_COMPLETED', () => {
+  it('contains the expected type GET_SUMMARY_STUDENT_REQUEST_COMPLETED', () => {
     // Assert
-    expect(summaryStudentListRequestCompleted([]).type).to.be.equals(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED);
+    expect(summaryStudentListRequestCompleted([]).type).to.be.equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
   });
 
   it('contains the expected payload including the student summary list', () => {
@@ -64,7 +64,7 @@ describe('summaryStudentListRequestStarted', () => {
     store.dispatch(summaryStudentListRequestStarted())
       .then(() => {
           // Assert
-          expect(store.getActions()[0].type).to.be.equal(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED);
+          expect(store.getActions()[0].type).to.be.equal(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
           done();
       });
   }).bind(this));
