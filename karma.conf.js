@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack.config');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha', 'chai', 'sinon-chai'],
+    frameworks: ['mocha', 'chai', 'sinon-chai', 'es6-shim'],
     files: [
       './test/test_index.js',
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
