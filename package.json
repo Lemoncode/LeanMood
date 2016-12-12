@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline",
-    "test": "karma start --browsers PhantomJS --single-run"
+    "test": "karma start --browsers PhantomJS --single-run",
+    "test:watch": "karma start --browsers PhantomJS --no-single-run",
+    "test:coverage": "karma start karma.conf.cov.js --browsers PhantomJS --single-run"
   },
   "repository": {
     "type": "git",
