@@ -6,17 +6,57 @@ import { LoginFormComponent } from '../loginForm';
 
 describe('LoginFormComponent', () => {
     const loginCredentials = new LoginCredentials();
+    const plain = str => str.split(/(?:\r\n|\n|\r)/).map(line => line.trim()).join('');
 
     it('should be defined', () => {
         //Arrange
         loginCredentials.login = 'admin'
         loginCredentials.password = 'test'
         //Act
-        // const loginFormComponent = shallow(
-        //     <LoginFormComponent loginCredentials={loginCredentials} performLogin={} updateLoginInfo={}/>
-        // )
-        // //Assert
-        // expect(loginFormComponent).not.to.be.undefined;
+        const onChangeSpy = sinon.spy();
+        const onClickSpy = sinon.spy();
+        const loginFormComponent = shallow(
+            <LoginFormComponent loginCredentials={loginCredentials} 
+                                performLogin={onClickSpy} 
+                                updateLoginInfo={onChangeSpy}/>
+        )
+        //Assert
+        expect(loginFormComponent).not.to.be.undefined;
+    });
+
+    it('Should display login Credentials', () => {
+        //Arrange
+        loginCredentials.login = 'admin'
+        loginCredentials.password = 'test'
+        //Act
+        const onChangeSpy = sinon.spy();
+        const onClickSpy = sinon.spy();
+        const loginFormComponent = shallow(
+            <LoginFormComponent loginCredentials={loginCredentials} 
+                                performLogin={onClickSpy} 
+                                updateLoginInfo={onChangeSpy}/>
+        )
+        //Assert
+        const expectedDomTree = `
+            <div class="panel-body">
+                <form role="form">
+                    <fieldset>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="E-mail" name="email" value="admin"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password" value="test"/>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-success btn-block">
+                        Login
+                    </button>
+                </fieldset>
+                </form>
+            </div>
+        `;
+
+        const plainDomTree = plain(expectedDomTree);
+        expect(loginFormComponent.html()).to.be.equal(plainDomTree);
     });
 
 });
