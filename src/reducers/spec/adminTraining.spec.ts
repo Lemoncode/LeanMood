@@ -4,8 +4,8 @@ import {} from 'mocha'
 import {} from 'core-js'
 import { adminTrainingReducer, AdminTrainingState } from '../adminTraining';
 import { TrainingEntity } from '../../model/training'
-import { Student } from '../../model/student'
-import { Trainer } from '../../model/trainer'
+import { StudentSummary } from '../../model/studentSummary'
+import { TrainerSummary } from '../../model/TrainerSummary'
 import {adminActionEnums} from '../../common/actionEnums/admin'
 
 
@@ -22,7 +22,7 @@ describe('adminTrainingReducer', () => {
       const originalState : AdminTrainingState = new AdminTrainingState();
 
       const action = {
-        type: 'NOT_EXPECTED_ACTION'
+        type: 'NOT_EXPECTED_ACTION_123456789'
       }
 
       // Act
@@ -36,15 +36,15 @@ describe('adminTrainingReducer', () => {
     it("should return a new state including edit training when passing a GET_TRAINING_REQUEST_COMPLETED", () => {
       // Arrange
       const originalState : AdminTrainingState = new AdminTrainingState();
-      const id: number = 32;
+      // const id: number = 32;
       const expectedTraining : TrainingEntity = {
         id: 32,
         name: 'React/Redux',
         isActive: true,
         start: new Date(1,1,2017),
         end: new Date(31,1,2017),
-        students: new Array<Student>(),
-        trainers: new Array<Trainer>()
+        students: new Array<StudentSummary>(),
+        trainers: new Array<TrainerSummary>()
       };
       const actionResult = {
         type: adminActionEnums.GET_TRAINING_REQUEST_COMPLETED,

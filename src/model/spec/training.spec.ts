@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import {} from 'mocha'
 import {} from 'core-js'
 import {TrainingEntity} from '../training';
-import {Student} from '../student';
-import {Trainer} from '../trainer';
+import {StudentSummary} from '../studentSummary';
+import {TrainerSummary} from '../trainerSummary';
 
 describe('Training', () => {
   let training : TrainingEntity = null;

@@ -1,10 +1,16 @@
 import * as React from 'react';
 import {Link} from 'react-router';
+import { TrainingEntity } from '../../../../model/training';
 
 
+interface Props {
+  params?: any,
+  training: TrainingEntity;
+  getTraining: (id: number) => void;
+  
+}
 
-//<Link to="/students/training">Go to students</Link>
-//<Link to="/students/training">Go to trainings</Link>
+
 export class EditTrainingPage extends React.Component<{}, {}> {
    public render() {
        return (
