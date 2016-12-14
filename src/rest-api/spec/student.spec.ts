@@ -3,7 +3,6 @@ import { } from 'mocha'
 import { } from 'core-js'
 import { Student } from '../../model/student';
 import { studentApi } from '../student'
-import {} from 'es6-promise'; 
 
 let studentList: Student[];
 

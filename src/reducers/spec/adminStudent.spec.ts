@@ -4,6 +4,7 @@ import {} from 'mocha'
 import {} from 'core-js'
 import { adminStudentReducer, AdminStudentState } from '../adminStudent';
 import { StudentSummary } from '../../model/studentSummary'
+import { Student } from '../../model/student'
 import { summaryStudentListRequestCompleted } from '../../pages/admin/student/list/actions/summaryStudentListRequest'
 import {adminActionEnums} from '../../common/actionEnums/admin'
 
@@ -17,7 +18,6 @@ describe('adminStudentReducer', () => {
 
   it("should return same state when passing an action that is not expected", () => {
     // Arrange
-    //const originalState : AdminStudentState = new AdminStudentState();
     const originalState : AdminStudentState = new AdminStudentState();
 
     const action = {
@@ -62,5 +62,32 @@ describe('adminStudentReducer', () => {
 
     // Assert
     expect(newState.studentSummaryList).to.eql(students);
+  });
+
+  it(`should return a new state including new student list when
+    passing a GET_STUDENT_REQUEST_COMPLETED`,() => {
+    // Arrange
+    const originalState = new AdminStudentState();
+
+    deepFreeze(originalState);
+
+    const student : Student = {
+        id: 1,
+        fullname: 'foo',
+        phoneNumber: '999 99',
+        email: 'foo@test.com',
+        isActive: true
+      };
+
+    const actionResult = {
+      type: adminActionEnums.GET_STUDENT_REQUEST_COMPLETED,
+      payload: student
+    }
+
+    // Act
+    const newState = adminStudentReducer(originalState, actionResult);
+
+    // Assert
+    //expect(newState.student).to.eql(student);
   })
 });
