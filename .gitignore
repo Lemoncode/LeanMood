@@ -7,3 +7,4 @@ typings/
 .idea/
 */src/**/*.js
 */src/**/*.js.map
+.vscode/settings.json
