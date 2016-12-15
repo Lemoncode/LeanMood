@@ -3,12 +3,12 @@ import {Link} from 'react-router';
 import { TrainingEntity } from '../../../../model/training';
 
 
-interface Props {
-  params?: any,
-  training: TrainingEntity;
-  getTraining: (id: number) => void;
+// interface Props {
+//   params?: any,
+//   training: TrainingEntity;
+//   getTraining: (id: number) => void;
   
-}
+// }
 
 
 export class EditTrainingPage extends React.Component<{}, {}> {
