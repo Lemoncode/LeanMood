@@ -8,7 +8,3 @@ typings/
 .idea/
 */src/**/*.js
 */src/**/*.js.map
-<<<<<<< HEAD
-.vscode/settings.json
-=======
->>>>>>> 5b0c7fa865cfa8d0c85c28161272939039acf3ae
