@@ -4,7 +4,7 @@ import {} from 'core-js'
 import { TrainingEntity } from '../../model/training';
 import { StudentSummary } from '../../model/studentSummary';
 import { TrainerSummary } from '../../model/trainerSummary';
-import {TrainingSummary} from '../../model/trainingSummary';
+import { TrainingSummary } from '../../model/trainingSummary';
 import { trainingApi } from '../training';
 
 let trainingList : TrainingEntity[];
