@@ -2,11 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router';
 
 
-interface Props extends React.Props<TrainingListPage> {
-}
-
-
-export class TrainingListPage extends React.Component<Props, {}> {
+export class TrainingListPage extends React.Component<{}, {}> {
    public render() {
        return (
          <div>

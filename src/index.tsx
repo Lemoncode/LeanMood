@@ -15,7 +15,8 @@ import { reducers } from './reducers'
 let store = createStore(
   reducers,
   compose(
-    applyMiddleware(reduxThunk)
+    applyMiddleware(reduxThunk),
+    window['devToolsExtension'] ? window['devToolsExtension']() : f => f
   )
 );
 

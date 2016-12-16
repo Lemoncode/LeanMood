@@ -64,11 +64,7 @@ module.exports = function (config) {
         noInfo: true
     },
 
-    reporters: ['mocha', 'coverage'],
-    coverageReporter: {
-        type : 'html',
-        dir : 'coverage/'
-    },
+    reporters: ['mocha'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
