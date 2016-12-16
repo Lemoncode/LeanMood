@@ -50,4 +50,43 @@ describe('MultilineTrim', () => {
     //Assert
     expect(multilineTrim(string)).to.be.equals('');
   });
+
+  it('attributes spaces', () => {
+    //Arrange
+    const string = `
+    <p style="color: black">
+    </p>
+    `;
+    //Act
+    //Assert
+    expect(multilineTrim(string)).to.be.equals('<p style="color: black"></p>');
+  });
+
+  it('text literals', () => {
+    //Arrange
+    const string = `
+    <span>
+    my test with spaces
+    </span>
+    `;
+    //Act
+    //Assert
+    expect(multilineTrim(string)).to.be.equals('<span>my test with spaces</span>');
+  });
+
+  it('spaces and white lines', () => {
+    //Arrange
+    const string = `
+    <span>
+    my test with spaces
+    </span>
+   
+
+    <span>
+    </span>
+    `;
+    //Act
+    //Assert
+    expect(multilineTrim(string)).to.be.equals('<span>my test with spaces</span><span></span>');
+  });
 });
