@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack.config');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha', 'chai', 'sinon-chai', 'es6-shim'],
+    frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
       './test/test_index.js',
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
@@ -64,14 +64,7 @@ module.exports = function (config) {
         noInfo: true
     },
 
-<<<<<<< HEAD
-    reporters: ['mocha', 'coverage'],
-    // coverageReporter: {
-    //     type : 'text'
-    // },
-=======
     reporters: ['mocha'],
->>>>>>> 5b0c7fa865cfa8d0c85c28161272939039acf3ae
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
