@@ -7,6 +7,7 @@ import * as ReactDOM from 'react-dom';
 import {AppRoutes} from './routes';
 import { Provider } from 'react-redux';
 import { Router,  hashHistory  } from 'react-router'
+import { syncHistoryWithStore,routerReducer} from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
@@ -20,11 +21,11 @@ let store = createStore(
   )
 );
 
-
+const history = syncHistoryWithStore(hashHistory, store);
 // The ...component, spread operator: like object assign just add the new
 // properties to the Route control (and preserves the existing ones)
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory} routes={AppRoutes}/>
+    <Router history={history} routes={AppRoutes}/>
   </Provider>
   , document.getElementById('root'));
