@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import {AppRoutes} from './routes';
 import { Provider } from 'react-redux';
 import { Router,  hashHistory  } from 'react-router'
-import { syncHistoryWithStore,routerReducer} from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
