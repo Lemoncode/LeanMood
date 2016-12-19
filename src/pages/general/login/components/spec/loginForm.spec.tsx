@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { LoginCredentials } from '../../../../../model/loginCredentials';
 import { LoginFormComponent } from '../loginForm';
+import { multilineTrim }  from '../../../../../common/parse/multilineTrim';
 
 describe('LoginFormComponent', () => {
     const loginCredentials = new LoginCredentials();
-    const plain = str => str.split(/(?:\r\n|\n|\r)/).map(line => line.trim()).join('');
 
     it('should be defined', () => {
         //Arrange
@@ -55,7 +55,7 @@ describe('LoginFormComponent', () => {
             </div>
         `;
 
-        const plainDomTree = plain(expectedDomTree);
+        const plainDomTree = multilineTrim(expectedDomTree);
         expect(loginFormComponent.html()).to.be.equal(plainDomTree);
     });
 
