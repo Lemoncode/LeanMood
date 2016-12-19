@@ -32,7 +32,8 @@ module.exports = function (config) {
             {
               test: /\.css$/,
               exclude:/node_modules/,
-              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+              //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
+              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[local]')
             }
           ],
           //Configuration required to import sinon on spec.ts files
