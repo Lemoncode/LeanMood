@@ -5,7 +5,7 @@ import {} from 'core-js'
 import { adminTrainingReducer, AdminTrainingState } from '../adminTraining';
 import { TrainingEntity } from '../../model/training'
 import { StudentSummary } from '../../model/studentSummary'
-import { TrainerSummary } from '../../model/TrainerSummary'
+import { TrainerSummary } from '../../model/trainerSummary'
 import {adminActionEnums} from '../../common/actionEnums/admin'
 
 

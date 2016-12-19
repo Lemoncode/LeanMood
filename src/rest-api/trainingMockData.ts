@@ -1,5 +1,5 @@
 import { TrainingEntity } from '../model/training'
-import { StudentSummary } from '../model/StudentSummary'
+import { StudentSummary } from '../model/studentSummary'
 import { TrainerSummary} from '../model/trainerSummary'
 
 export const trainingMockData : TrainingEntity[] =

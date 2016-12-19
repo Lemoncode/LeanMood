@@ -1,5 +1,5 @@
 import {StudentSummary} from "./studentSummary";
-import {TrainerSummary} from "./TrainerSummary";
+import {TrainerSummary} from "./trainerSummary";
 
 export class TrainingEntity {
   id : number;

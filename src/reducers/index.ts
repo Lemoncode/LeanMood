@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import { AdminStudentState, adminStudentReducer} from './adminStudent'
+import { AdminStudentState, adminStudentReducer } from './adminStudent'
+import { AdminTrainingState, adminTrainingReducer } from './adminTraining';
 
 export interface IAppState {
-  adminStudent : AdminStudentState
+  adminStudent: AdminStudentState
+  adminTraining: AdminTrainingState
 }
 
 export const reducers = combineReducers<IAppState>({
-  adminStudent: adminStudentReducer
+  adminStudent: adminStudentReducer,
+  adminTraining: adminTrainingReducer
 });

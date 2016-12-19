@@ -1,4 +1,16 @@
-import * as React from 'react';
+import { EditTrainingPage } from './page';
+import { connect } from 'react-redux';
+import { IAppState } from '../../../../reducers'
 
+const mapStateToProps = (state: IAppState) => {
 
-export class EditTrainingPageContainer extends React.Component<{}, {}> {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+};
+
+export const EditTrainingPageContainer = connect(
+        mapStateToProps,
+        mapDispatchToProps
+)(EditTrainingPage);

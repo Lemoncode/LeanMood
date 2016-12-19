@@ -7,12 +7,10 @@ import { TrainingEntity } from '../../../../model/training';
 //   params?: any,
 //   training: TrainingEntity;
 //   getTraining: (id: number) => void;
-  
 // }
 
 
-export class EditTrainingPage extends React.Component<{}, {}> {
-   public render() {
+export const EditTrainingPage = () => {
        return (
          <div>
            <span> Edit Training Page: </span>
@@ -20,8 +18,6 @@ export class EditTrainingPage extends React.Component<{}, {}> {
            <br/>
            <Link to="/admin/training/list">Back to training list</Link>
            <Link to="/admin">Back to Dashboard</Link>
-
          </div>
         );
-  }
 }
