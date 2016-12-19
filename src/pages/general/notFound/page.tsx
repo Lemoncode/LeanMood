@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {NotFoundHeader} from './components/header';
 import {NotFoundBody} from './components/body';
-//const styles = require('./styles.css');
-import * as styles from './styles.css';
+const styles:any = require('./styles.css');
 
 export const NotFoundPage = () => {
        return (

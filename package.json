@@ -64,8 +64,6 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
-    "typed-css-modules": "^0.1.13",
-    "typed-css-modules-loader": "0.0.4",
     "typescript": "^2.0.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
