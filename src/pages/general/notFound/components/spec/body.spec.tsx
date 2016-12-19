@@ -1,40 +1,33 @@
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
 import * as React from 'react';
-import {NotFoundPage} from '../page';
-import {multilineTrim} from '../../../../common/parse/multilineTrim';
+import {multilineTrim} from '../../../../../common/parse/multilineTrim';
+import {NotFoundBody} from '../body';
 
-describe('general/notFound/page', () => {
+describe('general/notFound/components/body', () => {
   it('is defined', () => {
     //Arrange
 
     //Act
-    const page = shallow(
-      <NotFoundPage />
+    const component = shallow(
+      <NotFoundBody />
     );
 
     //Assert
-    expect(page).not.to.be.undefined;
+    expect(component).not.to.be.undefined;
   });
 
   it('renders as expected', () => {
     //Arrange
 
     //Act
-    const page = shallow(
-      <NotFoundPage />
+    const component = shallow(
+      <NotFoundBody />
     );
 
     //Assert
-    const expectedNotFoundHeader = `
-      <div class="panel-heading">
-        <h3 class="text-center">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Oops:
-          <small>Page not found - <b>404 error</b></small>
-        </h3>
-      </div>
-    `;
-    const expectedNotFoundBody = `
+
+    const expectedDomTree = `
       <div class="panel-body">
         <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Please try the following:</p>
         <ul class="list-group">
@@ -46,17 +39,6 @@ describe('general/notFound/page', () => {
       </div>
     `;
 
-    const expectedDomTree = `
-    <div class="row pageError404">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-danger">
-          ${expectedNotFoundHeader}
-          ${expectedNotFoundBody}
-        </div>
-      </div>
-    </div>
-      `;
-
-    expect(page.html()).to.be.equal(multilineTrim(expectedDomTree));
+    expect(component.html()).to.be.equal(multilineTrim(expectedDomTree));
   });
 });
