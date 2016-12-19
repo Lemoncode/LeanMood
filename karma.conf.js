@@ -1,4 +1,5 @@
 var webpackConfig = require('./webpack.config');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function (config) {
   config.set({
@@ -27,6 +28,11 @@ module.exports = function (config) {
             {
                 test: /\.json$/,
                 loader: 'json'
+            },
+            {
+              test: /\.css$/,
+              exclude:/node_modules/,
+              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
             }
           ],
           //Configuration required to import sinon on spec.ts files
@@ -40,7 +46,7 @@ module.exports = function (config) {
                   exclude: /(node_modules|spec)/,
                   loaders: ['istanbul-instrumenter','ts-loader']
             }
-          ],
+          ]
       },
       resolve: {
           //Added .json extension required by cheerio (enzyme dependency)
@@ -56,7 +62,10 @@ module.exports = function (config) {
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
-      }
+      },
+      plugins: [
+        new ExtractTextPlugin('[name].css')
+      ]
     },
     webpackMiddleware: {
         // webpack-dev-middleware configuration
