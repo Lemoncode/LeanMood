@@ -20,9 +20,8 @@ module.exports = {
              "redux"
     ],
     vendorStyles: [
-        '../node_modules/bootstrap/dist/css/bootstrap.css',
-        "./content/css/styles.css"
-      ]
+      '../node_modules/bootstrap/dist/css/bootstrap.css',
+    ]
   },
 	output: {
 		path: path.join(basePath, "dist"),
@@ -47,8 +46,16 @@ module.exports = {
 	      test: /\.(ts|tsx)$/,
 	      loader: 'ts-loader'
       },
+      //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
+        include: /node_modules\/bootstrap/,
+        loader: ExtractTextPlugin.extract('style','css')
+      },
+      //NOTE: src css configuration
+      {
+        test: /\.css$/,
+        exclude:/node_modules/,
         loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
