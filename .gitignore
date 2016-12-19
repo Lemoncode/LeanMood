@@ -8,4 +8,3 @@ typings/
 .idea/
 */src/**/*.js
 */src/**/*.js.map
-src/pages/general/notFound/styles.css.d.ts
