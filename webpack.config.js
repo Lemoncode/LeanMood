@@ -20,7 +20,7 @@ module.exports = {
              "redux"
     ],
     vendorStyles: [
-      '../node_modules/bootstrap/dist/css/bootstrap.css',
+      '../node_modules/bootstrap/dist/css/bootstrap.css'
     ]
   },
 	output: {
@@ -49,7 +49,7 @@ module.exports = {
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
-        include: /node_modules\/bootstrap/,
+        include: /node_modules\\bootstrap/,
         loader: ExtractTextPlugin.extract('style','css')
       },
       //NOTE: src css configuration
