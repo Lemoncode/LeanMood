@@ -1,22 +1,22 @@
 import { expect } from 'chai';
 import * as deepFreeze from 'deep-freeze';
-import { LoginCredentials } from '../loginCredentials';
+import { LoginResponse } from '../loginResponse';
 import {} from 'mocha';
 import {} from 'core-js';
 
-describe('loginCredentials', () => {
-    let loginCredentials = null;
+describe('loginResponse', () => {
+    let loginResponse = null;
 
     beforeEach(() => {
-        loginCredentials = new LoginCredentials();
+        loginResponse = new LoginResponse();
     });
 
     it('Is instantiated and exists', () =>{
         //Arrange
         //Act
         //Assert
-        expect(loginCredentials).not.to.be.undefined;
-        expect(loginCredentials).not.to.be.null;
+        expect(loginResponse).not.to.be.undefined;
+        expect(loginResponse).not.to.be.null;
     });
 
     describe('#constructor', () => {
@@ -24,8 +24,8 @@ describe('loginCredentials', () => {
             //Arrange
             //Act
             //Assert
-            expect(loginCredentials.login).to.be.equal('');
-            expect(loginCredentials.password).to.be.equal('');
+            expect(loginResponse.succeded).to.be.false;
+            expect(loginResponse.userProfile).to.be.equal(loginResponse.userProfile);
         });
     });
 

@@ -5,5 +5,5 @@ export class LoginCredentials {
     constructor(){
         this.login = '';
         this.password = '';
-    }    
+    }
 }

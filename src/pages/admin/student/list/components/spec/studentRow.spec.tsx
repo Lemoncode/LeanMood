@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { StudentSummary } from '../../../../../../model/studentSummary'
-import { StudentRowComponent } from '../studentRow'
+import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentRowComponent } from '../studentRow';
+import {multilineTrim} from '../../../../../../common/parse/multilineTrim';
 
 describe('StudentRowComponent', () => {
 
@@ -51,9 +52,7 @@ describe('StudentRowComponent', () => {
       </tr>
       `;
 
-    const plainDomTree = expectedDomTree.replace(/(?:\r\n|\r|\n|\s)/g, '')
-
-    expect(studentRowComponent.html()).to.be.equal(plainDomTree);
+    expect(studentRowComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
 
   })
 
