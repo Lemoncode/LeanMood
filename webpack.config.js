@@ -41,6 +41,13 @@ module.exports = {
 
 
 	module: {
+    preLoaders: [
+      {
+        test: /\.css$/,
+        exclude:/node_modules/,
+        loader: 'typed-css-modules-loader'
+      }
+    ],
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,

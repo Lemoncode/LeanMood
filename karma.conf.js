@@ -18,6 +18,13 @@ module.exports = function (config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
+          preLoaders: [
+            {
+              test: /\.css$/,
+              exclude:/node_modules/,
+              loader: 'typed-css-modules-loader'
+            }
+          ],
           loaders: [
               {
                   test: /\.spec\.(ts|tsx)$/,
