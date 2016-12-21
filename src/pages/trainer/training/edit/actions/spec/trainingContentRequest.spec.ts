@@ -17,7 +17,7 @@ describe('trainingConentRequestCompleted', () => {
 
   it('returns expected type GET_TRAINING_CONTENT_REQUEST_COMPLETED', () => {
     //Assert
-    expect(trainingContentRequestCompleted().type).to.equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
+    expect(trainingContentRequestCompleted(null).type).to.equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
   });
 
   it('returns expected payload equals "Test content"', () => {
