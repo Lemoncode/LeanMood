@@ -1,5 +1,7 @@
-import {studentApi} from './student'
+import {studentApi} from './student';
+import {trainerApi} from './trainer/trainerApi';
 
 export {
-  studentApi
+  studentApi,
+  trainerApi
 }

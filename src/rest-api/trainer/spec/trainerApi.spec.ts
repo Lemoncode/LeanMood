@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {trainerApi} from '../trainer';
+import {trainerApi} from '../trainerApi';
 import * as trainerMockData from '../trainerMockData';
 
 describe('TrainerApi', () => {
