@@ -4,10 +4,6 @@ import * as trainerMockData from '../trainerMockData';
 
 describe('TrainerApi', () => {
   it('is defined', () => {
-    //Arrange
-
-    //Act
-
     //Assert
     expect(trainerApi).not.to.be.undefined;
   });
