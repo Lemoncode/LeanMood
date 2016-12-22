@@ -5,7 +5,7 @@ class TrainerApi {
     let content: string;
 
     const trainingContent = trainingContentMockData.filter((trainingMockData) => {
-      return trainingMockData.trainingId === id;
+      return trainingMockData.id === id;
     });
 
     if (trainingContent) {

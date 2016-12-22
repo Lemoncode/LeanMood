@@ -1,6 +1,7 @@
 import {expect} from 'chai';
-import {trainerApi} from '../trainerApi';
 import * as trainerMockData from '../trainerMockData';
+import {EditTrainingSummary} from '../../../model/editTrainingSummary';
+import {trainerApi} from '../trainerApi';
 
 describe('TrainerApi', () => {
   it('is defined', () => {
@@ -9,14 +10,14 @@ describe('TrainerApi', () => {
   });
 
   describe('getTrainingConentByTrainingId', () => {
-    it('returns expected content by trainingId equals 1', sinon.test((done) => {
+    it('returns expected content by id equals 1', sinon.test((done) => {
       //Arrange
       let sinon: sinon.SinonStatic = this;
 
-      const trainingId = 1;
+      const id = 1;
 
-      const expectedMockTraining: trainerMockData.TrainingContent = {
-        trainingId: 1,
+      const expectedMockTraining: EditTrainingSummary = {
+        id: 1,
         content: "# Test H1 text"
       };
 
@@ -25,7 +26,7 @@ describe('TrainerApi', () => {
       );
 
       //Act
-      const promise = trainerApi.getTrainingConentByTrainingId(trainingId);
+      const promise = trainerApi.getTrainingConentByTrainingId(id);
 
       promise.then((content) => {
         //Assert
@@ -34,18 +35,18 @@ describe('TrainerApi', () => {
       });
     }).bind(this));
 
-    it('returns expected content by trainingId equals 2', sinon.test((done) => {
+    it('returns expected content by id equals 2', sinon.test((done) => {
       //Arrange
       let sinon: sinon.SinonStatic = this;
 
-      const trainingId = 2;
+      const id = 2;
 
-      const expectedMockTraining1: trainerMockData.TrainingContent = {
-        trainingId: 1,
+      const expectedMockTraining1: EditTrainingSummary = {
+        id: 1,
         content: "# Test H1 text"
       };
-      const expectedMockTraining2: trainerMockData.TrainingContent = {
-        trainingId: 2,
+      const expectedMockTraining2: EditTrainingSummary = {
+        id: 2,
         content: "# Test H2 text"
       };
       const trainingContentMockDataStub = sinon.stub(trainerMockData, 'trainingContentMockData',
@@ -53,7 +54,7 @@ describe('TrainerApi', () => {
       );
 
       //Act
-      const promise = trainerApi.getTrainingConentByTrainingId(trainingId);
+      const promise = trainerApi.getTrainingConentByTrainingId(id);
 
       promise.then((content) => {
         //Assert
