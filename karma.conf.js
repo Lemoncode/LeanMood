@@ -18,13 +18,6 @@ module.exports = function (config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-          preLoaders: [
-            {
-              test: /\.css$/,
-              exclude:/node_modules/,
-              loader: 'typed-css-modules-loader'
-            }
-          ],
           loaders: [
               {
                   test: /\.spec\.(ts|tsx)$/,
@@ -37,10 +30,10 @@ module.exports = function (config) {
                 loader: 'json'
             },
             {
-              test: /\.css$/,
+              test: /\.scss$/,
               exclude:/node_modules/,
               //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
-              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[local]')
+              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[local]', 'sass')
             }
           ],
           //Configuration required to import sinon on spec.ts files
