@@ -8,7 +8,7 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
 	resolve: {
-	      extensions: ['', '.js','.ts', '.tsx']
+	      extensions: ['', '.js','.ts', '.tsx', '.css', '.scss']
 	},
 	entry: {
     app: "./index.tsx",
@@ -43,9 +43,9 @@ module.exports = {
 	module: {
     preLoaders: [
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         exclude:/node_modules/,
-        loader: 'typed-css-modules-loader'
+        loaders: ['typed-css-modules-loader','sass-loader']
       }
     ],
 		loaders: [

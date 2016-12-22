@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NotFoundHeader} from './components/header';
 import {NotFoundBody} from './components/body';
-import {pageError404} from './styles.css';
+import {pageError404} from './styles.scss';
 
 export const NotFoundPage = () => {
        return (
