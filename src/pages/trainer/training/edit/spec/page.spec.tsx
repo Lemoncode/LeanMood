@@ -2,7 +2,6 @@ import {expect} from 'chai';
 import {shallow, mount} from 'enzyme';
 import * as React from 'react';
 import {EditTrainingSummary} from '../../../../../model/editTrainingSummary';
-import {multilineTrim} from '../../../../../common/parse/multilineTrim';
 import {EditTrainingPage} from '../page';
 
 describe('trainer/training/edit/page', () => {
@@ -24,6 +23,8 @@ describe('trainer/training/edit/page', () => {
     const training = new EditTrainingSummary();
     const fetchTrainingContentSpy = sinon.spy();
 
+    const expectedPage = '<div></div>';
+    
     //Act
     const page = mount(
       <EditTrainingPage training={training}
@@ -31,7 +32,6 @@ describe('trainer/training/edit/page', () => {
     );
 
     //Assert
-    const expectedPage = '<div></div>';
     expect(page.html()).to.equal(expectedPage);
   });
 
