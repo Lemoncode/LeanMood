@@ -51,6 +51,12 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style','css')
       },
+      // Loading images
+      {
+        test: /\.(png|jpg)$/,
+        exclude: /node_modules/,
+        loader: 'url-loader?limit=10000'
+      },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
       {
