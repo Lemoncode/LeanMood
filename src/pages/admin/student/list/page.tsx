@@ -23,5 +23,5 @@ export class ListStudentPage extends React.Component<Props, {}> {
            <Link to="/admin/student/edit">Go to student Edit</Link>
          </div>
         );
-  }
+    }
 }
