@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { StudentSummary } from '../../../../../../model/studentSummary'
 import { StudentTableComponent } from '../studentTable'
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 
 describe('StudentTableComponent', () => {
   it('Should not be undefined', () => {
@@ -17,9 +18,6 @@ describe('StudentTableComponent', () => {
   });
 
   it('Should display students tabular data', () => {
-    // TODO: This is the good one, pending move to common and add specs
-    const plain = str => str.split(/(?:\r\n|\n|\r)/).map(line => line.trim()).join('');
-
     // Arrange
     const students : StudentSummary[] = [
       {
@@ -71,9 +69,7 @@ describe('StudentTableComponent', () => {
       </table>
       `;
 
-    const plainDomTree = plain(expectedDomTree);
-
-    expect(studentTableComponent.html()).to.be.equal(plainDomTree);
+    expect(studentTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
 
   });
 });

@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { TrainingTableComponent } from '../trainingTable';
 import { TrainingSummary } from '../../../../../../model/trainingSummary';
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 
 describe('TrainingTabletComponent', () => {
   it('Should not be undefined', () => {
@@ -18,9 +19,6 @@ describe('TrainingTabletComponent', () => {
   });
 
   it('Should display trainings tabular data', () => {
-    // TODO: This is the good one, pending move to common and add specs
-    const plain = str => str.split(/(?:\r\n|\n|\r)/).map(line => line.trim()).join('');
-
     // Arrange
     const trainings : TrainingSummary[] = [
       {
@@ -72,9 +70,7 @@ describe('TrainingTabletComponent', () => {
       </table>
       `;
 
-    const plainDomTree = plain(expectedDomTree);
-
-    expect(trainingTableComponent.html()).to.be.equal(plainDomTree);
+    expect(trainingTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
 
   });
 

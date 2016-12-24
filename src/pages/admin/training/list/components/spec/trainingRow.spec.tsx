@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { TrainingSummary } from '../../../../../../model/trainingSummary';
 import { TrainingRowComponent } from './../trainingRow';
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 
 describe('TrainingRowComponent', () => {
 
@@ -49,9 +50,7 @@ describe('TrainingRowComponent', () => {
       </tr>
       `;
 
-    const plainDomTree = expectedDomTree.replace(/(?:\r\n|\r|\n|\s)/g, '');
-
-    expect(trainingRowComponent.html()).to.be.equal(plainDomTree);
+    expect(trainingRowComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
   });
 
 });
