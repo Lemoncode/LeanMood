@@ -1,18 +1,25 @@
 import * as React from 'react';
 import {Link} from 'react-router';
+import { TrainingSummary } from '../../../../model/trainingSummary'
+import { TrainingTableComponent } from '../list/components/trainingTable';
+
+interface Props extends React.Props<ListTrainingPage> {
+  trainingList : TrainingSummary[];
+  fetchTrainings : () => void;
+}
 
 //<Link to="/students/training">Go to students</Link>
 //<Link to="/students/training">Go to trainings</Link>
-export class ListTrainingPage extends React.Component<{}, {}> {
+export class ListTrainingPage extends React.Component<Props, {}> {
+  componentDidMount() {
+     this.props.fetchTrainings();
+  }
+
   public render() {
     return (
       <div>
-        <span> List Training Page: </span>
-        <br/>
-        <br/>
-        <Link to="/admin/training/edit">Go to training edit</Link>
-        <Link to="/admin">Back to Dashboard</Link>
-
+        <TrainingTableComponent trainingList={this.props.trainingList}/>
+        <Link to="/admin/training/edit">Go to training Edit</Link>
       </div>
     );
   }

@@ -46,7 +46,7 @@ describe('summaryTrainingListRequestCompleted', () => {
     const actionResult = summaryTrainingListRequestCompleted(trainings);
     //Assert
     expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload.length).equal(2);
+    expect(actionResult.payload.length).equal(3);
     expect(actionResult.payload).eql(trainings);
   });
 });
