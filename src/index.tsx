@@ -9,9 +9,10 @@ import { Provider } from 'react-redux';
 import { Router,  hashHistory  } from 'react-router'
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import { reducers } from './reducers'
-
+
 let store = createStore(
   reducers,
   compose(
@@ -28,3 +29,5 @@ ReactDOM.render(
     <Router history={hashHistory} routes={AppRoutes}/>
   </Provider>
   , document.getElementById('root'));
+
+const history = syncHistoryWithStore(hashHistory, store);
