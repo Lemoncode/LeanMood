@@ -64,7 +64,7 @@ describe('adminStudentReducer', () => {
     expect(newState.studentSummaryList).to.eql(students);
   });
 
-  it(`should return a new state including new student list when
+  it(`should return a new state including editing student when
     passing a GET_STUDENT_REQUEST_COMPLETED`,() => {
     // Arrange
     const originalState = new AdminStudentState();
@@ -88,6 +88,6 @@ describe('adminStudentReducer', () => {
     const newState = adminStudentReducer(originalState, actionResult);
 
     // Assert
-    //expect(newState.student).to.eql(student);
+    expect(newState.editingStudent).to.eql(student);
   })
 });
