@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { CenteredContainer } from '../centered';
+import { multilineTrim }  from '../../../common/parse/multilineTrim';
 
 describe('CenteredContainer', () => {
-    const plain = str => str.split(/(?:\r\n|\r|\n)/g).map(line => line.trim()).join('');
 
     it('should be defined', () => {
         //Arrange
@@ -38,7 +38,7 @@ describe('CenteredContainer', () => {
             </div>
         `;
 
-        const plainDomTree = plain(expectedDomTree);
+        const plainDomTree = multilineTrim(expectedDomTree);
 
         expect(centeredContainer.html()).to.be.equal(plainDomTree);
 

@@ -5,12 +5,14 @@ import {} from 'mocha'
 import {} from 'core-js'
 
 describe('updateEditingLogin', () => {
+  const prefix = 'loginActions_';
+
   it('is defined', () => {
     expect(updateEditingLogin).not.to.be.undefined;
   });
 
   it('contains the expected type USERPROFILE_UPDATE_EDITING_LOGIN', () => {
-    expect(updateEditingLogin(new LoginCredentials).type).to.be.equals('USERPROFILE_UPDATE_EDITING_LOGIN');
+    expect(updateEditingLogin(new LoginCredentials).type).to.be.equals(`${prefix}USERPROFILE_UPDATE_EDITING_LOGIN`);
   });
 
   it('contains the expected payload including the login Credentials', () => {
