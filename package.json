@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline",
+    "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
     "test": "karma start --browsers PhantomJS --single-run",
     "test:watch": "karma start --browsers PhantomJS --no-single-run",
     "test:coverage": "karma start karma.conf.cov.js --browsers PhantomJS --single-run"
@@ -65,6 +66,8 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
+    "tslint": "^4.2.0",
+    "tslint-react": "^2.2.0",
     "typescript": "^2.0.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
