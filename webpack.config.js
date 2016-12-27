@@ -8,7 +8,10 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
 	resolve: {
-	      extensions: ['', '.js','.ts', '.tsx']
+    extensions: ['', '.js','.ts', '.tsx'],
+    alias: {
+      'global-styles': path.join(basePath, "src/content/sass/")
+    }
 	},
 	entry: {
     app: "./index.tsx",
