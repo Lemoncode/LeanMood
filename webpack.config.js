@@ -10,11 +10,18 @@ module.exports = {
 	resolve: {
     extensions: ['', '.js','.ts', '.tsx'],
     alias: {
-      'global-styles': path.join(basePath, "src/content/sass/")
-    }
-	},
+      'global-styles': path.join(basePath, "src/content/sass/"),
+      // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
+      // https://github.com/gaearon/react-hot-loader/issues/417
+      //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+    },
+  },
 	entry: {
-    app: "./index.tsx",
+    app: [
+      "webpack-dev-server/client?http://localhost:8080",
+      "webpack/hot/only-dev-server",
+      "./index.tsx"
+    ],
     vendor: [
              "react",
              "react-dom",
@@ -36,6 +43,7 @@ module.exports = {
   devServer: {
        contentBase: './dist', //Content base
        inline: true, //Enable watch and live reload
+       hot: true,
        noInfo: true,
        host: 'localhost',
        port: 8080,
@@ -47,7 +55,7 @@ module.exports = {
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,
-	      loader: 'ts-loader'
+	      loaders: ['react-hot', 'ts-loader']
       },
       //NOTE: Bootstrap css configuration
       {
@@ -82,6 +90,7 @@ module.exports = {
 		]
 	},
 	plugins:[
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css'),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin

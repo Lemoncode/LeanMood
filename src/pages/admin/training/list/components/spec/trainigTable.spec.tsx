@@ -1,40 +1,41 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { StudentSummary } from '../../../../../../model/studentSummary'
-import { StudentTableComponent } from '../studentTable'
+
+import { TrainingTableComponent } from '../trainingTable';
+import { TrainingSummary } from '../../../../../../model/trainingSummary';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 
-describe('StudentTableComponent', () => {
+describe('TrainingTabletComponent', () => {
   it('Should not be undefined', () => {
     // Act
-    const studentTableComponent = shallow(
-      <StudentTableComponent studentList={[]}/>
-    )
+    const trainingTableComponent = shallow(
+      <TrainingTableComponent trainingList={[]}/>
+    );
 
     // Assert
-    expect(studentTableComponent).not.to.be.undefined;
+    expect(trainingTableComponent).not.to.be.undefined;
 
   });
 
-  it('Should display students tabular data', () => {
+  it('Should display trainings tabular data', () => {
     // Arrange
-    const students : StudentSummary[] = [
+    const trainings : TrainingSummary[] = [
       {
         id: 2,
-        fullname: 'John Doe',
-        email: 'test@test.com'
+        name: 'John Doe',
+        isActive: true
       },
       {
         id: 3,
-        fullname: 'Mark Somez',
-        email: 'mark@test.com'
+        name: 'Mark Somez',
+        isActive: false
       }
     ];
 
     // Act
-    const studentTableComponent = shallow(
-      <StudentTableComponent studentList={students}/>
+    const trainingTableComponent = shallow(
+      <TrainingTableComponent trainingList={trainings}/>
     )
 
     // Assert
@@ -44,24 +45,24 @@ describe('StudentTableComponent', () => {
           <tr>
             <td>
               <span>
-                John Doe
+                2
               </span>
             </td>
             <td>
               <span>
-                test@test.com
+                John Doe
               </span>
             </td>
           </tr>
           <tr>
             <td>
               <span>
-                Mark Somez
+                3
               </span>
             </td>
             <td>
               <span>
-                mark@test.com
+                Mark Somez
               </span>
             </td>
           </tr>
@@ -69,7 +70,8 @@ describe('StudentTableComponent', () => {
       </table>
       `;
 
-    expect(studentTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
+    expect(trainingTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
 
   });
+
 });
