@@ -10,7 +10,7 @@ describe('textAreaTool', () => {
 
     it('returns empty string passing textArea and caret equals empty', () => {
       //Arrange
-      const textArea = new HTMLTextAreaElement();
+      const textArea = document.createElement("TEXTAREA") as HTMLTextAreaElement;
       textArea.value = ''
       const caret = '';
       const offsetCursor = 0;
