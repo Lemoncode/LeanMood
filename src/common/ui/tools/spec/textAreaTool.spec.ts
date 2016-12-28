@@ -230,4 +230,75 @@ describe('textAreaTool', () => {
       expect(result).to.be.true;
     });
   });
+
+  describe('caculateStartCursorPositionPlusOffset', () => {
+    it('is defined', () => {
+      //Assert
+      expect(textAreaTool.caculateStartCursorPositionPlusOffset).not.to.be.undefined;
+    });
+
+    it('returns 0 when selectionStart and offsetCursor equals 0', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = '';
+      textArea.selectionStart = 0;
+
+      const offsetCursor = 0;
+
+      //Act
+      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+
+      //Assert
+      expect(result).to.equals(0);
+    });
+
+    it('returns 1 when selectionStart equals 1 and offsetCursor equals 0', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = 'a';
+      textArea.selectionStart = 1;
+
+      const offsetCursor = 0;
+
+      //Act
+      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+
+      //Assert
+      expect(result).to.equals(1);
+    });
+
+    it('returns 2 when selectionStart equals 1 and offsetCursor equals 1', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = 'a';
+      textArea.selectionStart = 1;
+
+      const offsetCursor = 1;
+
+      //Act
+      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+
+      //Assert
+      expect(result).to.equals(2);
+    });
+
+    it('returns 0 when selectionStart equals 1 and offsetCursor equals -1', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = 'a';
+      textArea.selectionStart = 1;
+
+      const offsetCursor = -1;
+
+      //Act
+      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+
+      //Assert
+      expect(result).to.equals(0);
+    });
+  });
 });
