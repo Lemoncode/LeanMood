@@ -1,12 +1,12 @@
-import { LoginState, loginReducer } from './login';
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { AdminStudentState, adminStudentReducer} from './adminStudent'
-import { AdminTrainingState, adminTrainingReducer } from './adminTraining';
+import { LoginState, loginReducer } from "./login";
+import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
+import { AdminStudentState, adminStudentReducer} from "./adminStudent";
+import { AdminTrainingState, adminTrainingReducer } from "./adminTraining";
 
 export interface IAppState {
   adminStudent : AdminStudentState,
-  login: LoginState
+  login: LoginState,
   adminTraining : AdminTrainingState
 }
 
