@@ -1,5 +1,5 @@
 class TextAreaTool {
-  insertAtCaretGetText(textArea: HTMLTextAreaElement, caret: string, offsetCursor: number = 0) : string {
+  public insertAtCaretGetText(textArea: HTMLTextAreaElement, caret: string, offsetCursor: number = 0) : string {
     return this.buildTextWithCaretBetweenSelectedText(textArea, caret, offsetCursor);
   }
 
@@ -31,6 +31,21 @@ class TextAreaTool {
 
   private getCaretEnd(caret: string, offsetCursor: number): string {
     return caret.substring(offsetCursor, caret.length);
+  }
+
+  public placeCursor(textArea : HTMLTextAreaElement, selectionStart : number = 0, selectionEnd: number = selectionStart)
+  {
+    if (selectionStart === null) {
+      selectionStart = 0;
+    }
+
+    if (selectionEnd === null) {
+      selectionEnd = selectionStart;
+    }
+
+    textArea.selectionStart = selectionStart;
+    textArea.selectionEnd = selectionEnd;
+    textArea.focus();
   }
 }
 

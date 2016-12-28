@@ -36,6 +36,7 @@
     "@types/redux-mock-store": "0.0.6",
     "@types/sinon": "^1.16.32",
     "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
     "core-js": "^2.4.1",
     "css-loader": "^0.25.0",
     "deep-freeze": "0.0.1",
