@@ -1,3 +1,4 @@
+import { NavigateToHomeBasedOnRole } from '../../helper/navigateBasedOnRole';
 import { LoginApi } from './../../../../../rest-api/login';
 import { LoginCredentials } from './../../../../../model/loginCredentials';
 import { loginRequestStarted } from './../loginRequest';
@@ -115,5 +116,47 @@ describe('loginRequestStarted', () => {
       });
   }).bind(this));
 
+  it('should called navigateToHomeBasedOnRole', sinon.test((done) => {
+    // Arrange
+    const sinon : sinon.SinonStatic = this;
+    
+    const loginCredentials : LoginCredentials =
+    {
+      login: 'admin',
+      password: 'test'
+    };
+
+    const loginResponse : LoginResponse = 
+    {
+      succeded: true,
+      userProfile: new UserProfile()
+    }
+
+    const navigateToHomeBasedOnRoleStub = sinon.stub(NavigateToHomeBasedOnRole, 'navigateToHomeBasedOnRole');
+
+    navigateToHomeBasedOnRoleStub.returns({
+      then: callback => {
+        callback(loginResponse.userProfile.role);
+      }
+    });
+
+    
+    // Act
+    const store = mockStore([]);
+    store.dispatch(loginRequestStarted(loginCredentials))
+      .then(() => {
+          // Assert
+          expect(navigateToHomeBasedOnRoleStub.called).to.be.true;
+          done();
+      });
+  }).bind(this));
+
+  it('shouldnt called navigateToHomeBasedOnRole', () => {
+    // Arrange
+    const navigateToHomeBasedOnRoleStub = sinon.stub(NavigateToHomeBasedOnRole, 'navigateToHomeBasedOnRole');
+    // Act
+    // Assert
+    expect(navigateToHomeBasedOnRoleStub.called).to.be.false;    
+  });
 
 })

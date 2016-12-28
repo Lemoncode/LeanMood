@@ -3,6 +3,13 @@ import { LoginApi } from './../../../../rest-api/login';
 import { LoginCredentials } from './../../../../model/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from './../../../../model/loginResponse';
+import { NavigateToHomeBasedOnRole } from '../helper/navigateBasedOnRole';
+
+const roleEnums = {
+  admin : 'admin',
+  students: 'students',
+  traines: 'trainers'
+}
 
 export const loginRequestStarted = (loginCredentials : LoginCredentials) => {
   return function(dispatcher) {
@@ -12,7 +19,7 @@ export const loginRequestStarted = (loginCredentials : LoginCredentials) => {
       dispatcher(loginRequestCompleted(data));
 
       if(data.succeded === true) {
-        hashHistory.push('/students');
+        NavigateToHomeBasedOnRole.navigateToHomeBasedOnRole(`/${data.userProfile.role}`)
       }
     })
     return promise;
