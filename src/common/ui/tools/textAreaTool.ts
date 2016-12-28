@@ -47,6 +47,12 @@ class TextAreaTool {
     textArea.selectionEnd = selectionEnd;
     textArea.focus();
   }
+
+  public hasSelectedText(textArea: HTMLTextAreaElement): boolean {
+    const selectedText = this.getSelectedText(textArea);
+
+    return selectedText.length > 0;
+  }
 }
 
 export const textAreaTool = new TextAreaTool();

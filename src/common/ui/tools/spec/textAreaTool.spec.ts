@@ -178,4 +178,56 @@ describe('textAreaTool', () => {
       expect(textAreaFocusSpy.calledOnce).to.be.true;
     });
   });
+
+  describe('hasSelectedText', () => {
+    it('is defined', () => {
+      //Assert
+      expect(textAreaTool.hasSelectedText).not.to.be.undefined;
+    });
+
+    it('returns false when selectionStart and selectionEnd equals 0', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = '';
+      textArea.selectionStart = 0;
+      textArea.selectionEnd = 0;
+
+      //Act
+      const result = textAreaTool.hasSelectedText(textArea);
+
+      //Assert
+      expect(result).to.be.false;
+    });
+
+    it('returns false when selectionStart and selectionEnd equals 1', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = 'a';
+      textArea.selectionStart = 1;
+      textArea.selectionEnd = 1;
+
+      //Act
+      const result = textAreaTool.hasSelectedText(textArea);
+
+      //Assert
+      expect(result).to.be.false;
+    });
+
+    it('returns false when selectionStart equals 0 and selectionEnd equals 1', () => {
+      //Arrange
+      const wrapper = cheerio.load('<textarea></textarea>');
+      let textArea = wrapper('textarea') as HTMLTextAreaElement;
+      textArea.value = 'a';
+      textArea.selectionStart = 0;
+      textArea.selectionEnd = 1;
+
+      //Act
+      const result = textAreaTool.hasSelectedText(textArea);
+
+      //Assert
+      expect(result).to.be.true;
+    });
+  });
 });
