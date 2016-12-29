@@ -6,11 +6,11 @@ $barValueColor: lightblue;
 $borderColor: lightgrey;
 $borderRadius: 5px;
 
+@include progressBackgroundBarStyles($barBackgroundColor, $borderColor, $borderRadius);
+@include progressValueBarStyles($barValueColor, $borderRadius);
+
 progress[value] {
   @include resetDefaultAppearance;
   width: 250px;
   height: 20px;
 }
-
-@include progressBackgroundBarStyles($barBackgroundColor, $borderColor, $borderRadius);
-@include progressValueBarStyles($barValueColor, $borderRadius);
