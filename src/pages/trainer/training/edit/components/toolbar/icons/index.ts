@@ -4,6 +4,7 @@ import {CodeIcon} from './codeIcon';
 import {HeaderIcon} from './headerIcon';
 import {ImageIcon} from './imageIcon';
 import {ItalicIcon} from './italicIcon';
+import {LinkIcon} from './linkIcon';
 
 export {
   BoldIcon,
@@ -11,5 +12,6 @@ export {
   CodeIcon,
   HeaderIcon,
   ImageIcon,
-  ItalicIcon
+  ItalicIcon,
+  LinkIcon
 }
