@@ -1,4 +1,5 @@
 import * as React from 'react';
+const styles:any = require('./progressBarStyles.scss');
 
 interface Props {
     current: number;
