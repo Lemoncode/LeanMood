@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {multilineTrim} from '../../../../../../../../common/parse/multilineTrim';
 import {BaseToolbarButton} from '../baseToolbarButton';
 
@@ -9,7 +9,10 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton onClick={() =>{}}/>
+      <BaseToolbarButton textArea={null}
+       caret=''
+       offset={0}
+       onClick={() =>{}}/>
     );
 
     //Assert
@@ -25,7 +28,10 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton onClick={() =>{}}/>
+      <BaseToolbarButton textArea={null}
+       caret=''
+       offset={0}
+       onClick={() =>{}}/>
     );
 
     //Assert
@@ -42,7 +48,10 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton onClick={() =>{}}>
+      <BaseToolbarButton textArea={null}
+       caret=''
+       offset={0}
+       onClick={() =>{}}>
         <div></div>
       </BaseToolbarButton>
     );
@@ -54,15 +63,22 @@ describe('BaseToolbarButton', () => {
   it('calls to onClick prop when simulate a click', () => {
     //Arrange
     const onClickSpy = sinon.spy();
+    const textArea = null;
+    const caret = '_';
+    const offset = 2;
 
     //Act
-    const component = shallow(
-      <BaseToolbarButton onClick={onClickSpy}/>
+    const component = mount(
+      <BaseToolbarButton textArea={textArea}
+       caret={caret}
+       offset={offset}
+       onClick={onClickSpy}/>
     );
 
     component.simulate('click');
 
     //Assert
     expect(onClickSpy.calledOnce).to.be.true;
+    expect(onClickSpy.calledWith(textArea, caret, offset)).to.be.true;
   });
 });
