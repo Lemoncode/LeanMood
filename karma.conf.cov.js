@@ -58,7 +58,7 @@ module.exports = function (config) {
         // https://github.com/webpack/webpack/issues/304
         alias: {
           sinon: 'sinon/pkg/sinon',
-          'global-styles': path.join(basePath, "src/content/sass/")
+          'globalStyles': path.join(basePath, "src/content/sass/")
         }
       },
       // Configuration required by enzyme
