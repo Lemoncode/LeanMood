@@ -1,16 +1,18 @@
 import {expect} from 'chai';
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, render} from 'enzyme';
 import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
 import {ToolbarComponent} from '../index';
 
 describe('ToolbarComponent', () => {
   it('is defined', () => {
     //Arrange
-
+    const textArea: HTMLTextAreaElement = null;
+    const updateTextArea = sinon.spy();
     //Act
     const component = shallow(
-      <ToolbarComponent />
+      <ToolbarComponent textArea={textArea}
+        updateTextArea={updateTextArea}/>
     );
 
     //Assert
@@ -19,16 +21,28 @@ describe('ToolbarComponent', () => {
 
   it('renders as expected', () => {
     //Arrange
+    const textArea: HTMLTextAreaElement = null;
+    const updateTextArea = sinon.spy();
+
+    const expectedHeaderButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-header">
+        </span>
+      </button>
+    `;
+
     const expectedComponent = `
       <div class="btn-toolbar">
         <div class="btn-group">
+          ${expectedHeaderButton}
         </div>
       </div>
     `;
 
     //Act
-    const component = shallow(
-      <ToolbarComponent />
+    const component = render(
+      <ToolbarComponent  textArea={textArea}
+        updateTextArea={updateTextArea} />
     );
 
     //Assert

@@ -5,10 +5,19 @@ import {
   BulletedListIcon, NumberedListIcon, QuoteIcon
 } from './icons';
 
-export const ToolbarComponent = () => {
+interface Props {
+  textArea: HTMLTextAreaElement;
+  updateTextArea: (textArea: HTMLTextAreaElement, caret: string, offset: number) => void;
+}
+
+export const ToolbarComponent = (props: Props) => {
   return (
     <div className="btn-toolbar">
       <div className="btn-group">
+        <ToolbarButton textArea={props.textArea} caret="# " offset={1}
+          onClick={props.updateTextArea.bind(this)}>
+          <HeaderIcon />
+        </ToolbarButton>
       </div>
     </div>
   );
