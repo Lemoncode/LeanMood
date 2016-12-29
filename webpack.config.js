@@ -8,11 +8,14 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
 	resolve: {
-	      extensions: ['', '.js','.ts', '.tsx'],
-        // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
-        // https://github.com/gaearon/react-hot-loader/issues/417
-        //alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount' }
-	},
+    extensions: ['', '.js','.ts', '.tsx'],
+    alias: {
+      'global-styles': path.join(basePath, "src/content/sass/"),
+      // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
+      // https://github.com/gaearon/react-hot-loader/issues/417
+      //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+    },
+  },
 	entry: {
     app: [
       "webpack-dev-server/client?http://localhost:8080",
@@ -27,9 +30,8 @@ module.exports = {
              "redux"
     ],
     vendorStyles: [
-        '../node_modules/bootstrap/dist/css/bootstrap.css',
-        "./content/css/styles.css"
-      ]
+      '../node_modules/bootstrap/dist/css/bootstrap.css'
+    ]
   },
 	output: {
 		path: path.join(basePath, "dist"),
@@ -55,9 +57,17 @@ module.exports = {
 	      test: /\.(ts|tsx)$/,
 	      loaders: ['react-hot', 'ts-loader']
       },
+      //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
+        include: /node_modules\\bootstrap/,
         loader: ExtractTextPlugin.extract('style','css')
+      },
+      //NOTE: src css configuration
+      {
+        test: /\.scss$/,
+        exclude:/node_modules/,
+        loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
@@ -82,7 +92,7 @@ module.exports = {
 	plugins:[
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-     new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].css'),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html', //Name of file in ./dist/

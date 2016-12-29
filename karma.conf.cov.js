@@ -1,4 +1,7 @@
 var webpackConfig = require('./webpack.config');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require("path");
+var basePath = __dirname;
 
 module.exports = function (config) {
   config.set({
@@ -27,6 +30,12 @@ module.exports = function (config) {
           {
             test: /\.json$/,
             loader: 'json'
+          },
+          {
+            test: /\.scss$/,
+            exclude:/node_modules/,
+            //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
+            loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[local]!sass-loader')
           }
         ],
         // Configuration required to import sinon on spec.ts files
@@ -48,7 +57,8 @@ module.exports = function (config) {
         // Configuration required to import sinon on spec.ts files
         // https://github.com/webpack/webpack/issues/304
         alias: {
-          sinon: 'sinon/pkg/sinon'
+          sinon: 'sinon/pkg/sinon',
+          'global-styles': path.join(basePath, "src/content/sass/")
         }
       },
       // Configuration required by enzyme
@@ -56,7 +66,10 @@ module.exports = function (config) {
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
-      }
+      },
+      plugins: [
+        new ExtractTextPlugin('[name].css')
+      ]
     },
     webpackMiddleware: {
       // webpack-dev-middleware configuration
