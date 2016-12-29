@@ -1,52 +1,16 @@
+@import "~globalStyles/common.scss";
+@import "~globalStyles/components/progressBar.scss";
+
 $barBackgroundColor: white;
 $barValueColor: lightblue;
 $borderColor: lightgrey;
 $borderRadius: 5px;
 
-@mixin backgroundBarStyles {
-  background-color: $barBackgroundColor;
-  border: 1px solid $borderColor;
-  border-radius: $borderRadius;
-}
-
-@mixin progressBackgroundBarStyles {
-  // Mozilla, IE
-  @include backgroundBarStyles;
-  //Webkit browser like Chrome, Safari, ect.
-  &::-webkit-progress-bar {
-    @include backgroundBarStyles;
-    border: none;
-  }
-}
-
-@mixin valueBarStyles {
-  border: none;
-  background-color: $barValueColor;
-  border-radius: $borderRadius;
-}
-
-@mixin progressValueBarStyles {
-  &::-webkit-progress-value {
-    @include valueBarStyles;
-  }
-  &::-moz-progress-bar {
-    @include valueBarStyles;
-  }
-  &::-ms-fill {
-    @include valueBarStyles;
-  }
-}
-
 progress[value] {
-  /* Reset the default appearance */
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-
-  /* Dimensions */
+  @include resetDefaultAppearance;
   width: 250px;
   height: 20px;
-
-  @include progressBackgroundBarStyles;
-  @include progressValueBarStyles;
 }
+
+@include progressBackgroundBarStyles($barBackgroundColor, $borderColor, $borderRadius);
+@include progressValueBarStyles($barValueColor, $borderRadius);

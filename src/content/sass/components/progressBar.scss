@@ -1,0 +1,38 @@
+@mixin progressBackgroundBarStyles($backgroundColor, $borderColor, $borderRadius) {
+  progress[value] {
+    // Mozilla, IE
+    @include backgroundBarStyles($backgroundColor, $borderColor, $borderRadius);
+
+    //Webkit browser like Chrome, Safari, ect.
+    &::-webkit-progress-bar {
+      @include backgroundBarStyles($backgroundColor, $borderColor, $borderRadius);
+      border: none;
+    }
+  }
+}
+
+@mixin backgroundBarStyles($backgroundColor, $borderColor, $borderRadius) {
+  background-color: $backgroundColor;
+  border: 1px solid $borderColor;
+  border-radius: $borderRadius;
+}
+
+@mixin progressValueBarStyles($backgroundColor, $borderRadius) {
+  progress[value] {
+    &::-webkit-progress-value {
+      @include valueBarStyles($backgroundColor, $borderRadius);
+    }
+    &::-moz-progress-bar {
+      @include valueBarStyles($backgroundColor, $borderRadius);
+    }
+    &::-ms-fill {
+      @include valueBarStyles($backgroundColor, $borderRadius);
+    }
+  }
+}
+
+@mixin valueBarStyles($backgroundColor, $borderRadius) {
+  border: none;
+  background-color: $backgroundColor;
+  border-radius: $borderRadius;
+}

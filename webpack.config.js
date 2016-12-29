@@ -10,7 +10,7 @@ module.exports = {
 	resolve: {
     extensions: ['', '.js','.ts', '.tsx'],
     alias: {
-      'global-styles': path.join(basePath, "src/content/sass/"),
+      'globalStyles': path.join(basePath, "src/content/sass/"),
       // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
       // https://github.com/gaearon/react-hot-loader/issues/417
       //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
