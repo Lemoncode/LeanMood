@@ -1,5 +1,5 @@
-import {BaseToolbarButton} from './baseToolbarButton';
+import {ToolbarButton} from './toolbarButton';
 
 export {
-  BaseToolbarButton
+  ToolbarButton
 }

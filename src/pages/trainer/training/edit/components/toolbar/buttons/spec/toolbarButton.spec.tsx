@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import {multilineTrim} from '../../../../../../../../common/parse/multilineTrim';
-import {BaseToolbarButton} from '../baseToolbarButton';
+import {ToolbarButton} from '../toolbarButton';
 
 describe('BaseToolbarButton', () => {
   it('is defined', () => {
@@ -9,7 +9,7 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton textArea={null}
+      <ToolbarButton textArea={null}
        caret=''
        offset={0}
        onClick={() =>{}}/>
@@ -28,7 +28,7 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton textArea={null}
+      <ToolbarButton textArea={null}
        caret=''
        offset={0}
        onClick={() =>{}}/>
@@ -48,12 +48,12 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = shallow(
-      <BaseToolbarButton textArea={null}
+      <ToolbarButton textArea={null}
        caret=''
        offset={0}
        onClick={() =>{}}>
         <div></div>
-      </BaseToolbarButton>
+      </ToolbarButton>
     );
 
     //Assert
@@ -69,7 +69,7 @@ describe('BaseToolbarButton', () => {
 
     //Act
     const component = mount(
-      <BaseToolbarButton textArea={textArea}
+      <ToolbarButton textArea={textArea}
        caret={caret}
        offset={offset}
        onClick={onClickSpy}/>

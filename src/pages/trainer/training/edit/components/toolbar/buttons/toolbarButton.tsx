@@ -7,7 +7,7 @@ interface Props {
   onClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) => void;
 }
 
-export class BaseToolbarButton extends React.Component<Props, {}> {
+export class ToolbarButton extends React.Component<Props, {}> {
   private onClick(event) {
     event.preventDefault();
     this.props.onClick(this.props.textArea, this.props.caret, this.props.offset);
