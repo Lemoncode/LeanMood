@@ -23,11 +23,13 @@ module.exports = {
       "./index.tsx"
     ],
     vendor: [
-             "react",
-             "react-dom",
-             "react-redux",
-             "react-router",
-             "redux"
+      "react",
+      "react-dom",
+      "react-redux",
+      "react-router",
+      "react-router-redux",
+      "redux",
+      "redux-thunk"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -41,15 +43,14 @@ module.exports = {
 	devtool: 'source-map',
 
   devServer: {
-       contentBase: './dist', //Content base
-       inline: true, //Enable watch and live reload
-       hot: true,
-       noInfo: true,
-       host: 'localhost',
-       port: 8080,
-       stats: 'errors-only'
+    contentBase: './dist', //Content base
+    inline: true, //Enable watch and live reload
+    hot: true,
+    noInfo: true,
+    host: 'localhost',
+    port: 8080,
+    stats: 'errors-only'
   },
-
 
 	module: {
 		loaders: [
