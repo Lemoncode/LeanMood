@@ -9,7 +9,7 @@ describe('ProgressBarComponent', () => {
     // Arrange
     // Act
     const progressBarComponent = shallow(
-      <ProgressBarComponent  current={5} max={10} min={0} />
+      <ProgressBarComponent current={5} max={10} min={0} />
     )
 
     // Assert
@@ -20,14 +20,12 @@ describe('ProgressBarComponent', () => {
     // Arrange
     // Act
     const progressBarComponent = shallow(
-      <ProgressBarComponent  current={5} max={10} min={0} />
-    )
+      <ProgressBarComponent current={5} max={10} min={0} />
+    );
 
     // Assert
     const expectedDomTree = '<progress min="0" max="10" value="5"></progress>';
 
     expect(progressBarComponent.html()).to.be.equal(expectedDomTree);
-
-  })
-
+  });
 });

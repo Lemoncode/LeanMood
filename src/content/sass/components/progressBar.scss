@@ -3,7 +3,7 @@
     // Mozilla, IE
     @include backgroundBarStyles($backgroundColor, $borderColor, $borderRadius, $borderSize);
 
-    //Webkit browser like Chrome, Safari, ect.
+    //Webkit browser like Chrome, Safari, etc.
     &::-webkit-progress-bar {
       @include backgroundBarStyles($backgroundColor, $borderColor, $borderRadius, $borderSize);
       border: none;
