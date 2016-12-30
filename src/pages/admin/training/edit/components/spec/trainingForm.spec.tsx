@@ -45,22 +45,22 @@ describe('pages/admin/training/edit/component/trainingForm', () => {
             expectedDomTree = `
                 <form>
                     <h2>Training form</h2>
-                    <br />
+                    <br/>
                     <span>Name: ${training.name}</span>
-                    <br />
-                    <input type="checkbox" value="Active" checked=""/> Active
-                    <br />
+                    <br/>
+                    <input type="checkbox" checked=""/> Active
+                    <br/>
                     <span>Start: ${training.start.toDateString()} - End: ${training.end.toDateString()}</span>
                 </form>`;
         } else {
             expectedDomTree = `
                 <form>
                     <h2>Training form</h2>
-                    <br />
+                    <br/>
                     <span>Name: ${training.name}</span>
-                    <br />
-                    <input type="checkbox" value="Active"/> Active
-                    <br />
+                    <br/>
+                    <input type="checkbox" /> Active
+                    <br/>
                     <span>Start: ${training.start.toDateString()} - End: ${training.end.toDateString()}</span>
                 </form>`;
         }

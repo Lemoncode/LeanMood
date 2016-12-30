@@ -1,11 +1,11 @@
-import {LoginCredentials} from '../model/loginCredentials';
-import {LoginResponse} from '../model/loginResponse';
-import {UserProfile} from '../model/userProfile';
+import {LoginCredentials} from "../model/loginCredentials";
+import {LoginResponse} from "../model/loginResponse";
+import {UserProfile} from "../model/userProfile";
 
 import {} from "core-js";
 
 class LoginAPI {
-  login(loginInfo: LoginCredentials): Promise<LoginResponse> {
+  public login(loginInfo: LoginCredentials): Promise<LoginResponse> {
     let loginResponse = new LoginResponse();
 
     if (loginInfo.login === "admin" && loginInfo.password === "test") {
@@ -20,4 +20,4 @@ class LoginAPI {
   }
 }
 
-export const LoginApi = new LoginAPI;
+export const LoginApi = new LoginAPI();
