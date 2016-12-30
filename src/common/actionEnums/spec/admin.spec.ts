@@ -11,10 +11,17 @@ describe('adminActionEnums', () => {
   it('should have keys defined and field / value match', () => {
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).not.to.be.undefined;
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).to.be.a('string');
+<<<<<<< HEAD
     expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).equals('GET_SUMMARY_STUDENT_REQUEST_COMPLETED');
 
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).not.to.be.undefined;
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).to.be.a('string');
     expect(adminActionEnums.GET_TRAINING_REQUEST_COMPLETED).equals('GET_TRAINING_REQUEST_COMPLETED');
+=======
+    expect(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED).equal('GET_SUMMARY_STUDENT_REQUEST_COMPLETED');
+    expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).not.to.be.undefined;
+    expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).to.be.a('string');
+    expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).equal('GET_SUMMARY_TRAINING_REQUEST_COMPLETED');
+>>>>>>> 5541906c0f761bfd48de9d0580e7dcda3a3d4650
   })
 })

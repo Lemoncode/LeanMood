@@ -33,7 +33,7 @@ describe('adminStudentReducer', () => {
   });
 
   it(`should return a new state including new student list when
-    passing a GET_SUMMARY_TRAINING_REQUEST_COMPLETED`,() => {
+    passing a GET_SUMMARY_STUDENT_REQUEST_COMPLETED`,() => {
     // Arrange
     const originalState = new AdminStudentState();
 

@@ -8,21 +8,32 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
 	resolve: {
-	      extensions: ['', '.js','.ts', '.tsx']
-	},
+    extensions: ['', '.js','.ts', '.tsx'],
+    alias: {
+      'globalStyles': path.join(basePath, "src/content/sass/"),
+      // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
+      // https://github.com/gaearon/react-hot-loader/issues/417
+      //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+    },
+  },
 	entry: {
-    app: "./index.tsx",
+    app: [
+      "webpack-dev-server/client?http://localhost:8080",
+      "webpack/hot/only-dev-server",
+      "./index.tsx"
+    ],
     vendor: [
-             "react",
-             "react-dom",
-             "react-redux",
-             "react-router",
-             "redux"
+      "react",
+      "react-dom",
+      "react-redux",
+      "react-router",
+      "react-router-redux",
+      "redux",
+      "redux-thunk"
     ],
     vendorStyles: [
-        '../node_modules/bootstrap/dist/css/bootstrap.css',
-        "./content/css/styles.css"
-      ]
+      '../node_modules/bootstrap/dist/css/bootstrap.css'
+    ]
   },
 	output: {
 		path: path.join(basePath, "dist"),
@@ -32,30 +43,40 @@ module.exports = {
 	devtool: 'source-map',
 
   devServer: {
-       contentBase: './dist', //Content base
-       inline: true, //Enable watch and live reload
-       noInfo: true,
-       host: 'localhost',
-       port: 8080,
-       stats: 'errors-only'
+    contentBase: './dist', //Content base
+    inline: true, //Enable watch and live reload
+    hot: true,
+    noInfo: true,
+    host: 'localhost',
+    port: 8080,
+    stats: 'errors-only'
   },
-
 
 	module: {
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,
-	      loader: 'ts-loader'
+	      loaders: ['react-hot', 'ts-loader']
       },
+      //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
+        include: /node_modules\\bootstrap/,
         loader: ExtractTextPlugin.extract('style','css')
       },
+<<<<<<< HEAD
       // Loading images
       {
         test: /\.(png|jpg)$/,
         exclude: /node_modules/,
         loader: 'url-loader?limit=10000'
+=======
+      //NOTE: src css configuration
+      {
+        test: /\.scss$/,
+        exclude:/node_modules/,
+        loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+>>>>>>> 5541906c0f761bfd48de9d0580e7dcda3a3d4650
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
@@ -78,8 +99,9 @@ module.exports = {
 		]
 	},
 	plugins:[
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-     new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].css'),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html', //Name of file in ./dist/

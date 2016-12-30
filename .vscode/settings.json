@@ -1,0 +1,8 @@
+// Configuration that override The default and user settings.
+{
+  // The number of spaces to which a tabulation equals. This value is invalid depending on the contents of the file when `editor.detectIndentation` is enabled.
+  "editor.tabSize": 2,
+  // When you open a file, `editor.tab Size` and `editor.insertSpaces` are detected based on the contents of the file.
+  "editor.detectIndentation": false,
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}

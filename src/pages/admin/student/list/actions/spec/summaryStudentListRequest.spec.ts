@@ -19,7 +19,7 @@ describe('summaryStudentListRequestCompleted', () => {
     expect(summaryStudentListRequestCompleted).not.to.be.undefined;
   });
 
-  it('contains the expected type GET_SUMMARY_TRAINING_REQUEST_COMPLETED', () => {
+  it('contains the expected type GET_SUMMARY_STUDENT_REQUEST_COMPLETED', () => {
     // Assert
     expect(summaryStudentListRequestCompleted([]).type).to.be.equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
   });
@@ -44,8 +44,8 @@ describe('summaryStudentListRequestCompleted', () => {
 
     // Assert
     expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload.length).not.to.be.undefined;
-    expect(actionResult.payload).to.be.equal(students);
+    expect(actionResult.payload.length).equal(2);
+    expect(actionResult.payload).eql(students);
   });
 })
 
