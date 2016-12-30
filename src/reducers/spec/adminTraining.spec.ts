@@ -1,14 +1,13 @@
 import { expect } from 'chai';
 import * as deepFreeze from 'deep-freeze';
-<<<<<<< HEAD
 import {} from 'mocha'
 import {} from 'core-js'
-import { adminTrainingReducer, AdminTrainingState } from '../adminTraining';
 import { TrainingEntity } from '../../model/training'
 import { StudentSummary } from '../../model/studentSummary'
 import { TrainerSummary } from '../../model/trainerSummary'
-import {adminActionEnums} from '../../common/actionEnums/admin'
-
+import { adminActionEnums } from './../../common/actionEnums/admin';
+import { TrainingSummary } from './../../model/trainingSummary';
+import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
 
 describe('adminTrainingReducer', () => {
     it("is defined", () => {
@@ -61,10 +60,7 @@ describe('adminTrainingReducer', () => {
 
     });
 });
-=======
-import { adminActionEnums } from './../../common/actionEnums/admin';
-import { TrainingSummary } from './../../model/trainingSummary';
-import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
+
 
     describe('adminTrainingReducer', () => {
 
@@ -118,4 +114,3 @@ import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
         expect(newState.trainingSummaryList).equal(trainings);
     });
 });
->>>>>>> 5541906c0f761bfd48de9d0580e7dcda3a3d4650

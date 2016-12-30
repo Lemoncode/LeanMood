@@ -69,6 +69,7 @@ module.exports = {
         test: /\.(png|jpg)$/,
         exclude: /node_modules/,
         loader: 'url-loader?limit=10000'
+      },
       //NOTE: src css configuration
       {
         test: /\.scss$/,

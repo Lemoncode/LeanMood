@@ -1,34 +1,34 @@
-import { TrainingEntity } from '../model/training'
-import { StudentSummary } from '../model/studentSummary'
-import { TrainerSummary} from '../model/trainerSummary'
+import { StudentSummary } from "../model/studentSummary";
+import { TrainerSummary} from "../model/trainerSummary";
+import { TrainingEntity } from "../model/training";
 
-export const trainingMockData : TrainingEntity[] =
+export const trainingMockData: TrainingEntity[] =
 [
   {
+    end: new Date(),
     id: 32,
-    name: 'React/Redux',
     isActive: true,
-    start: new Date(2017, 0, 1),
-    end: new Date(2017, 0, 31),
+    name: "React/Redux",
+    start: new Date(),
     students: new Array<StudentSummary>(),
-    trainers: new Array<TrainerSummary>()
+    trainers: new Array<TrainerSummary>(),
   },
   {
+    end: new Date(),
     id: 12,
-    name: 'Responsive web design',
     isActive: true,
-    start: new Date(2017, 1, 1),
-    end: new Date(2017, 1, 28),
+    name: "Responsive web design",
+    start: new Date(),
     students: new Array<StudentSummary>(),
-    trainers: new Array<TrainerSummary>()
+    trainers: new Array<TrainerSummary>(),
   },
   {
+    end: new Date(),
     id: 33,
-    name: 'AngularJS 2.0',
     isActive: true,
-    start: new Date(2017, 2, 1),
-    end: new Date(2017, 2, 31),
+    name: "AngularJS 2.0",
+    start: new Date(),
     students: new Array<StudentSummary>(),
-    trainers: new Array<TrainerSummary>()
+    trainers: new Array<TrainerSummary>(),
   },
 ];

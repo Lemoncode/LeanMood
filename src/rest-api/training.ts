@@ -1,31 +1,31 @@
-import { TrainingSummary } from '../model/trainingSummary';
-import { trainingMockData } from './trainingMockData';
-import { TrainingEntity } from '../model/training';
+import { TrainingEntity } from "../model/training";
+import { TrainingSummary } from "../model/trainingSummary";
+import { trainingMockData } from "./trainingMockData";
 class TrainingApi {
-  trainingList : TrainingEntity[];
+  public trainingList: TrainingEntity[];
 
   constructor() {
     this.trainingList = trainingMockData;
   }
 
-  setMockDataSeed(trainingList : TrainingEntity[]) {
+  public setMockDataSeed(trainingList: TrainingEntity[]) {
     this.trainingList = trainingList;
   }
 
-  getSummaryTrainingList() : Promise<TrainingSummary[]> {
-    const trainingSummaryList : TrainingSummary[] = this.trainingList.map(training => {
+  public getSummaryTrainingList(): Promise<TrainingSummary[]> {
+    const trainingSummaryList: TrainingSummary[] = this.trainingList.map((training) => {
       return {
         id : training.id,
+        isActive : training.isActive,
         name : training.name,
-        isActive : training.isActive
       };
     });
 
     return Promise.resolve(trainingSummaryList);
   }
 
-  getTrainingById(id: number): Promise<TrainingEntity> {
-    const training = this.trainingList.find(tr => tr.id === id);
+  public getTrainingById(id: number): Promise<TrainingEntity> {
+    const training = this.trainingList.find((tr) => tr.id === id);
     return Promise.resolve(training);
   }
 }
