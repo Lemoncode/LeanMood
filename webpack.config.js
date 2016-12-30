@@ -64,19 +64,16 @@ module.exports = {
         include: /node_modules\\bootstrap/,
         loader: ExtractTextPlugin.extract('style','css')
       },
-<<<<<<< HEAD
       // Loading images
       {
         test: /\.(png|jpg)$/,
         exclude: /node_modules/,
         loader: 'url-loader?limit=10000'
-=======
       //NOTE: src css configuration
       {
         test: /\.scss$/,
         exclude:/node_modules/,
         loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
->>>>>>> 5541906c0f761bfd48de9d0580e7dcda3a3d4650
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
