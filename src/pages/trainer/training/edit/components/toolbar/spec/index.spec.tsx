@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import * as React from 'react';
-import {shallow, render} from 'enzyme';
+import {shallow} from 'enzyme';
 import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
 import {ToolbarComponent} from '../index';
 
@@ -40,7 +40,7 @@ describe('ToolbarComponent', () => {
     `;
 
     //Act
-    const component = render(
+    const component = shallow(
       <ToolbarComponent  textArea={textArea}
         updateTextArea={updateTextArea} />
     );
