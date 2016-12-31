@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface Props extends React.Props<App> {
+interface IProps extends React.Props<App> {
 }
 
-export class App extends React.Component<Props, {}> {
+export class App extends React.Component<IProps, {}> {
    public render() {
        return (
          <div className="container-fluid">

@@ -1,34 +1,34 @@
-import { Training } from '../model/training'
-import { Student } from '../model/student'
-import { Trainer } from '../model/trainer'
+import { Student } from "../model/student";
+import { Trainer } from "../model/trainer";
+import { Training } from "../model/training";
 
-export const trainingMockData : Training[] =
+export const trainingMockData: Training[] =
 [
   {
+    end: new Date(31, 1, 2017),
     id: 32,
-    name: 'React/Redux',
     isActive: true,
-    start: new Date(1,1,2017),
-    end: new Date(31,1,2017),
+    name: "React/Redux",
+    start: new Date(1, 1, 2017),
     students: new Array<Student>(),
-    trainers: new Array<Trainer>()
+    trainers: new Array<Trainer>(),
   },
   {
+    end: new Date(28, 2, 2017),
     id: 12,
-    name: 'Responsive web design',
     isActive: true,
-    start: new Date(1,2,2017),
-    end: new Date(28,2,2017),
+    name: "Responsive web design",
+    start: new Date(1, 2, 2017),
     students: new Array<Student>(),
-    trainers: new Array<Trainer>()
+    trainers: new Array<Trainer>(),
   },
   {
+    end: new Date(31, 3, 2017),
     id: 33,
-    name: 'AngularJS 2.0',
     isActive: true,
-    start: new Date(1,3,2017),
-    end: new Date(31,3,2017),
+    name: "AngularJS 2.0",
+    start: new Date(1, 3, 2017),
     students: new Array<Student>(),
-    trainers: new Array<Trainer>()
+    trainers: new Array<Trainer>(),
   },
 ];

@@ -1,31 +1,31 @@
-import {expect} from 'chai';
-import {shallow} from 'enzyme';
-import * as React from 'react';
-import {NotFoundPage} from '../page';
-import {multilineTrim} from '../../../../common/parse/multilineTrim';
+import {expect} from "chai";
+import {shallow} from "enzyme";
+import * as React from "react";
+import {multilineTrim} from "../../../../common/parse/multilineTrim";
+import {NotFoundPage} from "../page";
 
-describe('general/notFound/page', () => {
-  it('is defined', () => {
-    //Arrange
+describe("general/notFound/page", () => {
+  it("is defined", () => {
+    // Arrange
 
-    //Act
+    // Act
     const page = shallow(
-      <NotFoundPage />
+      <NotFoundPage />,
     );
 
-    //Assert
+    // Assert
     expect(page).not.to.be.undefined;
   });
 
-  it('renders as expected', () => {
-    //Arrange
+  it("renders as expected", () => {
+    // Arrange
 
-    //Act
+    // Act
     const page = shallow(
-      <NotFoundPage />
+      <NotFoundPage />,
     );
 
-    //Assert
+    // Assert
     const expectedNotFoundHeader = `
       <div class="panel-heading dangerHeading">
         <h3 class="text-center">
@@ -34,6 +34,7 @@ describe('general/notFound/page', () => {
         </h3>
       </div>
     `;
+    /* tslint:disable */
     const expectedNotFoundBody = `
       <div class="panel-body">
         <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Please try the following:</p>
@@ -45,6 +46,7 @@ describe('general/notFound/page', () => {
         </ul>
       </div>
     `;
+    /* tslint:enable */
 
     const expectedDomTree = `
     <div class="row pageError404">

@@ -1,8 +1,9 @@
-import * as React from 'react';
-import {Link} from 'react-router';
+import * as React from "react";
+import {Link} from "react-router";
 
 export const NotFoundBody = () => {
   return (
+    /* tslint:disable */
     <div className="panel-body">
       <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Please try the following:</p>
       <ul className="list-group">
@@ -12,5 +13,6 @@ export const NotFoundBody = () => {
         <li className="list-group-item">Forget that this ever happened, and go <Link to="/">our <b>Home</b> page</Link> :)</li>
       </ul>
     </div>
-  )
-}
+    /* tslint:enable */
+  );
+};
