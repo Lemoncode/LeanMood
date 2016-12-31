@@ -1,10 +1,8 @@
-import * as React from 'react';
-import {Link} from 'react-router';
+import * as React from "react";
+import {Link} from "react-router";
 
-
-
-//<Link to="/students/training">Go to students</Link>
-//<Link to="/students/training">Go to trainings</Link>
+// <Link to="/students/training">Go to students</Link>
+// <Link to="/students/training">Go to trainings</Link>
 export class EditTrainingPage extends React.Component<{}, {}> {
    public render() {
        return (

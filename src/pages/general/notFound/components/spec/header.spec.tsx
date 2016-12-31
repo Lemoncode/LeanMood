@@ -1,31 +1,31 @@
-import {expect} from 'chai';
-import {shallow} from 'enzyme';
-import * as React from 'react';
-import {multilineTrim} from '../../../../../common/parse/multilineTrim';
-import {NotFoundHeader} from '../header';
+import {expect} from "chai";
+import {shallow} from "enzyme";
+import * as React from "react";
+import {multilineTrim} from "../../../../../common/parse/multilineTrim";
+import {NotFoundHeader} from "../header";
 
-describe('general/notFound/components/header', () => {
-  it('is defined', () => {
-    //Arrange
+describe("general/notFound/components/header", () => {
+  it("is defined", () => {
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <NotFoundHeader />
+      <NotFoundHeader />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
-  it('renders as expected', () => {
-    //Arrange
+  it("renders as expected", () => {
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <NotFoundHeader />
+      <NotFoundHeader />,
     );
 
-    //Assert
+    // Assert
 
     const expectedDomTree = `
       <div class="panel-heading dangerHeading">

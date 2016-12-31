@@ -1,11 +1,11 @@
-export class TrainingSummary{
-  id : number;
-  name : string;
-  isActive : boolean;
+export class TrainingSummary {
+  public id: number;
+  public name: string;
+  public isActive: boolean;
 
-  constructor(){
+  constructor() {
     this.id = -1;
-    this.name = '';
+    this.name = "";
     this.isActive = false;
   }
 }

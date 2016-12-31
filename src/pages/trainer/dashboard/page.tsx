@@ -1,14 +1,12 @@
-import * as React from 'react';
-import {Link} from 'react-router';
+import * as React from "react";
+import {Link} from "react-router";
 
-
-interface Props extends React.Props<DashboardPage> {
+interface IProps extends React.Props<DashboardPage> {
 }
 
-
-//<Link to="/students/training">Go to students</Link>
-//<Link to="/students/training">Go to trainings</Link>
-export class DashboardPage extends React.Component<Props, {}> {
+// <Link to="/students/training">Go to students</Link>
+// <Link to="/students/training">Go to trainings</Link>
+export class DashboardPage extends React.Component<IProps, {}> {
    public render() {
        return (
          <div>
