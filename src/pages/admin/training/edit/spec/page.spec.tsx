@@ -36,9 +36,12 @@ describe('pages/admin/training/edit/page', () => {
         editTraining.isActive = true;
         editTraining.start = new Date(2016, 12, 1);
         editTraining.end = new Date(2016, 12, 31);
-        
+
         // Act
-        const editTrainingPage = shallow(<EditTrainingPage editTraining={editTraining} />);
+        const editTrainingPage = shallow(<EditTrainingPage
+                                              editTraining={editTraining}
+                                              getTraining={()=>{}}
+                                          />);
         // Assert
         expect(editTrainingPage.childAt(0).type()).to.be.equal(TrainingForm);
     });

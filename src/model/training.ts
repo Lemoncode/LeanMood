@@ -14,8 +14,10 @@ export class TrainingEntity {
     this.id = -1;
     this.name = '';
     this.isActive = false;
-    this.start = new Date();
-    this.end = new Date();
+    // TODO: Temporary workaround, to avoid issues with Deepfreeze + Sinon
+    // + Date objects.
+    this.start = null; //new Date();
+    this.end = null; // new Date();
     this.trainers = new Array<TrainerSummary>();
     this.students = new Array<StudentSummary>();
   }
