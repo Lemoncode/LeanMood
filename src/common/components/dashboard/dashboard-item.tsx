@@ -12,7 +12,7 @@ export const DashboardItemComponent = (props: {item: IDashboardItem}) => {
   return (
       <div className="dashboard-item-content">
         <p className="dashboard-item-icon">
-          <Link to={props.item.reference}>{props.item.name}>
+          <Link to={props.item.reference}>
             <i className={mapOptionToIcon(props.item.icon)} aria-hidden="true"/>
           </Link>
         </p>
