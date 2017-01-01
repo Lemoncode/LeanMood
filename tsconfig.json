@@ -8,7 +8,7 @@
       "jsx": "react",
       "noLib": false,
       "suppressImplicitAnyIndexErrors": true,
-      "types": ["karma-chai-sinon"]
+      "types": ["karma-chai-sinon", "webpack-env"]
     },
     "compileOnSave": false,
     "exclude": [
