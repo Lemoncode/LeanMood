@@ -53,6 +53,12 @@ module.exports = {
   },
 
 	module: {
+    preLoaders: [
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'tslint-loader'
+      }
+    ],
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,

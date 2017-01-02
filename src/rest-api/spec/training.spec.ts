@@ -1,54 +1,53 @@
 import { expect } from "chai";
 import {} from "core-js";
 import {} from "mocha";
-import { StudentSummary } from "../../model/studentSummary";
-import { TrainerSummary } from "../../model/trainerSummary";
-import { TrainingEntity } from "../../model/training";
+import { Student } from "../../model/student";
+import { Trainer } from "../../model/trainer";
+import { Training } from "../../model/training";
 import { TrainingSummary } from "../../model/trainingSummary";
 import { trainingApi } from "../training";
-
-let trainingList: TrainingEntity[];
-
-beforeEach(() => {
-  trainingList =  [
-    {
-      end: new Date(2017, 0, 31),
-      id: 32,
-      isActive: true,
-      name: "React/Redux",
-      start: new Date(2017, 0, 1),
-      students: new Array<StudentSummary>(),
-      trainers: new Array<TrainerSummary>()
-    },
-    {
-      end: new Date(2017, 1, 28),
-      id: 12,
-      isActive: true,
-      name: "Responsive web design",
-      start: new Date(2017, 1, 1),
-      students: new Array<StudentSummary>(),
-      trainers: new Array<TrainerSummary>()
-    },
-    {
-      end: new Date(2017, 2, 31),
-      id: 33,
-      isActive: true,
-      name: "AngularJS 2.0",
-      start: new Date(2017, 2, 1),
-      students: new Array<StudentSummary>(),
-      trainers: new Array<TrainerSummary>()
-    },
-  ];
-});
 
 describe("TrainingApi", () => {
   it("is defined", () => {
     // Assert
     expect(trainingApi).not.to.be.undefined;
-  })
+  });
 
   describe("setMockDataSeed", () => {
     it("set the right mockdata seed", () => {
+      // Arrange
+      let trainingList: Training[];
+
+      trainingList =  [
+      {
+        end: null,
+        id: 32,
+        isActive: true,
+        name: "React/Redux",
+        start: null,
+        students: new Array<Student>(),
+        trainers: new Array<Trainer>(),
+      },
+      {
+        end: null,
+        id: 12,
+        isActive: true,
+        name: "Responsive web design",
+        start: null,
+        students: new Array<Student>(),
+        trainers: new Array<Trainer>(),
+      },
+      {
+        end: null,
+        id: 33,
+        isActive: true,
+        name: "AngularJS 2.0",
+        start: null,
+        students: new Array<Student>(),
+        trainers: new Array<Trainer>(),
+      },
+    ];
+
       // Act
       trainingApi.setMockDataSeed(trainingList);
 
@@ -60,7 +59,37 @@ describe("TrainingApi", () => {
   describe("getSummaryTrainingList", () => {
     it("Get the expected summary training list", sinon.test((done) => {
       // Arrange
+      const sinon: sinon.SinonStatic = this;
       let expectedSummaryList: TrainingSummary [];
+      const trainingList: Training[] =  [
+        {
+          end: null,
+          id: 32,
+          isActive: true,
+          name: "React/Redux",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+        {
+          end: null,
+          id: 12,
+          isActive: true,
+          name: "Responsive web design",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+        {
+          end: null,
+          id: 33,
+          isActive: true,
+          name: "AngularJS 2.0",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+      ];
 
       // Act
       expectedSummaryList = trainingList.map((training) => {
@@ -71,7 +100,6 @@ describe("TrainingApi", () => {
         };
       });
 
-      trainingApi.setMockDataSeed(trainingList);
 
       const summaryListPromise = trainingApi.getSummaryTrainingList();
 
@@ -86,11 +114,41 @@ describe("TrainingApi", () => {
   describe("getTrainingById", () => {
     it("Get the expected training", sinon.test((done) => {
       // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const trainingList: Training[] =  [
+        {
+          end: null,
+          id: 32,
+          isActive: true,
+          name: "React/Redux",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+        {
+          end: null,
+          id: 12,
+          isActive: true,
+          name: "Responsive web design",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+        {
+          end: null,
+          id: 33,
+          isActive: true,
+          name: "AngularJS 2.0",
+          start: null,
+          students: new Array<Student>(),
+          trainers: new Array<Trainer>(),
+        },
+      ];
+
       const id: number = 32;
-      let expectedTraining: TrainingEntity;
 
       // Act
-      expectedTraining = trainingList.find((training) => training.id === id);
+      const expectedTraining = trainingList.find((training) => training.id === id);
 
       const fetchTraining = trainingApi.getTrainingById(id);
 

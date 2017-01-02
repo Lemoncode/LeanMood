@@ -1,23 +1,22 @@
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { TrainingEntity } from '../../../../../../model/training';
+import { expect } from "chai";
+import { shallow } from "enzyme";
+import * as React from "react";
+import { Training } from "../../../../../../model/training";
+import { TrainingForm } from "../trainingForm";
 
-import { TrainingForm } from '../trainingForm';
+describe("pages/admin/training/edit/component/trainingForm", () => {
 
-describe('pages/admin/training/edit/component/trainingForm', () => {
-
-    let editTraining: TrainingEntity;
+    let editTraining: Training;
     beforeEach(() => {
-        editTraining = new TrainingEntity();
+        editTraining = new Training();
         editTraining.id = 32;
-        editTraining.name = 'React/redux';
+        editTraining.name = "React/redux";
         editTraining.isActive = true;
         editTraining.start = new Date(2016, 12, 1);
         editTraining.end = new Date(2016, 12, 31);
     });
 
-    it('should be defined', () => {
+    it("should be defined", () => {
         // Arrange
         // Act
         const editTrainingPage = shallow(
@@ -27,18 +26,18 @@ describe('pages/admin/training/edit/component/trainingForm', () => {
         expect(TrainingForm).not.to.be.undefined;
     });
 
-    it('should display a form with basic training data', () => {
+    it("should display a form with basic training data", () => {
         // Arrange
         // Act
         const trainingForm = shallow(<TrainingForm training={editTraining}/>);
         const expectedDomTree = buildExpectedDomTreeByTraining(editTraining);
-        const expectedPlainDomTree = expectedDomTree.split(/(?:\r\n|\r|\n)/g).map(line => line.trim()).join('');
+        const expectedPlainDomTree = expectedDomTree.split(/(?:\r\n|\r|\n)/g).map((line) => line.trim()).join("");
 
         // Assert
         expect(trainingForm.html()).to.be.equal(expectedPlainDomTree);
     });
 
-    function buildExpectedDomTreeByTraining(training: TrainingEntity): string {
+    function buildExpectedDomTreeByTraining(training: Training): string {
         let expectedDomTree: string;
 
         if (training.isActive) {
@@ -65,7 +64,7 @@ describe('pages/admin/training/edit/component/trainingForm', () => {
                 </form>`;
         }
 
-        return expectedDomTree
+        return expectedDomTree;
     }
 
 });

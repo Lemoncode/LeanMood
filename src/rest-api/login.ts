@@ -1,6 +1,6 @@
-import {LoginCredentials} from "../model/loginCredentials";
-import {LoginResponse} from "../model/loginResponse";
-import {UserProfile} from "../model/userProfile";
+import { LoginCredentials } from "../model/loginCredentials";
+import { LoginResponse } from "../model/loginResponse";
+import { UserProfile } from "../model/userProfile";
 
 import {} from "core-js";
 

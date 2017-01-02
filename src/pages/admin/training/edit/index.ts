@@ -1,4 +1,4 @@
-import { EditTrainingPageContainer } from './pageContainer'
+import { EditTrainingPageContainer } from "./pageContainer"
 
 export {
   EditTrainingPageContainer

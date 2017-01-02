@@ -1,4 +1,4 @@
-import {UserProfile} from "./userProfile";
+import { UserProfile } from "./userProfile";
 
 export class LoginResponse {
   public succeded: boolean;

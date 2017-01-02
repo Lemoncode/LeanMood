@@ -1,15 +1,15 @@
-import { expect } from 'chai';
-import * as deepFreeze from 'deep-freeze';
-import {} from 'mocha'
-import {} from 'core-js'
-import { TrainingEntity } from '../../model/training'
-import { StudentSummary } from '../../model/studentSummary'
-import { TrainerSummary } from '../../model/trainerSummary'
-import { adminActionEnums } from './../../common/actionEnums/admin';
-import { TrainingSummary } from './../../model/trainingSummary';
-import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
+import { expect } from "chai";
+import {} from "core-js";
+import * as deepFreeze from "deep-freeze";
+import {} from "mocha";
+import { Student } from "../../model/student";
+import { Trainer } from "../../model/trainer";
+import { Training } from "../../model/training";
+import { adminActionEnums } from "./../../common/actionEnums/admin";
+import { TrainingSummary } from "./../../model/trainingSummary";
+import { adminTrainingReducer, AdminTrainingState } from "./../adminTraining";
 
-describe('adminTrainingReducer', () => {
+describe("adminTrainingReducer", () => {
     it("is defined", () => {
       // Arrange
       // Act
@@ -19,11 +19,11 @@ describe('adminTrainingReducer', () => {
 
     it("should return same state when passing an action that is not expected", () => {
       // Arrange
-      const originalState : AdminTrainingState = new AdminTrainingState();
-
+      const originalState: AdminTrainingState = new AdminTrainingState();
+      deepFreeze(originalState);
       const action = {
-        type: 'NOT_EXPECTED_ACTION_123456789'
-      }
+        type: "NOT_EXPECTED_ACTION_123456789",
+      };
 
       // Act
       const newState = adminTrainingReducer(originalState, action);
@@ -35,21 +35,22 @@ describe('adminTrainingReducer', () => {
 
     it("should return a new state including edit training when passing a GET_TRAINING_REQUEST_COMPLETED", () => {
       // Arrange
-      const originalState : AdminTrainingState = new AdminTrainingState();
+      const originalState: AdminTrainingState = new AdminTrainingState();
+      deepFreeze(originalState);
       // const id: number = 32;
-      const expectedTraining : TrainingEntity = {
+      const expectedTraining: Training = {
+        end: new Date(31, 1, 2017),
         id: 32,
-        name: 'React/Redux',
         isActive: true,
-        start: new Date(1,1,2017),
-        end: new Date(31,1,2017),
-        students: new Array<StudentSummary>(),
-        trainers: new Array<TrainerSummary>()
+        name: "React/Redux",
+        start: new Date(1, 1, 2017),
+        students: new Array<Student>(),
+        trainers: new Array<Trainer>(),
       };
       const actionResult = {
+        payload: expectedTraining,
         type: adminActionEnums.GET_TRAINING_REQUEST_COMPLETED,
-        payload: expectedTraining
-      }
+      };
 
       // Act
       const newState = adminTrainingReducer(originalState, actionResult);
@@ -59,58 +60,31 @@ describe('adminTrainingReducer', () => {
       expect(newState.editTraining).to.be.eql(expectedTraining);
 
     });
-});
 
-
-    describe('adminTrainingReducer', () => {
-
-    let originalState: AdminTrainingState = null;
-
-    beforeEach(() => {
-        originalState = new AdminTrainingState();
+    it("return list", () => {
+        // Arrange
+        const originalState: AdminTrainingState = new AdminTrainingState();
         deepFreeze(originalState);
-    });    
-
-    it('is defined', () => {
-        //Arrange
-        //Act
-        //Assert
-        expect(adminTrainingReducer).not.to.be.undefined;
-    });
-
-    it('return the same state with a not valid action', () =>{
-        //Arrange
-        const action = {
-            type: "NOT_EXPECTED_ACTION_12345678"
-        } 
-        //Act
-        const newState = adminTrainingReducer(originalState, action); 
-        //Assert
-        expect(newState).equal(originalState);
-    });
-
-    it('return list', () => {
-        //Arrange
         const trainings: TrainingSummary[] = [
             {
                 id: 2,
-                name: 'Jaime Doe',
-                isActive: true
+                isActive: true,
+                name: "Jaime Doe",
             },
             {
                 id: 3,
-                name: 'Braulio Somez',
-                isActive: true
-            }
+                isActive: true,
+                name: "Braulio Somez",
+            },
         ];
 
         const actionResult = {
+            payload: trainings,
             type: adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED,
-            payload: trainings
         };
-        //Act
+        // Act
         const newState: AdminTrainingState = adminTrainingReducer(originalState, actionResult);
-        //Assert
+        // Assert
         expect(newState.trainingSummaryList).equal(trainings);
     });
 });

@@ -1,37 +1,37 @@
-import { Action } from 'redux';
-import { TrainingEntity } from '../model/training';
-import { adminActionEnums } from './../common/actionEnums/admin';
-import { TrainingSummary } from './../model/trainingSummary';
-
+import { Action } from "redux";
+import { Training } from "../model/training";
+import { adminActionEnums } from "./../common/actionEnums/admin";
+import { TrainingSummary } from "./../model/trainingSummary";
 
 export class AdminTrainingState {
-    trainingSummaryList: TrainingSummary[];
-    editTraining : TrainingEntity;
+    public trainingSummaryList: TrainingSummary[];
+    public editTraining: Training;
 
     public constructor() {
         this.trainingSummaryList = [];
-        this.editTraining = new TrainingEntity();
+        this.editTraining = new Training();
     }
 }
 
-export const adminTrainingReducer = (state : AdminTrainingState = new AdminTrainingState(), action) => {
-  switch(action.type) {
-    case adminActionEnums.GET_TRAINING_REQUEST_COMPLETED:
-      return handleGetTrainingRequestCompleted(state, action.payload);
-    case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
+export const adminTrainingReducer = (state: AdminTrainingState = new AdminTrainingState(), action) => {
+    switch (action.type) {
+        case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
             return handleGetSummaryTrainingRequestCompleted(state, action.payload);
-  }
+        case adminActionEnums.GET_TRAINING_REQUEST_COMPLETED:
+            return handleGetTrainingRequestCompleted(state, action.payload);
+        default:
+    }
 
-  return state;
-}
+    return state;
+};
 
 const handleGetTrainingRequestCompleted =
-  (state : AdminTrainingState, payload : TrainingEntity) => {
+  (state: AdminTrainingState, payload: Training) => {
       const newState = Object.assign({}, state, {editTraining: payload});
       return newState;
-}
+};
 const handleGetSummaryTrainingRequestCompleted =
-  (state : AdminTrainingState, payload : TrainingSummary[]) => {
+  (state: AdminTrainingState, payload: TrainingSummary[]) => {
       const newState = Object.assign({}, state, {trainingSummaryList: payload});
       return newState;
-}
+};

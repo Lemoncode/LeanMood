@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Input } from "../../../../../common/components/input";
-import { TrainingEntity } from "../../../../../model/training";
+import { Training } from "../../../../../model/training";
 
 interface IProps {
-    training: TrainingEntity;
+    training: Training;
 }
 
 export const TrainingForm = (props: IProps) => {
@@ -16,7 +16,7 @@ export const TrainingForm = (props: IProps) => {
         <input type="checkbox" checked={props.training.isActive} /> Active
         <br />
         <span>
-          Start: {props.training.start.toDateString()} - End: {props.training.end.toDateString()}
+          Start: {props.training.start} - End: {props.training.end}
         </span>
       </form>
         // <div className="col-md-8 col-md-offset-2">
@@ -81,5 +81,5 @@ export const TrainingForm = (props: IProps) => {
         //         </div>
         //     </div>
         // </div>
-    )
-}
+    );
+};

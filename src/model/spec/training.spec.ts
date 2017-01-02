@@ -1,27 +1,27 @@
-import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
-import {TrainingEntity} from '../training';
-import {StudentSummary} from '../studentSummary';
-import {TrainerSummary} from '../trainerSummary';
+import { expect } from "chai";
+import {} from "core-js";
+import {} from "mocha";
+import {StudentSummary} from "../studentSummary";
+import {TrainerSummary} from "../trainerSummary";
+import {Training} from "../training";
 
-describe('Training', () => {
-  let training : TrainingEntity = null;
+describe("Training", () => {
+  let training: Training = null;
 
   beforeEach(() => {
-    training = new TrainingEntity();
+    training = new Training();
   });
 
-  it('Is instantiated and exists', () => {
+  it("Is instantiated and exists", () => {
     // Assert
     expect(training).not.to.be.undefined;
     expect(training).not.to.be.null;
   });
 
-  describe('#constructor', () => {
-    it('Is initialized with the expected values on properties', () => {
+  describe("#constructor", () => {
+    it("Is initialized with the expected values on properties", () => {
       expect(training.id).to.be.equal(-1);
-      expect(training.name).to.be.equal('');
+      expect(training.name).to.be.equal("");
       expect(training.isActive).to.be.false;
       // TODO: Temporary workaround issues with deepfreeze an dates
       expect(training.start).to.be.null;

@@ -21,7 +21,7 @@
         ],
         "quotemark": [
             true,
-            "double"
+            "single"
         ],
         "semicolon": [
             true,
@@ -99,6 +99,10 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "jsx-no-multiline-js": false,
+        "jsx-wrap-multiline": false,
+        "no-var-requires": false,
+        "no-empty": false
     }
 }

@@ -1,25 +1,25 @@
-import * as React from 'react';
-import {Link} from 'react-router';
-import { TrainingEntity } from '../../../../model/training';
-import { TrainingForm } from './components/trainingForm';
+import * as React from "react";
+import {Link} from "react-router";
+import { Training } from "../../../../model/training";
+import { TrainingForm } from "./components/trainingForm";
 
-interface Props {
-  params?: any,
-  editTraining: TrainingEntity;
+interface IProps {
+  params?: any;
+  editTraining: Training;
   getTraining: (id: number) => void;
 }
 
-export class EditTrainingPage extends React.Component<Props, {}> {
-  constructor(props: Props){
+export class EditTrainingPage extends React.Component<IProps, {}> {
+  constructor(props: IProps) {
     super(props);
   }
-  componentDidMount() {
+  public componentDidMount() {
     const trainingId = Number(this.props.params.id);
     this.props.getTraining(trainingId);
   }
 
-  render(){
-    if (!this.props.editTraining)
+  public render() {
+    if ( !this.props.editTraining ) {
       return (
         <div>
           <span>Training info loading...</span>
@@ -29,6 +29,7 @@ export class EditTrainingPage extends React.Component<Props, {}> {
           <Link to="/admin">Back to Dashboard</Link>
         </div>
       );
+    }
     return (
       <div>
         <TrainingForm training={this.props.editTraining} />
@@ -38,9 +39,7 @@ export class EditTrainingPage extends React.Component<Props, {}> {
         <Link to="/admin/training/list">Back to training list</Link>
         <Link to="/admin">Back to Dashboard</Link>
         </div>
-        
       </div>
     );
   }
-       
 }
