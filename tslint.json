@@ -2,6 +2,7 @@
     "extends": ["tslint:latest", "tslint-react"],
     "jsRules": {
         "class-name": true,
+        "object-literal-sort-keys": false,
         "comment-format": [
             true,
             "check-space"
@@ -52,6 +53,7 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "object-literal-sort-keys": false,
         "ordered-imports": [
             false
         ],
