@@ -22,11 +22,12 @@ describe('navigateBasedOnRole', () => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
-    let hashHistoryStub = sinon.stub(hashHistory, 'push', () => {});
+    let hashHistoryStub = sinon.stub(hashHistory, 'push');
 
     navigationHelper.navigateToHomeBasedOnRole('/admin');
 
     // Assert
     expect(hashHistoryStub.called).to.be.true;
+    
   }).bind(this));
 });
