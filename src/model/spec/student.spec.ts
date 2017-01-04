@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
+import {} from 'mocha';
+import {} from 'core-js';
 import {Student} from '../student';
 
 describe('Student', () => {
-  let student : Student = null;
+  let student: Student = null;
 
   beforeEach(() => {
     student = new Student();
@@ -21,7 +21,7 @@ describe('Student', () => {
       expect(student.id).to.be.equal(-1);
       expect(student.fullname).to.be.equal('');
       expect(student.email).to.be.equal('');
-      expect(student.phoneNumber).to.be.equal('');      
+      expect(student.phoneNumber).to.be.equal('');
       expect(student.isActive).to.be.true;
     });
   });

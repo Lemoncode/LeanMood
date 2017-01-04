@@ -7,8 +7,8 @@ export class UserProfile {
   constructor() {
     // Likely to be changed by string or guid
     this.id = -1;
-    this.fullname = "";
-    this.role = "";
-    this.email = "";
+    this.fullname = '';
+    this.role = '';
+    this.email = '';
   }
 }
