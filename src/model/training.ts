@@ -1,5 +1,5 @@
-import { Student } from "./student";
-import { Trainer } from "./trainer";
+import { Student } from './student';
+import { Trainer } from './trainer';
 
 export class Training {
   public id: number;
@@ -12,7 +12,7 @@ export class Training {
 
   constructor() {
     this.id = -1;
-    this.name = "";
+    this.name = '';
     this.isActive = false;
     this.start = new Date();
     this.end = new Date();

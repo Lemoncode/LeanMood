@@ -6,7 +6,7 @@ export class StudentSummary {
 
   constructor() {
     this.id = -1;
-    this.fullname = "";
-    this.email = "";
+    this.fullname = '';
+    this.email = '';
   }
 }

@@ -1,12 +1,12 @@
 import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
+import {} from 'mocha';
+import {} from 'core-js';
 import {Training} from '../training';
 import {Student} from '../student';
 import {Trainer} from '../trainer';
 
 describe('Training', () => {
-  let training : Training = null;
+  let training: Training = null;
 
   beforeEach(() => {
     training = new Training();

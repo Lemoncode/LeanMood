@@ -9,9 +9,9 @@ export class Student {
 
   constructor() {
     this.id = -1;
-    this.fullname = "";
-    this.email = "";
-    this.phoneNumber = "";
+    this.fullname = '';
+    this.email = '';
+    this.phoneNumber = '';
     this.isActive = true;
   }
 }
