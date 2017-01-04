@@ -5,11 +5,6 @@ import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from './../../../../model/loginResponse';
 import { navigationHelper } from '../helper/navigateBasedOnRole';
 
-const roleEnums = {
-  admin : 'admin',
-  students: 'students',
-  traines: 'trainers'
-}
 
 export const loginRequestStarted = (loginCredentials : LoginCredentials) => {
   return function(dispatcher) {
