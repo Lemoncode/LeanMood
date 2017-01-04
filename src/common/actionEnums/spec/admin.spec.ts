@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
-import { adminActionEnums } from '../admin'
+import {} from 'mocha';
+import {} from 'core-js';
+import { adminActionEnums } from '../admin';
 
 describe('adminActionEnums', () => {
   it('should be defined', () => {
@@ -15,5 +15,5 @@ describe('adminActionEnums', () => {
     expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).not.to.be.undefined;
     expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).to.be.a('string');
     expect(adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED).equal('GET_SUMMARY_TRAINING_REQUEST_COMPLETED');
-  })
-})
+  });
+});
