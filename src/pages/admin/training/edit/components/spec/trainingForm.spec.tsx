@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import { Training } from "../../../../../../model/training";
 import { TrainingForm } from "../trainingForm";
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 
 describe("pages/admin/training/edit/component/trainingForm", () => {
 
@@ -12,8 +13,8 @@ describe("pages/admin/training/edit/component/trainingForm", () => {
         editTraining.id = 32;
         editTraining.name = "React/redux";
         editTraining.isActive = true;
-        editTraining.start = new Date(2016, 12, 1);
-        editTraining.end = new Date(2016, 12, 31);
+        editTraining.start = new Date(2016, 11, 1);
+        editTraining.end = new Date(2016, 11, 31);
     });
 
     it("should be defined", () => {
@@ -31,10 +32,9 @@ describe("pages/admin/training/edit/component/trainingForm", () => {
         // Act
         const trainingForm = shallow(<TrainingForm training={editTraining}/>);
         const expectedDomTree = buildExpectedDomTreeByTraining(editTraining);
-        const expectedPlainDomTree = expectedDomTree.split(/(?:\r\n|\r|\n)/g).map((line) => line.trim()).join("");
 
         // Assert
-        expect(trainingForm.html()).to.be.equal(expectedPlainDomTree);
+        expect(trainingForm.html()).to.be.equal(multilineTrim(expectedDomTree));
     });
 
     function buildExpectedDomTreeByTraining(training: Training): string {
@@ -44,23 +44,17 @@ describe("pages/admin/training/edit/component/trainingForm", () => {
             expectedDomTree = `
                 <form>
                     <h2>Training form</h2>
-                    <br/>
                     <span>Name: ${training.name}</span>
-                    <br/>
-                    <input type="checkbox" checked=""/> Active
-                    <br/>
-                    <span>Start: ${training.start.toDateString()} - End: ${training.end.toDateString()}</span>
+                    <input type="checkbox" checked=""/>
+                    <span>Start: ${training.start.toLocaleDateString()} - End: ${training.end.toLocaleDateString()}</span>
                 </form>`;
         } else {
             expectedDomTree = `
                 <form>
                     <h2>Training form</h2>
-                    <br/>
                     <span>Name: ${training.name}</span>
-                    <br/>
-                    <input type="checkbox" /> Active
-                    <br/>
-                    <span>Start: ${training.start.toDateString()} - End: ${training.end.toDateString()}</span>
+                    <input type="checkbox" />
+                    <span>Start: ${training.start.toLocaleDateString()} - End: ${training.end.toLocaleDateString()}</span>
                 </form>`;
         }
 

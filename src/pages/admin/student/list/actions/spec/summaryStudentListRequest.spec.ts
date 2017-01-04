@@ -55,10 +55,8 @@ describe('summaryStudentListRequestStarted', () => {
     expect(summaryStudentListRequestStarted).not.to.be.undefined;
   });
 
-  it('should return request action type completed', sinon.test((done) => {
+  it('should return request action type completed', (done) => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
-
     // Act
     const store = mockStore([]);
     store.dispatch(summaryStudentListRequestStarted())
@@ -67,7 +65,7 @@ describe('summaryStudentListRequestStarted', () => {
           expect(store.getActions()[0].type).to.be.equal(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
           done();
       });
-  }).bind(this));
+  });
 
   it('should return expected student summary data', sinon.test((done) => {
     // Arrange

@@ -1,6 +1,3 @@
-import { expect } from "chai";
-import {} from "core-js";
-import {} from "mocha";
 import { Student } from "../../model/student";
 import { Trainer } from "../../model/trainer";
 import { Training } from "../../model/training";
@@ -112,9 +109,8 @@ describe("TrainingApi", () => {
   });
 
   describe("getTrainingById", () => {
-    it("Get the expected training", sinon.test((done) => {
+    it("Get the expected training", (done) => {
       // Arrange
-      const sinon: sinon.SinonStatic = this;
       const trainingList: Training[] =  [
         {
           end: null,
@@ -157,6 +153,6 @@ describe("TrainingApi", () => {
         expect(training.id).to.eql(expectedTraining.id);
         done();
       });
-    }).bind(this));
+    });
   });
 });

@@ -10,13 +10,10 @@ export const TrainingForm = (props: IProps) => {
     return (
       <form>
         <h2>Training form</h2>
-        <br />
         <span>Name: {props.training.name}</span>
-        <br />
-        <input type="checkbox" checked={props.training.isActive} /> Active
-        <br />
+        <input type="checkbox" checked={props.training.isActive} />
         <span>
-          Start: {props.training.start} - End: {props.training.end}
+          Start: {props.training.start.toLocaleDateString()} - End: {props.training.end.toLocaleDateString()}
         </span>
       </form>
         // <div className="col-md-8 col-md-offset-2">
