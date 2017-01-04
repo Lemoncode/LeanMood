@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Link} from 'react-router';
+import * as React from "react";
+import {Link} from "react-router";
 import { LoginCredentials } from '../../../model/loginCredentials';
 import { LoginFormComponent } from './components/loginForm';
 import { CenteredContainer } from '../../../common/components/centered';
@@ -9,7 +9,6 @@ interface Props {
   updateLoginInfo: (loginCredentials:LoginCredentials) => void;
   performLogin: (loginCredentials: LoginCredentials) => void;
 }
-
 
 export const LoginPage = (props: Props) => {
     return (

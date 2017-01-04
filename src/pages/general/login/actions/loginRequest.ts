@@ -3,7 +3,7 @@ import { LoginApi } from './../../../../rest-api/login';
 import { LoginCredentials } from './../../../../model/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from './../../../../model/loginResponse';
-import { NavigateToHomeBasedOnRole } from '../helper/navigateBasedOnRole';
+import { navigationHelper } from '../helper/navigateBasedOnRole';
 
 const roleEnums = {
   admin : 'admin',
@@ -19,7 +19,7 @@ export const loginRequestStarted = (loginCredentials : LoginCredentials) => {
       dispatcher(loginRequestCompleted(data));
 
       if(data.succeded === true) {
-        NavigateToHomeBasedOnRole.navigateToHomeBasedOnRole(`/${data.userProfile.role}`)
+        navigationHelper.navigateToHomeBasedOnRole(`/${data.userProfile.role}`)
       }
     })
     return promise;

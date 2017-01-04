@@ -1,16 +1,16 @@
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import * as React from 'react';
+import { expect } from "chai";
+import { shallow } from "enzyme";
+import * as React from "react";
 
-import { TrainingTableComponent } from '../trainingTable';
-import { TrainingSummary } from '../../../../../../model/trainingSummary';
-import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
+import { multilineTrim } from "../../../../../../common/parse/multilineTrim";
+import { TrainingSummary } from "../../../../../../model/trainingSummary";
+import { TrainingTableComponent } from "../trainingTable";
 
-describe('TrainingTabletComponent', () => {
-  it('Should not be undefined', () => {
+describe("TrainingTabletComponent", () => {
+  it("Should not be undefined", () => {
     // Act
     const trainingTableComponent = shallow(
-      <TrainingTableComponent trainingList={[]}/>
+      <TrainingTableComponent trainingList={[]}/>,
     );
 
     // Assert
@@ -18,25 +18,25 @@ describe('TrainingTabletComponent', () => {
 
   });
 
-  it('Should display trainings tabular data', () => {
+  it("Should display trainings tabular data", () => {
     // Arrange
-    const trainings : TrainingSummary[] = [
+    const trainings: TrainingSummary[] = [
       {
         id: 2,
-        name: 'John Doe',
-        isActive: true
+        isActive: true,
+        name: "John Doe",
       },
       {
         id: 3,
-        name: 'Mark Somez',
-        isActive: false
-      }
+        isActive: false,
+        name: "Mark Somez",
+      },
     ];
 
     // Act
     const trainingTableComponent = shallow(
-      <TrainingTableComponent trainingList={trainings}/>
-    )
+      <TrainingTableComponent trainingList={trainings}/>,
+    );
 
     // Assert
     const expectedDomTree = `
@@ -71,7 +71,5 @@ describe('TrainingTabletComponent', () => {
       `;
 
     expect(trainingTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
-
   });
-
 });

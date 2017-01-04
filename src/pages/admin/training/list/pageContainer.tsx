@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
-import { ListTrainingPage } from './page'
-import { IAppState } from '../../../../reducers'
-import { summaryTrainingListRequestStarted } from './actions/summaryTrainingListRequest'
+import { connect } from "react-redux";
+import { IAppState } from "../../../../reducers";
+import { summaryTrainingListRequestStarted } from "./actions/summaryTrainingListRequest";
+import { ListTrainingPage } from "./page";
 
-const mapStateToProps = (state : IAppState) => ({
-    trainingList : state.adminTraining.trainingSummaryList
+const mapStateToProps = (state: IAppState) => ({
+  trainingList : state.adminTraining.trainingSummaryList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrainings : () => dispatch(summaryTrainingListRequestStarted())
+  fetchTrainings : () => dispatch(summaryTrainingListRequestStarted()),
 });
 
 export const ListTrainingPageContainer = connect(
         mapStateToProps,
-        mapDispatchToProps
+        mapDispatchToProps,
 )(ListTrainingPage);

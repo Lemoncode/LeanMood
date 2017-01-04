@@ -1,4 +1,4 @@
-import { NavigateToHomeBasedOnRole } from '../../helper/navigateBasedOnRole';
+import { navigationHelper } from '../../helper/navigateBasedOnRole';
 import { LoginApi } from './../../../../../rest-api/login';
 import { LoginCredentials } from './../../../../../model/loginCredentials';
 import { loginRequestStarted } from './../loginRequest';
@@ -10,7 +10,7 @@ import { expect } from 'chai';
 import {} from 'mocha';
 import {} from 'core-js';
 import ReduxThunk from 'redux-thunk';
-import configureStore from 'redux-mock-store'
+import configureStore from 'redux-mock-store';
 
 const middlewares = [ ReduxThunk ];
 const mockStore = configureStore(middlewares);
@@ -27,7 +27,7 @@ describe('loginRequestCompleted', () => {
 
   it('contains the expected payload including the login response', () => {
     // Arrange
-    const loginResponse : LoginResponse = 
+    const loginResponse : LoginResponse =
     {
       succeded: false,
       userProfile: new UserProfile()
@@ -104,7 +104,7 @@ describe('loginRequestStarted', () => {
       }
     });
 
-    
+
     // Act
     const store = mockStore([]);
     store.dispatch(loginRequestStarted(loginCredentials))
@@ -119,20 +119,20 @@ describe('loginRequestStarted', () => {
   it('should called navigateToHomeBasedOnRole', sinon.test((done) => {
     // Arrange
     const sinon : sinon.SinonStatic = this;
-    
+
     const loginCredentials : LoginCredentials =
     {
       login: 'admin',
       password: 'test'
     };
 
-    const loginResponse : LoginResponse = 
+    const loginResponse : LoginResponse =
     {
       succeded: true,
       userProfile: new UserProfile()
     }
 
-    const navigateToHomeBasedOnRoleStub = sinon.stub(NavigateToHomeBasedOnRole, 'navigateToHomeBasedOnRole');
+    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
 
     navigateToHomeBasedOnRoleStub.returns({
       then: callback => {
@@ -140,7 +140,7 @@ describe('loginRequestStarted', () => {
       }
     });
 
-    
+
     // Act
     const store = mockStore([]);
     store.dispatch(loginRequestStarted(loginCredentials))
@@ -151,12 +151,14 @@ describe('loginRequestStarted', () => {
       });
   }).bind(this));
 
-  it('shouldnt called navigateToHomeBasedOnRole', () => {
+  it('shouldnt called navigateToHomeBasedOnRole', sinon.test(() => {
     // Arrange
-    const navigateToHomeBasedOnRoleStub = sinon.stub(NavigateToHomeBasedOnRole, 'navigateToHomeBasedOnRole');
+    const sinon: sinon.SinonStatic = this;
+
+    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
     // Act
     // Assert
-    expect(navigateToHomeBasedOnRoleStub.called).to.be.false;    
-  });
+    expect(navigateToHomeBasedOnRoleStub.called).to.be.false;
+  }).bind(this));
 
 })

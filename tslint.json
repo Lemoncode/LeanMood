@@ -2,9 +2,13 @@
     "extends": ["tslint:latest", "tslint-react"],
     "jsRules": {
         "class-name": true,
+        "object-literal-sort-keys": false,
         "comment-format": [
             true,
             "check-space"
+        ],
+        "ordered-imports": [
+            false
         ],
         "indent": [
             true,
@@ -21,7 +25,8 @@
         ],
         "quotemark": [
             true,
-            "double"
+             "single",
+             "jsx-double"
         ],
         "semicolon": [
             true,
@@ -48,6 +53,10 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "object-literal-sort-keys": false,
+        "ordered-imports": [
+            false
+        ],
         "comment-format": [
             true,
             "check-space"
@@ -68,7 +77,8 @@
         ],
         "quotemark": [
             true,
-            "double"
+            "single",
+            "jsx-double"
         ],
         "semicolon": [
             true,
@@ -99,6 +109,10 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "jsx-no-multiline-js": false,
+        "jsx-wrap-multiline": false,
+        "no-var-requires": false,
+        "no-empty": false
     }
 }
