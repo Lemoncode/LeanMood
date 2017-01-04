@@ -6,9 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --inline",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
-    "test": "karma start --browsers PhantomJS --single-run",
-    "test:watch": "karma start --browsers PhantomJS --no-single-run",
-    "test:coverage": "karma start karma.conf.cov.js --browsers PhantomJS --single-run"
+    "test": "karma start --single-run",
+    "test:watch": "karma start --no-single-run",
+    "test:coverage": "karma start karma.conf.cov.js --single-run"
   },
   "repository": {
     "type": "git",
@@ -52,14 +52,11 @@
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.1",
-    "karma-phantomjs-launcher": "^1.0.2",
     "karma-sinon-chai": "^1.2.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.1.2",
     "node-sass": "^4.1.1",
-    "phantomjs-polyfill-object-assign": "0.0.2",
-    "phantomjs-prebuilt": "^2.1.13",
     "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "^1.3.0",
     "redux-mock-store": "^1.2.1",

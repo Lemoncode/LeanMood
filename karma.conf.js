@@ -4,18 +4,22 @@ var path = require("path");
 var basePath = __dirname;
 
 module.exports = function (config) {
-  config.set({
+  const configObject =  {
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
-      './test/test_index.js',
-      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
-      './node_modules/es6-promise/dist/es6-promise.auto.js',
+      './test/test_index.js'
     ],
     exclude: [
     ],
     preprocessors: {
       './test/test_index.js': ['webpack', 'sourcemap']
+    },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     },
     webpack: {
       devtool: 'inline-source-map',
@@ -85,5 +89,11 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity
-  })
+  }
+
+  if (process.env.TRAVIS) {
+      config.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configObject);
 }
