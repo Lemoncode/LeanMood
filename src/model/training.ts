@@ -18,8 +18,8 @@ export class Training {
     this.isActive = false;
     // TODO: Temporary workaround, to avoid issues with Deepfreeze + Sinon
     // + Date objects.
-    this.start = null; // new Date();
-    this.end = null; // new Date();
+    this.start = new Date();
+    this.end = new Date();
     this.trainers = [];
     this.students = [];
   }
