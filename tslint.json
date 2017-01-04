@@ -6,6 +6,9 @@
             true,
             "check-space"
         ],
+        "ordered-imports": [
+            false
+        ],
         "indent": [
             true,
             "spaces"
@@ -21,7 +24,12 @@
         ],
         "quotemark": [
             true,
+<<<<<<< HEAD
             "single"
+=======
+             "single",
+             "jsx-double"
+>>>>>>> c7e1ef1599656d8a57a96a4339aae9def28457c9
         ],
         "semicolon": [
             true,
@@ -48,6 +56,9 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "ordered-imports": [
+            false
+        ],
         "comment-format": [
             true,
             "check-space"
@@ -68,7 +79,8 @@
         ],
         "quotemark": [
             true,
-            "double"
+            "single",
+            "jsx-double"
         ],
         "semicolon": [
             true,
