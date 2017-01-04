@@ -19,17 +19,25 @@ describe('navigateBasedOnRole', () => {
     expect(NavigateToHomeBasedOnRole).not.to.be.undefined;
   });
 
-  it('should navigate to role userProfile', () => {
+  it('should navigate to role userProfile', sinon.test((done) => {
     // Arrange
-    let hashHistoryPushStub = sinon.stub(hashHistory.push('/students'));
+    let hashHistoryStub = sinon.stub(hashHistory, "push", () => {});
     // Act
-    // hashHistoryPushStub.returns({
+    // hashHistoryStub.returns({
     //   then: callback => {
-    //     callback('/students');
+    //     callback();
     //   }
     // });
     
+    const store = mockStore([]);
+    store.dispatch(hashHistory.push('/students'))
+      .then(() => {
+          // Assert
+          expect(hashHistoryStub.called).to.be.true;
+          done();
+      });
+
     // Assert
-    expect(hashHistoryPushStub.called).to.be.true;
-  });
+    // expect(hashHistoryPushStub.called).to.be.true;
+  }));
 })
