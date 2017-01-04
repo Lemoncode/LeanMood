@@ -8,9 +8,7 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
-      './test/test_index.js',
-      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
-      './node_modules/es6-promise/dist/es6-promise.auto.js',
+      './test/test_index.js'
     ],
     exclude: [
     ],
@@ -94,7 +92,7 @@ module.exports = function (config) {
   }
 
   if (process.env.TRAVIS) {
-      configuration.browsers = ['Chrome_travis_ci'];
+      config.browsers = ['Chrome_travis_ci'];
   }
 
   config.set(configObject);
