@@ -6,6 +6,9 @@
             true,
             "check-space"
         ],
+        "ordered-imports": [
+            false
+        ],
         "indent": [
             true,
             "spaces"
@@ -49,6 +52,9 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "ordered-imports": [
+            false
+        ],
         "comment-format": [
             true,
             "check-space"
