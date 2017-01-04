@@ -1,11 +1,11 @@
-import { expect } from "chai";
-import { shallow } from "enzyme";
-import * as React from "react";
-import {ProgressBarComponent} from "../progressBarComponent";
+import { expect } from 'chai';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import {ProgressBarComponent} from '../progressBarComponent';
 
-describe("ProgressBarComponent", () => {
+describe('ProgressBarComponent', () => {
 
-  it("should be defined", () => {
+  it('should be defined', () => {
     // Arrange
     // Act
     const progressBarComponent = shallow(
@@ -16,7 +16,7 @@ describe("ProgressBarComponent", () => {
     expect(progressBarComponent).not.to.be.undefined;
   });
 
-  it("should render the progress tag", () => {
+  it('should render the progress tag', () => {
     // Arrange
     // Act
     const progressBarComponent = shallow(
@@ -24,7 +24,7 @@ describe("ProgressBarComponent", () => {
     );
 
     // Assert
-    const expectedDomTree = "<progress min=\"0\" max=\"10\" value=\"5\"></progress>";
+    const expectedDomTree = '<progress min=\"0\" max=\"10\" value=\"5\"></progress>';
 
     expect(progressBarComponent.html()).to.be.equal(expectedDomTree);
   });

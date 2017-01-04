@@ -1,5 +1,4 @@
-import * as React from "react";
-const styles: any = require("./progressBarStyles.scss");
+import * as React from 'react';
 
 interface IProps {
   current: number;
