@@ -20,8 +20,8 @@
             "check-whitespace"
         ],
         "quotemark": [
-            true,
-            "double"
+            false,
+            "single"
         ],
         "semicolon": [
             true,
@@ -67,8 +67,8 @@
             "check-whitespace"
         ],
         "quotemark": [
-            true,
-            "double"
+            false,
+            "single"
         ],
         "semicolon": [
             true,
