@@ -11,7 +11,7 @@ import { NavigateToHomeBasedOnRole } from '../navigateBasedOnRole';
 const middlewares = [ ReduxThunk ];
 const mockStore = configureStore(middlewares);
 
-describe('navigateBasedOnRole', () => {  
+describe('navigateBasedOnRole', () => {
   it('should be defined', () => {
     // Arrange
     // Act
@@ -19,25 +19,15 @@ describe('navigateBasedOnRole', () => {
     expect(NavigateToHomeBasedOnRole).not.to.be.undefined;
   });
 
-  it('should navigate to role userProfile', sinon.test((done) => {
+  it('should navigate to role userProfile', sinon.test(() => {
     // Arrange
-    let hashHistoryStub = sinon.stub(hashHistory, "push", () => {});
-    // Act
-    // hashHistoryStub.returns({
-    //   then: callback => {
-    //     callback();
-    //   }
-    // });
-    
-    const store = mockStore([]);
-    store.dispatch(hashHistory.push('/students'))
-      .then(() => {
-          // Assert
-          expect(hashHistoryStub.called).to.be.true;
-          done();
-      });
+    const sinon : sinon.SinonStatic = this;
+
+    let hashHistoryStub = sinon.stub(hashHistory, "push");
+
+    NavigateToHomeBasedOnRole.navigateToHomeBasedOnRole('/admin');
 
     // Assert
-    // expect(hashHistoryPushStub.called).to.be.true;
-  }));
+    expect(hashHistoryStub.called).to.be.true;
+  }).bind(this));
 })
