@@ -1,8 +1,8 @@
-import {UserProfile} from "./userProfile";
+import { UserProfile } from './userProfile';
 
 export class LoginResponse {
-  succeded: boolean;
-  userProfile: UserProfile;
+  public succeded: boolean;
+  public userProfile: UserProfile;
 
   constructor() {
     this.succeded = false;

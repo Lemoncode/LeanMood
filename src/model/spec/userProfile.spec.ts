@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import * as deepFreeze from 'deep-freeze';
-import { UserProfile } from '../userProfile'
-import {} from 'mocha'
-import {} from 'core-js'
+import { UserProfile } from '../userProfile';
+import {} from 'mocha';
+import {} from 'core-js';
 
 describe('userProfile', () => {
   let userProfile = null;
 
   beforeEach(() => {
     userProfile = new UserProfile();
-  })
+  });
 
   it('Is instantiated and exists', () => {
     // Arrange
@@ -29,5 +29,5 @@ describe('userProfile', () => {
       expect(userProfile.email).to.be.equal('');
       expect(userProfile.role).to.be.equal('');
     });
-  })
+  });
 });

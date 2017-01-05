@@ -1,25 +1,22 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { TrainingSummary } from '../../../../../model/trainingSummary';
-import { TrainingRowComponent } from './trainingRow';
+import { TrainingSummary } from "../../../../../model/trainingSummary";
+import { TrainingRowComponent } from "./trainingRow";
 
-interface Props {
+interface IProps {
   trainingList: TrainingSummary[];
 }
 
-export const TrainingTableComponent = (props : Props = { trainingList : [] }) => {
+export const TrainingTableComponent = (props: IProps = { trainingList : [] }) => {
   return (
     <table>
       <tbody>
         {
           props.trainingList.map((training) =>
-            <TrainingRowComponent
-              key={training.id}
-              training={training}
-            />            
+            <TrainingRowComponent key={training.id} training={training} />,
           )
         }
       </tbody>
     </table>
   );
-}
+};

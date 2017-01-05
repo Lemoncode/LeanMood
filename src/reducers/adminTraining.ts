@@ -1,8 +1,8 @@
-import { adminActionEnums } from './../common/actionEnums/admin';
-import { TrainingSummary } from './../model/trainingSummary';
+import { adminActionEnums } from "./../common/actionEnums/admin";
+import { TrainingSummary } from "./../model/trainingSummary";
 
 export class AdminTrainingState {
-    trainingSummaryList: TrainingSummary[];
+    public trainingSummaryList: TrainingSummary[];
 
     public constructor() {
         this.trainingSummaryList = [];
@@ -10,16 +10,17 @@ export class AdminTrainingState {
 }
 
 export const adminTrainingReducer = (state: AdminTrainingState = new AdminTrainingState(), action) => {
-    switch(action.type) {
+    switch (action.type) {
         case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
             return handleGetSummaryTrainingRequestCompleted(state, action.payload);
+        default:
     }
 
     return state;
-}
+};
 
 const handleGetSummaryTrainingRequestCompleted =
-  (state : AdminTrainingState, payload : TrainingSummary[]) => {
+  (state: AdminTrainingState, payload: TrainingSummary[]) => {
       const newState = Object.assign({}, state, {trainingSummaryList: payload});
       return newState;
-}
+};

@@ -1,8 +1,8 @@
 
 export class StudentSummary {
-  id : number;
-  fullname : string;
-  email : string;
+  public fullname: string;
+  public email: string;
+  public id: number;
 
   constructor() {
     this.id = -1;

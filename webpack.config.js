@@ -10,7 +10,7 @@ module.exports = {
 	resolve: {
     extensions: ['', '.js','.ts', '.tsx'],
     alias: {
-      'global-styles': path.join(basePath, "src/content/sass/"),
+      'globalStyles': path.join(basePath, "src/content/sass/"),
       // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
       // https://github.com/gaearon/react-hot-loader/issues/417
       //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
@@ -23,12 +23,13 @@ module.exports = {
       "./index.tsx"
     ],
     vendor: [
-             "react",
-             "react-dom",
-             "react-redux",
-             "react-router",
-             "redux",
-             "redux-thunk"
+      "react",
+      "react-dom",
+      "react-redux",
+      "react-router",
+      "react-router-redux",
+      "redux",
+      "redux-thunk"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -42,17 +43,22 @@ module.exports = {
 	devtool: 'source-map',
 
   devServer: {
-       contentBase: './dist', //Content base
-       inline: true, //Enable watch and live reload
-       hot: true,
-       noInfo: true,
-       host: 'localhost',
-       port: 8080,
-       stats: 'errors-only'
+    contentBase: './dist', //Content base
+    inline: true, //Enable watch and live reload
+    hot: true,
+    noInfo: true,
+    host: 'localhost',
+    port: 8080,
+    stats: 'errors-only'
   },
 
-
 	module: {
+    preLoaders: [
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'tslint-loader'
+      }
+    ],
 		loaders: [
 			{
 	      test: /\.(ts|tsx)$/,

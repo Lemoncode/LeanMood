@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { StudentSummary } from '../../../../../model/studentSummary'
+import * as React from "react";
+import { StudentSummary } from "../../../../../model/studentSummary";
 
-interface Props {
-  student : StudentSummary
+interface IProps {
+  student: StudentSummary;
 }
 
-export const StudentRowComponent = (props : Props) => {
+export const StudentRowComponent = (props: IProps) => {
   return (
     <tr>
       <td>
@@ -15,6 +15,5 @@ export const StudentRowComponent = (props : Props) => {
         <span>{props.student.email}</span>
       </td>
     </tr>
-
-  )
-}
+  );
+};

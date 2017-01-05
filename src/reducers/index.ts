@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
-import { AdminStudentState, adminStudentReducer } from "./adminStudent";
+import { combineReducers } from "redux";
 import {TrainerState, trainerReducer} from './trainer';
-import { AdminTrainingState, adminTrainingReducer } from "./adminTraining";
+import { adminStudentReducer, AdminStudentState } from "./adminStudent";
+import { adminTrainingReducer, AdminTrainingState } from "./adminTraining";
 
 export interface IAppState {
   adminStudent: AdminStudentState;

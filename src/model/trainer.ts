@@ -1,1 +1,2 @@
-export class Trainer{}
+export class Trainer {
+}

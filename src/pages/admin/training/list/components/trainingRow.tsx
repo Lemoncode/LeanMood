@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { TrainingSummary } from '../../../../../model/trainingSummary';
+import * as React from "react";
+import { TrainingSummary } from "../../../../../model/trainingSummary";
 
-interface Props {
+interface IProps {
   training: TrainingSummary;
 }
 
-export const TrainingRowComponent = (props : Props) => {
+export const TrainingRowComponent = (props: IProps) => {
   return (
     <tr>
       <td>
@@ -16,4 +16,4 @@ export const TrainingRowComponent = (props : Props) => {
       </td>
     </tr>
   );
-}
+};

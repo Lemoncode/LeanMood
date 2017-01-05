@@ -1,37 +1,37 @@
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { TrainingSummary } from '../../../../../../model/trainingSummary';
-import { TrainingRowComponent } from './../trainingRow';
-import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
+import { expect } from "chai";
+import { shallow } from "enzyme";
+import * as React from "react";
+import { multilineTrim } from "../../../../../../common/parse/multilineTrim";
+import { TrainingSummary } from "../../../../../../model/trainingSummary";
+import { TrainingRowComponent } from "./../trainingRow";
 
-describe('TrainingRowComponent', () => {
+describe("TrainingRowComponent", () => {
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     // Arrange
     const training = new TrainingSummary();
     training.id = 1;
-    training.name = 'john';
+    training.name = "john";
     training.isActive = true;
 
     // Act
     const trainingRowComponent = shallow(
-            <TrainingRowComponent training={training}/>
-    )
+            <TrainingRowComponent training={training}/>,
+    );
     // Assert
     expect(trainingRowComponent).not.to.be.undefined;
   });
 
-  it('should render the student name', () => {
+  it("should render the student name", () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
     trainingSummary.id = 1;
-    trainingSummary.name = 'john';
+    trainingSummary.name = "john";
     trainingSummary.isActive = true;
 
     // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent training={trainingSummary}/>
+      <TrainingRowComponent training={trainingSummary}/>,
     );
 
     // Assert

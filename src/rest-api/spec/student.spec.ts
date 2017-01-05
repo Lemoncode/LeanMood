@@ -1,33 +1,32 @@
 import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
+import {} from 'mocha';
+import {} from 'core-js';
 import { Student } from '../../model/student';
-import { studentApi } from '../student'
+import { studentApi } from '../student';
 
 describe('StudentApi', () => {
   it('is defined', () => {
-      expect(studentApi).not.to.be.undefined;
-  })
+    expect(studentApi).not.to.be.undefined;
+  });
 
   describe('setMockDataSeed', () => {
     it('set the right mockdata seed', () => {
       // Arrange
-      const studentList : Student[] =
-      [
+      const studentList: Student[] = [
         {
-          id: 32,
-          fullname: 'John Doe',
           email: 'john@test.com',
+          fullname: 'John Doe',
+          id: 32,
+          isActive: true,
           phoneNumber: '123',
-          isActive: true
         },
         {
-          id: 44,
-          fullname: 'Mark Perez',
           email: 'mark@email.com',
+          fullname: 'Mark Perez',
+          id: 44,
+          isActive: true,
           phoneNumber: '',
-          isActive: true
-        }
+        },
       ];
 
       // Act
@@ -41,22 +40,21 @@ describe('StudentApi', () => {
   describe('getSummaryStudentList', () => {
     it('Get the expected summary student list', sinon.test((done) => {
       // Arrange
-      const studentList : Student[] =
-      [
+      const studentList: Student[] = [
         {
-          id: 32,
-          fullname: 'John Doe',
           email: 'john@test.com',
+          fullname: 'John Doe',
+          id: 32,
+          isActive: true,
           phoneNumber: '123',
-          isActive: true
         },
         {
-          id: 44,
-          fullname: 'Mark Perez',
           email: 'mark@email.com',
+          fullname: 'Mark Perez',
+          id: 44,
+          isActive: true,
           phoneNumber: '',
-          isActive: true
-        }
+        },
       ];
       studentApi.setMockDataSeed(studentList);
 
@@ -76,6 +74,6 @@ describe('StudentApi', () => {
         done();
       });
 
-    }).bind(this))
+    }).bind(this));
   });
 });
