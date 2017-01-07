@@ -67,7 +67,9 @@ module.exports = {
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
-        include: /node_modules\\bootstrap/,
+        include: [/node_modules\\bootstrap/,
+          /src\\common\\components/,
+          /node_modules\\font-awesome/],
         loader: ExtractTextPlugin.extract('style','css')
       },
       //NOTE: src css configuration
