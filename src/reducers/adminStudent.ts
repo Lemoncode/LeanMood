@@ -1,5 +1,5 @@
-import { adminActionEnums} from "../common/actionEnums/admin";
-import { StudentSummary } from "../model/studentSummary";
+import { adminActionEnums} from '../common/actionEnums/admin';
+import { StudentSummary } from '../model/studentSummary';
 
 export class AdminStudentState {
   public studentSummaryList: StudentSummary[];
