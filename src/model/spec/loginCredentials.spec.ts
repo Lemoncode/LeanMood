@@ -11,19 +11,19 @@ describe('loginCredentials', () => {
         loginCredentials = new LoginCredentials();
     });
 
-    it('Is instantiated and exists', () =>{
-        //Arrange
-        //Act
-        //Assert
+    it('Is instantiated and exists', () => {
+        // Arrange
+        // Act
+        // Assert
         expect(loginCredentials).not.to.be.undefined;
         expect(loginCredentials).not.to.be.null;
     });
 
     describe('#constructor', () => {
         it('Is initializaed with default values', () => {
-            //Arrange
-            //Act
-            //Assert
+            // Arrange
+            // Act
+            // Assert
             expect(loginCredentials.login).to.be.equal('');
             expect(loginCredentials.password).to.be.equal('');
         });

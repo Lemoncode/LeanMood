@@ -1,6 +1,6 @@
-import { Student } from "../model/student";
-import { StudentSummary } from "../model/studentSummary";
-import { studentMockData } from "./studentMockData";
+import { Student } from '../model/student';
+import { StudentSummary } from '../model/studentSummary';
+import { studentMockData } from './studentMockData';
 
 class StudentApi {
   public studentList: Student[];

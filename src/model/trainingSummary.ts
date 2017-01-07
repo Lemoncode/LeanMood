@@ -5,7 +5,7 @@ export class TrainingSummary {
 
   constructor() {
     this.id = -1;
-    this.name = "";
+    this.name = '';
     this.isActive = false;
   }
 }

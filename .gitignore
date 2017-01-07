@@ -10,3 +10,4 @@ typings/
 */src/**/*.js.map
 /src/**/*.css.d.ts
 /src/**/*.scss.d.ts
+yarn.lock

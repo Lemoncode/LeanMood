@@ -11,19 +11,19 @@ describe('loginResponse', () => {
         loginResponse = new LoginResponse();
     });
 
-    it('Is instantiated and exists', () =>{
-        //Arrange
-        //Act
-        //Assert
+    it('Is instantiated and exists', () => {
+        // Arrange
+        // Act
+        // Assert
         expect(loginResponse).not.to.be.undefined;
         expect(loginResponse).not.to.be.null;
     });
 
     describe('#constructor', () => {
         it('Is initializaed with default values', () => {
-            //Arrange
-            //Act
-            //Assert
+            // Arrange
+            // Act
+            // Assert
             expect(loginResponse.succeded).to.be.false;
             expect(loginResponse.userProfile).to.be.equal(loginResponse.userProfile);
         });
