@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { expect } from "chai";
 import {} from "core-js";
 import {} from "mocha";
@@ -6,6 +7,16 @@ import {TrainerSummary} from "../trainerSummary";
 import {Training} from "../training";
 
 describe("Training", () => {
+=======
+import { expect } from 'chai';
+import {} from 'mocha';
+import {} from 'core-js';
+import {Training} from '../training';
+import {Student} from '../student';
+import {Trainer} from '../trainer';
+
+describe('Training', () => {
+>>>>>>> 1a74c9a578d7b4a65b0460d0997cca74652df14c
   let training: Training = null;
 
   beforeEach(() => {

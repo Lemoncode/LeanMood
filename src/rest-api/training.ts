@@ -1,6 +1,6 @@
-import { Training } from "../model/training";
-import { TrainingSummary } from "../model/trainingSummary";
-import { trainingMockData } from "./trainingMockData";
+import { Training } from '../model/training';
+import { TrainingSummary } from '../model/trainingSummary';
+import { trainingMockData } from './trainingMockData';
 
 class TrainingApi {
   public trainingList: Training[];
@@ -14,7 +14,7 @@ class TrainingApi {
   }
 
   public getSummaryTrainingList(): Promise<TrainingSummary[]> {
-    const trainingSummaryList: TrainingSummary[] = this.trainingList.map( (training) => {
+    const trainingSummaryList: TrainingSummary[] = this.trainingList.map((training) => {
       return {
         id: training.id,
         isActive: training.isActive,

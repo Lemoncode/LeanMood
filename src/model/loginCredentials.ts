@@ -3,7 +3,7 @@ export class LoginCredentials {
   public password: string;
 
   constructor() {
-    this.login = "";
-    this.password = "";
+    this.login = '';
+    this.password = '';
   }
 }

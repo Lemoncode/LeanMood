@@ -2,6 +2,7 @@
     "extends": ["tslint:latest", "tslint-react"],
     "jsRules": {
         "class-name": true,
+        "object-literal-sort-keys": false,
         "comment-format": [
             true,
             "check-space"
@@ -24,12 +25,8 @@
         ],
         "quotemark": [
             true,
-<<<<<<< HEAD
-            "single"
-=======
              "single",
              "jsx-double"
->>>>>>> c7e1ef1599656d8a57a96a4339aae9def28457c9
         ],
         "semicolon": [
             true,
@@ -56,6 +53,7 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "object-literal-sort-keys": false,
         "ordered-imports": [
             false
         ],
