@@ -1,7 +1,7 @@
-import { Action } from "redux";
-import { Training } from "../model/training";
-import { adminActionEnums } from "./../common/actionEnums/admin";
-import { TrainingSummary } from "./../model/trainingSummary";
+import { Action } from 'redux';
+import { Training } from '../model/training';
+import { adminActionEnums } from './../common/actionEnums/admin';
+import { TrainingSummary } from './../model/trainingSummary';
 
 export class AdminTrainingState {
     public trainingSummaryList: TrainingSummary[];

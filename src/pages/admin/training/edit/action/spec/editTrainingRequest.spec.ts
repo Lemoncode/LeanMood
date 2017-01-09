@@ -1,37 +1,37 @@
-import { expect } from "chai";
-import {} from "core-js";
-import {} from "mocha";
-import configureStore from "redux-mock-store";
-import ReduxThunk from "redux-thunk";
-import { adminActionEnums } from "../../../../../../common/actionEnums/admin";
-import { Student } from "../../../../../../model/student";
-import { Trainer } from "../../../../../../model/trainer";
-import { Training } from "../../../../../../model/training";
-import { trainingApi } from "../../../../../../rest-api";
-import { editTrainingRequestCompleted, editTrainingRequestStarted } from "../editTrainingRequest";
+import { expect } from 'chai';
+import {} from 'core-js';
+import {} from 'mocha';
+import configureStore from 'redux-mock-store';
+import ReduxThunk from 'redux-thunk';
+import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
+import { Student } from '../../../../../../model/student';
+import { Trainer } from '../../../../../../model/trainer';
+import { Training } from '../../../../../../model/training';
+import { trainingApi } from '../../../../../../rest-api';
+import { editTrainingRequestCompleted, editTrainingRequestStarted } from '../editTrainingRequest';
 
 let middlewares = [ ReduxThunk ];
 let mockStore = configureStore(middlewares);
 
-describe("editTrainingRequestCompleted", () => {
-  it("is defined", () => {
+describe('editTrainingRequestCompleted', () => {
+  it('is defined', () => {
     // Assert
     expect(editTrainingRequestCompleted).not.to.be.undefined;
   });
 
-  it("contains the expected type GET_SUMMARY_TRAINING_REQUEST_COMPLETED", () => {
+  it('contains the expected type GET_SUMMARY_TRAINING_REQUEST_COMPLETED', () => {
     // Assert
     expect(editTrainingRequestCompleted(new Training()).type).to.be.equals(
       adminActionEnums.GET_TRAINING_REQUEST_COMPLETED);
   });
 
-  it("contains the expected payload including the edit training", () => {
+  it('contains the expected payload including the edit training', () => {
     // Arrange
     const expectedTraining: Training = {
       end: new Date(31, 1, 2017),
       id: 32,
       isActive: true,
-      name: "React/Redux",
+      name: 'React/Redux',
       start: new Date(1, 1, 2017),
       students: new Array<Student>(),
       trainers: new Array<Trainer>(),
@@ -45,14 +45,14 @@ describe("editTrainingRequestCompleted", () => {
     expect(actionResult.payload).to.be.equal(expectedTraining);
   });
 });
-describe("editTrainingRequestStarted", () => {
+describe('editTrainingRequestStarted', () => {
 
-  it("should be defined", () => {
+  it('should be defined', () => {
     // Assert
     expect(editTrainingRequestStarted).not.to.be.undefined;
   });
 
-  it("should return request action type completed", sinon.test((done) => {
+  it('should return request action type completed', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const id: number = 32;
@@ -67,7 +67,7 @@ describe("editTrainingRequestStarted", () => {
       });
   }).bind(this));
 
-  it("should return expected training data", sinon.test((done) => {
+  it('should return expected training data', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -77,13 +77,13 @@ describe("editTrainingRequestStarted", () => {
       end: null,
       id: 32,
       isActive: true,
-      name: "React/Redux",
+      name: 'React/Redux',
       start: null,
       students: new Array<Student>(),
       trainers: new Array<Trainer>(),
     };
 
-    const getTrainingByIdStub = sinon.stub(trainingApi, "getTrainingById");
+    const getTrainingByIdStub = sinon.stub(trainingApi, 'getTrainingById');
 
     getTrainingByIdStub.returns({
       then: (callback) => {

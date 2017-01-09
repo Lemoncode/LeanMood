@@ -1,7 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
-import { Training } from "../../../../model/training";
-import { TrainingForm } from "./components/trainingForm";
+import * as React from 'react';
+import {Link} from 'react-router';
+import { Training } from '../../../../model/training';
+import { TrainingForm } from './components/trainingForm';
 
 interface IProps {
   params?: any;

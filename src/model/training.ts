@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { Student } from "./student";
-import { StudentSummary } from "./studentSummary";
-import { Trainer } from "./trainer";
-import { TrainerSummary } from "./trainerSummary";
-=======
 import { Student } from './student';
+import { StudentSummary } from './studentSummary';
 import { Trainer } from './trainer';
->>>>>>> 1a74c9a578d7b4a65b0460d0997cca74652df14c
+import { TrainerSummary } from './trainerSummary';
 
 export class Training {
   public id: number;

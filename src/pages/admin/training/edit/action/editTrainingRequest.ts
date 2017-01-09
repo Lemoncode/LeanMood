@@ -1,6 +1,6 @@
-import { adminActionEnums } from "../../../../../common/actionEnums/admin";
-import { Training} from "../../../../../model/training";
-import { trainingApi } from "../../../../../rest-api";
+import { adminActionEnums } from '../../../../../common/actionEnums/admin';
+import { Training} from '../../../../../model/training';
+import { trainingApi } from '../../../../../rest-api';
 
 export const editTrainingRequestStarted = (id: number) => {
   return (dispatcher) => {

@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
-import { IAppState } from "../../../../reducers";
-import { editTrainingRequestStarted } from "./action/editTrainingRequest";
-import { EditTrainingPage } from "./page";
+import { connect } from 'react-redux';
+import { IAppState } from '../../../../reducers';
+import { editTrainingRequestStarted } from './action/editTrainingRequest';
+import { EditTrainingPage } from './page';
 
 const mapStateToProps = (state: IAppState) => {
     return {
