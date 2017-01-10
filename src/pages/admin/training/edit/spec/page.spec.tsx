@@ -19,7 +19,7 @@ describe('pages/admin/training/edit/page', () => {
 
         // Act
         const editTrainingPage = shallow(
-        <EditTrainingPage editTraining={editTraining} getTraining= {() => {}} />,
+        <EditTrainingPage editTraining={editTraining} getTraining = {() => {}} />,
         );
 
         // Assert
@@ -38,7 +38,7 @@ describe('pages/admin/training/edit/page', () => {
 
         // Act
         const editTrainingPage = shallow(
-          <EditTrainingPage editTraining={editTraining} getTraining={() => {}} />,
+          <EditTrainingPage editTraining={editTraining} getTraining = {() => {}} />,
         );
         // Assert
         expect(editTrainingPage.childAt(0).type()).to.be.equal(TrainingForm);
