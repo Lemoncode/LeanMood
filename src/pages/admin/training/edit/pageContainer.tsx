@@ -3,9 +3,10 @@ import { IAppState } from '../../../../reducers';
 import { editTrainingRequestStarted } from './action/editTrainingRequest';
 import { EditTrainingPage } from './page';
 
-const mapStateToProps = (state: IAppState) => {
+const mapStateToProps = (state: IAppState, ownProps) => {
     return {
         editTraining: state.adminTraining.editTraining,
+        trainingId: ownProps.params.id
     };
 };
 

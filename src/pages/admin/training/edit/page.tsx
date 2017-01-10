@@ -4,7 +4,7 @@ import { Training } from '../../../../model/training';
 import { TrainingForm } from './components/trainingForm';
 
 interface IProps {
-  params?: any;
+  trainingId: string;
   editTraining: Training;
   getTraining: (id: number) => void;
 }
@@ -14,8 +14,10 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
     super(props);
   }
   public componentDidMount() {
-    const trainingId = Number(this.props.params.id);
-    this.props.getTraining(trainingId);
+    if (this.props.trainingId) {
+      const trainingId = Number(this.props.trainingId);
+      this.props.getTraining(trainingId);
+    }
   }
 
   public render() {
