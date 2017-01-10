@@ -1,15 +1,15 @@
-import { expect } from "chai";
-import { shallow } from "enzyme";
-import * as React from "react";
-import { multilineTrim } from "../../../../../../common/parse/multilineTrim";
-import { StudentSummary } from "../../../../../../model/studentSummary";
-import { StudentTableComponent } from "../studentTable";
+import { expect } from 'chai';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
+import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentTableComponent } from '../studentTable';
 
-describe("StudentTableComponent", () => {
-  it("Should not be undefined", () => {
+describe('StudentTableComponent', () => {
+  it('Should not be undefined', () => {
     // Act
     const studentTableComponent = shallow(
-      <StudentTableComponent studentList={[]}/>,
+      <StudentTableComponent studentList={[]} />,
     );
 
     // Assert
@@ -17,24 +17,24 @@ describe("StudentTableComponent", () => {
 
   });
 
-  it("Should display students tabular data", () => {
+  it('Should display students tabular data', () => {
     // Arrange
     const students: StudentSummary[] = [
       {
-        email: "test@test.com",
-        fullname: "John Doe",
+        email: 'test@test.com',
+        fullname: 'John Doe',
         id: 2,
       },
       {
-        email: "mark@test.com",
-        fullname: "Mark Somez",
+        email: 'mark@test.com',
+        fullname: 'Mark Somez',
         id: 3,
       },
     ];
 
     // Act
     const studentTableComponent = shallow(
-      <StudentTableComponent studentList={students}/>,
+      <StudentTableComponent studentList={students} />,
     );
 
     // Assert

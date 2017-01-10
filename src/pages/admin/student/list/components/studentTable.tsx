@@ -1,12 +1,12 @@
-import * as React from "react";
-import { StudentSummary } from "../../../../../model/studentSummary";
-import { StudentRowComponent } from "./studentRow";
+import * as React from 'react';
+import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentRowComponent } from './studentRow';
 
 interface IProps {
   studentList: StudentSummary[];
 }
 
-export const StudentTableComponent = (props: IProps = {studentList: []}) => {
+export const StudentTableComponent = (props: IProps = { studentList: [] }) => {
   return (
     <table>
       <tbody>
@@ -15,7 +15,7 @@ export const StudentTableComponent = (props: IProps = {studentList: []}) => {
             <StudentRowComponent
               key={student.id}
               student={student}
-            />,
+              />,
           )
         }
       </tbody>

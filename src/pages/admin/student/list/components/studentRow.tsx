@@ -1,5 +1,5 @@
-import * as React from "react";
-import { StudentSummary } from "../../../../../model/studentSummary";
+import * as React from 'react';
+import { StudentSummary } from '../../../../../model/studentSummary';
 
 interface IProps {
   student: StudentSummary;

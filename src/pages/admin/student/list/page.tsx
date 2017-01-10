@@ -1,7 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
-import { StudentSummary } from "../../../../model/studentSummary";
-import { StudentTableComponent } from "./components/studentTable";
+import * as React from 'react';
+import { Link } from 'react-router';
+import { StudentSummary } from '../../../../model/studentSummary';
+import { StudentTableComponent } from './components/studentTable';
 
 interface IProps extends React.Props<ListStudentPage> {
   studentList: StudentSummary[];
@@ -18,7 +18,7 @@ export class ListStudentPage extends React.Component<IProps, {}> {
   public render() {
     return (
       <div>
-        <StudentTableComponent studentList={this.props.studentList}/>
+        <StudentTableComponent studentList={this.props.studentList} />
         <Link to="/admin/student/edit">Go to student Edit</Link>
       </div>
     );
