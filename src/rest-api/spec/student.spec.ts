@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { } from 'mocha'
 import { } from 'core-js'
 import { Student } from '../../model/student';
-import { studentApi } from '../student'
+import { studentApi } from '../student';
 
 let studentList: Student[];
 
@@ -62,7 +62,7 @@ describe('StudentApi', () => {
         done();
       });
 
-    }).bind(this))
+    }).bind(this));
   });
 
   describe('getStudentById', () => {

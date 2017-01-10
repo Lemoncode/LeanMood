@@ -8,4 +8,6 @@ typings/
 .idea/
 */src/**/*.js
 */src/**/*.js.map
-.vscode/
+/src/**/*.css.d.ts
+/src/**/*.scss.d.ts
+yarn.lock

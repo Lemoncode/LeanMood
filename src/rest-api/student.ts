@@ -1,19 +1,19 @@
-import { Student } from '../model/student'
-import { StudentSummary } from '../model/studentSummary'
-import { studentMockData } from './studentMockData'
+import { Student } from '../model/student';
+import { StudentSummary } from '../model/studentSummary';
+import { studentMockData } from './studentMockData';
 
 class StudentApi {
-  studentList: Student[];
+  public studentList: Student[];
 
   constructor() {
     this.studentList = studentMockData;
   }
 
-  setMockDataSeed(studentList: Student[]) {
+  public setMockDataSeed(studentList: Student[]) {
     this.studentList = studentList;
   }
 
-  getSummaryStudentList(): Promise<StudentSummary[]> {
+  public getSummaryStudentList(): Promise<StudentSummary[]> {
     const studentSummaryList: StudentSummary[] = this.studentList.map((student) => {
       const summary = new StudentSummary();
       summary.id = student.id;

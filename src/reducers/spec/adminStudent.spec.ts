@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as deepFreeze from 'deep-freeze';
-import {} from 'mocha'
-import {} from 'core-js'
+import {} from 'mocha';
+import {} from 'core-js';
 import { adminStudentReducer, AdminStudentState } from '../adminStudent';
 import { StudentSummary } from '../../model/studentSummary'
 import { Student } from '../../model/student'
@@ -9,20 +9,20 @@ import { summaryStudentListRequestCompleted } from '../../pages/admin/student/li
 import {adminActionEnums} from '../../common/actionEnums/admin'
 
 describe('adminStudentReducer', () => {
-  it("is defined", () => {
+  it('is defined', () => {
     // Arrange
     // Act
     // Assert
     expect(adminStudentReducer).not.be.undefined;
   });
 
-  it("should return same state when passing an action that is not expected", () => {
+  it('should return same state when passing an action that is not expected', () => {
     // Arrange
     const originalState : AdminStudentState = new AdminStudentState();
 
     const action = {
-      type: 'NOT_EXPECTED_ACTION_242424242'
-    }
+      type: 'NOT_EXPECTED_ACTION_242424242',
+    };
 
     // Act
     const newState = adminStudentReducer(originalState, action);
@@ -33,29 +33,29 @@ describe('adminStudentReducer', () => {
   });
 
   it(`should return a new state including new student list when
-    passing a GET_SUMMARY_TRAINING_REQUEST_COMPLETED`,() => {
+    passing a GET_SUMMARY_STUDENT_REQUEST_COMPLETED`, () => {
     // Arrange
     const originalState = new AdminStudentState();
 
     deepFreeze(originalState);
 
-    const students : StudentSummary[] = [
+    const students: StudentSummary[] = [
       {
         id: 2,
         fullname: 'John Doe',
-        email: 'test@test.com'
+        email: 'test@test.com',
       },
       {
         id: 3,
         fullname: 'Mark Somez',
-        email: 'mark@test.com'
-      }
+        email: 'mark@test.com',
+      },
     ];
 
     const actionResult = {
-      type: adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED,
-      payload: students
-    }
+      type: adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED,
+      payload: students,
+    };
 
     // Act
     const newState = adminStudentReducer(originalState, actionResult);

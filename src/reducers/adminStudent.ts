@@ -3,7 +3,6 @@ import { StudentSummary } from '../model/studentSummary'
 import { Student } from '../model/student'
 import { adminActionEnums } from '../common/actionEnums/admin'
 
-
 export class AdminStudentState {
   studentSummaryList: StudentSummary[];
   editingStudent: Student;
@@ -22,7 +21,7 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
   }
 
   return state;
-}
+};
 
 const handleGetSummaryTrainingRequestCompleted =
   (state: AdminStudentState, payload: StudentSummary[]) => {

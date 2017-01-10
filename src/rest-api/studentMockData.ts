@@ -1,19 +1,18 @@
-import { Student } from '../model/student'
+import { Student } from '../model/student';
 
-export const studentMockData : Student[] =
-[
+export const studentMockData: Student[] = [
   {
-    id: 32,
-    fullname: 'Antonio Tobajas',
     email: 'antonio@test.com',
+    fullname: 'Antonio Tobajas',
+    id: 32,
+    isActive: true,
     phoneNumber: '',
-    isActive: true
   },
   {
-    id: 44,
-    fullname: 'David Atencia',
     email: 'davi@test.com',
+    fullname: 'David Atencia',
+    id: 44,
+    isActive: true,
     phoneNumber: '',
-    isActive: true
-  }
+  },
 ];
