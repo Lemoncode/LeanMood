@@ -6,7 +6,7 @@ import { EditTrainingPage } from './page';
 const mapStateToProps = (state: IAppState, ownProps) => {
     return {
         editTraining: state.adminTraining.editTraining,
-        trainingId: ownProps.params.id
+        trainingId: ownProps.params.id,
     };
 };
 

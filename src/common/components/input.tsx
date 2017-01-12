@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-interface Props {
+interface IProps {
   name: string;
   label: string;
   value: string;
@@ -9,26 +9,28 @@ interface Props {
   error: string;
 }
 
-export class Input extends React.Component<Props, {}> {
-  constructor(props: Props) {
+export class Input extends React.Component<IProps, {}> {
+  constructor(props: IProps) {
     super(props);
   }
   public render() {
-    let wrapperClass: string = "form-group";
+    let wrapperClass: string = 'form-group';
     if (this.props.error && this.props.error.length > 0) {
-      wrapperClass += " " + "has-error";
+      wrapperClass += ' ' + 'has-error';
     }
     return (
       <div className={wrapperClass}>
         <label htmlFor={this.props.name}>{this.props.label}</label>
         <div className="field">
-          <input type="text"
+          <input
+            type="text"
             name={this.props.name}
             className="form-control"
             placeholder={this.props.placeholder}
             ref={this.props.name}
             value={this.props.value}
-            onChange={this.props.onChange} /> +
+            onChange={this.props.onChange}
+          /> +
           <div className="input">{this.props.error}</div>
         </div>
       </div>

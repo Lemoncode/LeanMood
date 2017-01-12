@@ -14,7 +14,6 @@ describe('pages/admin/training/edit/pageContainer', () => {
     it('should be defined', sinon.test(() => {
         // Arrange
         const sinon: sinon.SinonStatic = this;
-        
         let localEditTraining = new Training();
         localEditTraining.id = 32;
         localEditTraining.name = 'React/redux';
@@ -30,18 +29,18 @@ describe('pages/admin/training/edit/pageContainer', () => {
         const nonTypeMockStore: any = mockStore;
 
         let editTrainingRequestStartedStub = sinon.stub(editTrainingActions,
-          'editTrainingRequestStarted',() => {
+          'editTrainingRequestStarted', () => {
             return {
-              type: 'TEST'
-            }}
+              type: 'TEST',
+            }; },
          );
 
         // Act
-        const pageContainer = mount(
-            <Provider store={nonTypeMockStore}>
-                <EditTrainingPageContainer params={{id: ""}}/>
-            </Provider>,
-            );
+        const pageContainer = mount (
+          <Provider store={nonTypeMockStore}>
+            <EditTrainingPageContainer params={{id: ''}}/>
+          </Provider>,
+        );
 
         // Assert
         expect(pageContainer).not.to.be.undefined;
@@ -67,16 +66,16 @@ describe('pages/admin/training/edit/pageContainer', () => {
         const nonTypeMockStore: any = mockStore;
 
         let editTrainingRequestStartedStub = sinon.stub(editTrainingActions,
-          'editTrainingRequestStarted',() => {
+          'editTrainingRequestStarted', () => {
             return {
-              type: 'TEST'
-            }}
+              type: 'TEST',
+            }; },
          );
 
         // Act
         const pageContainer = mount(
             <Provider store={nonTypeMockStore}>
-                <EditTrainingPageContainer params={{id: "1"}}/>
+                <EditTrainingPageContainer params={{id: localEditTraining.id.toString()}}/>
             </Provider>,
             );
 
