@@ -13,8 +13,8 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
     case trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED:
       return handleGetTrainingContentRequestCompleted(state, action.payload);
     default:
+      return state;
   }
-  return state;
 };
 
 const handleGetTrainingContentRequestCompleted =

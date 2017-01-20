@@ -14,8 +14,8 @@ export const trainerReducer = (state: TrainerState = new TrainerState(), action)
     case trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED:
       return handleTrainingReducer(state, action);
     default:
+      return state;
   }
-  return state;
 };
 
 const handleTrainingReducer = (state: TrainerState, action) => {
