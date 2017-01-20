@@ -1,7 +1,7 @@
 import {trainerActionEnums} from '../../common/actionEnums/trainer';
 
 export class TrainingState {
-  content: string;
+  public content: string;
 
   constructor() {
     this.content = '';
@@ -9,16 +9,17 @@ export class TrainingState {
 }
 
 export const trainingReducer = (state: TrainingState = new TrainingState(), action) => {
-  switch(action.type) {
+  switch (action.type) {
     case trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED:
       return handleGetTrainingContentRequestCompleted(state, action.payload);
+    default:
   }
   return state;
-}
+};
 
 const handleGetTrainingContentRequestCompleted =
 (state: TrainingState, payload: string) => {
   return Object.assign({}, state, {
-    content: payload
+    content: payload,
   });
-}
+};

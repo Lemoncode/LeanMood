@@ -4,55 +4,55 @@ import {TrainerState, trainerReducer} from '../index';
 
 describe('trainerReducer', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
     expect(trainerReducer).not.to.be.undefined;
   });
 
   it('should return initial state when passing undefined state', () => {
-    //Arrange
+    // Arrange
     const originalState = undefined;
     const action = {};
 
     const expectedState = new TrainerState();
 
-    //Act
+    // Act
     const nextState = trainerReducer(originalState, action);
 
-    //Assert
+    // Assert
     expect(nextState).not.to.be.undefined;
     expect(nextState.training.content).to.equal(expectedState.training.content);
   });
 
   it('should return original state when passing not expected action type', () => {
-    //Arrange
+    // Arrange
     const originalState = new TrainerState();
     const action = {
-      type: 'NOT_EXPECTED_ACTION'
+      type: 'NOT_EXPECTED_ACTION',
     };
 
-    //Act
+    // Act
     Object.freeze(originalState);
     const nextState = trainerReducer(originalState, action);
 
-    //Assert
+    // Assert
     expect(nextState).not.to.be.undefined;
     expect(nextState).to.equal(originalState);
     expect(originalState).to.be.frozen;
   });
 
   it('should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED', () => {
-    //Arrange
+    // Arrange
     const originalState = new TrainerState();
     const action = {
       type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
-      payload: 'Test content'
+      payload: 'Test content',
     };
 
-    //Act
+    // Act
     Object.freeze(originalState);
     const nextState = trainerReducer(originalState, action);
 
-    //Assert
+    // Assert
     expect(nextState.training.content).to.equal(action.payload);
     expect(originalState).to.be.frozen;
   });

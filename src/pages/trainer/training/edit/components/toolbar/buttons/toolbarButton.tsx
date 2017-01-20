@@ -13,7 +13,7 @@ export class ToolbarButton extends React.Component<IProps, {}> {
       <button
         type="button"
         className="btn btn-default"
-        onClick={this.onClick}
+        onClick={this.onClick.bind(this)}
       >
         {this.props.children}
       </button>

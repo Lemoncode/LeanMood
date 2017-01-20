@@ -14,5 +14,5 @@ export const reducers = combineReducers<IAppState>({
   adminStudent: adminStudentReducer,
   adminTraining: adminTrainingReducer,
   trainer: trainerReducer,
-  routing: routerReducer
+  routing: routerReducer,
 });
