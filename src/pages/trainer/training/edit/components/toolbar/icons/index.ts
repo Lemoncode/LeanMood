@@ -17,5 +17,5 @@ export {
   ItalicIcon,
   LinkIcon,
   NumberedListIcon,
-  QuoteIcon
+  QuoteIcon,
 }

@@ -18,9 +18,9 @@ describe('LoginApi', () => {
         // Arrange
         const sinon: sinon.SinonStatic = this;
 
-        let expectedLoginResponse = new LoginResponse();
+        const expectedLoginResponse = new LoginResponse();
 
-        let loginCredentials = new LoginCredentials();
+        const loginCredentials = new LoginCredentials();
         loginCredentials.login = 'error';
         loginCredentials.password = 'error';
 
@@ -32,7 +32,7 @@ describe('LoginApi', () => {
         });
 
         // Act
-        let result = LoginApi.login(loginCredentials);
+        const result = LoginApi.login(loginCredentials);
 
         result.then((loginResponse) => {
             // Assert
@@ -47,7 +47,7 @@ describe('LoginApi', () => {
         // Arrange
         const sinon: sinon.SinonStatic = this;
 
-        let expectedLoginResponse = new LoginResponse();
+        const expectedLoginResponse = new LoginResponse();
         expectedLoginResponse.succeded = true;
         expectedLoginResponse.userProfile = {
             email: 'john@fakeemail.com',
@@ -56,7 +56,7 @@ describe('LoginApi', () => {
             role: 'admin',
           };
 
-        let loginCredentials = new LoginCredentials();
+        const loginCredentials = new LoginCredentials();
         loginCredentials.login = 'admin';
         loginCredentials.password = 'test';
 
@@ -68,7 +68,7 @@ describe('LoginApi', () => {
         });
 
         // Act
-        let result = LoginApi.login(loginCredentials);
+        const result = LoginApi.login(loginCredentials);
 
         result.then((loginResponse) => {
             // Assert

@@ -5,5 +5,5 @@ import {trainerApi} from './trainer/trainerApi';
 export {
   studentApi,
   trainingApi,
-  trainerApi
+  trainerApi,
 }

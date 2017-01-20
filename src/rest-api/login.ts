@@ -6,7 +6,7 @@ import {} from 'core-js';
 
 class LoginAPI {
   public login(loginInfo: LoginCredentials): Promise<LoginResponse> {
-    let loginResponse = new LoginResponse();
+    const loginResponse = new LoginResponse();
 
     if (loginInfo.login === 'admin' && loginInfo.password === 'test') {
       loginResponse.succeded = true;
