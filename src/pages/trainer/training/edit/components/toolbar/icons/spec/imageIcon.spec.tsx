@@ -5,30 +5,30 @@ import {ImageIcon} from '../imageIcon';
 
 describe('ImageIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <ImageIcon />
+      <ImageIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <span class="glyphicon glyphicon-picture">
       </span>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <ImageIcon />
+      <ImageIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

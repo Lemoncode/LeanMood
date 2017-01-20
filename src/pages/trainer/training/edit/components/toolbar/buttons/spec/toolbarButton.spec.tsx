@@ -5,79 +5,87 @@ import {ToolbarButton} from '../toolbarButton';
 
 describe('BaseToolbarButton', () => {
   it('is defined', () => {
-    //Arrange
-
-    //Act
+    // Arrange
+    const dummyOnClick = () => {};
+    // Act
     const component = shallow(
-      <ToolbarButton textArea={null}
-       caret=''
-       offset={0}
-       onClick={() =>{}}/>
+      <ToolbarButton
+        textArea={null}
+        caret=""
+        offset={0}
+        onClick={dummyOnClick}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('renders as expected without children', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <button type="button" class="btn btn-default">
       </button>
     `;
-
-    //Act
+    const dummyOnClick = () => {};
+    // Act
     const component = shallow(
-      <ToolbarButton textArea={null}
-       caret=''
-       offset={0}
-       onClick={() =>{}}/>
+      <ToolbarButton
+        textArea={null}
+        caret=""
+        offset={0}
+        onClick={dummyOnClick}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 
   it('renders as expected with children', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <button type="button" class="btn btn-default">
         <div></div>
       </button>
     `;
-
-    //Act
+    const dummyOnClick = () => {};
+    // Act
     const component = shallow(
-      <ToolbarButton textArea={null}
-       caret=''
-       offset={0}
-       onClick={() =>{}}>
-        <div></div>
-      </ToolbarButton>
+      <ToolbarButton
+        textArea={null}
+        caret=""
+        offset={0}
+        onClick={dummyOnClick}
+      >
+        <div/>
+      </ToolbarButton>,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 
   it('calls to onClick prop when simulate a click', () => {
-    //Arrange
+    // Arrange
     const onClickSpy = sinon.spy();
     const textArea = null;
     const caret = '_';
     const offset = 2;
 
-    //Act
+    // Act
     const component = mount(
-      <ToolbarButton textArea={textArea}
-       caret={caret}
-       offset={offset}
-       onClick={onClickSpy}/>
+      <ToolbarButton
+        textArea={textArea}
+        caret={caret}
+        offset={offset}
+        onClick={onClickSpy}
+      />,
     );
 
     component.simulate('click');
 
-    //Assert
+    // Assert
     expect(onClickSpy.calledOnce).to.be.true;
     expect(onClickSpy.calledWith(textArea, caret, offset)).to.be.true;
   });

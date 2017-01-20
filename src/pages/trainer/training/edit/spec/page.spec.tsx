@@ -6,47 +6,52 @@ import {EditTrainingPage} from '../page';
 
 describe('trainer/training/edit/page', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const training = null;
     const dummyFetchTrainingContent = () => {};
-    //Act
+    // Act
     const page = shallow(
-      <EditTrainingPage training={training}
-       fetchTrainingContent={dummyFetchTrainingContent}/>
+      <EditTrainingPage
+        training={training}
+        fetchTrainingContent={dummyFetchTrainingContent}
+      />,
     );
-    //Arrange
+    // Arrange
     expect(page).not.to.be.undefined;
   });
 
   it('renders a div', () => {
-    //Arrange
+    // Arrange
     const training = new EditTrainingSummary();
     const fetchTrainingContentSpy = sinon.spy();
 
     const expectedPage = '<div></div>';
-    
-    //Act
+    // Act
     const page = mount(
-      <EditTrainingPage training={training}
-        fetchTrainingContent={fetchTrainingContentSpy}/>
+      <EditTrainingPage
+        training={training}
+        fetchTrainingContent={fetchTrainingContentSpy}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(page.html()).to.equal(expectedPage);
   });
 
   it('calls to fetchTrainingContent', () => {
-    //Arrange
+    // Arrange
     const training = new EditTrainingSummary();
     const fetchTrainingContentSpy = sinon.spy();
 
-    //Act
+    // Act
     const page = mount(
-      <EditTrainingPage training={training}
-        fetchTrainingContent={fetchTrainingContentSpy}/>
+      <EditTrainingPage
+        training={training}
+        fetchTrainingContent={fetchTrainingContentSpy}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(fetchTrainingContentSpy.calledOnce).to.be.true;
   });
 });

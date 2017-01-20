@@ -6,14 +6,14 @@ export const trainingContentRequestStarted = (trainingId: number) => {
     const promise = trainerApi.getTrainingConentByTrainingId(trainingId);
 
     promise.then(
-      data => dispatcher(trainingContentRequestCompleted(data))
+      (data) => dispatcher(trainingContentRequestCompleted(data)),
     );
 
     return promise;
-  }
+  };
 };
 
 export const trainingContentRequestCompleted = (content: string) => ({
   type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
-  payload: content
-})
+  payload: content,
+});

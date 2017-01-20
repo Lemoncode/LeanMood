@@ -5,19 +5,19 @@ import {CodeIcon} from '../codeIcon';
 
 describe('CodeIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <CodeIcon />
+      <CodeIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
     <div>
       <span class="glyphicon glyphicon-menu-left"></span>
@@ -25,12 +25,12 @@ describe('CodeIcon', () => {
     </div>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <CodeIcon />
+      <CodeIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

@@ -6,24 +6,26 @@ import {EditorComponent} from '../editor';
 
 describe('EditorComponent', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const content = '';
     const dummyOnContentChange = () => {};
     const dummyInitializeTextAreaElement = () => {};
 
-    //Act
+    // Act
     const component = shallow(
-      <EditorComponent content={content}
+      <EditorComponent
+        content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}/>
+        initializeTextAreaElement={dummyInitializeTextAreaElement}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('renders a text area with expected content', () => {
-    //Arrange
+    // Arrange
     const content = 'Test content';
     const dummyOnContentChange = () => {};
     const dummyInitializeTextAreaElement = () => {};
@@ -34,50 +36,56 @@ describe('EditorComponent', () => {
       </textarea>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <EditorComponent content={content}
+      <EditorComponent
+        content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}/>
+        initializeTextAreaElement={dummyInitializeTextAreaElement}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 
   it('calls to onContentChange function when update content', () => {
-    //Arrange
+    // Arrange
     const content = 'Test content';
     const onContentChangeSpy = sinon.spy();
     const dummyInitializeTextAreaElement = () => {};
 
-    //Act
+    // Act
     const component = shallow(
-      <EditorComponent content={content}
+      <EditorComponent
+        content={content}
         onContentChange={onContentChangeSpy}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}/>
+        initializeTextAreaElement={dummyInitializeTextAreaElement}
+      />,
     );
 
     component.simulate('change');
 
-    //Assert
+    // Assert
     expect(onContentChangeSpy.called).to.true;
   });
 
   it('calls to initializeTextAreaElement function when render component', () => {
-    //Arrange
+    // Arrange
     const content = 'Test content';
     const onContentChangeSpy = () => {};
     const initializeTextAreaElementSpy = sinon.spy();
 
-    //Act
+    // Act
     const component = mount(
-      <EditorComponent content={content}
+      <EditorComponent
+        content={content}
         onContentChange={onContentChangeSpy}
-        initializeTextAreaElement={initializeTextAreaElementSpy}/>
+        initializeTextAreaElement={initializeTextAreaElementSpy}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(initializeTextAreaElementSpy.calledOnce).to.true;
   });
 });

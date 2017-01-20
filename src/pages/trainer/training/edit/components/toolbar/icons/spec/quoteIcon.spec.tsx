@@ -5,30 +5,30 @@ import {QuoteIcon} from '../quoteIcon';
 
 describe('QuoteIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <QuoteIcon />
+      <QuoteIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <span class="glyphicon glyphicon-menu-right">
       </span>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <QuoteIcon />
+      <QuoteIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

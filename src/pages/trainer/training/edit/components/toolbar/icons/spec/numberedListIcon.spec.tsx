@@ -5,19 +5,19 @@ import {NumberedListIcon} from '../numberedListIcon';
 
 describe('NumberedListIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <NumberedListIcon />
+      <NumberedListIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
     <div>
       <span class="glyphicon glyphicon-sort-by-order"></span>
@@ -25,12 +25,12 @@ describe('NumberedListIcon', () => {
     </div>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <NumberedListIcon />
+      <NumberedListIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

@@ -5,30 +5,30 @@ import {HeaderIcon} from '../headerIcon';
 
 describe('HeaderIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <HeaderIcon />
+      <HeaderIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <span class="glyphicon glyphicon-header">
       </span>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <HeaderIcon />
+      <HeaderIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

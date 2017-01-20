@@ -5,30 +5,30 @@ import {LinkIcon} from '../linkIcon';
 
 describe('LinkIcon', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
 
-    //Act
+    // Act
     const component = shallow(
-      <LinkIcon />
+      <LinkIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const expectedComponent = `
       <span class="glyphicon glyphicon-link">
       </span>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <LinkIcon />
+      <LinkIcon />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equals(multilineTrim(expectedComponent));
   });
 });

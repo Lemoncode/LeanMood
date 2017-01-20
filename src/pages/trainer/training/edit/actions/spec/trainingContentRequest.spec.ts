@@ -11,67 +11,68 @@ const mockStore = configureStore(middlewares);
 
 describe('trainingConentRequestCompleted', () => {
   it('is defined', () => {
-    //Assert
+    // Assert
     expect(trainingContentRequestCompleted).not.to.be.undefined;
   });
 
   it('returns expected type GET_TRAINING_CONTENT_REQUEST_COMPLETED', () => {
-    //Assert
-    expect(trainingContentRequestCompleted(null).type).to.equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
+    // Assert
+    expect(trainingContentRequestCompleted(null).type).to
+      .equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
   });
 
   it('returns expected payload equals "Test content"', () => {
-    //Arrange
-    const expectedTrainingContent = "Test content";
+    // Arrange
+    const expectedTrainingContent = 'Test content';
 
-    //Act
+    // Act
     const actionResult = trainingContentRequestCompleted(expectedTrainingContent);
 
-    //Assert
+    // Assert
     expect(actionResult.payload).to.equal(expectedTrainingContent);
   });
 });
 
 describe('trainingContentRequestStarted', () => {
   it('is defined', () => {
-    //Assert
+    // Assert
     expect(trainingContentRequestStarted).not.to.be.undefined;
   });
 
   it('should dispatch trainingContentRequestCompleted action', (done) => {
-    //Arrange
+    // Arrange
     const trainingId = 1;
     const store = mockStore([]);
 
-    //Act
+    // Act
     store.dispatch(trainingContentRequestStarted(trainingId))
       .then(() => {
-        //Assert
+        // Assert
         expect(store.getActions()[0].type).to.equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
         done();
       });
   });
 
   it('should calls to getTrainingConentByTrainingId and expect payload', sinon.test((done) => {
-    //Arrange
+    // Arrange
     const sinon: sinon.SinonStatic = this;
 
     const trainingId = 1;
-    const expectedContent = "Test content";
+    const expectedContent = 'Test content';
     const store = mockStore([]);
 
     const getTrainingConentByTrainingIdStub = sinon.stub(trainerApi, 'getTrainingConentByTrainingId', () => {
       return {
-        then: callback => {
+        then: (callback) => {
           callback(expectedContent);
-        }
-      }
+        },
+      };
     });
 
-    //Act
+    // Act
     store.dispatch(trainingContentRequestStarted(trainingId))
       .then(() => {
-        //Assert
+        // Assert
         expect(getTrainingConentByTrainingIdStub.calledWith(trainingId)).to.be.true;
         expect(store.getActions()[0].payload).to.equal(expectedContent);
 

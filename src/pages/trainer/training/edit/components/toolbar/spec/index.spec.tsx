@@ -6,21 +6,23 @@ import {ToolbarComponent} from '../index';
 
 describe('ToolbarComponent', () => {
   it('is defined', () => {
-    //Arrange
+    // Arrange
     const textArea: HTMLTextAreaElement = null;
     const updateTextArea = sinon.spy();
-    //Act
+    // Act
     const component = shallow(
-      <ToolbarComponent textArea={textArea}
-        updateTextArea={updateTextArea}/>
+      <ToolbarComponent
+        textArea={textArea}
+        updateTextArea={updateTextArea}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component).not.to.be.undefined;
   });
 
   it('renders as expected', () => {
-    //Arrange
+    // Arrange
     const textArea: HTMLTextAreaElement = null;
     const updateTextArea = sinon.spy();
 
@@ -39,13 +41,15 @@ describe('ToolbarComponent', () => {
       </div>
     `;
 
-    //Act
+    // Act
     const component = shallow(
-      <ToolbarComponent  textArea={textArea}
-        updateTextArea={updateTextArea} />
+      <ToolbarComponent
+        textArea={textArea}
+        updateTextArea={updateTextArea}
+      />,
     );
 
-    //Assert
+    // Assert
     expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 });
