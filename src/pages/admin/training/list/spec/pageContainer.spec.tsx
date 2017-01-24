@@ -1,31 +1,30 @@
-import { expect } from "chai";
-import { mount } from "enzyme";
-import * as React from "react";
-import { Provider } from "react-redux";
-import configureStore from "redux-mock-store";
-import * as summaryTrainingListRequest  from "../actions/summaryTrainingListRequest";
-import { ListTrainingPage } from "../page";
-import { ListTrainingPageContainer } from "../pageContainer";
+import { mount } from 'enzyme';
+import * as React from 'react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import * as summaryTrainingListRequest from '../actions/summaryTrainingListRequest';
+import { ListTrainingPage } from '../page';
+import { ListTrainingPageContainer } from '../pageContainer';
 
 const createStore = configureStore();
 
-describe("pageContainer", () => {
-  it("Should be defined", sinon.test(() => {
+describe('pageContainer', () => {
+  it('Should be defined', sinon.test(() => {
     // Arrange
-    let sinon: sinon.SinonStatic = this;
+    const sinon: sinon.SinonStatic = this;
 
-    let mockStore = createStore({
+    const mockStore = createStore({
       adminTraining: {
         trainingSummaryList: [
           {
             id: 2,
             isactive: false,
-            name: "John Doe",
+            name: 'John Doe',
           },
           {
             id: 3,
             isactive: true,
-            name: "Mark Somez",
+            name: 'Mark Somez',
           },
         ],
       },
@@ -33,10 +32,10 @@ describe("pageContainer", () => {
 
     const summaryStudentListRequestStartedMock =
             sinon.stub(summaryTrainingListRequest,
-                      "summaryTrainingListRequestStarted",
+                      'summaryTrainingListRequestStarted',
                       () => {
                         return {
-                          type: "dummy",
+                          type: 'dummy',
                         };
                       });
 
@@ -50,22 +49,22 @@ describe("pageContainer", () => {
     expect(pageContainer).not.to.be.undefined;
   }).bind(this));
 
-  it("Should contain a property called TrainingList and be informed", sinon.test(() => {
-    let sinon: sinon.SinonStatic = this;
+  it('Should contain a property called TrainingList and be informed', sinon.test(() => {
+    const sinon: sinon.SinonStatic = this;
 
     // Arrange
-    let mockStore = createStore({
+    const mockStore = createStore({
       adminTraining: {
         trainingSummaryList: [
           {
             id: 2,
             isactive: false,
-            name: "John Doe",
+            name: 'John Doe',
           },
           {
             id: 3,
             isactive: true,
-            name: "Mark Somez",
+            name: 'Mark Somez',
           },
         ],
       },
@@ -73,10 +72,10 @@ describe("pageContainer", () => {
 
     const summaryTrainingListRequestStartedMock =
       sinon.stub(summaryTrainingListRequest,
-        "summaryTrainingListRequestStarted",
+        'summaryTrainingListRequestStarted',
         () => {
           return {
-            type: "dummy",
+            type: 'dummy',
           };
         });
 
@@ -89,13 +88,12 @@ describe("pageContainer", () => {
                           );
 
     // Assert
-    const pagePresentationalWrapper = pageContainer.find("ListTrainingPage");
+    const pagePresentationalWrapper = pageContainer.find('ListTrainingPage');
     expect(pagePresentationalWrapper).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop("fetchTrainings")).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop("trainingList")).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop("trainingList").length).equals(2);
-    expect(pagePresentationalWrapper.prop("trainingList")[0].name).equals("John Doe");
-    expect(pagePresentationalWrapper.prop("trainingList")[1].name).equals("Mark Somez");
+    expect(pagePresentationalWrapper.prop('fetchTrainings')).not.to.be.undefined;
+    expect(pagePresentationalWrapper.prop('trainingList')).not.to.be.undefined;
+    expect(pagePresentationalWrapper.prop('trainingList').length).equals(2);
+    expect(pagePresentationalWrapper.prop('trainingList')[0].name).equals('John Doe');
+    expect(pagePresentationalWrapper.prop('trainingList')[1].name).equals('Mark Somez');
   }).bind(this));
-
 });
