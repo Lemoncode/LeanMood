@@ -1,5 +1,5 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
 
 export class MainTocPage extends React.Component<{}, {}> {
    public render() {

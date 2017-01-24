@@ -1,7 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
-import { TrainingSummary } from "../../../../model/trainingSummary";
-import { TrainingTableComponent } from "../list/components/trainingTable";
+import * as React from 'react';
+import {Link} from 'react-router';
+import { TrainingSummary } from '../../../../model/trainingSummary';
+import { TrainingTableComponent } from '../list/components/trainingTable';
 
 interface IProps extends React.Props<ListTrainingPage> {
   trainingList: TrainingSummary[];

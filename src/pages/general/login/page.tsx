@@ -1,10 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
 
-interface IProps extends React.Props<LoginPage> {
-}
-
-export class LoginPage extends React.Component<IProps, {}> {
+export class LoginPage extends React.Component<{}, {}> {
    public render() {
        return (
           <div>

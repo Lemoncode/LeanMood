@@ -1,7 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
-import { StudentSummary } from "../../../../model/studentSummary";
-import { StudentTableComponent } from "./components/studentTable";
+import * as React from 'react';
+import {Link} from 'react-router';
+import { StudentSummary } from '../../../../model/studentSummary';
+import { StudentTableComponent } from './components/studentTable';
 
 interface IProps extends React.Props<ListStudentPage> {
   studentList: StudentSummary[];
