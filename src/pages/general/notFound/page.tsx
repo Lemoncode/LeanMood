@@ -1,7 +1,7 @@
-import * as React from "react";
-import {NotFoundBody} from "./components/body";
-import {NotFoundHeader} from "./components/header";
-const styles: any = require("./styles.scss");
+import * as React from 'react';
+import {NotFoundBody} from './components/body';
+import {NotFoundHeader} from './components/header';
+const styles: any = require('./styles.scss');
 
 export class NotFoundPage extends React.Component<{}, {}> {
   public render() {
