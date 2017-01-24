@@ -1,12 +1,11 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { DashboardPage} from "./dashboard/page";
-import { EditStudentPage } from "./student/edit/page";
-import { ListStudentPageContainer } from "./student/list/pageContainer";
-import { EditTrainingPage } from "./training/edit/page";
-import { ListTrainingPageContainer } from "./training/list/pageContainer";
-
-import { Route } from "react-router";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Route } from 'react-router';
+import { DashboardPage} from './dashboard/page';
+import { EditStudentPage } from './student/edit/page';
+import { ListStudentPageContainer } from './student/list/pageContainer';
+import { EditTrainingPage } from './training/edit/page';
+import { ListTrainingPageContainer } from './training/list/pageContainer';
 
 // http://stackoverflow.com/questions/35048738/react-router-import-routes
 // AssembliesRoutes.js

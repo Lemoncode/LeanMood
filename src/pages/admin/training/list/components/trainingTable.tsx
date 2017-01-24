@@ -1,7 +1,6 @@
-import * as React from "react";
-
-import { TrainingSummary } from "../../../../../model/trainingSummary";
-import { TrainingRowComponent } from "./trainingRow";
+import * as React from 'react';
+import { TrainingSummary } from '../../../../../model/trainingSummary';
+import { TrainingRowComponent } from './trainingRow';
 
 interface IProps {
   trainingList: TrainingSummary[];

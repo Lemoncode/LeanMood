@@ -1,24 +1,22 @@
-import { expect } from "chai";
-import {mount, shallow} from "enzyme";
+import {mount, shallow} from 'enzyme';
+import * as React from 'react';
+import { TrainingSummary } from '../../../../../model/trainingSummary';
+import { TrainingTableComponent } from '../components/trainingTable';
+import { ListTrainingPage } from '../page';
 
-import * as React from "react";
-import { TrainingSummary } from "../../../../../model/trainingSummary";
-import { TrainingTableComponent } from "../components/trainingTable";
-import { ListTrainingPage } from "../page";
-
-describe("admin/training/list/page", () => {
-  it("is defined", () => {
+describe('admin/training/list/page', () => {
+  it('is defined', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
        id : 1,
        isActive: true,
-       name : "Antonio",
+       name : 'Antonio',
       },
       {
         id: 2,
         isActive: true,
-        name : "Santi",
+        name : 'Santi',
       },
     ];
 
@@ -31,18 +29,18 @@ describe("admin/training/list/page", () => {
     expect(page).not.to.be.undefined;
   });
 
-  it("renders a training table Shallow", () => {
+  it('renders a training table Shallow', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
         id: 2,
         isActive: true,
-        name: "John Doe",
+        name: 'John Doe',
       },
       {
         id: 3,
         isActive: false,
-        name: "Mark Somez",
+        name: 'Mark Somez',
       },
     ];
 
@@ -58,18 +56,18 @@ describe("admin/training/list/page", () => {
   });
 
   // sinon.test(
-  it("renders a training table Mount", () => {
+  it('renders a training table Mount', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
         id: 2,
         isActive: true,
-        name: "John Doe",
+        name: 'John Doe',
       },
       {
         id: 3,
         isActive: false,
-        name: "Mark Somez",
+        name: 'Mark Somez',
       },
     ];
 

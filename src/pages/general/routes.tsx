@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { IndexRoute, Route } from "react-router";
-import { LoginPage } from "./login/page";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { IndexRoute, Route } from 'react-router';
+import { LoginPage } from './login/page';
 
 // http://stackoverflow.com/questions/35048738/react-router-import-routes
 // AssembliesRoutes.js

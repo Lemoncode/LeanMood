@@ -1,5 +1,5 @@
-import * as React from "react";
-const styles: any = require("./headerStyles.scss");
+import * as React from 'react';
+const styles: any = require('./headerStyles.scss');
 
 export const NotFoundHeader =  () => {
   return (
