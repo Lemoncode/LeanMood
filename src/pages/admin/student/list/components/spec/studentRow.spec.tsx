@@ -1,18 +1,17 @@
-import { expect } from "chai";
-import { shallow } from "enzyme";
-import * as React from "react";
-import { multilineTrim } from "../../../../../../common/parse/multilineTrim";
-import { StudentSummary } from "../../../../../../model/studentSummary";
-import { StudentRowComponent } from "../studentRow";
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
+import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentRowComponent } from '../studentRow';
 
-describe("StudentRowComponent", () => {
+describe('StudentRowComponent', () => {
 
-  it("should be defined", () => {
+  it('should be defined', () => {
     // Arrange
     const student = new StudentSummary();
     student.id = 1;
-    student.fullname = "john";
-    student.email = "mail@mail.com";
+    student.fullname = 'john';
+    student.email = 'mail@mail.com';
 
     // Act
     const studentRowComponent = shallow(
@@ -23,12 +22,12 @@ describe("StudentRowComponent", () => {
     expect(studentRowComponent).not.to.be.undefined;
   });
 
-  it("should render the student name", () => {
+  it('should render the student name', () => {
     // Arrange
     const student = new StudentSummary();
     student.id = 1;
-    student.fullname = "john";
-    student.email = "mail@mail.com";
+    student.fullname = 'john';
+    student.email = 'mail@mail.com';
 
     // Act
     const studentRowComponent = shallow(
