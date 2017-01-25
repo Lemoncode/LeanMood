@@ -1,7 +1,8 @@
 import {DashboardComponent} from './dashboard';
-import {DashboardItemComponent} from './components/dashboardItem';
+import {DashboardItemComponent, IDashboardItem} from './components/dashboardItem';
 
 export {
   DashboardComponent,
   DashboardItemComponent,
+  IDashboardItem
 }

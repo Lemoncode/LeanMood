@@ -1,18 +1,18 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import {DashboardComponent, DashboardItemComponent, IDashboardItem} from '../../../common/components/dashboard';
 
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
 export class DashboardPage extends React.Component<{}, {}> {
+  private dashboardItems: IDashboardItem[] = [
+    {icon: 'fa fa-pencil-square-o fa-5x', name: 'Student list', linkTo: '/admin/student/list'},
+    {icon: 'fa fa-star-half-o fa-5x', name: 'Training list', linkTo: '/admin/training/list'},
+  ];
+
   public render() {
     return (
-      <div>
-       <span> ADMIN dashboard: </span>
-       <br/>
-       <br/>
-       <Link to="/admin/student/list">Go to student list</Link>
-       <Link to="/admin/training/list">Go to training list</Link>
-      </div>
+      <DashboardComponent
+        title="ADMIN dashboard"
+        items={this.dashboardItems}
+      />
     );
   }
 }
