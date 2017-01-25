@@ -13,7 +13,7 @@ export class DashboardPage extends React.Component<{}, {}> {
   public render() {
     return (
       <DashboardComponent
-        title="ADMIN dashboard"
+        title="Admin dashboard"
         items={this.dashboardItems}
       />
     );

@@ -21,8 +21,10 @@ export class DashboardItemComponent extends React.Component<IProps, {}> {
         style={{...this.props.style}}
         to={this.props.item.linkTo}
       >
-        <i className={this.props.item.icon} />
-        <p>{this.props.item.name}</p>
+        <div>
+          <i className={this.props.item.icon} />
+          <h4 className={styles.name}>{this.props.item.name}</h4>
+        </div>
       </Link>
     );
   }

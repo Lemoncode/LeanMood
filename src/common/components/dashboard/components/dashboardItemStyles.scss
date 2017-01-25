@@ -6,6 +6,10 @@
   border: none;
 }
 
+.name {
+  margin-top: 20px;
+}
+
 @media (max-width:1200px) {
   .item {
     flex-basis: 50%!important;
