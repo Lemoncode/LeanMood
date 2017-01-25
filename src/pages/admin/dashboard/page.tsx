@@ -1,11 +1,13 @@
 import * as React from 'react';
-import {DashboardComponent, DashboardItemComponent, IDashboardItem} from '../../../common/components/dashboard';
+import {
+  DashboardComponent, DashboardItemComponent, IDashboardItem, DashboardIcons,
+} from '../../../common/components/dashboard';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
 
 export class DashboardPage extends React.Component<{}, {}> {
   private dashboardItems: IDashboardItem[] = [
-    {icon: 'fa fa-pencil-square-o fa-5x', name: 'Student list', linkTo: adminRouteEnums.student.list},
-    {icon: 'fa fa-star-half-o fa-5x', name: 'Training list', linkTo: adminRouteEnums.training.list},
+    {icon: DashboardIcons.students, name: 'Manage students', linkTo: adminRouteEnums.student.list},
+    {icon: DashboardIcons.trainings, name: 'Manage trainings', linkTo: adminRouteEnums.training.list},
   ];
 
   public render() {

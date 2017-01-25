@@ -17,7 +17,7 @@ export class DashboardItemComponent extends React.Component<IProps, {}> {
   public render() {
     return (
       <Link
-        className={`btn btn-default ${styles.dashboardItem}`}
+        className={`btn btn-default ${styles.item}`}
         style={{...this.props.style}}
         to={this.props.item.linkTo}
       >
