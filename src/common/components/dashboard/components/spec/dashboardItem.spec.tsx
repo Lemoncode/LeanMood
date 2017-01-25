@@ -49,7 +49,7 @@ describe('DashboardItemComponent', () => {
     // Assert
     expect(component.html()).to.be.equal(multilineTrim(expectedDomTree));
 
-    // NOTE: html() does not render Link.to property to href
+    // NOTE: html() does not render Link.to property as href
     expect(component.type()).to.be.equal(Link);
     expect(component.prop('to')).to.be.equal(item.linkTo);
   });
