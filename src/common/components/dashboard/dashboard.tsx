@@ -16,7 +16,7 @@ export class DashboardComponent extends React.Component<IProps, {}> {
           {
             this.props.items.map((item) =>
               <DashboardItemComponent
-                style={this.getStyleByItems(this.props.items)}
+                style={this.getItemsPerRowStyle(this.props.items)}
                 key={item.name}
                 item={item}
               />,
@@ -27,7 +27,7 @@ export class DashboardComponent extends React.Component<IProps, {}> {
     );
   }
 
-  private getStyleByItems(items: IDashboardItem[]): React.CSSProperties {
+  private getItemsPerRowStyle(items: IDashboardItem[]): React.CSSProperties {
     return items.length >= 3 ?
       {flexBasis: '33.33%'} :
       {flexBasis: `${100 / items.length}%`};
