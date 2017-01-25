@@ -1,10 +1,10 @@
 import {DashboardComponent} from './dashboard';
 import {DashboardItemComponent, IDashboardItem} from './components/dashboardItem';
-import {DashboardIcons} from './icons';
+import {dashboardIcons} from './icons';
 
 export {
   DashboardComponent,
   DashboardItemComponent,
   IDashboardItem,
-  DashboardIcons,
+  dashboardIcons,
 }
