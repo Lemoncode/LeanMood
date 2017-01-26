@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import {Link} from 'react-router';
 import {multilineTrim} from '../../../../parse/multilineTrim';
 import {DashboardItemComponent, IDashboardItem} from '../dashboardItem';
@@ -52,5 +52,36 @@ describe('DashboardItemComponent', () => {
     // NOTE: html() does not render Link.to property as href
     expect(component.type()).to.be.equal(Link);
     expect(component.prop('to')).to.be.equal(item.linkTo);
+  });
+
+  it('should render styles as expected', () => {
+    // Arrange
+    const item: IDashboardItem = {
+      icon: '',
+      name: '',
+      linkTo: '',
+    };
+
+    const styles = {
+      color: 'test',
+    };
+
+    const expectedDomTree = `
+      <a class="btn btn-default item" style="color:test;">
+        <i class=""></i>
+        <h4 class="name"></h4>
+      </a>
+    `;
+
+    // Act
+    const component = shallow(
+      <DashboardItemComponent
+        item={item}
+        style={styles}
+      />,
+    );
+
+    // Assert
+    expect(component.html()).to.be.equal(multilineTrim(expectedDomTree));
   });
 });
