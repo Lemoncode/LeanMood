@@ -31,7 +31,7 @@ describe('Trainer DashboardPage', () => {
     const expectedDashboardItemTwo = `
       <a class="btn btn-default item" style="flex-basis:50%;">
         <i class="${dashboardIcons.trainings}"></i>
-        <h4 class="name">Trainins</h4>
+        <h4 class="name">Trainings</h4>
       </a>
     `;
 
