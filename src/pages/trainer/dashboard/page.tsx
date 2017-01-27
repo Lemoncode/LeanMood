@@ -5,7 +5,7 @@ import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
 export class DashboardPage extends React.Component<{}, {}> {
   private dashboardItems: IDashboardItem[] = [
     {icon: dashboardIcons.evaluation, name: 'Student evaluation', linkTo: trainerRouteEnums.evaluation},
-    {icon: dashboardIcons.trainings, name: 'Trainins', linkTo: trainerRouteEnums.evaluation},
+    {icon: dashboardIcons.trainings, name: 'Trainins', linkTo: trainerRouteEnums.default},
   ];
    public render() {
        return (
