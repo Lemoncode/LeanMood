@@ -108,22 +108,23 @@ describe('DashboardComponent', () => {
       {icon: 'test icon3', name: 'test name3', linkTo: 'test/link3'},
     ];
 
+    const expectedFlexBasis = 100 / 3;
     const expectedDashboardItemOne = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[0].icon}"></i>
         <h4 class="name">${items[0].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemTwo = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[1].icon}"></i>
         <h4 class="name">${items[1].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemThree = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[2].icon}"></i>
         <h4 class="name">${items[2].name}</h4>
       </a>
@@ -163,36 +164,37 @@ describe('DashboardComponent', () => {
       {icon: 'test icon5', name: 'test name5', linkTo: 'test/link5'},
     ];
 
+    const expectedFlexBasis = 100 / 3;
     const expectedDashboardItemOne = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[0].icon}"></i>
         <h4 class="name">${items[0].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemTwo = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[1].icon}"></i>
         <h4 class="name">${items[1].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemThree = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[2].icon}"></i>
         <h4 class="name">${items[2].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemFour = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[3].icon}"></i>
         <h4 class="name">${items[3].name}</h4>
       </a>
     `;
 
     const expectedDashboardItemFive = `
-      <a class="btn btn-default item" style="flex-basis:33.33%;">
+      <a class="btn btn-default item" style="flex-basis:${expectedFlexBasis}%;">
         <i class="${items[4].icon}"></i>
         <h4 class="name">${items[4].name}</h4>
       </a>

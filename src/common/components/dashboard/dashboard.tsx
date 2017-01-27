@@ -28,8 +28,10 @@ export class DashboardComponent extends React.Component<IProps, {}> {
   }
 
   private getItemsPerRowStyle(items: IDashboardItem[]): React.CSSProperties {
-    return items.length >= 3 ?
-      {flexBasis: '33.33%'} :
+    const maxItemsPerRow = 3;
+
+    return items.length >= maxItemsPerRow ?
+      {flexBasis: `${100 / maxItemsPerRow}%`} :
       {flexBasis: `${100 / items.length}%`};
   }
 };
