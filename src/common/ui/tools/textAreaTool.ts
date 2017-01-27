@@ -1,9 +1,10 @@
 class TextAreaTool {
-  public insertAtCaretGetText(textArea: HTMLTextAreaElement, caret: string, offsetCursor: number = 0) : string {
+  public insertAtCaretGetText(textArea: HTMLTextAreaElement, caret: string, offsetCursor: number = 0): string {
     return this.buildTextWithCaretBetweenSelectedText(textArea, caret, offsetCursor);
   }
 
-  private buildTextWithCaretBetweenSelectedText(textArea : HTMLTextAreaElement, caret: string, offsetCursor: number): string {
+  private buildTextWithCaretBetweenSelectedText(
+    textArea: HTMLTextAreaElement, caret: string, offsetCursor: number): string {
     const beforeText = this.getTextBeforeSelectedText(textArea);
     const selectedText = this.getSelectedText(textArea);
     const afterText = this.getTextAfterSelectedText(textArea);
@@ -33,8 +34,7 @@ class TextAreaTool {
     return caret.substring(offsetCursor, caret.length);
   }
 
-  public placeCursor(textArea : HTMLTextAreaElement, selectionStart : number = 0, selectionEnd: number = selectionStart)
-  {
+  public placeCursor(textArea: HTMLTextAreaElement, selectionStart: number = 0, selectionEnd: number = selectionStart) {
     if (selectionStart === null) {
       selectionStart = 0;
     }
