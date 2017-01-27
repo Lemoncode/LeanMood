@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {DashboardComponent, IDashboardItem, dashboardIcons} from '../../../common/components/dashboard';
 import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
+const styles: any = require('./pageStyles.scss');
 
 export class DashboardPage extends React.Component<{}, {}> {
   private dashboardItems: IDashboardItem[] = [
@@ -8,11 +9,13 @@ export class DashboardPage extends React.Component<{}, {}> {
     {icon: dashboardIcons.trainings, name: 'Trainings', linkTo: trainerRouteEnums.default},
   ];
    public render() {
-       return (
+     return (
+       <div>
+         <h3 className={styles.title}>Trainer dashboard</h3>
          <DashboardComponent
-          title="Trainer dashboard"
-          items={this.dashboardItems}
+           items={this.dashboardItems}
          />
-        );
+       </div>
+      );
   }
 }

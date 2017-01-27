@@ -11,7 +11,6 @@ describe('DashboardComponent', () => {
     // Act
     const component = shallow(
       <DashboardComponent
-        title={''}
         items={[]}
       />,
     );
@@ -22,7 +21,6 @@ describe('DashboardComponent', () => {
 
   it('should render one item as expected', () => {
     // Arrange
-    const title = 'test title';
     const items: IDashboardItem[] = [
       {icon: 'test icon', name: 'test name', linkTo: 'test/link'},
     ];
@@ -36,7 +34,6 @@ describe('DashboardComponent', () => {
 
     const expectedComponent = `
       <div class="dashboard">
-        <h3 class="dashboardTitle">${title}</h3>
         <div class="dashboardItems">
           ${expectedDashboardItem}
         </div>
@@ -46,7 +43,6 @@ describe('DashboardComponent', () => {
     // Act
     const component = shallow(
       <DashboardComponent
-        title={title}
         items={items}
       />,
     );
@@ -57,7 +53,6 @@ describe('DashboardComponent', () => {
 
   it('should render two items as expected', () => {
     // Arrange
-    const title = 'test title';
     const items: IDashboardItem[] = [
       {icon: 'test icon1', name: 'test name1', linkTo: 'test/link1'},
       {icon: 'test icon2', name: 'test name2', linkTo: 'test/link2'},
@@ -79,7 +74,6 @@ describe('DashboardComponent', () => {
 
     const expectedComponent = `
       <div class="dashboard">
-        <h3 class="dashboardTitle">${title}</h3>
         <div class="dashboardItems">
           ${expectedDashboardItemOne}
           ${expectedDashboardItemTwo}
@@ -90,7 +84,6 @@ describe('DashboardComponent', () => {
     // Act
     const component = shallow(
       <DashboardComponent
-        title={title}
         items={items}
       />,
     );
@@ -101,7 +94,6 @@ describe('DashboardComponent', () => {
 
   it('should render three items as expected', () => {
     // Arrange
-    const title = 'test title';
     const items: IDashboardItem[] = [
       {icon: 'test icon1', name: 'test name1', linkTo: 'test/link1'},
       {icon: 'test icon2', name: 'test name2', linkTo: 'test/link2'},
@@ -132,7 +124,6 @@ describe('DashboardComponent', () => {
 
     const expectedComponent = `
       <div class="dashboard">
-        <h3 class="dashboardTitle">${title}</h3>
         <div class="dashboardItems">
           ${expectedDashboardItemOne}
           ${expectedDashboardItemTwo}
@@ -144,7 +135,6 @@ describe('DashboardComponent', () => {
     // Act
     const component = shallow(
       <DashboardComponent
-        title={title}
         items={items}
       />,
     );
@@ -155,7 +145,6 @@ describe('DashboardComponent', () => {
 
   it('should render more than three items as expected', () => {
     // Arrange
-    const title = 'test title';
     const items: IDashboardItem[] = [
       {icon: 'test icon1', name: 'test name1', linkTo: 'test/link1'},
       {icon: 'test icon2', name: 'test name2', linkTo: 'test/link2'},
@@ -202,7 +191,6 @@ describe('DashboardComponent', () => {
 
     const expectedComponent = `
       <div class="dashboard">
-        <h3 class="dashboardTitle">${title}</h3>
         <div class="dashboardItems">
           ${expectedDashboardItemOne}
           ${expectedDashboardItemTwo}
@@ -216,7 +204,6 @@ describe('DashboardComponent', () => {
     // Act
     const component = shallow(
       <DashboardComponent
-        title={title}
         items={items}
       />,
     );

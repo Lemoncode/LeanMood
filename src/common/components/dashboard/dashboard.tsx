@@ -3,7 +3,6 @@ const styles: any = require('./dashboardStyles.scss');
 import {DashboardItemComponent, IDashboardItem} from './components/dashboardItem';
 
 interface IProps {
-  title: string;
   items: IDashboardItem[];
 }
 
@@ -11,7 +10,6 @@ export class DashboardComponent extends React.Component<IProps, {}> {
   public render() {
     return(
       <div className={styles.dashboard}>
-        <h3 className={styles.dashboardTitle}>{this.props.title}</h3>
         <div className={styles.dashboardItems}>
           {
             this.props.items.map((item) =>

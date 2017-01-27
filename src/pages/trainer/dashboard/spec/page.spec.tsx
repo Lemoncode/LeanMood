@@ -36,11 +36,13 @@ describe('Trainer DashboardPage', () => {
     `;
 
     const expectedComponent = `
-      <div class="dashboard">
-        <h3 class="dashboardTitle">Trainer dashboard</h3>
-        <div class="dashboardItems">
-          ${expectedDashboardItemOne}
-          ${expectedDashboardItemTwo}
+      <div>
+        <h3 class="title">Trainer dashboard</h3>
+        <div class="dashboard">
+          <div class="dashboardItems">
+            ${expectedDashboardItemOne}
+            ${expectedDashboardItemTwo}
+          </div>
         </div>
       </div>
     `;
@@ -54,7 +56,7 @@ describe('Trainer DashboardPage', () => {
     expect(component.html()).to.be.equal(multilineTrim(expectedComponent));
 
     // NOTE: html() does not render Link.to property as href
-    expect(component.prop('items')[0].linkTo).to.be.equal(trainerRouteEnums.evaluation);
-    expect(component.prop('items')[1].linkTo).to.be.equal(trainerRouteEnums.default);
+    expect(component.find('DashboardComponent').prop('items')[0].linkTo).to.be.equal(trainerRouteEnums.evaluation);
+    expect(component.find('DashboardComponent').prop('items')[1].linkTo).to.be.equal(trainerRouteEnums.default);
   });
 });

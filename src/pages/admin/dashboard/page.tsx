@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {DashboardComponent, IDashboardItem, dashboardIcons} from '../../../common/components/dashboard';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
+const styles: any = require('./pageStyles.scss');
 
 export class DashboardPage extends React.Component<{}, {}> {
   private dashboardItems: IDashboardItem[] = [
@@ -10,10 +11,12 @@ export class DashboardPage extends React.Component<{}, {}> {
 
   public render() {
     return (
-      <DashboardComponent
-        title="Admin dashboard"
-        items={this.dashboardItems}
-      />
+      <div>
+        <h3 className={styles.title}>Admin dashboard</h3>
+        <DashboardComponent
+          items={this.dashboardItems}
+        />
+      </div>
     );
   }
 }
