@@ -1,12 +1,9 @@
-import * as React from "react";
-import {Link} from "react-router";
-
-interface IProps extends React.Props<TrainingListPage> {
-}
+import * as React from 'react';
+import {Link} from 'react-router';
 
 // <Link to="/students/training">Go to students</Link>
 // <Link to="/students/training">Go to trainings</Link>
-export class TrainingListPage extends React.Component<IProps, {}> {
+export class TrainingListPage extends React.Component<{}, {}> {
    public render() {
        return (
          <div>
