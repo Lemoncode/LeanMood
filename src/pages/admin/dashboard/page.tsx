@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  DashboardComponent, DashboardItemComponent, IDashboardItem, dashboardIcons,
-} from '../../../common/components/dashboard';
+import {DashboardComponent, IDashboardItem, dashboardIcons} from '../../../common/components/dashboard';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
 
 export class DashboardPage extends React.Component<{}, {}> {

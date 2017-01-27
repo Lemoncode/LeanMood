@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
+import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
 
 export class LoginPage extends React.Component<{}, {}> {
    public render() {
@@ -14,7 +15,7 @@ export class LoginPage extends React.Component<{}, {}> {
              <span>*****</span>
              <br/>
              <br/>
-             <span> Navigation Skeleton:</span><Link to="/trainers">Go to trainers MODULE</Link>
+             <span> Navigation Skeleton:</span><Link to={trainerRouteEnums.default}>Go to trainers MODULE</Link>
              <span>*****</span>
              <br/>
              <Link to="/nonexistingpage">Navigate to a 404 page.</Link>
