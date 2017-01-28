@@ -3,7 +3,7 @@ import {ToolbarComponent} from './toolbar';
 
 interface IProps {
   content: string;
-  onContentChange: () => void;
+  onContentChange: (content: string) => void;
   initializeTextAreaElement: (textArea: HTMLTextAreaElement) => void;
   onToolbarButtonClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) => void;
 }
@@ -18,6 +18,11 @@ export class EditorComponent extends React.Component<IProps, {}> {
     this.props.initializeTextAreaElement(this.textArea);
   }
 
+  private onContentChange(event) {
+    const value = event.target.value;
+    this.props.onContentChange(value);
+  }
+
   public render() {
     return (
       <div>
@@ -26,7 +31,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
           updateTextArea={this.props.onToolbarButtonClick}
         />
         <textarea
-          onChange={this.props.onContentChange}
+          onChange={this.onContentChange.bind(this)}
           ref={this.refHandlers.textArea}
           value={this.props.content}
         />

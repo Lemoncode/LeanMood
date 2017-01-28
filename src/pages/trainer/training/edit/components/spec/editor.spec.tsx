@@ -34,22 +34,11 @@ describe('EditorComponent', () => {
     const dummyInitializeTextAreaElement = () => {};
     const dummyOnToolbarButtonClick = () => {};
 
-    /* tslint:disable */
-    let expectedTextArea: HTMLTextAreaElement;
-    /* tslint:enable */
-    const expectedComponent = (
-      <div>
-        <ToolbarComponent
-          textArea={expectedTextArea}
-          updateTextArea={dummyOnToolbarButtonClick}
-        />
-        <textarea
-          onChange={dummyOnContentChange}
-          ref={this.expectedTextArea}
-          value={content}
-        />
-      </div>
-    );
+    const expectedTextArea = `
+      <textarea>
+        ${content}
+      </textarea>
+    `;
 
     // Act
     const component = shallow(
@@ -62,7 +51,9 @@ describe('EditorComponent', () => {
     );
 
     // Assert
-    expect(component.equals(expectedComponent)).to.be.true;
+    expect(component.type()).to.equal('div');
+    expect(component.childAt(0).type()).to.equal(ToolbarComponent);
+    expect(component.childAt(1).html()).to.equal(multilineTrim(expectedTextArea));
   });
 
   it('calls to onContentChange function when update content', () => {
@@ -73,7 +64,7 @@ describe('EditorComponent', () => {
     const dummyOnToolbarButtonClick = () => {};
 
     // Act
-    const component = shallow(
+    const component = mount(
       <EditorComponent
         content={content}
         onContentChange={onContentChangeSpy}
@@ -85,7 +76,7 @@ describe('EditorComponent', () => {
     component.find('textarea').simulate('change');
 
     // Assert
-    expect(onContentChangeSpy.called).to.true;
+    expect(onContentChangeSpy.calledWith(content)).to.true;
   });
 
   it('calls to initializeTextAreaElement function when render component', () => {
