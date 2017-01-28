@@ -33,10 +33,86 @@ describe('ToolbarComponent', () => {
       </button>
     `;
 
+    const expectedBoldButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-bold">
+        </span>
+      </button>
+    `;
+
+    const expectedItalicButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-italic">
+        </span>
+      </button>
+    `;
+
+    const expectedCodeButton = `
+      <button type="button" class="btn btn-default">
+        <div>
+          <span class="glyphicon glyphicon-menu-left">
+          </span>
+          <span class="glyphicon glyphicon-menu-right">
+          </span>
+        </div>
+      </button>
+    `;
+
+    const expectedLinkButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-link">
+        </span>
+      </button>
+    `;
+
+    const expectedImageButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-picture">
+        </span>
+      </button>
+    `;
+
+    const expectedBulletedListButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-th-list">
+        </span>
+      </button>
+    `;
+
+    const expectedNumberedListButton = `
+      <button type="button" class="btn btn-default">
+        <div>
+          <span class="glyphicon glyphicon-sort-by-order">
+          </span>
+          <span class="glyphicon glyphicon-menu-hamburger">
+          </span>
+        </div>
+      </button>
+    `;
+
+    const expectedQuoteButton = `
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-menu-right">
+        </span>
+      </button>
+    `;
+
     const expectedComponent = `
       <div class="btn-toolbar">
         <div class="btn-group">
           ${expectedHeaderButton}
+          ${expectedBoldButton}
+          ${expectedItalicButton}
+        </div>
+        <div class="btn-group">
+          ${expectedCodeButton}
+          ${expectedLinkButton}
+          ${expectedImageButton}
+        </div>
+        <div class="btn-group">
+          ${expectedBulletedListButton}
+          ${expectedNumberedListButton}
+          ${expectedQuoteButton}
         </div>
       </div>
     `;

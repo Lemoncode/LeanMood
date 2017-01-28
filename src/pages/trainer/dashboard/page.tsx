@@ -12,6 +12,7 @@ export class DashboardPage extends React.Component<{}, {}> {
            <br/>
            <Link to="/trainers/evaluation">Go to student evaluation</Link>
            <Link to="/trainers/">Go back to training</Link>
+           <Link to="/trainers/training/edit">Edit training content</Link>
          </div>
         );
   }
