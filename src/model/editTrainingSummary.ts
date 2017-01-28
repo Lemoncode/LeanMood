@@ -1,8 +1,8 @@
-export class EditTrainingSummary{
-  id : number;
-  content : string;
+export class EditTrainingSummary {
+  public id: number;
+  public content: string;
 
-  constructor(){
+  constructor() {
     this.id = -1;
     this.content = '';
   }
