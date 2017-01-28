@@ -10,9 +10,10 @@ const mapStateToProps = (state: IAppState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onContentChange: dispatch(trainingContentChangedStartAction),
-  initializeTextAreaElement: dispatch(initializeEditorAction),
-  onToolbarButtonClick: dispatch(updateTrainingContentStartAction),
+  onContentChange: (content: string) => dispatch(trainingContentChangedStartAction(content)),
+  initializeTextAreaElement: (textArea: HTMLTextAreaElement) => dispatch(initializeEditorAction(textArea)),
+  onToolbarButtonClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) =>
+    dispatch(updateTrainingContentStartAction(textArea, caret, offset)),
 });
 
 export const EditorContainerComponent = connect(

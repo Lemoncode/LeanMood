@@ -25,19 +25,13 @@ describe('EditorContainerComponent', () => {
     });
 
     const trainingContentChangedStartStub = sinon.stub(trainingContentChanged,
-      'trainingContentChangedStartAction', () => {
-        return { type: 'dummy' };
-      });
+      'trainingContentChangedStartAction', () => ({ type: 'dummy' }));
 
     const initializeEditorStub = sinon.stub(initializeEditor,
-      'initializeEditorAction', () => {
-        return { type: 'dummy' };
-      });
+      'initializeEditorAction', () => ({ type: 'dummy' }));
 
     const updateTrainingContentStub = sinon.stub(updateTrainingContent,
-      'updateTrainingContentStartAction', () => {
-        return { type: 'dummy' };
-      });
+      'updateTrainingContentStartAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
@@ -48,5 +42,39 @@ describe('EditorContainerComponent', () => {
 
     // Assert
     expect(container).not.to.be.undefined;
+  }).bind(this));
+
+  it('should contain a property called content and be informed', sinon.test(() => {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+
+    const mockStore: any = createStore({
+      trainer: {
+        training: {
+          content: 'Test content',
+        },
+      },
+    });
+
+    const trainingContentChangedStartStub = sinon.stub(trainingContentChanged,
+      'trainingContentChangedStartAction', () => ({ type: 'dummy' }));
+
+    const initializeEditorStub = sinon.stub(initializeEditor,
+      'initializeEditorAction', () => ({ type: 'dummy' }));
+
+    const updateTrainingContentStub = sinon.stub(updateTrainingContent,
+      'updateTrainingContentStartAction', () => ({ type: 'dummy' }));
+
+    // Act
+    const container = mount(
+      <Provider store={mockStore}>
+        <EditorContainerComponent />
+      </Provider>,
+    );
+
+    // Assert
+    const presentational = container.find('EditorComponent');
+    expect(presentational).not.to.be.undefined;
+    expect(presentational.prop('content')).to.equal('Test content');
   }).bind(this));
 });
