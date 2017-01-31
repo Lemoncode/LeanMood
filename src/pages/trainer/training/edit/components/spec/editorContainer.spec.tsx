@@ -31,7 +31,7 @@ describe('EditorContainerComponent', () => {
       'initializeEditorAction', () => ({ type: 'dummy' }));
 
     const updateTrainingContentStub = sinon.stub(updateTrainingContent,
-      'updateTrainingContentStartAction', () => ({ type: 'dummy' }));
+      'updateTrainingContentAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
@@ -63,7 +63,7 @@ describe('EditorContainerComponent', () => {
       'initializeEditorAction', () => ({ type: 'dummy' }));
 
     const updateTrainingContentStub = sinon.stub(updateTrainingContent,
-      'updateTrainingContentStartAction', () => ({ type: 'dummy' }));
+      'updateTrainingContentAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
