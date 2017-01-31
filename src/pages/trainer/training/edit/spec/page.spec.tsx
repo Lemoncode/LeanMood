@@ -1,8 +1,12 @@
-import {expect} from 'chai';
-import {shallow, mount} from 'enzyme';
 import * as React from 'react';
+import {shallow, mount} from 'enzyme';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 import {EditTrainingSummary} from '../../../../../model/editTrainingSummary';
+import {EditorContainerComponent} from '../components/editorContainer';
 import {EditTrainingPage} from '../page';
+
+const createStore = configureStore();
 
 describe('trainer/training/edit/page', () => {
   it('is defined', () => {
@@ -26,9 +30,8 @@ describe('trainer/training/edit/page', () => {
     const training = new EditTrainingSummary();
     const fetchTrainingContentSpy = sinon.spy();
 
-    const expectedPage = '<div></div>';
     // Act
-    const page = mount(
+    const page = shallow(
       <EditTrainingPage
         trainingId={0}
         training={training}
@@ -37,7 +40,9 @@ describe('trainer/training/edit/page', () => {
     );
 
     // Assert
-    expect(page.html()).to.equal(expectedPage);
+    expect(page.type()).to.equal('div');
+    expect(page.childAt(0).type()).to.equal(EditorContainerComponent);
+    expect(page.childAt(1).type()).to.be.null;
   });
 
   it('calls to fetchTrainingContent', () => {
@@ -45,13 +50,23 @@ describe('trainer/training/edit/page', () => {
     const training = new EditTrainingSummary();
     const fetchTrainingContentSpy = sinon.spy();
 
+    const mockStore: any = createStore({
+      trainer: {
+        training: {
+          content: '',
+        },
+      },
+    });
+
     // Act
     const page = mount(
-      <EditTrainingPage
-        trainingId={0}
-        training={training}
-        fetchTrainingContent={fetchTrainingContentSpy}
-      />,
+      <Provider store={mockStore}>
+        <EditTrainingPage
+          trainingId={0}
+          training={training}
+          fetchTrainingContent={fetchTrainingContentSpy}
+        />
+      </Provider>,
     );
 
     // Assert
