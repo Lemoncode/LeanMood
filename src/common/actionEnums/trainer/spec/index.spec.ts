@@ -9,7 +9,7 @@ describe('trainerActionEnums', () => {
   it('should has keys defined and field / value match', () => {
     expect(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED).to
       .equal('GET_TRAINING_CONTENT_REQUEST_COMPLETED');
-    expect(trainerActionEnums.INITIALIZE_EDITOR).to
-      .equal('INITIALIZE_EDITOR');
+    expect(trainerActionEnums.INITIALIZE_EDITOR).to.equal('INITIALIZE_EDITOR');
+    expect(trainerActionEnums.TRAINING_CONTENT_CHANGED).to.equal('TRAINING_CONTENT_CHANGED');
   });
 });

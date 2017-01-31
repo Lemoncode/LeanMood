@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {IAppState} from '../../../../../reducers';
 import {EditorComponent} from './editor';
-import {trainingContentChangedStartAction} from '../actions/trainingContentChanged';
+import {trainingContentChangedAction} from '../actions/trainingContentChanged';
 import {initializeEditorAction} from '../actions/initializeEditor';
 import {updateTrainingContentStartAction} from '../actions/updateTrainingContent';
 
@@ -10,7 +10,7 @@ const mapStateToProps = (state: IAppState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onContentChange: (content: string) => dispatch(trainingContentChangedStartAction(content)),
+  onContentChange: (content: string) => dispatch(trainingContentChangedAction(content)),
   initializeTextAreaElement: (textArea: HTMLTextAreaElement) => dispatch(initializeEditorAction(textArea)),
   onToolbarButtonClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) =>
     dispatch(updateTrainingContentStartAction(textArea, caret, offset)),

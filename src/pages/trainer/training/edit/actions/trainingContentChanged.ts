@@ -1,7 +1,6 @@
-export const trainingContentChangedStartAction = (content: string) => {
+import {trainerActionEnums} from '../../../../../common/actionEnums/trainer';
 
-};
-
-export const trainingContentChangedCompletedAction = () => {
-
-};
+export const trainingContentChangedAction = (content: string) => ({
+  type: trainerActionEnums.TRAINING_CONTENT_CHANGED,
+  payload: content,
+});

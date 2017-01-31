@@ -24,8 +24,8 @@ describe('EditorContainerComponent', () => {
       },
     });
 
-    const trainingContentChangedStartStub = sinon.stub(trainingContentChanged,
-      'trainingContentChangedStartAction', () => ({ type: 'dummy' }));
+    const trainingContentChangedStub = sinon.stub(trainingContentChanged,
+      'trainingContentChangedAction', () => ({ type: 'dummy' }));
 
     const initializeEditorStub = sinon.stub(initializeEditor,
       'initializeEditorAction', () => ({ type: 'dummy' }));
@@ -57,7 +57,7 @@ describe('EditorContainerComponent', () => {
     });
 
     const trainingContentChangedStartStub = sinon.stub(trainingContentChanged,
-      'trainingContentChangedStartAction', () => ({ type: 'dummy' }));
+      'trainingContentChangedAction', () => ({ type: 'dummy' }));
 
     const initializeEditorStub = sinon.stub(initializeEditor,
       'initializeEditorAction', () => ({ type: 'dummy' }));
