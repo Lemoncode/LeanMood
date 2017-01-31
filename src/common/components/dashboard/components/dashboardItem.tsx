@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-const styles: any = require('./dashboardItemStyles.scss');
+const classNames: any = require('./dashboardItemStyles.scss');
 
 export interface IDashboardItem {
   icon: string;
@@ -17,12 +17,12 @@ export class DashboardItemComponent extends React.Component<IProps, {}> {
   public render() {
     return (
       <Link
-        className={`btn btn-default ${styles.item}`}
+        className={`btn btn-default ${classNames.item}`}
         style={{...this.props.style}}
         to={this.props.item.linkTo}
       >
         <i className={this.props.item.icon} />
-        <h4 className={styles.name}>{this.props.item.name}</h4>
+        <h4 className={classNames.name}>{this.props.item.name}</h4>
       </Link>
     );
   }

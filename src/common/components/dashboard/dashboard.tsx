@@ -1,5 +1,5 @@
 import * as React from 'react';
-const styles: any = require('./dashboardStyles.scss');
+const classNames: any = require('./dashboardStyles.scss');
 import {DashboardItemComponent, IDashboardItem} from './components/dashboardItem';
 
 interface IProps {
@@ -9,8 +9,8 @@ interface IProps {
 export class DashboardComponent extends React.Component<IProps, {}> {
   public render() {
     return(
-      <div className={styles.dashboard}>
-        <div className={styles.dashboardItems}>
+      <div className={classNames.dashboard}>
+        <div className={classNames.dashboardItems}>
           {
             this.props.items.map((item) =>
               <DashboardItemComponent
