@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 
 import {trainerActionEnums} from '../../../../../../common/actionEnums/trainer';
 import {trainerApi} from '../../../../../../rest-api/';
-import {trainingContentRequestCompleted, trainingContentRequestStarted} from '../trainingContentRequest';
+import {fetchTrainingContentCompleted, fetchTrainingContentStarted} from '../fetchTrainingContent';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -12,12 +12,12 @@ const mockStore = configureStore(middlewares);
 describe('trainingConentRequestCompleted', () => {
   it('is defined', () => {
     // Assert
-    expect(trainingContentRequestCompleted).not.to.be.undefined;
+    expect(fetchTrainingContentCompleted).not.to.be.undefined;
   });
 
   it('returns expected type GET_TRAINING_CONTENT_REQUEST_COMPLETED', () => {
     // Assert
-    expect(trainingContentRequestCompleted(null).type).to
+    expect(fetchTrainingContentCompleted(null).type).to
       .equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
   });
 
@@ -26,26 +26,26 @@ describe('trainingConentRequestCompleted', () => {
     const expectedTrainingContent = 'Test content';
 
     // Act
-    const actionResult = trainingContentRequestCompleted(expectedTrainingContent);
+    const actionResult = fetchTrainingContentCompleted(expectedTrainingContent);
 
     // Assert
     expect(actionResult.payload).to.equal(expectedTrainingContent);
   });
 });
 
-describe('trainingContentRequestStarted', () => {
+describe('fetchTrainingContentStarted', () => {
   it('is defined', () => {
     // Assert
-    expect(trainingContentRequestStarted).not.to.be.undefined;
+    expect(fetchTrainingContentStarted).not.to.be.undefined;
   });
 
-  it('should dispatch trainingContentRequestCompleted action', (done) => {
+  it('should dispatch fetchTrainingContentCompleted action', (done) => {
     // Arrange
     const trainingId = 1;
     const store = mockStore([]);
 
     // Act
-    store.dispatch(trainingContentRequestStarted(trainingId))
+    store.dispatch(fetchTrainingContentStarted(trainingId))
       .then(() => {
         // Assert
         expect(store.getActions()[0].type).to.equal(trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED);
@@ -70,7 +70,7 @@ describe('trainingContentRequestStarted', () => {
     });
 
     // Act
-    store.dispatch(trainingContentRequestStarted(trainingId))
+    store.dispatch(fetchTrainingContentStarted(trainingId))
       .then(() => {
         // Assert
         expect(getTrainingConentByTrainingIdStub.calledWith(trainingId)).to.be.true;

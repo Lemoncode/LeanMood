@@ -11,13 +11,13 @@ export class TrainingState {
 export const trainingReducer = (state: TrainingState = new TrainingState(), action) => {
   switch (action.type) {
     case trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED:
-      return handleGetTrainingContentRequestCompleted(state, action.payload);
+      return handleGetfetchTrainingContentCompleted(state, action.payload);
     default:
       return state;
   }
 };
 
-const handleGetTrainingContentRequestCompleted =
+const handleGetfetchTrainingContentCompleted =
 (state: TrainingState, payload: string) => {
   return Object.assign({}, state, {
     content: payload,

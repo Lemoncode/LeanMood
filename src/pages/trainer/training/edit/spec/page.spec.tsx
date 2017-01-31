@@ -12,6 +12,7 @@ describe('trainer/training/edit/page', () => {
     // Act
     const page = shallow(
       <EditTrainingPage
+        trainingId={0}
         training={training}
         fetchTrainingContent={dummyFetchTrainingContent}
       />,
@@ -29,6 +30,7 @@ describe('trainer/training/edit/page', () => {
     // Act
     const page = mount(
       <EditTrainingPage
+        trainingId={0}
         training={training}
         fetchTrainingContent={fetchTrainingContentSpy}
       />,
@@ -46,6 +48,7 @@ describe('trainer/training/edit/page', () => {
     // Act
     const page = mount(
       <EditTrainingPage
+        trainingId={0}
         training={training}
         fetchTrainingContent={fetchTrainingContentSpy}
       />,

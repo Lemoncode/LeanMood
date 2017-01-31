@@ -18,7 +18,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="# "
           offset={1}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <HeaderIcon />
         </ToolbarButton>
@@ -26,7 +26,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="****"
           offset={2}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <BoldIcon />
         </ToolbarButton>
@@ -34,7 +34,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="**"
           offset={1}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <ItalicIcon />
         </ToolbarButton>
@@ -44,7 +44,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="``"
           offset={1}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <CodeIcon />
         </ToolbarButton>
@@ -52,7 +52,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="[](url)"
           offset={1}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <LinkIcon />
         </ToolbarButton>
@@ -60,7 +60,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="![alt text]()"
           offset={12}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <ImageIcon />
         </ToolbarButton>
@@ -70,7 +70,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="\n - "
           offset={4}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <BulletedListIcon />
         </ToolbarButton>
@@ -78,7 +78,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="\n 1. "
           offset={5}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <NumberedListIcon />
         </ToolbarButton>
@@ -86,7 +86,7 @@ export const ToolbarComponent = (props: IProps) => {
           textArea={props.textArea}
           caret="> "
           offset={2}
-          onClick={props.updateTextArea.bind(this)}
+          onClick={props.updateTextArea}
         >
           <QuoteIcon />
         </ToolbarButton>

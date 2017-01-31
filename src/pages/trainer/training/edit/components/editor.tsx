@@ -28,7 +28,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
       <div>
         <ToolbarComponent
           textArea={this.textArea}
-          updateTextArea={this.props.onToolbarButtonClick}
+          updateTextArea={this.props.onToolbarButtonClick.bind(this)}
         />
         <textarea
           onChange={this.onContentChange.bind(this)}
