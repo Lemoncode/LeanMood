@@ -17,9 +17,7 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
   }
 };
 
-const handleGetfetchTrainingContentCompleted =
-(state: TrainingState, payload: string) => {
-  return Object.assign({}, state, {
-    content: payload,
-  });
-};
+const handleGetfetchTrainingContentCompleted = (state: TrainingState, payload: string) => ({
+  ...state,
+  content: payload,
+});
