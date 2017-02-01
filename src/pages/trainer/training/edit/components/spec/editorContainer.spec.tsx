@@ -2,10 +2,8 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import {IAppState} from '../../../../../../reducers';
 import * as trainingContentChanged from '../../actions/trainingContentChanged';
 import * as initializeEditor from '../../actions/initializeEditor';
-import {EditorComponent} from '../editor';
 import {EditorContainerComponent} from '../editorContainer';
 
 const createStore = configureStore();
