@@ -56,23 +56,6 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-  it('should return next state when passing action type equals UPDATE_TRAINING_CONTENT', () => {
-    // Arrange
-    const originalState = new TrainingState();
-    const action = {
-      type: trainerActionEnums.UPDATE_TRAINING_CONTENT,
-      payload: 'Test content',
-    };
-
-    // Act
-    Object.freeze(originalState);
-    const nextState = trainingReducer(originalState, action);
-
-    // Assert
-    expect(nextState.content).to.equal(action.payload);
-    expect(originalState).to.be.frozen;
-  });
-
   it('should return next state when passing action type equals TRAINING_CONTENT_CHANGED', () => {
     // Arrange
     const originalState = new TrainingState();
@@ -107,6 +90,27 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.editor).to.equal(action.payload);
+    expect(originalState).to.be.frozen;
+  });
+
+  it('should return next state when passing action type equals UPDATE_EDITOR', () => {
+    // Arrange
+    const originalState = new TrainingState();
+    const action = {
+      type: trainerActionEnums.UPDATE_EDITOR,
+      payload: {
+        content: 'Test content',
+        cursorStart: 5,
+      },
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.content).to.equal(action.payload.content);
+    expect(nextState.editor.selectionStart).to.equal(action.payload.cursorStart);
     expect(originalState).to.be.frozen;
   });
 });

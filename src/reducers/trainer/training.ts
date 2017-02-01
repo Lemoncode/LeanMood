@@ -13,22 +13,35 @@ export class TrainingState {
 export const trainingReducer = (state: TrainingState = new TrainingState(), action) => {
   switch (action.type) {
     case trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED:
-    case trainerActionEnums.UPDATE_TRAINING_CONTENT:
     case trainerActionEnums.TRAINING_CONTENT_CHANGED:
-      return handleUpdateTrainingContent(state, action.payload);
+      return handleupdateEditor(state, action.payload);
 
     case trainerActionEnums.INITIALIZE_EDITOR:
-      return {
-        ...state,
-        editor: action.payload,
-      };
+      return handleInitializeEditor(state, action.payload);
+
+    case trainerActionEnums.UPDATE_EDITOR:
+      return handleUpdateEditor(state, action.payload);
 
     default:
       return state;
   }
 };
 
-const handleUpdateTrainingContent = (state: TrainingState, payload: string) => ({
+const handleupdateEditor = (state: TrainingState, payload: string) => ({
   ...state,
   content: payload,
+});
+
+const handleInitializeEditor = (state: TrainingState, payload: HTMLTextAreaElement) => ({
+  ...state,
+  editor: payload,
+});
+
+const handleUpdateEditor = (state: TrainingState, payload: {content: string, cursorStart: number}) => ({
+  ...state,
+  content: payload.content,
+  editor: {
+    ...state.editor,
+    selectionStart: payload.cursorStart,
+  },
 });
