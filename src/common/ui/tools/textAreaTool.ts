@@ -34,6 +34,20 @@ class TextAreaTool {
     return caret.substring(offsetCursor, caret.length);
   }
 
+  public placeCursor(textArea: HTMLTextAreaElement, selectionStart: number = 0, selectionEnd: number = selectionStart) {
+    if (selectionStart === null) {
+      selectionStart = 0;
+    }
+
+    if (selectionEnd === null) {
+      selectionEnd = selectionStart;
+    }
+
+    textArea.selectionStart = selectionStart;
+    textArea.selectionEnd = selectionEnd;
+    textArea.focus();
+  }
+
   public hasSelectedText(textArea: HTMLTextAreaElement): boolean {
     const selectedText = this.getSelectedText(textArea);
 
