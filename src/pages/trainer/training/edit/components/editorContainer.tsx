@@ -5,10 +5,11 @@ import {trainingContentChangedAction} from '../actions/trainingContentChanged';
 import {initializeEditorAction} from '../actions/initializeEditor';
 import {updateEditorCursorAction} from '../actions/updateEditorCursor';
 
-const mapStateToProps = (state: IAppState) => ({
+const mapStateToProps = (state: IAppState, ownProps) => ({
   content: state.trainer.training.content,
   cursorStartPosition: state.trainer.training.cursorStartPosition,
   shouldSetEditorFocus: state.trainer.training.shouldSetEditorFocus,
+  className: ownProps.className,
 });
 
 const mapDispatchToProps = (dispatch) => ({

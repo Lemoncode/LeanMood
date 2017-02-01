@@ -14,6 +14,7 @@ describe('EditorComponent', () => {
     const content = '';
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
+    const className = '';
     const dummyOnContentChange = () => {};
     const dummyInitializeEditor = () => {};
     const dummyUpdateEditorCursor = () => {};
@@ -25,6 +26,7 @@ describe('EditorComponent', () => {
         onContentChange={dummyOnContentChange}
         initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
+        className={className}
         shouldSetEditorFocus={shouldSetEditorFocus}
         updateEditorCursor={dummyUpdateEditorCursor}
       />,
@@ -39,12 +41,13 @@ describe('EditorComponent', () => {
     const content = 'Test content';
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
+    const className = 'testClass';
     const dummyOnContentChange = () => {};
     const dummyInitializeEditor = () => {};
     const dummyUpdateEditorCursor = () => {};
 
     const expectedEditor = `
-      <textarea>
+      <textarea class="textArea">
         ${content}
       </textarea>
     `;
@@ -56,6 +59,7 @@ describe('EditorComponent', () => {
         onContentChange={dummyOnContentChange}
         initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
+        className={className}
         shouldSetEditorFocus={shouldSetEditorFocus}
         updateEditorCursor={dummyUpdateEditorCursor}
       />,
@@ -63,6 +67,7 @@ describe('EditorComponent', () => {
 
     // Assert
     expect(component.type()).to.equal('div');
+    expect(component.hasClass(className)).to.be.true;
     expect(component.childAt(0).type()).to.equal(ToolbarContainerComponent);
     expect(component.childAt(1).html()).to.equal(multilineTrim(expectedEditor));
   });
@@ -72,6 +77,7 @@ describe('EditorComponent', () => {
     const content = 'Test content';
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
+    const className = '';
     const onContentChangeSpy = sinon.spy();
     const dummyInitializeEditor = () => {};
     const dummyUpdateEditorCursor = () => {};
@@ -90,6 +96,7 @@ describe('EditorComponent', () => {
           onContentChange={onContentChangeSpy}
           initializeEditor={dummyInitializeEditor}
           cursorStartPosition={cursorStartPosition}
+          className={className}
           shouldSetEditorFocus={shouldSetEditorFocus}
           updateEditorCursor={dummyUpdateEditorCursor}
         />
@@ -107,6 +114,7 @@ describe('EditorComponent', () => {
     const content = 'Test content';
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
+    const className = '';
     const dummyOnContentChange = () => {};
     const initializeEditorSpy = sinon.spy();
     const dummyUpdateEditorCursor = () => {};
@@ -125,6 +133,7 @@ describe('EditorComponent', () => {
           onContentChange={dummyOnContentChange}
           initializeEditor={initializeEditorSpy}
           cursorStartPosition={cursorStartPosition}
+          className={className}
           shouldSetEditorFocus={shouldSetEditorFocus}
           updateEditorCursor={dummyUpdateEditorCursor}
         />

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {EditorContainerComponent} from './components/editorContainer';
+const classNames: any = require('./pageStyles.scss');
 
 interface IProps {
   trainingId: number;
@@ -13,8 +14,8 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
 
   public render() {
     return (
-      <div>
-        <EditorContainerComponent />
+      <div className={`container-fluid ${classNames.page}`}>
+        <EditorContainerComponent className={classNames.editor} />
       </div>
     );
   }

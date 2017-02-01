@@ -37,7 +37,9 @@ describe('trainer/training/edit/page', () => {
 
     // Assert
     expect(page.type()).to.equal('div');
+    expect(page.hasClass('container-fluid page')).to.be.true;
     expect(page.childAt(0).type()).to.equal(EditorContainerComponent);
+    expect(page.childAt(0).hasClass('editor')).to.be.true;
     expect(page.childAt(1).type()).to.be.null;
   });
 
