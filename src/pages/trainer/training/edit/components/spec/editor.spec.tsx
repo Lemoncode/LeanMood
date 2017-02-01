@@ -18,7 +18,6 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
         onToolbarButtonClick={dummyOnToolbarButtonClick}
       />,
     );
@@ -45,7 +44,6 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
         onToolbarButtonClick={dummyOnToolbarButtonClick}
       />,
     );
@@ -68,7 +66,6 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={onContentChangeSpy}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
         onToolbarButtonClick={dummyOnToolbarButtonClick}
       />,
     );
@@ -91,7 +88,6 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={onContentChangeSpy}
-        initializeTextAreaElement={initializeTextAreaElementSpy}
         onToolbarButtonClick={dummyOnToolbarButtonClick}
       />,
     );
@@ -112,7 +108,6 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={onContentChangeSpy}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
         onToolbarButtonClick={onToolbarButtonClickSpy}
       />,
     );
