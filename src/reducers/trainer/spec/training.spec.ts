@@ -174,7 +174,7 @@ describe('trainingReducer', () => {
       type: trainerActionEnums.UPDATE_EDITOR,
       payload: {
         content: 'Test content',
-        cursorStart: 5,
+        cursorStartPosition: 5,
       },
     };
 
@@ -184,7 +184,7 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload.content);
-    expect(nextState.editor.selectionStart).to.equal(action.payload.cursorStart);
+    expect(nextState.cursorStartPosition).to.equal(action.payload.cursorStartPosition);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
@@ -198,7 +198,7 @@ describe('trainingReducer', () => {
       type: trainerActionEnums.UPDATE_EDITOR,
       payload: {
         content: 'Test content',
-        cursorStart: 5,
+        cursorStartPosition: 5,
       },
     };
 
@@ -208,7 +208,7 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload.content);
-    expect(nextState.editor.selectionStart).to.equal(action.payload.cursorStart);
+    expect(nextState.cursorStartPosition).to.equal(action.payload.cursorStartPosition);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });

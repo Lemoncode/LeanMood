@@ -6,6 +6,8 @@ import {initializeEditorAction} from '../actions/initializeEditor';
 
 const mapStateToProps = (state: IAppState) => ({
   content: state.trainer.training.content,
+  cursorStartPosition: state.trainer.training.cursorStartPosition,
+  shouldSetEditorFocus: state.trainer.training.shouldSetEditorFocus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -12,6 +12,8 @@ describe('EditorComponent', () => {
   it('is defined', () => {
     // Arrange
     const content = '';
+    const cursorStartPosition = 0;
+    const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
     const dummyInitializeTextAreaElement = () => {};
 
@@ -21,6 +23,8 @@ describe('EditorComponent', () => {
         content={content}
         onContentChange={dummyOnContentChange}
         initializeTextAreaElement={dummyInitializeTextAreaElement}
+        cursorStartPosition={cursorStartPosition}
+        shouldSetEditorFocus={shouldSetEditorFocus}
       />,
     );
 
@@ -31,6 +35,8 @@ describe('EditorComponent', () => {
   it('renders a text area with expected content', () => {
     // Arrange
     const content = 'Test content';
+    const cursorStartPosition = 0;
+    const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
     const dummyInitializeTextAreaElement = () => {};
 
@@ -46,6 +52,8 @@ describe('EditorComponent', () => {
         content={content}
         onContentChange={dummyOnContentChange}
         initializeTextAreaElement={dummyInitializeTextAreaElement}
+        cursorStartPosition={cursorStartPosition}
+        shouldSetEditorFocus={shouldSetEditorFocus}
       />,
     );
 
@@ -58,6 +66,8 @@ describe('EditorComponent', () => {
   it('calls to onContentChange function when update content', () => {
     // Arrange
     const content = 'Test content';
+    const cursorStartPosition = 0;
+    const shouldSetEditorFocus = false;
     const onContentChangeSpy = sinon.spy();
     const dummyInitializeTextAreaElement = () => {};
 
@@ -74,6 +84,8 @@ describe('EditorComponent', () => {
           content={content}
           onContentChange={onContentChangeSpy}
           initializeTextAreaElement={dummyInitializeTextAreaElement}
+          cursorStartPosition={cursorStartPosition}
+          shouldSetEditorFocus={shouldSetEditorFocus}
         />
       </Provider>,
     );
@@ -87,6 +99,8 @@ describe('EditorComponent', () => {
   it('calls to initializeTextAreaElement function when render component', () => {
     // Arrange
     const content = 'Test content';
+    const cursorStartPosition = 0;
+    const shouldSetEditorFocus = false;
     const onContentChangeSpy = () => {};
     const initializeTextAreaElementSpy = sinon.spy();
 
@@ -103,6 +117,8 @@ describe('EditorComponent', () => {
           content={content}
           onContentChange={onContentChangeSpy}
           initializeTextAreaElement={initializeTextAreaElementSpy}
+          cursorStartPosition={cursorStartPosition}
+          shouldSetEditorFocus={shouldSetEditorFocus}
         />
       </Provider>,
     );

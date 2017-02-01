@@ -3,11 +3,13 @@ import {trainerActionEnums} from '../../common/actionEnums/trainer';
 export class TrainingState {
   public content: string;
   public editor: HTMLTextAreaElement;
+  public cursorStartPosition: number;
   public shouldSetEditorFocus: boolean;
 
   constructor() {
     this.content = '';
     this.editor = null;
+    this.cursorStartPosition = 0;
     this.shouldSetEditorFocus = false;
   }
 }
@@ -41,12 +43,9 @@ const handleInitializeEditor = (state: TrainingState, payload: HTMLTextAreaEleme
   shouldSetEditorFocus: true,
 });
 
-const handleUpdateEditor = (state: TrainingState, payload: {content: string, cursorStart: number}) => ({
+const handleUpdateEditor = (state: TrainingState, payload: {content: string, cursorStartPosition: number}) => ({
   ...state,
   content: payload.content,
+  cursorStartPosition: payload.cursorStartPosition,
   shouldSetEditorFocus: true,
-  editor: {
-    ...state.editor,
-    selectionStart: payload.cursorStart,
-  },
 });

@@ -60,7 +60,8 @@ describe('updateEditorAction', () => {
     expect(textAreaToolStub.calledWith(textArea, caret, offset));
   }).bind(this));
 
-  it('returns expected payload.cursorStart equals cursorStart and calls to caculateStartCursorPositionPlusOffset',
+  it(`returns expected payload.cursorStartPosition equals cursorStartPosition and calls to
+     caculateStartCursorPositionPlusOffset`,
     sinon.test(() => {
       // Arrange
       const sinon: sinon.SinonStatic = this;
@@ -87,7 +88,7 @@ describe('updateEditorAction', () => {
       const actionResult = updateEditorAction(textArea, caret, offset);
 
       // Assert
-      expect(actionResult.payload.cursorStart).to.equal(expectedCursorStart);
+      expect(actionResult.payload.cursorStartPosition).to.equal(expectedCursorStart);
       expect(caculateStartCursorPositionPlusOffsetStub.calledWith(textArea, offset));
   }).bind(this));
 });
