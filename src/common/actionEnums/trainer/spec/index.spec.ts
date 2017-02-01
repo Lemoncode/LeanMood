@@ -12,5 +12,6 @@ describe('trainerActionEnums', () => {
     expect(trainerActionEnums.INITIALIZE_EDITOR).to.equal('INITIALIZE_EDITOR');
     expect(trainerActionEnums.TRAINING_CONTENT_CHANGED).to.equal('TRAINING_CONTENT_CHANGED');
     expect(trainerActionEnums.UPDATE_TRAINING_CONTENT).to.equal('UPDATE_TRAINING_CONTENT');
+    expect(trainerActionEnums.UPDATE_EDITOR_CURSOR).to.equal('UPDATE_EDITOR_CURSOR');
   });
 });

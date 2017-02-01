@@ -24,7 +24,7 @@ describe('updateTrainingContentAction', () => {
     expect(actionResult.type).to.equal(trainerActionEnums.UPDATE_TRAINING_CONTENT);
   }).bind(this));
 
-  it('returns expected payload equals expected content and calls to insertAtCaretGetText', sinon.test(() => {
+  it('returns expected payload equals content and calls to insertAtCaretGetText', sinon.test(() => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 

@@ -15,7 +15,7 @@ describe('trainingContentChangedAction', () => {
     expect(actionResult.type).to.equal(trainerActionEnums.TRAINING_CONTENT_CHANGED);
   });
 
-  it('returns expected type equals TRAINING_CONTENT_CHANGED', () => {
+  it('returns expected payload equals content', () => {
     // Arrange
     const expectedContent = 'Test content';
 
