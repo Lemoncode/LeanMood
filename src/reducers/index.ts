@@ -1,13 +1,13 @@
 import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
-import {TrainerState, trainerReducer} from './trainer';
+import {ITrainerState, trainerReducer} from './trainer';
 import { adminStudentReducer, AdminStudentState } from './adminStudent';
 import { adminTrainingReducer, AdminTrainingState } from './adminTraining';
 
 export interface IAppState {
   adminStudent: AdminStudentState;
   adminTraining: AdminTrainingState;
-  trainer: TrainerState;
+  trainer: ITrainerState;
 }
 
 export const reducers = combineReducers<IAppState>({
