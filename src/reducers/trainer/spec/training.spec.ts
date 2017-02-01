@@ -39,9 +39,11 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-  it('should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED', () => {
+  it(`should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED
+     and originalState has shouldSetEditorFocus equals false`, () => {
     // Arrange
     const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = false;
     const action = {
       type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
       payload: 'Test content',
@@ -53,12 +55,35 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
-  it('should return next state when passing action type equals TRAINING_CONTENT_CHANGED', () => {
+  it(`should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED
+     and originalState has shouldSetEditorFocus equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = true;
+    const action = {
+      type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
+      payload: 'Test content',
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.content).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return next state when passing action type equals TRAINING_CONTENT_CHANGED
+      and originalState has shouldSetEditorFocus equals false`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = false;
     const action = {
       type: trainerActionEnums.TRAINING_CONTENT_CHANGED,
       payload: 'Test content',
@@ -70,12 +95,35 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
-  it('should return next state when passing action type equals INITIALIZE_EDITOR', () => {
+  it(`should return next state when passing action type equals TRAINING_CONTENT_CHANGED
+      and originalState has shouldSetEditorFocus equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = true;
+    const action = {
+      type: trainerActionEnums.TRAINING_CONTENT_CHANGED,
+      payload: 'Test content',
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.content).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return next state when passing action type equals INITIALIZE_EDITOR
+      and originalState has shouldSetEditorFocus equals false`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = false;
     const wrapper = cheerio.load('<textarea></textarea>');
     const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
 
@@ -90,12 +138,38 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.editor).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
 
-  it('should return next state when passing action type equals UPDATE_EDITOR', () => {
+  it(`should return next state when passing action type equals INITIALIZE_EDITOR
+      and originalState has shouldSetEditorFocus equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = true;
+    const wrapper = cheerio.load('<textarea></textarea>');
+    const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
+
+    const action = {
+      type: trainerActionEnums.INITIALIZE_EDITOR,
+      payload: expectedTextArea,
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.editor).to.equal(action.payload);
+    expect(nextState.shouldSetEditorFocus).to.be.true;
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return next state when passing action type equals UPDATE_EDITOR
+      and originalState has shouldSetEditorFocus equals false`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = false;
     const action = {
       type: trainerActionEnums.UPDATE_EDITOR,
       payload: {
@@ -111,6 +185,31 @@ describe('trainingReducer', () => {
     // Assert
     expect(nextState.content).to.equal(action.payload.content);
     expect(nextState.editor.selectionStart).to.equal(action.payload.cursorStart);
+    expect(nextState.shouldSetEditorFocus).to.be.true;
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return next state when passing action type equals UPDATE_EDITOR
+      and originalState has shouldSetEditorFocus equals true`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.shouldSetEditorFocus = true;
+    const action = {
+      type: trainerActionEnums.UPDATE_EDITOR,
+      payload: {
+        content: 'Test content',
+        cursorStart: 5,
+      },
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.content).to.equal(action.payload.content);
+    expect(nextState.editor.selectionStart).to.equal(action.payload.cursorStart);
+    expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
 });
