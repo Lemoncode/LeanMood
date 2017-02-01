@@ -35,8 +35,8 @@ describe('updateEditorAction', () => {
     const sinon: sinon.SinonStatic = this;
 
     const wrapper = cheerio.load('<textarea></textarea>');
-    const textArea = wrapper('textarea') as HTMLTextAreaElement;
-    textArea.value = 'Test content';
+    const editor = wrapper('textarea') as HTMLTextAreaElement;
+    editor.value = 'Test content';
     const caret = '**';
     const offset = 0;
 
@@ -53,11 +53,11 @@ describe('updateEditorAction', () => {
     });
 
     // Act
-    const actionResult = updateEditorAction(textArea, caret, offset);
+    const actionResult = updateEditorAction(editor, caret, offset);
 
     // Assert
     expect(actionResult.payload.content).to.equal(expectedContent);
-    expect(textAreaToolStub.calledWith(textArea, caret, offset));
+    expect(textAreaToolStub.calledWith(editor, caret, offset));
   }).bind(this));
 
   it(`returns expected payload.cursorStartPosition equals cursorStartPosition and calls to
@@ -67,8 +67,8 @@ describe('updateEditorAction', () => {
       const sinon: sinon.SinonStatic = this;
 
       const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
-      textArea.value = 'Test content';
+      const editor = wrapper('textarea') as HTMLTextAreaElement;
+      editor.value = 'Test content';
       const caret = '**';
       const offset = 1;
 
@@ -85,10 +85,10 @@ describe('updateEditorAction', () => {
       });
 
       // Act
-      const actionResult = updateEditorAction(textArea, caret, offset);
+      const actionResult = updateEditorAction(editor, caret, offset);
 
       // Assert
       expect(actionResult.payload.cursorStartPosition).to.equal(expectedCursorStart);
-      expect(caculateStartCursorPositionPlusOffsetStub.calledWith(textArea, offset));
+      expect(caculateStartCursorPositionPlusOffsetStub.calledWith(editor, offset));
   }).bind(this));
 });

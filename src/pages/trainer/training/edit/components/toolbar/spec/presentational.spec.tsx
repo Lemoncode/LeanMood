@@ -6,13 +6,13 @@ import {ToolbarComponent} from '../presentational';
 describe('ToolbarComponent', () => {
   it('is defined', () => {
     // Arrange
-    const textArea: HTMLTextAreaElement = null;
-    const updateTextArea = sinon.spy();
+    const editor: HTMLTextAreaElement = null;
+    const updateEditor = sinon.spy();
     // Act
     const component = shallow(
       <ToolbarComponent
-        textArea={textArea}
-        updateTextArea={updateTextArea}
+        editor={editor}
+        updateEditor={updateEditor}
       />,
     );
 
@@ -22,8 +22,8 @@ describe('ToolbarComponent', () => {
 
   it('renders as expected', () => {
     // Arrange
-    const textArea: HTMLTextAreaElement = null;
-    const updateTextArea = sinon.spy();
+    const editor: HTMLTextAreaElement = null;
+    const updateEditor = sinon.spy();
 
     const expectedHeaderButton = `
       <button type="button" class="btn btn-default">
@@ -119,8 +119,8 @@ describe('ToolbarComponent', () => {
     // Act
     const component = shallow(
       <ToolbarComponent
-        textArea={textArea}
-        updateTextArea={updateTextArea}
+        editor={editor}
+        updateEditor={updateEditor}
       />,
     );
 

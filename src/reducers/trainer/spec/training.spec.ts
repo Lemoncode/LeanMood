@@ -125,11 +125,11 @@ describe('trainingReducer', () => {
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = false;
     const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
+    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
 
     const action = {
       type: trainerActionEnums.INITIALIZE_EDITOR,
-      payload: expectedTextArea,
+      payload: expectedEditor,
     };
 
     // Act
@@ -148,11 +148,11 @@ describe('trainingReducer', () => {
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = true;
     const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
+    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
 
     const action = {
       type: trainerActionEnums.INITIALIZE_EDITOR,
-      payload: expectedTextArea,
+      payload: expectedEditor,
     };
 
     // Act

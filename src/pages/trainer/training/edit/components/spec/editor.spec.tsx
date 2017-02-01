@@ -15,14 +15,14 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
-    const dummyInitializeTextAreaElement = () => {};
+    const dummyInitializeEditor = () => {};
 
     // Act
     const component = shallow(
       <EditorComponent
         content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
+        initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
         shouldSetEditorFocus={shouldSetEditorFocus}
       />,
@@ -38,9 +38,9 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
-    const dummyInitializeTextAreaElement = () => {};
+    const dummyInitializeEditor = () => {};
 
-    const expectedTextArea = `
+    const expectedEditor = `
       <textarea>
         ${content}
       </textarea>
@@ -51,7 +51,7 @@ describe('EditorComponent', () => {
       <EditorComponent
         content={content}
         onContentChange={dummyOnContentChange}
-        initializeTextAreaElement={dummyInitializeTextAreaElement}
+        initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
         shouldSetEditorFocus={shouldSetEditorFocus}
       />,
@@ -60,7 +60,7 @@ describe('EditorComponent', () => {
     // Assert
     expect(component.type()).to.equal('div');
     expect(component.childAt(0).type()).to.equal(ToolbarContainerComponent);
-    expect(component.childAt(1).html()).to.equal(multilineTrim(expectedTextArea));
+    expect(component.childAt(1).html()).to.equal(multilineTrim(expectedEditor));
   });
 
   it('calls to onContentChange function when update content', () => {
@@ -69,7 +69,7 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
     const onContentChangeSpy = sinon.spy();
-    const dummyInitializeTextAreaElement = () => {};
+    const dummyInitializeEditor = () => {};
 
     const mockStore: any = createStore({
       trainer: {
@@ -83,7 +83,7 @@ describe('EditorComponent', () => {
         <EditorComponent
           content={content}
           onContentChange={onContentChangeSpy}
-          initializeTextAreaElement={dummyInitializeTextAreaElement}
+          initializeEditor={dummyInitializeEditor}
           cursorStartPosition={cursorStartPosition}
           shouldSetEditorFocus={shouldSetEditorFocus}
         />
@@ -102,7 +102,7 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
     const onContentChangeSpy = () => {};
-    const initializeTextAreaElementSpy = sinon.spy();
+    const initializeEditorSpy = sinon.spy();
 
     const mockStore: any = createStore({
       trainer: {
@@ -116,7 +116,7 @@ describe('EditorComponent', () => {
         <EditorComponent
           content={content}
           onContentChange={onContentChangeSpy}
-          initializeTextAreaElement={initializeTextAreaElementSpy}
+          initializeEditor={initializeEditorSpy}
           cursorStartPosition={cursorStartPosition}
           shouldSetEditorFocus={shouldSetEditorFocus}
         />
@@ -124,6 +124,6 @@ describe('EditorComponent', () => {
     );
 
     // Assert
-    expect(initializeTextAreaElementSpy.calledOnce).to.true;
+    expect(initializeEditorSpy.calledOnce).to.true;
   });
 });

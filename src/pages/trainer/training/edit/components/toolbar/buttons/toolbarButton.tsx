@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 interface IProps {
-  textArea: HTMLTextAreaElement;
+  editor: HTMLTextAreaElement;
   caret: string;
   offset: number;
-  onClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) => void;
+  onClick: (editor: HTMLTextAreaElement, caret: string, offset: number) => void;
 }
 
 export class ToolbarButton extends React.Component<IProps, {}> {
@@ -22,6 +22,6 @@ export class ToolbarButton extends React.Component<IProps, {}> {
 
   private onClick(event) {
     event.preventDefault();
-    this.props.onClick(this.props.textArea, this.props.caret, this.props.offset);
+    this.props.onClick(this.props.editor, this.props.caret, this.props.offset);
   }
 }

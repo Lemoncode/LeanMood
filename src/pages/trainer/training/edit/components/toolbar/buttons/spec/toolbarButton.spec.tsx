@@ -10,7 +10,7 @@ describe('BaseToolbarButton', () => {
     // Act
     const component = shallow(
       <ToolbarButton
-        textArea={null}
+        editor={null}
         caret=""
         offset={0}
         onClick={dummyOnClick}
@@ -31,7 +31,7 @@ describe('BaseToolbarButton', () => {
     // Act
     const component = shallow(
       <ToolbarButton
-        textArea={null}
+        editor={null}
         caret=""
         offset={0}
         onClick={dummyOnClick}
@@ -53,7 +53,7 @@ describe('BaseToolbarButton', () => {
     // Act
     const component = shallow(
       <ToolbarButton
-        textArea={null}
+        editor={null}
         caret=""
         offset={0}
         onClick={dummyOnClick}
@@ -69,14 +69,14 @@ describe('BaseToolbarButton', () => {
   it('calls to onClick prop when simulate a click', () => {
     // Arrange
     const onClickSpy = sinon.spy();
-    const textArea = null;
+    const editor = null;
     const caret = '_';
     const offset = 2;
 
     // Act
     const component = mount(
       <ToolbarButton
-        textArea={textArea}
+        editor={editor}
         caret={caret}
         offset={offset}
         onClick={onClickSpy}
@@ -87,6 +87,6 @@ describe('BaseToolbarButton', () => {
 
     // Assert
     expect(onClickSpy.calledOnce).to.be.true;
-    expect(onClickSpy.calledWith(textArea, caret, offset)).to.be.true;
+    expect(onClickSpy.calledWith(editor, caret, offset)).to.be.true;
   });
 });

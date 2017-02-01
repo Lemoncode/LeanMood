@@ -4,12 +4,12 @@ import {IAppState} from '../../../../../../reducers/';
 import {updateEditorAction} from '../../actions/updateEditor';
 
 const mapStateToProps = (state: IAppState) => ({
-  textArea: state.trainer.training.editor,
+  editor: state.trainer.training.editor,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateTextArea: (textArea: HTMLTextAreaElement, caret: string, offset: number) =>
-    dispatch(updateEditorAction(textArea, caret, offset)),
+  updateEditor: (editor: HTMLTextAreaElement, caret: string, offset: number) =>
+    dispatch(updateEditorAction(editor, caret, offset)),
 });
 
 export const ToolbarContainerComponent = connect(

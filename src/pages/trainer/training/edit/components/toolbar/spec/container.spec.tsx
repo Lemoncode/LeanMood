@@ -33,16 +33,16 @@ describe('ToolbarContainerComponent', () => {
     expect(container).not.to.be.undefined;
   }).bind(this));
 
-  it('should contain a property called textArea and be informed', sinon.test(() => {
+  it('should contain a property called editor and be informed', sinon.test(() => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
     const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
+    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
     const mockStore: any = createStore({
       trainer: {
         training: {
-          editor: expectedTextArea,
+          editor: expectedEditor,
         },
       },
     });
@@ -60,6 +60,6 @@ describe('ToolbarContainerComponent', () => {
     // Assert
     const firstToolbarButton = container.find('ToolbarButton').at(0);
     expect(firstToolbarButton).not.to.be.undefined;
-    expect(firstToolbarButton.prop('textArea')).to.equal(expectedTextArea);
+    expect(firstToolbarButton.prop('editor')).to.equal(expectedEditor);
   }).bind(this));
 });

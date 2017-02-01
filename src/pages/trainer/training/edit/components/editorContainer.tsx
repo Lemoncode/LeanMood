@@ -3,6 +3,7 @@ import {IAppState} from '../../../../../reducers';
 import {EditorComponent} from './editor';
 import {trainingContentChangedAction} from '../actions/trainingContentChanged';
 import {initializeEditorAction} from '../actions/initializeEditor';
+import {updateEditorCursorAction} from '../actions/updateEditorCursor';
 
 const mapStateToProps = (state: IAppState) => ({
   content: state.trainer.training.content,
@@ -12,7 +13,9 @@ const mapStateToProps = (state: IAppState) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onContentChange: (content: string) => dispatch(trainingContentChangedAction(content)),
-  initializeTextAreaElement: (textArea: HTMLTextAreaElement) => dispatch(initializeEditorAction(textArea)),
+  initializeEditor: (editor: HTMLTextAreaElement) => dispatch(initializeEditorAction(editor)),
+  updateEditorCursor: (editor: HTMLTextAreaElement, cursorStartPosition: number) =>
+    dispatch(updateEditorCursorAction(editor, cursorStartPosition)),
 });
 
 export const EditorContainerComponent = connect(

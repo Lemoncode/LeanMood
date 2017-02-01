@@ -1,28 +1,28 @@
 import * as React from 'react';
 import {ToolbarContainerComponent} from './toolbar';
-import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
 
 interface IProps {
   content: string;
   cursorStartPosition: number;
   shouldSetEditorFocus: boolean;
   onContentChange: (content: string) => void;
-  initializeTextAreaElement: (textArea: HTMLTextAreaElement) => void;
+  initializeEditor: (editor: HTMLTextAreaElement) => void;
+  updateEditorCursor: (editor: HTMLTextAreaElement, cursorStartPosition: number) => void;
 }
 
 export class EditorComponent extends React.Component<IProps, {}> {
-  private textArea: HTMLTextAreaElement;
+  private editor: HTMLTextAreaElement;
   private refHandlers = {
-    textArea: (textArea) => { this.textArea = textArea; },
+    textArea: (textArea) => { this.editor = textArea; },
   };
 
   public componentDidMount() {
-    this.props.initializeTextAreaElement(this.textArea);
+    this.props.initializeEditor(this.editor);
   }
 
   public componentDidUpdate() {
     if (this.props.shouldSetEditorFocus) {
-      textAreaTool.placeCursor(this.textArea, this.props.cursorStartPosition);
+      this.props.updateEditorCursor(this.editor, this.props.cursorStartPosition);
     }
   }
 
