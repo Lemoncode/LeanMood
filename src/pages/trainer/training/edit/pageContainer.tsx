@@ -4,7 +4,7 @@ import {EditTrainingPage} from './page';
 import {fetchTrainingContentStarted} from './actions/fetchTrainingContent';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
-  trainingId: parseInt(ownProps.params.trainingId, 10),
+  trainingId: Number(ownProps.params.trainingId) || 0,
 });
 
 const mapDispatchToProps = (dispatch) => ({
