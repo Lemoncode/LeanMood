@@ -134,4 +134,6 @@ describe('EditorComponent', () => {
     // Assert
     expect(initializeEditorSpy.calledOnce).to.true;
   });
+
+  // TODO: Pending to test updateEditorCursor. Issue with componentDidUpdate
 });
