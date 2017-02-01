@@ -4,6 +4,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import * as trainingContentChanged from '../../actions/trainingContentChanged';
 import * as initializeEditor from '../../actions/initializeEditor';
+import * as updateEditorCursor from '../../actions/updateEditorCursor';
 import {EditorContainerComponent} from '../editorContainer';
 
 const createStore = configureStore();
@@ -26,6 +27,9 @@ describe('EditorContainerComponent', () => {
 
     const initializeEditorStub = sinon.stub(initializeEditor,
       'initializeEditorAction', () => ({ type: 'dummy' }));
+
+    const updateEditorCursorStub = sinon.stub(updateEditorCursor,
+      'updateEditorCursorAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
@@ -55,6 +59,9 @@ describe('EditorContainerComponent', () => {
 
     const initializeEditorStub = sinon.stub(initializeEditor,
       'initializeEditorAction', () => ({ type: 'dummy' }));
+
+    const updateEditorCursorStub = sinon.stub(updateEditorCursor,
+      'updateEditorCursorAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(

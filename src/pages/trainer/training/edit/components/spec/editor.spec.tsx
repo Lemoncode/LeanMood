@@ -16,6 +16,7 @@ describe('EditorComponent', () => {
     const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
     const dummyInitializeEditor = () => {};
+    const dummyUpdateEditorCursor = () => {};
 
     // Act
     const component = shallow(
@@ -25,6 +26,7 @@ describe('EditorComponent', () => {
         initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
         shouldSetEditorFocus={shouldSetEditorFocus}
+        updateEditorCursor={dummyUpdateEditorCursor}
       />,
     );
 
@@ -39,6 +41,7 @@ describe('EditorComponent', () => {
     const shouldSetEditorFocus = false;
     const dummyOnContentChange = () => {};
     const dummyInitializeEditor = () => {};
+    const dummyUpdateEditorCursor = () => {};
 
     const expectedEditor = `
       <textarea>
@@ -54,6 +57,7 @@ describe('EditorComponent', () => {
         initializeEditor={dummyInitializeEditor}
         cursorStartPosition={cursorStartPosition}
         shouldSetEditorFocus={shouldSetEditorFocus}
+        updateEditorCursor={dummyUpdateEditorCursor}
       />,
     );
 
@@ -70,6 +74,7 @@ describe('EditorComponent', () => {
     const shouldSetEditorFocus = false;
     const onContentChangeSpy = sinon.spy();
     const dummyInitializeEditor = () => {};
+    const dummyUpdateEditorCursor = () => {};
 
     const mockStore: any = createStore({
       trainer: {
@@ -86,6 +91,7 @@ describe('EditorComponent', () => {
           initializeEditor={dummyInitializeEditor}
           cursorStartPosition={cursorStartPosition}
           shouldSetEditorFocus={shouldSetEditorFocus}
+          updateEditorCursor={dummyUpdateEditorCursor}
         />
       </Provider>,
     );
@@ -101,8 +107,9 @@ describe('EditorComponent', () => {
     const content = 'Test content';
     const cursorStartPosition = 0;
     const shouldSetEditorFocus = false;
-    const onContentChangeSpy = () => {};
+    const dummyOnContentChange = () => {};
     const initializeEditorSpy = sinon.spy();
+    const dummyUpdateEditorCursor = () => {};
 
     const mockStore: any = createStore({
       trainer: {
@@ -115,10 +122,11 @@ describe('EditorComponent', () => {
       <Provider store={mockStore}>
         <EditorComponent
           content={content}
-          onContentChange={onContentChangeSpy}
+          onContentChange={dummyOnContentChange}
           initializeEditor={initializeEditorSpy}
           cursorStartPosition={cursorStartPosition}
           shouldSetEditorFocus={shouldSetEditorFocus}
+          updateEditorCursor={dummyUpdateEditorCursor}
         />
       </Provider>,
     );
