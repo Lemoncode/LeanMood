@@ -2,9 +2,11 @@ import {trainerActionEnums} from '../../common/actionEnums/trainer';
 
 export class TrainingState {
   public content: string;
+  public editor: HTMLTextAreaElement;
 
   constructor() {
     this.content = '';
+    this.editor = null;
   }
 }
 

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {ToolbarComponent} from './toolbar';
+import {ToolbarContainerComponent} from './toolbar';
 
 interface IProps {
   content: string;
   onContentChange: (content: string) => void;
   initializeTextAreaElement: (textArea: HTMLTextAreaElement) => void;
-  onToolbarButtonClick: (textArea: HTMLTextAreaElement, caret: string, offset: number) => void;
 }
 
 export class EditorComponent extends React.Component<IProps, {}> {
@@ -26,10 +25,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
   public render() {
     return (
       <div>
-        <ToolbarComponent
-          textArea={this.textArea}
-          updateTextArea={this.props.onToolbarButtonClick.bind(this)}
-        />
+        <ToolbarContainerComponent />
         <textarea
           onChange={this.onContentChange.bind(this)}
           ref={this.refHandlers.textArea}

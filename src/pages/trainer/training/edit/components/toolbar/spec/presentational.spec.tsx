@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import * as React from 'react';
 import {shallow} from 'enzyme';
 import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
-import {ToolbarComponent} from '../index';
+import {ToolbarComponent} from '../presentational';
 
 describe('ToolbarComponent', () => {
   it('is defined', () => {
