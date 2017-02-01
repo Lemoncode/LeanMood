@@ -1,4 +1,4 @@
-import {expect} from 'chai';
+import * as cheerio from 'cheerio';
 import {trainerActionEnums} from '../../../common/actionEnums/trainer';
 import {trainingReducer, TrainingState} from '../training';
 
@@ -87,6 +87,26 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
+    expect(originalState).to.be.frozen;
+  });
+
+  it('should return next state when passing action type equals INITIALIZE_EDITOR', () => {
+    // Arrange
+    const originalState = new TrainingState();
+    const wrapper = cheerio.load('<textarea></textarea>');
+    const expectedTextArea = wrapper('textarea') as HTMLTextAreaElement;
+
+    const action = {
+      type: trainerActionEnums.INITIALIZE_EDITOR,
+      payload: expectedTextArea,
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.editor).to.equal(action.payload);
     expect(originalState).to.be.frozen;
   });
 });

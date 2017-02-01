@@ -16,6 +16,13 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
     case trainerActionEnums.UPDATE_TRAINING_CONTENT:
     case trainerActionEnums.TRAINING_CONTENT_CHANGED:
       return handleUpdateTrainingContent(state, action.payload);
+
+    case trainerActionEnums.INITIALIZE_EDITOR:
+      return {
+        ...state,
+        editor: action.payload,
+      };
+
     default:
       return state;
   }
