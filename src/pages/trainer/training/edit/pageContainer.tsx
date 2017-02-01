@@ -5,7 +5,6 @@ import {fetchTrainingContentStarted} from './actions/fetchTrainingContent';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
   trainingId: parseInt(ownProps.params.trainingId, 10),
-  training: state.trainer.training,
 });
 
 const mapDispatchToProps = (dispatch) => ({

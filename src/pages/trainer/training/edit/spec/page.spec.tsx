@@ -2,7 +2,6 @@ import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import {EditTrainingSummary} from '../../../../../model/editTrainingSummary';
 import {EditorContainerComponent} from '../components/editorContainer';
 import {EditTrainingPage} from '../page';
 
@@ -17,7 +16,6 @@ describe('trainer/training/edit/page', () => {
     const page = shallow(
       <EditTrainingPage
         trainingId={0}
-        training={training}
         fetchTrainingContent={dummyFetchTrainingContent}
       />,
     );
@@ -25,16 +23,14 @@ describe('trainer/training/edit/page', () => {
     expect(page).not.to.be.undefined;
   });
 
-  it('renders a div', () => {
-    // Arrange
-    const training = new EditTrainingSummary();
+  it('renders a div with a EditorContainerComponent inside', () => {
+    // Arrang
     const fetchTrainingContentSpy = sinon.spy();
 
     // Act
     const page = shallow(
       <EditTrainingPage
         trainingId={0}
-        training={training}
         fetchTrainingContent={fetchTrainingContentSpy}
       />,
     );
@@ -45,9 +41,9 @@ describe('trainer/training/edit/page', () => {
     expect(page.childAt(1).type()).to.be.null;
   });
 
-  it('calls to fetchTrainingContent', () => {
+  it('calls to fetchTrainingContent with expected trainingId', () => {
     // Arrange
-    const training = new EditTrainingSummary();
+    const trainingId = 1;
     const fetchTrainingContentSpy = sinon.spy();
 
     const mockStore: any = createStore({
@@ -62,8 +58,7 @@ describe('trainer/training/edit/page', () => {
     const page = mount(
       <Provider store={mockStore}>
         <EditTrainingPage
-          trainingId={0}
-          training={training}
+          trainingId={trainingId}
           fetchTrainingContent={fetchTrainingContentSpy}
         />
       </Provider>,
@@ -71,5 +66,6 @@ describe('trainer/training/edit/page', () => {
 
     // Assert
     expect(fetchTrainingContentSpy.calledOnce).to.be.true;
+    expect(fetchTrainingContentSpy.calledWith(trainingId)).to.be.true;
   });
 });
