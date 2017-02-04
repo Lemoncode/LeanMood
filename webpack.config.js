@@ -32,7 +32,8 @@ module.exports = {
       "redux-thunk"
     ],
     vendorStyles: [
-      '../node_modules/bootstrap/dist/css/bootstrap.css'
+      '../node_modules/bootstrap/dist/css/bootstrap.css',
+      '../node_modules/font-awesome/css/font-awesome.css',
     ]
   },
 	output: {
@@ -67,7 +68,7 @@ module.exports = {
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
-        include: /node_modules\\bootstrap/,
+        include: /node_modules/,
         loader: ExtractTextPlugin.extract('style','css')
       },
       //NOTE: src css configuration

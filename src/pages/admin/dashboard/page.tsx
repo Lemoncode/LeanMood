@@ -1,17 +1,21 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import {DashboardComponent, IDashboardItem, dashboardIcons} from '../../../common/components/dashboard';
+import {adminRouteEnums} from '../../../common/routeEnums/admin';
+const classNames: any = require('./pageStyles.scss');
 
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
 export class DashboardPage extends React.Component<{}, {}> {
+  private dashboardItems: IDashboardItem[] = [
+    {icon: dashboardIcons.students, name: 'Manage students', linkTo: adminRouteEnums.student.list},
+    {icon: dashboardIcons.trainings, name: 'Manage trainings', linkTo: adminRouteEnums.training.list},
+  ];
+
   public render() {
     return (
       <div>
-       <span> ADMIN dashboard: </span>
-       <br/>
-       <br/>
-       <Link to="/admin/student/list">Go to student list</Link>
-       <Link to="/admin/training/list">Go to training list</Link>
+        <h3 className={classNames.title}>Admin dashboard</h3>
+        <DashboardComponent
+          items={this.dashboardItems}
+        />
       </div>
     );
   }
