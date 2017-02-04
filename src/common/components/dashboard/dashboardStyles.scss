@@ -1,0 +1,9 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardItems {
+  display: flex;
+  flex-flow: row wrap;
+}

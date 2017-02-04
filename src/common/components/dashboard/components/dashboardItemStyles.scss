@@ -1,0 +1,23 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  border: none;
+}
+
+.name {
+  margin-top: 20px;
+}
+
+@media (max-width:1200px) {
+  .item {
+    flex-basis: 50%!important;
+  }
+}
+
+@media (max-width:768px) {
+  .item {
+    flex-basis: 100%!important;
+  }
+}
