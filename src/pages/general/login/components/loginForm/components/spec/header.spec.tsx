@@ -19,7 +19,10 @@ describe('Header LoginFormComponent', () => {
     // Arrange
     const expectedComponent = `
       <div class="panel-heading">
-        <h3 class="panel-title">Please sign in (login: admin | trainer | student / pwd: test)</h3>
+        <h3 class="panel-title">
+          <p>Please sign in</p>
+          <p>(login: admin | trainer | student / pwd: test)</p>
+        </h3>
       </div>
     `;
 

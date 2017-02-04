@@ -4,11 +4,12 @@ import {ValidationComponent} from './validation';
 interface IProps {
   name: string;
   label: string;
+  value: string;
+  type: string;
+  placeholder?: string;
+  error?: string;
   onChange: any;
   onBlur?: any;
-  placeholder?: string;
-  value: string;
-  error?: string;
 }
 
 export const InputComponent = (props: IProps) => {
@@ -18,7 +19,7 @@ export const InputComponent = (props: IProps) => {
         {props.label}
       </label>
       <input
-        type="text"
+        type={props.type}
         name={props.name}
         className="form-control"
         placeholder={props.placeholder}

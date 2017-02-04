@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {LoginCredentials} from '../../../../../../model/loginCredentials';
+import {InputComponent} from '../../../../../../common/components/form';
 
 interface IProps {
   loginCredentials: LoginCredentials;
@@ -12,23 +13,23 @@ export const FormComponent = (props: IProps) => {
     <div className="panel-body">
       <form role="form">
         <div className="form-group">
-          <input
-            className="form-control"
+          <InputComponent
+            type="text"
+            label="E-mail"
             placeholder="E-mail"
             name="email"
-            type="text"
             value={props.loginCredentials.login}
             onChange={(e : any) => props.updateLoginInfo({login: e.target.value, password: props.loginCredentials.password })}
           />
         </div>
         <div className="form-group">
-          <input
-            className="form-control"
+          <InputComponent
+            type="password"
+            label="Password"
             placeholder="Password"
             name="password"
-            type="password"
-            value={props.loginCredentials.password}
-            onChange={(e : any) => props.updateLoginInfo({login: props.loginCredentials.login, password: e.target.value })}
+            value={props.loginCredentials.login}
+            onChange={(e : any) => props.updateLoginInfo({login: e.target.value, password: props.loginCredentials.password })}
           />
         </div>
         <button

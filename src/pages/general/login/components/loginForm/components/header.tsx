@@ -4,7 +4,8 @@ export const HeaderComponent = () => {
   return (
     <div className="panel-heading">
       <h3 className="panel-title">
-        Please sign in (login: admin | trainer | student / pwd: test)
+        <p>Please sign in</p>
+        <p>(login: admin | trainer | student / pwd: test)</p>
       </h3>
     </div>
   );

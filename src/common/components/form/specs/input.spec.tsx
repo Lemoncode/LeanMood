@@ -10,6 +10,7 @@ describe('InputComponent', () => {
       name: '',
       label: '',
       value: '',
+      type: '',
       onChange: () => {},
     };
 
@@ -28,13 +29,14 @@ describe('InputComponent', () => {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
+      type: 'Test type',
       onChange: () => {},
     };
 
     const expectedComponent = `
       <div class="form-group">
         <label for="${props.name}">${props.label}</label>
-        <input type="text" name="${props.name}" class="form-control" value="${props.value}"
+        <input type="${props.type}" name="${props.name}" class="form-control" value="${props.value}"
         />
         <div class="help-block">
         </div>
@@ -56,6 +58,7 @@ describe('InputComponent', () => {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
+      type: 'Test type',
       onChange: () => {},
       placeholder: 'Test placeholder',
       onBlur: () => {},
@@ -65,7 +68,7 @@ describe('InputComponent', () => {
     const expectedComponent = `
       <div class="form-group">
         <label for="${props.name}">${props.label}</label>
-        <input type="text" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}"
+        <input type="${props.type}" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}"
         />
         <div class="help-block">
         </div>
@@ -88,6 +91,7 @@ describe('InputComponent', () => {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
+      type: 'Test type',
       onChange: sinon.spy(),
       placeholder: 'Test placeholder',
       onBlur: () => {},
@@ -110,6 +114,7 @@ describe('InputComponent', () => {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
+      type: 'Test type',
       onChange: sinon.spy(),
       placeholder: 'Test placeholder',
       onBlur: sinon.spy(),

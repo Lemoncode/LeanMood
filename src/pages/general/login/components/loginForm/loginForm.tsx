@@ -1,46 +1,29 @@
 import * as React from 'react';
 import {LoginCredentials} from '../../../../../model/loginCredentials';
+import {HeaderComponent} from './components/header';
+import {FormComponent} from './components/form';
 
 interface IProps {
-    loginCredentials: LoginCredentials;
-    updateLoginInfo: (loginCredentials: LoginCredentials) => void;
-    loginRequest: (loginCredentials: LoginCredentials) => void;
+  loginCredentials: LoginCredentials;
+  updateLoginInfo: (loginCredentials: LoginCredentials) => void;
+  loginRequest: (loginCredentials: LoginCredentials) => void;
 }
 
 export const LoginFormComponent = (props: IProps) => {
-    return(
-        <div className="panel-body">
-          <form role="form">
-            <fieldset>
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  placeholder="E-mail"
-                  name="email"
-                  type="text"
-                  value={props.loginCredentials.login}
-                  onChange={(e : any) => props.updateLoginInfo({login: e.target.value, password: props.loginCredentials.password })}
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={props.loginCredentials.password}
-                  onChange={(e : any) => props.updateLoginInfo({login: props.loginCredentials.login, password: e.target.value })}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-lg btn-success btn-block"
-                onClick={() => props.loginRequest(props.loginCredentials)}
-              >
-                Login
-              </button>
-          </fieldset>
-        </form>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-4 col-md-offset-4">
+          <div className="panel panel-default">
+            <HeaderComponent />
+            <FormComponent
+              loginCredentials={props.loginCredentials}
+              updateLoginInfo={props.updateLoginInfo}
+              loginRequest={props.loginRequest}
+            />
+          </div>
+        </div>
       </div>
-    );
+    </div>
+  );
 };
