@@ -6,9 +6,6 @@ import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from './../../../../../model/loginResponse';
 import { loginActionEnums } from './../../../../../common/actionEnums/login';
 import { loginRequestCompleted } from '../loginRequest';
-import { expect } from 'chai';
-import {} from 'mocha';
-import {} from 'core-js';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
@@ -20,17 +17,19 @@ describe('loginRequestCompleted', () => {
     expect(loginRequestCompleted).not.to.be.undefined;
   });
 
-  it('contains the expected type USERPROFILE_PERFORM_LOGIN', () => {
+  it('contains the expected type LOGIN_REQUEST', () => {
+    // Act
+    const actionResult = loginRequestCompleted(null);
+
     // Assert
-    expect(loginRequestCompleted(new LoginResponse).type).to.be.equals(loginActionEnums.USERPROFILE_PERFORM_LOGIN);
+    expect(actionResult.type).to.equals(loginActionEnums.LOGIN_REQUEST);
   });
 
   it('contains the expected payload including the login response', () => {
     // Arrange
-    const loginResponse : LoginResponse =
-    {
+    const loginResponse: LoginResponse = {
       succeded: false,
-      userProfile: new UserProfile()
+      userProfile: new UserProfile(),
     };
 
     // Act
@@ -38,23 +37,21 @@ describe('loginRequestCompleted', () => {
 
     // Assert
     expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload).to.be.equal(loginResponse);
+    expect(actionResult.payload).to.equal(loginResponse);
   });
-})
+});
 
 describe('loginRequestStarted', () => {
   it('should be defined', () => {
-    //Assert
+    // Assert
     expect(loginRequestStarted).not.to.be.undefined;
   });
 
-  it('should return request action type completed', sinon.test((done) => {
+  it('should return request action type completed', () => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
-    const loginCredentials : LoginCredentials =
-    {
+    const loginCredentials: LoginCredentials = {
       login: 'admin',
-      password: 'test'
+      password: 'test',
     };
 
     // Act
@@ -62,48 +59,26 @@ describe('loginRequestStarted', () => {
     store.dispatch(loginRequestStarted(loginCredentials))
       .then(() => {
           // Assert
-          expect(store.getActions()[0].type).to.be.equal(loginActionEnums.USERPROFILE_PERFORM_LOGIN);
-          done();
+          expect(store.getActions()[0].type).to.equal(loginActionEnums.LOGIN_REQUEST);
       });
-  }).bind(this));
+  });
 
-  it('should return request action type completed', sinon.test((done) => {
+  it('should return expected login Response', sinon.test(() => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
-    const loginCredentials : LoginCredentials =
-    {
+    const sinon: sinon.SinonStatic = this;
+
+    const loginCredentials: LoginCredentials = {
       login: 'admin',
-      password: 'test'
-    };
-
-    // Act
-    const store = mockStore([]);
-    store.dispatch(loginRequestStarted(loginCredentials))
-      .then(() => {
-          // Assert
-          expect(store.getActions()[0].type).to.be.equal(loginActionEnums.USERPROFILE_PERFORM_LOGIN);
-          done();
-      });
-  }).bind(this));
-
-  it('should return expected login Response', sinon.test((done) => {
-    // Arrange
-    const sinon : sinon.SinonStatic = this;
-
-    const loginCredentials : LoginCredentials =
-    {
-      login: 'admin',
-      password: 'test'
+      password: 'test',
     };
 
     const loginStub = sinon.stub(LoginApi, 'login');
 
     loginStub.returns({
-      then: callback => {
+      then: (callback) => {
         callback(loginCredentials);
-      }
+      },
     });
-
 
     // Act
     const store = mockStore([]);
@@ -112,34 +87,33 @@ describe('loginRequestStarted', () => {
           // Assert
           expect(store.getActions()[0].payload).to.be.equal(loginCredentials);
           expect(loginStub.called).to.be.true;
-          done();
       });
   }).bind(this));
 
-  it('should called navigateToHomeBasedOnRole', sinon.test((done) => {
+  it('should called navigateToHomeBasedOnRole when login response equals true', sinon.test(() => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
+    const sinon: sinon.SinonStatic = this;
 
-    const loginCredentials : LoginCredentials =
-    {
+    const loginCredentials: LoginCredentials = {
       login: 'admin',
-      password: 'test'
+      password: 'test',
     };
 
-    const loginResponse : LoginResponse =
-    {
+    const userProfile = new UserProfile();
+    userProfile.role = 'test';
+
+    const loginResponse: LoginResponse = {
       succeded: true,
-      userProfile: new UserProfile()
-    }
+      userProfile,
+    };
 
     const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
 
     navigateToHomeBasedOnRoleStub.returns({
-      then: callback => {
+      then: (callback) => {
         callback(loginResponse.userProfile.role);
-      }
+      },
     });
-
 
     // Act
     const store = mockStore([]);
@@ -147,18 +121,7 @@ describe('loginRequestStarted', () => {
       .then(() => {
           // Assert
           expect(navigateToHomeBasedOnRoleStub.called).to.be.true;
-          done();
+          expect(navigateToHomeBasedOnRoleStub.calledWith('/test')).to.be.true;
       });
   }).bind(this));
-
-  it('shouldnt called navigateToHomeBasedOnRole', sinon.test(() => {
-    // Arrange
-    const sinon: sinon.SinonStatic = this;
-
-    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
-    // Act
-    // Assert
-    expect(navigateToHomeBasedOnRoleStub.called).to.be.false;
-  }).bind(this));
-
-})
+});

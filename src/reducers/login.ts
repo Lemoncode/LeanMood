@@ -4,38 +4,39 @@ import { LoginCredentials } from './../model/loginCredentials';
 import { loginActionEnums } from './../common/actionEnums/login';
 
 export class LoginState {
-  editingLogin : LoginCredentials;
-  isUserLoggedIn : boolean;
-  userProfile : UserProfile;
+  public editingLogin: LoginCredentials;
+  public isUserLoggedIn: boolean;
+  public userProfile: UserProfile;
 
   constructor() {
     this.editingLogin = new LoginCredentials();
     this.isUserLoggedIn = false;
     this.userProfile = new UserProfile();
   }
-}
+};
 
-
-export const loginReducer = (state: LoginState = new LoginState, action) => {
-  switch(action.type) {
-    case loginActionEnums.USERPROFILE_UPDATE_EDITING_LOGIN:
+export const loginReducer = (state: LoginState = new LoginState(), action) => {
+  switch (action.type) {
+    case loginActionEnums.LOGIN_CONTENT_CHANGED:
       return handleUpdateEditingLogin(state, action.payload);
-    case loginActionEnums.USERPROFILE_PERFORM_LOGIN:
+    case loginActionEnums.LOGIN_REQUEST:
       return handlePerformLogin(state, action.payload);
+    default:
+      return state;
   }
-  return state;
-}
+};
 
-const handleUpdateEditingLogin = (state : LoginState, payload : LoginCredentials) => {
-  const newState = Object.assign({}, state, {editingLogin: payload})
-  return newState;
-}
+const handleUpdateEditingLogin = (state: LoginState, payload: LoginCredentials) => {
+  return {
+    ...state,
+    editingLogin: payload,
+  };
+};
 
 const handlePerformLogin = (state: LoginState, payload: LoginResponse) => {
-  const newState = Object.assign({}, state, 
-                  {
-                    isUserLoggedIn: payload.succeded, 
-                    userProfile: payload.userProfile
-                  })
-  return newState;
-}
+  return {
+    ...state,
+    isUserLoggedIn: payload.succeded,
+    userProfile: payload.userProfile,
+  };
+};
