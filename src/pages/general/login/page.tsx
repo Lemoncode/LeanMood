@@ -3,24 +3,12 @@ import {Link} from 'react-router';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
 import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
 import { LoginCredentials } from '../../../model/loginCredentials';
-import { LoginFormComponent } from './components/loginForm';
-import { CenteredContainer } from '../../../common/components/centered';
-interface Props {
-  loginCredentials: LoginCredentials,
-  updateLoginInfo: (loginCredentials:LoginCredentials) => void;
-  performLogin: (loginCredentials: LoginCredentials) => void;
-}
+import { LoginFormContainerComponent } from './components/loginForm';
 
-export const LoginPage = (props: Props) => {
+export const LoginPage = () => {
     return (
       <div>
-        <CenteredContainer>
-          <LoginFormComponent 
-              loginCredentials={props.loginCredentials}
-              updateLoginInfo={ props.updateLoginInfo }
-              performLogin={ () => props.performLogin(props.loginCredentials) } 
-              />
-        </CenteredContainer>
+        <LoginFormContainerComponent />
         <footer className="footer">
           <span> Login: </span>
           <br/>
@@ -41,4 +29,4 @@ export const LoginPage = (props: Props) => {
         </footer>
       </div>
     );
-}
+};
