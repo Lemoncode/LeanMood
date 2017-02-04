@@ -1,21 +1,21 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {DashboardComponent, IDashboardItem, dashboardIcons} from '../../../common/components/dashboard';
+import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
+const classNames: any = require('./pageStyles.scss');
 
-interface IProps extends React.Props<DashboardPage> {
-}
-
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
-export class DashboardPage extends React.Component<IProps, {}> {
+export class DashboardPage extends React.Component<{}, {}> {
+  private dashboardItems: IDashboardItem[] = [
+    {icon: dashboardIcons.evaluation, name: 'Student evaluation', linkTo: trainerRouteEnums.evaluation},
+    {icon: dashboardIcons.trainings, name: 'Trainings', linkTo: trainerRouteEnums.default},
+  ];
    public render() {
-       return (
-         <div>
-           <span> Dashboard page: </span>
-           <br/>
-           <br/>
-           <Link to="/trainers/evaluation">Go to student evaluation</Link>
-           <Link to="/trainers/">Go back to training</Link>
-         </div>
-        );
+     return (
+       <div>
+         <h3 className={classNames.title}>Trainer dashboard</h3>
+         <DashboardComponent
+           items={this.dashboardItems}
+         />
+       </div>
+      );
   }
 }

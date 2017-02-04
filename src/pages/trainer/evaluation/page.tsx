@@ -1,19 +1,15 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
+import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
 
-interface IProps extends React.Props<EvaluationPage> {
-}
-
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
-export class EvaluationPage extends React.Component<IProps, {}> {
+export class EvaluationPage extends React.Component<{}, {}> {
    public render() {
        return (
          <div>
            <span>--- Evaluation page: </span>
            <br/>
            <br/>
-           <Link to="/trainers/dashboard">Go back to dashboard</Link>
+           <Link to={trainerRouteEnums.dashboard}>Go back to dashboard</Link>
          </div>
         );
   }

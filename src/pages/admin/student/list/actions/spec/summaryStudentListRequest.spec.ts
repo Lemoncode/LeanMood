@@ -1,17 +1,13 @@
-import { expect } from 'chai';
-import {} from 'mocha'
-import {} from 'core-js'
 import ReduxThunk from 'redux-thunk';
-import configureStore from 'redux-mock-store'
+import configureStore from 'redux-mock-store';
 
-import {adminActionEnums} from '../../../../../../common/actionEnums/admin'
-import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest'
-import { StudentSummary} from '../../../../../../model/studentSummary'
-import { studentApi } from '../../../../../../rest-api'
+import {adminActionEnums} from '../../../../../../common/actionEnums/admin';
+import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
+import { StudentSummary} from '../../../../../../model/studentSummary';
+import { studentApi } from '../../../../../../rest-api';
 
 const middlewares = [ ReduxThunk ];
 const mockStore = configureStore(middlewares);
-
 
 describe('summaryStudentListRequestCompleted', () => {
   it('is defined', () => {
@@ -21,22 +17,23 @@ describe('summaryStudentListRequestCompleted', () => {
 
   it('contains the expected type GET_SUMMARY_STUDENT_REQUEST_COMPLETED', () => {
     // Assert
-    expect(summaryStudentListRequestCompleted([]).type).to.be.equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
+    expect(summaryStudentListRequestCompleted([]).type).to.be
+      .equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
   });
 
   it('contains the expected payload including the student summary list', () => {
     // Arrange
-    const students : StudentSummary[] = [
+    const students: StudentSummary[] = [
       {
         id: 2,
         fullname: 'John Doe',
-        email: 'test@test.com'
+        email: 'test@test.com',
       },
       {
         id: 3,
         fullname: 'Mark Somez',
-        email: 'mark@test.com'
-      }
+        email: 'mark@test.com',
+      },
     ];
 
     // Act
@@ -47,7 +44,7 @@ describe('summaryStudentListRequestCompleted', () => {
     expect(actionResult.payload.length).equal(2);
     expect(actionResult.payload).eql(students);
   });
-})
+});
 
 describe('summaryStudentListRequestStarted', () => {
   it('should be defined', () => {
@@ -57,7 +54,7 @@ describe('summaryStudentListRequestStarted', () => {
 
   it('should return request action type completed', sinon.test((done) => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
+    const sinon: sinon.SinonStatic = this;
 
     // Act
     const store = mockStore([]);
@@ -71,27 +68,27 @@ describe('summaryStudentListRequestStarted', () => {
 
   it('should return expected student summary data', sinon.test((done) => {
     // Arrange
-    const sinon : sinon.SinonStatic = this;
+    const sinon: sinon.SinonStatic = this;
 
-    const students : StudentSummary[] = [
+    const students: StudentSummary[] = [
       {
         id: 2,
         fullname: 'John Doe',
-        email: 'test@test.com'
+        email: 'test@test.com',
       },
       {
         id: 3,
         fullname: 'Mark Somez',
-        email: 'mark@test.com'
-      }
+        email: 'mark@test.com',
+      },
     ];
 
     const getSummaryStudentListStub = sinon.stub(studentApi, 'getSummaryStudentList');
 
     getSummaryStudentListStub.returns({
-      then: callback => {
+      then: (callback) => {
         callback(students);
-      }
+      },
     });
     
     // Act
@@ -104,6 +101,4 @@ describe('summaryStudentListRequestStarted', () => {
           done();
       });
   }).bind(this));
-
-
 });

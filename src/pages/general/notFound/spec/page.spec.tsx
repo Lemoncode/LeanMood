@@ -1,11 +1,10 @@
-import {expect} from "chai";
-import {shallow} from "enzyme";
-import * as React from "react";
-import {multilineTrim} from "../../../../common/parse/multilineTrim";
-import {NotFoundPage} from "../page";
+import {shallow} from 'enzyme';
+import * as React from 'react';
+import {multilineTrim} from '../../../../common/parse/multilineTrim';
+import {NotFoundPage} from '../page';
 
-describe("general/notFound/page", () => {
-  it("is defined", () => {
+describe('general/notFound/page', () => {
+  it('is defined', () => {
     // Arrange
 
     // Act
@@ -17,7 +16,7 @@ describe("general/notFound/page", () => {
     expect(page).not.to.be.undefined;
   });
 
-  it("renders as expected", () => {
+  it('renders as expected', () => {
     // Arrange
 
     // Act

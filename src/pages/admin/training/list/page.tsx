@@ -1,15 +1,14 @@
-import * as React from "react";
-import {Link} from "react-router";
-import { TrainingSummary } from "../../../../model/trainingSummary";
-import { TrainingTableComponent } from "../list/components/trainingTable";
+import * as React from 'react';
+import {Link} from 'react-router';
+import { TrainingSummary } from '../../../../model/trainingSummary';
+import { TrainingTableComponent } from '../list/components/trainingTable';
+import {adminRouteEnums} from '../../../../common/routeEnums/admin';
 
 interface IProps extends React.Props<ListTrainingPage> {
   trainingList: TrainingSummary[];
   fetchTrainings: () => void;
 }
 
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
 export class ListTrainingPage extends React.Component<IProps, {}> {
   public componentDidMount() {
      this.props.fetchTrainings();
@@ -19,7 +18,7 @@ export class ListTrainingPage extends React.Component<IProps, {}> {
     return (
       <div>
         <TrainingTableComponent trainingList={this.props.trainingList}/>
-        <Link to="/admin/training/edit">Go to training Edit</Link>
+        <Link to={adminRouteEnums.training.edit}>Go to training Edit</Link>
       </div>
     );
   }

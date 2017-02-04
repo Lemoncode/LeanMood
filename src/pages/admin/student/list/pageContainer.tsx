@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
-import { IAppState } from "../../../../reducers";
-import { summaryStudentListRequestStarted } from "./actions/summaryStudentListRequest";
-import { ListStudentPage } from "./page";
+import { connect } from 'react-redux';
+import { IAppState } from '../../../../reducers';
+import { summaryStudentListRequestStarted } from './actions/summaryStudentListRequest';
+import { ListStudentPage } from './page';
 
 const mapStateToProps = (state: IAppState) => ({
     studentList :   state.adminStudent.studentSummaryList,
