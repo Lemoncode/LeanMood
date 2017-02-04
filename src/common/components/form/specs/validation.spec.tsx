@@ -19,6 +19,8 @@ describe('ValidationComponent', () => {
     const expectedComponent = `
       <div class="form-group">
         <h1>test field</h1>
+        <div class="help-block">
+        </div>
       </div>
     `;
     // Act
@@ -37,6 +39,9 @@ describe('ValidationComponent', () => {
     const expectedComponent = `
       <div class="form-group has-error">
         <h1>test field</h1>
+        <div class="help-block">
+          This is a error
+        </div>
       </div>
     `;
     // Act

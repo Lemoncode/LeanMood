@@ -14,6 +14,9 @@ export class ValidationComponent extends React.Component<IProps, {}> {
     return (
       <div className={wrapperClass}>
         {this.props.children}
+        <div className="help-block">
+          {this.props.error}
+        </div>
       </div>
     );
   }
