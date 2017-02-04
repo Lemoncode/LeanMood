@@ -27,7 +27,7 @@ describe('FormComponent', () => {
         expect(loginFormComponent).not.to.be.undefined;
     });
 
-    it('Should display login Credentials', () => {
+    it('should renders as expected', () => {
         // Arrange
         const loginCredentials = new LoginCredentials();
         loginCredentials.login = 'admin';
@@ -36,38 +36,39 @@ describe('FormComponent', () => {
         const onChangeSpy = sinon.spy();
         const onClickSpy = sinon.spy();
 
-        const expectedDomTree = `
+        const expectedEmailInput = `
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" class="form-control" placeholder="E-mail" value="admin"
+            />
+            <div class="help-block">
+            </div>
+          </div>
+        `;
+
+        const expectedPasswordInput = `
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" value="test"
+            />
+            <div class="help-block">
+            </div>
+          </div>
+        `;
+        const expectedComponent = `
           <div class="panel-body">
             <form role="form">
-              <fieldset>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="E-mail"
-                    name="email"
-                    value="admin"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                    name="password"
-                    value="test"
-                  />
-                </div>
-                <button type="submit" class="btn btn-lg btn-success btn-block">
-                  Login
-                </button>
-              </fieldset>
+              ${expectedEmailInput}
+              ${expectedPasswordInput}
+              <button type="submit" class="btn btn-lg btn-success btn-block">
+                Login
+              </button>
             </form>
           </div>
-          `;
+        `;
 
         // Act
-        const loginFormComponent = shallow(
+        const component = shallow(
           <FormComponent
             loginCredentials={loginCredentials}
             loginRequest={onClickSpy}
@@ -76,6 +77,6 @@ describe('FormComponent', () => {
         );
 
         // Assert
-        expect(loginFormComponent.html()).to.equal(multilineTrim(expectedDomTree));
+        expect(component.html()).to.equal(multilineTrim(expectedComponent));
     });
 });

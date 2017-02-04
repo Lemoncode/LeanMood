@@ -9,33 +9,50 @@ interface IProps {
 }
 
 export const FormComponent = (props: IProps) => {
+  const updateLogin = (e) => {
+    const login = e.target.value;
+    props.updateLoginInfo({
+      login,
+      password: props.loginCredentials.password,
+    });
+  };
+
+  const updatePassword = (e) => {
+    const password = e.target.value;
+    props.updateLoginInfo({
+      login: props.loginCredentials.login,
+      password,
+    });
+  };
+
+  const loginRequest = (e) => {
+    e.preventDefault();
+    props.loginRequest(props.loginCredentials);
+  };
+
   return (
     <div className="panel-body">
       <form role="form">
-        <div className="form-group">
-          <InputComponent
-            type="text"
-            label="E-mail"
-            placeholder="E-mail"
-            name="email"
-            value={props.loginCredentials.login}
-            onChange={(e : any) => props.updateLoginInfo({login: e.target.value, password: props.loginCredentials.password })}
-          />
-        </div>
-        <div className="form-group">
-          <InputComponent
-            type="password"
-            label="Password"
-            placeholder="Password"
-            name="password"
-            value={props.loginCredentials.login}
-            onChange={(e : any) => props.updateLoginInfo({login: e.target.value, password: props.loginCredentials.password })}
-          />
-        </div>
+        <InputComponent
+          type="text"
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          value={props.loginCredentials.login}
+          onChange={updateLogin.bind(this)}
+        />
+        <InputComponent
+          type="password"
+          label="Password"
+          placeholder="Password"
+          name="password"
+          value={props.loginCredentials.password}
+          onChange={updatePassword.bind(this)}
+        />
         <button
           type="submit"
           className="btn btn-lg btn-success btn-block"
-          onClick={() => props.loginRequest(props.loginCredentials)}
+          onClick={loginRequest.bind(this)}
         >
           Login
         </button>
