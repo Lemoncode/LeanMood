@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Header} from '../header';
+import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
+import {HeaderComponent} from '../header';
 
 describe('Header LoginFormComponent', () => {
   it('should be defined', () => {
@@ -8,7 +9,7 @@ describe('Header LoginFormComponent', () => {
 
     // Act
     const component = shallow(
-      <Header />,
+      <HeaderComponent />,
     );
     // Assert
     expect(component).not.to.be.undefined;
@@ -24,9 +25,9 @@ describe('Header LoginFormComponent', () => {
 
     // Act
     const component = shallow(
-      <Header />,
+      <HeaderComponent />,
     );
     // Assert
-    expect(component).not.to.be.undefined;
+    expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 });

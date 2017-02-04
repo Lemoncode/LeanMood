@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const Header = () => {
+export const HeaderComponent = () => {
   return (
     <div className="panel-heading">
       <h3 className="panel-title">
