@@ -2,29 +2,43 @@ import * as React from 'react';
 import {Link} from 'react-router';
 import {adminRouteEnums} from '../../../common/routeEnums/admin';
 import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
+import { LoginCredentials } from '../../../model/loginCredentials';
+import { LoginFormComponent } from './components/loginForm';
+import { CenteredContainer } from '../../../common/components/centered';
+interface Props {
+  loginCredentials: LoginCredentials,
+  updateLoginInfo: (loginCredentials:LoginCredentials) => void;
+  performLogin: (loginCredentials: LoginCredentials) => void;
+}
 
-export class LoginPage extends React.Component<{}, {}> {
-   public render() {
-       return (
-          <div>
-            <span> Login: </span>
-             <br/>
+export const LoginPage = (props: Props) => {
+    return (
+      <div>
+        <CenteredContainer>
+          <LoginFormComponent 
+              loginCredentials={props.loginCredentials}
+              updateLoginInfo={ props.updateLoginInfo }
+              performLogin={ () => props.performLogin(props.loginCredentials) } 
+              />
+        </CenteredContainer>
+        <footer className="footer">
+          <span> Login: </span>
+          <br/>
              <span> Navigation Skeleton:</span><Link to={adminRouteEnums.default}>Go to admin MODULE</Link>
-             <br/>
-             <span> Navigation Skeleton:</span><Link to="/students">Go to students MODULE</Link>
-             <span>*****</span>
-             <br/>
-             <br/>
+          <br/>
+          <span> Navigation Skeleton:</span><Link to="/students">Go to students MODULE</Link>
+          <span>*****</span>
+          <br/>
+          <br/>
              <span> Navigation Skeleton:</span><Link to={trainerRouteEnums.default}>Go to trainers MODULE</Link>
-             <span>*****</span>
-             <br/>
-             <Link to="/nonexistingpage">Navigate to a 404 page.</Link>
-             <br/>
-             <br/>
-             <span> PENDING Trainers module navigation, any volunteer?</span>
-             <br/>
-
-          </div>
-       );
-  }
+          <span>*****</span>
+          <br/>
+          <Link to="/nonexistingpage">Navigate to a 404 page.</Link>
+          <br/>
+          <br/>
+          <span> PENDING Trainers module navigation, any volunteer?</span>
+          <br/>
+        </footer>
+      </div>
+    );
 }
