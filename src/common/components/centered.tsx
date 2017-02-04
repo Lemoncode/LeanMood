@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-interface Props {
-    children? : any;
+interface IProps {
+  children?: any;
 }
 
-export const CenteredContainer = (props:Props) => {
+export const CenteredContainer = (props: IProps) => {
     return (
         <div className="container">
           <div className="row">
@@ -16,4 +16,4 @@ export const CenteredContainer = (props:Props) => {
           </div>
       </div>
     );
-}
+};

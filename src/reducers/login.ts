@@ -18,25 +18,21 @@ export class LoginState {
 export const loginReducer = (state: LoginState = new LoginState(), action) => {
   switch (action.type) {
     case loginActionEnums.LOGIN_CONTENT_CHANGED:
-      return handleUpdateEditingLogin(state, action.payload);
+      return handleLoginContentChanged(state, action.payload);
     case loginActionEnums.LOGIN_REQUEST:
-      return handlePerformLogin(state, action.payload);
+      return handleLoginRequest(state, action.payload);
     default:
       return state;
   }
 };
 
-const handleUpdateEditingLogin = (state: LoginState, payload: LoginCredentials) => {
-  return {
-    ...state,
-    editingLogin: payload,
-  };
-};
+const handleLoginContentChanged = (state: LoginState, payload: LoginCredentials) => ({
+  ...state,
+  editingLogin: payload,
+});
 
-const handlePerformLogin = (state: LoginState, payload: LoginResponse) => {
-  return {
-    ...state,
-    isUserLoggedIn: payload.succeded,
-    userProfile: payload.userProfile,
-  };
-};
+const handleLoginRequest = (state: LoginState, payload: LoginResponse) => ({
+  ...state,
+  isUserLoggedIn: payload.succeded,
+  userProfile: payload.userProfile,
+});

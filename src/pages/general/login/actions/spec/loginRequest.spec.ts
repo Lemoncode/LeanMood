@@ -1,11 +1,10 @@
 import { navigationHelper } from '../../helper/navigateBasedOnRole';
 import { LoginApi } from './../../../../../rest-api/login';
 import { LoginCredentials } from './../../../../../model/loginCredentials';
-import { loginRequestStarted } from './../loginRequest';
 import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from './../../../../../model/loginResponse';
 import { loginActionEnums } from './../../../../../common/actionEnums/login';
-import { loginRequestCompleted } from '../loginRequest';
+import { loginRequestStartedAction, loginRequestCompletedAction } from '../loginRequest';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
@@ -14,12 +13,12 @@ const mockStore = configureStore(middlewares);
 
 describe('loginRequestCompleted', () => {
   it('is defined', () => {
-    expect(loginRequestCompleted).not.to.be.undefined;
+    expect(loginRequestCompletedAction).not.to.be.undefined;
   });
 
   it('contains the expected type LOGIN_REQUEST', () => {
     // Act
-    const actionResult = loginRequestCompleted(null);
+    const actionResult = loginRequestCompletedAction(null);
 
     // Assert
     expect(actionResult.type).to.equals(loginActionEnums.LOGIN_REQUEST);
@@ -33,7 +32,7 @@ describe('loginRequestCompleted', () => {
     };
 
     // Act
-    const actionResult = loginRequestCompleted(loginResponse);
+    const actionResult = loginRequestCompletedAction(loginResponse);
 
     // Assert
     expect(actionResult.payload).not.to.be.undefined;
@@ -44,7 +43,7 @@ describe('loginRequestCompleted', () => {
 describe('loginRequestStarted', () => {
   it('should be defined', () => {
     // Assert
-    expect(loginRequestStarted).not.to.be.undefined;
+    expect(loginRequestStartedAction).not.to.be.undefined;
   });
 
   it('should return request action type completed', () => {
@@ -56,7 +55,7 @@ describe('loginRequestStarted', () => {
 
     // Act
     const store = mockStore([]);
-    store.dispatch(loginRequestStarted(loginCredentials))
+    store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
           expect(store.getActions()[0].type).to.equal(loginActionEnums.LOGIN_REQUEST);
@@ -82,7 +81,7 @@ describe('loginRequestStarted', () => {
 
     // Act
     const store = mockStore([]);
-    store.dispatch(loginRequestStarted(loginCredentials))
+    store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
           expect(store.getActions()[0].payload).to.be.equal(loginCredentials);
@@ -117,7 +116,7 @@ describe('loginRequestStarted', () => {
 
     // Act
     const store = mockStore([]);
-    store.dispatch(loginRequestStarted(loginCredentials))
+    store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
           expect(navigateToHomeBasedOnRoleStub.called).to.be.true;

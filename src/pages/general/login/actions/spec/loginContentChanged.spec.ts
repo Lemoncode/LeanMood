@@ -1,15 +1,15 @@
 import { LoginCredentials } from './../../../../../model/loginCredentials';
 import {loginActionEnums} from '../../../../../common/actionEnums/login';
-import { updateEditingLogin } from './../updateEditingLogin';
+import { loginContentChangedAction } from './../loginContentChanged';
 
-describe('updateEditingLogin', () => {
+describe('loginContentChanged', () => {
   it('is defined', () => {
-    expect(updateEditingLogin).not.to.be.undefined;
+    expect(loginContentChangedAction).not.to.be.undefined;
   });
 
   it('contains the expected type LOGIN_CONTENT_CHANGED', () => {
     // Act
-    const actionResult = updateEditingLogin(null);
+    const actionResult = loginContentChangedAction(null);
 
     // Assert
     expect(actionResult.type).to.be.equals(loginActionEnums.LOGIN_CONTENT_CHANGED);
@@ -23,7 +23,7 @@ describe('updateEditingLogin', () => {
     };
 
     // Act
-    const actionResult = updateEditingLogin(loginCredentials);
+    const actionResult = loginContentChangedAction(loginCredentials);
 
     // Assert
     expect(actionResult.payload).not.to.be.undefined;
