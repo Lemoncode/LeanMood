@@ -90,7 +90,7 @@ describe('summaryStudentListRequestStarted', () => {
         callback(students);
       },
     });
-    
+
     // Act
     const store = mockStore([]);
     store.dispatch(summaryStudentListRequestStarted())
