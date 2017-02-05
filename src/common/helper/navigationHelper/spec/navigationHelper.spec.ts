@@ -1,33 +1,29 @@
-import { expect } from 'chai';
-import {} from 'mocha';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import * as router from 'react-router';
 import { hashHistory } from 'react-router';
-
-import { navigationHelper } from '../navigateBasedOnRole';
+import { navigationHelper } from '../index';
 
 const middlewares = [ ReduxThunk ];
 const mockStore = configureStore(middlewares);
 
 describe('navigateBasedOnRole', () => {
   it('should be defined', () => {
-    // Arrange
-    // Act
     // Assert
     expect(navigationHelper).not.to.be.undefined;
   });
 
-  it('should navigate to role userProfile', sinon.test(() => {
+  it('should navigate to path', sinon.test(() => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
-    let hashHistoryStub = sinon.stub(hashHistory, 'push');
+    const hashHistoryStub = sinon.stub(hashHistory, 'push');
 
-    navigationHelper.navigateToHomeBasedOnRole('/admin');
+    // Act
+    navigationHelper.navigateToPath('/testPath');
 
     // Assert
     expect(hashHistoryStub.called).to.be.true;
-    
+    expect(hashHistoryStub.calledWith('/testPath')).to.be.true;
   }).bind(this));
 });

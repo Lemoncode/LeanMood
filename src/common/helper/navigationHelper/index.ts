@@ -1,8 +1,8 @@
 import { hashHistory } from 'react-router';
 
 class NavigationHelper {
-  navigateToHomeBasedOnRole = (pathRole: string) => {
-    hashHistory.push(`${pathRole}`);
+  public navigateToPath = (path: string) => {
+    hashHistory.push(`${path}`);
   }
 }
 

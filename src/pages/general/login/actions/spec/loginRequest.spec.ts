@@ -1,4 +1,4 @@
-import { navigationHelper } from '../../helper/navigateBasedOnRole';
+import { navigationHelper } from '../../../../../common/helper/navigationHelper';
 import { loginApi } from '../../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from './../../../../../model/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
@@ -91,7 +91,7 @@ describe('loginRequestStarted', () => {
       });
   }).bind(this));
 
-  it('should called navigateToHomeBasedOnRole when login response equals true', sinon.test((done) => {
+  it('should called navigateToPath when login response equals true', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -115,7 +115,7 @@ describe('loginRequestStarted', () => {
       },
     });
 
-    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
+    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToPath');
 
     navigateToHomeBasedOnRoleStub.returns({
       then: (callback) => {

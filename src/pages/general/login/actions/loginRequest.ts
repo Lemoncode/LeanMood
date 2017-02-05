@@ -2,7 +2,7 @@ import { loginApi } from '../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from './../../../../model/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from './../../../../model/loginResponse';
-import { navigationHelper } from '../helper/navigateBasedOnRole';
+import { navigationHelper } from '../../../../common/helper/navigationHelper/';
 
 export const loginRequestStartedAction = (loginCredentials: LoginCredentials) => {
   return (dispatcher) => {
@@ -12,7 +12,7 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
       dispatcher(loginRequestCompletedAction(data));
 
       if (data.succeded) {
-        navigationHelper.navigateToHomeBasedOnRole(`/${data.userProfile.role}`);
+        navigationHelper.navigateToPath(`/${data.userProfile.role}`);
       }
     });
 
