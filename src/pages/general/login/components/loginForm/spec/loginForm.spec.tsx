@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
+import {FieldValidationResult} from 'lc-form-validation';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { LoginCredentials } from '../../../../../../model/login/loginCredentials';
+import {ILoginErrors} from '../../../../../../model/login/loginErrors';
 import { LoginFormComponent } from '../loginForm';
 
 describe('LoginFormComponent', () => {
@@ -11,6 +13,11 @@ describe('LoginFormComponent', () => {
       loginCredentials.login = 'admin';
       loginCredentials.password = 'test';
 
+      const loginErrors: ILoginErrors = {
+        login: new FieldValidationResult(),
+        password: new FieldValidationResult(),
+      };
+
       const onChangeSpy = sinon.spy();
       const onClickSpy = sinon.spy();
 
@@ -18,6 +25,7 @@ describe('LoginFormComponent', () => {
       const component = shallow(
         <LoginFormComponent
           loginCredentials={loginCredentials}
+          loginErrors={loginErrors}
           loginRequest={onClickSpy}
           updateLoginInfo={onChangeSpy}
         />,
@@ -32,6 +40,11 @@ describe('LoginFormComponent', () => {
       const loginCredentials = new LoginCredentials();
       loginCredentials.login = 'admin';
       loginCredentials.password = 'test';
+
+      const loginErrors: ILoginErrors = {
+        login: new FieldValidationResult(),
+        password: new FieldValidationResult(),
+      };
 
       const onChangeSpy = sinon.spy();
       const onClickSpy = sinon.spy();
@@ -93,6 +106,7 @@ describe('LoginFormComponent', () => {
       const component = shallow(
         <LoginFormComponent
           loginCredentials={loginCredentials}
+          loginErrors={loginErrors}
           loginRequest={onClickSpy}
           updateLoginInfo={onChangeSpy}
         />,
@@ -107,6 +121,11 @@ describe('LoginFormComponent', () => {
       loginCredentials.login = 'admin';
       loginCredentials.password = 'test';
 
+      const loginErrors: ILoginErrors = {
+        login: new FieldValidationResult(),
+        password: new FieldValidationResult(),
+      };
+
       const onChangeSpy = sinon.spy();
       const onClickSpy = sinon.spy();
 
@@ -114,6 +133,7 @@ describe('LoginFormComponent', () => {
       const component = shallow(
         <LoginFormComponent
           loginCredentials={loginCredentials}
+          loginErrors={loginErrors}
           loginRequest={onClickSpy}
           updateLoginInfo={onChangeSpy}
         />,
@@ -130,6 +150,11 @@ describe('LoginFormComponent', () => {
       loginCredentials.login = 'admin';
       loginCredentials.password = 'test';
 
+      const loginErrors: ILoginErrors = {
+        login: new FieldValidationResult(),
+        password: new FieldValidationResult(),
+      };
+
       const onChangeSpy = sinon.spy();
       const onClickSpy = sinon.spy();
 
@@ -137,6 +162,7 @@ describe('LoginFormComponent', () => {
       const component = shallow(
         <LoginFormComponent
           loginCredentials={loginCredentials}
+          loginErrors={loginErrors}
           loginRequest={onClickSpy}
           updateLoginInfo={onChangeSpy}
         />,

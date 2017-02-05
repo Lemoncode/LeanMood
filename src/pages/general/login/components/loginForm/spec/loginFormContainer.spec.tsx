@@ -16,6 +16,14 @@ describe('LoginFormContainerComponent', () => {
     const mockStore: any = createStore({
       login: {
         editingLogin: {},
+        loginErrors: {
+          login: {
+            errorMessage: '',
+          },
+          password: {
+            errorMessage: '',
+          },
+        },
       },
     });
 
@@ -45,6 +53,14 @@ describe('LoginFormContainerComponent', () => {
         editingLogin: {
           login: 'test login',
           password: 'test password',
+        },
+        loginErrors: {
+          login: {
+            errorMessage: '',
+          },
+          password: {
+            errorMessage: '',
+          },
         },
       },
     });

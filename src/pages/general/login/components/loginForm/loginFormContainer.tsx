@@ -6,7 +6,8 @@ import {loginContentChangedStartedAction} from '../../actions/loginContentChange
 import {loginRequestStartedAction} from '../../actions/loginRequest';
 
 const mapStateToProps = (state: IAppState) => ({
-  loginCredentials : state.login.editingLogin,
+  loginCredentials: state.login.editingLogin,
+  loginErrors: state.login.loginErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

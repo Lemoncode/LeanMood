@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {LoginCredentials} from '../../../../../../model/login/loginCredentials';
+import {ILoginErrors} from '../../../../../../model/login/loginErrors';
 import {InputComponent} from '../../../../../../common/components/form';
 
 interface IProps {
   loginCredentials: LoginCredentials;
+  loginErrors: ILoginErrors;
   updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) => void;
   loginRequest: (loginCredentials: LoginCredentials) => void;
 }
@@ -30,6 +32,7 @@ export const FormComponent = (props: IProps) => {
           name="login"
           value={props.loginCredentials.login}
           onChange={updateLoginInfo.bind(this)}
+          error={props.loginErrors.login.succeeded ? '' : props.loginErrors.login.errorMessage}
         />
         <InputComponent
           type="password"
@@ -38,6 +41,7 @@ export const FormComponent = (props: IProps) => {
           name="password"
           value={props.loginCredentials.password}
           onChange={updateLoginInfo.bind(this)}
+          error={props.loginErrors.password.succeeded ? '' : props.loginErrors.password.errorMessage}
         />
         <button
           type="submit"
