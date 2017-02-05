@@ -12,15 +12,15 @@ class LoginValidation extends BaseFormValidation {
       { formFieldName: 'password', vmFieldName: 'password' },
     ]);
 
-    this._validationEngine
-      .addFieldValidation(
-        'email',
-        requiredValidationHandler,
-      )
-      .addFieldValidation(
-        'password',
-        requiredValidationHandler,
-      );
+    this._validationEngine.addFieldValidation(
+      'email',
+      requiredValidationHandler,
+    );
+
+    this._validationEngine.addFieldValidation(
+      'password',
+      requiredValidationHandler,
+    );
   }
 }
 
