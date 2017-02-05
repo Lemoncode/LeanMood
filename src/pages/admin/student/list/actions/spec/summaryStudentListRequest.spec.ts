@@ -1,12 +1,9 @@
-import { expect } from 'chai';
-import { } from 'mocha';
-import { } from 'core-js';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
-import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
+import {adminActionEnums} from '../../../../../../common/actionEnums/admin';
 import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
-import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentSummary} from '../../../../../../model/studentSummary';
 import { studentApi } from '../../../../../../rest-api';
 
 const middlewares = [ReduxThunk];
@@ -20,8 +17,8 @@ describe('summaryStudentListRequestCompleted', () => {
 
   it('contains the expected type GET_SUMMARY_STUDENT_REQUEST_COMPLETED', () => {
     // Assert
-    expect(summaryStudentListRequestCompleted([]).type)
-      .to.be.equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
+    expect(summaryStudentListRequestCompleted([]).type).to.be
+      .equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
   });
 
   it('contains the expected payload including the student summary list', () => {
@@ -104,5 +101,4 @@ describe('summaryStudentListRequestStarted', () => {
         done();
       });
   }).bind(this));
-
 });
