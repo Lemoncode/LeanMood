@@ -9,6 +9,7 @@ export class AdminStudentState {
 
   public constructor() {
     this.studentSummaryList = [];
+    this.editingStudent = new Student();
   }
 }
 
@@ -18,6 +19,8 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
       return handleGetSummaryStudentRequestCompleted(state, action.payload);
     case adminActionEnums.GET_STUDENT_REQUEST_COMPLETED:
       return handleGetStudentRequestCompleted(state, action.payload);
+    case adminActionEnums.POST_STUDENT_REQUEST_COMPLETED:
+      return handlePostStudentRequestCompleted(state, action.payload);
     default:
   }
 
@@ -34,4 +37,9 @@ const handleGetStudentRequestCompleted =
   (state: AdminStudentState, payload: Student) => {
     const newState = Object.assign({}, state, { editingStudent: payload });
     return newState;
+  };
+
+const handlePostStudentRequestCompleted =
+  (state: AdminStudentState, payload: boolean) => {
+    return state;
   };
