@@ -27,7 +27,7 @@ export const FormComponent = (props: IProps) => {
           type="text"
           label="E-mail"
           placeholder="E-mail"
-          name="email"
+          name="login"
           value={props.loginCredentials.login}
           onChange={updateLoginInfo.bind(this)}
         />

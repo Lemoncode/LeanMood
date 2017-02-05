@@ -1,3 +1,4 @@
+import {FieldValidationResult} from 'lc-form-validation';
 import { UserProfile } from '../../../model/userProfile';
 import { LoginResponse } from '../../../model/login/loginResponse';
 import { loginActionEnums } from '../../../common/actionEnums/login';
@@ -26,18 +27,19 @@ describe('loginReducer', () => {
   });
 
   it(`should return a new state including new LoginCredentials when
-    passing a LOGIN_CONTENT_CHANGED`, () => {
+    passing a LOGIN_CONTENT_CHANGED and fieldName equals login`, () => {
     // Arrange
     const originalState = new LoginState();
-
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
+    const loginValidationResult = new FieldValidationResult();
+    loginValidationResult.succeeded = true;
 
     const actionResult = {
       type: loginActionEnums.LOGIN_CONTENT_CHANGED,
-      payload: loginCredentials,
+      payload: {
+        fieldName: 'login',
+        value: 'test',
+        fieldValidationResult: loginValidationResult,
+      },
     };
 
     // Act
@@ -45,7 +47,34 @@ describe('loginReducer', () => {
     const newState = loginReducer(originalState, actionResult);
 
     // Assert
-    expect(newState.editingLogin).to.equal(loginCredentials);
+    expect(newState.editingLogin.login).to.equal(actionResult.payload.value);
+    expect(newState.loginErrors.login.succeeded).to.equal(loginValidationResult.succeeded);
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return a new state including new LoginCredentials when
+    passing a LOGIN_CONTENT_CHANGED and fieldName equals password`, () => {
+    // Arrange
+    const originalState = new LoginState();
+    const loginValidationResult = new FieldValidationResult();
+    loginValidationResult.succeeded = true;
+
+    const actionResult = {
+      type: loginActionEnums.LOGIN_CONTENT_CHANGED,
+      payload: {
+        fieldName: 'password',
+        value: 'test',
+        fieldValidationResult: loginValidationResult,
+      },
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const newState = loginReducer(originalState, actionResult);
+
+    // Assert
+    expect(newState.editingLogin.password).to.equal(actionResult.payload.value);
+    expect(newState.loginErrors.password.succeeded).to.equal(loginValidationResult.succeeded);
     expect(originalState).to.be.frozen;
   });
 

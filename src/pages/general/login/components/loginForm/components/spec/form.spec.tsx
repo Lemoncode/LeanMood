@@ -38,8 +38,8 @@ describe('FormComponent', () => {
 
       const expectedEmailInput = `
         <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="text" name="email" class="form-control" placeholder="E-mail" value="admin"
+          <label for="login">E-mail</label>
+          <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"
           />
           <div class="help-block">
           </div>
