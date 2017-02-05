@@ -1,5 +1,5 @@
 import { navigationHelper } from '../../helper/navigateBasedOnRole';
-import { LoginApi } from './../../../../../rest-api/login';
+import { loginApi } from '../../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from './../../../../../model/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from './../../../../../model/loginResponse';
@@ -71,7 +71,7 @@ describe('loginRequestStarted', () => {
       password: 'test',
     };
 
-    const loginStub = sinon.stub(LoginApi, 'login');
+    const loginStub = sinon.stub(loginApi, 'login');
 
     loginStub.returns({
       then: (callback) => {

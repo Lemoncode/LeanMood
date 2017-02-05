@@ -1,4 +1,4 @@
-import { LoginApi } from './../../../../rest-api/login';
+import { loginApi } from '../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from './../../../../model/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from './../../../../model/loginResponse';
@@ -6,7 +6,7 @@ import { navigationHelper } from '../helper/navigateBasedOnRole';
 
 export const loginRequestStartedAction = (loginCredentials: LoginCredentials) => {
   return (dispatcher) => {
-    const promise = LoginApi.login(loginCredentials);
+    const promise = loginApi.login(loginCredentials);
 
     promise.then((data) => {
       dispatcher(loginRequestCompletedAction(data));

@@ -9,7 +9,7 @@ import { TrainingListPage } from './training/list/page';
 // http://randycoulman.com/blog/2016/02/02/composing-routes-in-react-router/
 export const StudentsRoutes = (
   <div>
-    <Route path="students" component={TrainingListPage}/>
-    <Route path="/students/maintoc/" component={MainTocPage}/>
+    <Route path="/student" component={TrainingListPage}/>
+    <Route path="/student/maintoc/" component={MainTocPage}/>
   </div>
 );
