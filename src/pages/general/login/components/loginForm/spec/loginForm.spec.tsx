@@ -8,169 +8,171 @@ import { LoginFormComponent } from '../loginForm';
 
 describe('LoginFormComponent', () => {
   it('should be defined', () => {
-      // Arrange
-      const loginCredentials = new LoginCredentials();
-      loginCredentials.login = 'admin';
-      loginCredentials.password = 'test';
+    // Arrange
+    const loginCredentials = new LoginCredentials();
+    loginCredentials.login = 'admin';
+    loginCredentials.password = 'test';
 
-      const loginErrors: ILoginErrors = {
-        login: new FieldValidationResult(),
-        password: new FieldValidationResult(),
-      };
+    const loginErrors: ILoginErrors = {
+      login: new FieldValidationResult(),
+      password: new FieldValidationResult(),
+    };
 
-      const onChangeSpy = sinon.spy();
-      const onClickSpy = sinon.spy();
+    const onChangeSpy = sinon.spy();
+    const onClickSpy = sinon.spy();
 
-      // Act
-      const component = shallow(
-        <LoginFormComponent
-          loginCredentials={loginCredentials}
-          loginErrors={loginErrors}
-          loginRequest={onClickSpy}
-          updateLoginInfo={onChangeSpy}
-        />,
-      );
+    // Act
+    const component = shallow(
+      <LoginFormComponent
+        loginCredentials={loginCredentials}
+        loginErrors={loginErrors}
+        loginRequest={onClickSpy}
+        updateLoginInfo={onChangeSpy}
+      />,
+    );
 
-      // Assert
-      expect(component).not.to.be.undefined;
+    // Assert
+    expect(component).not.to.be.undefined;
   });
 
   it('should renders as expected', () => {
-      // Arrange
-      const loginCredentials = new LoginCredentials();
-      loginCredentials.login = 'admin';
-      loginCredentials.password = 'test';
+    // Arrange
+    const loginCredentials = new LoginCredentials();
+    loginCredentials.login = 'admin';
+    loginCredentials.password = 'test';
 
-      const loginErrors: ILoginErrors = {
-        login: new FieldValidationResult(),
-        password: new FieldValidationResult(),
-      };
+    const loginErrors: ILoginErrors = {
+      login: new FieldValidationResult(),
+      password: new FieldValidationResult(),
+    };
 
-      const onChangeSpy = sinon.spy();
-      const onClickSpy = sinon.spy();
+    const onChangeSpy = sinon.spy();
+    const onClickSpy = sinon.spy();
 
-      const expectedHeader = `
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <p>Please sign in</p>
-            <p>(login: admin | trainer | student / pwd: test)</p>
-          </h3>
+    const expectedHeader = `
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <p>Please sign in</p>
+          <p>(login: admin | trainer | student / pwd: test)</p>
+        </h3>
+      </div>
+    `;
+
+    const expectedEmailInput = `
+      <div class="form-group">
+        <label for="login">E-mail</label>
+        <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"
+        />
+        <div class="help-block">
         </div>
-      `;
+      </div>
+    `;
 
-      const expectedEmailInput = `
-        <div class="form-group">
-          <label for="login">E-mail</label>
-          <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"
-          />
-          <div class="help-block">
-          </div>
+    const expectedPasswordInput = `
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" value="test"
+        />
+        <div class="help-block">
         </div>
-      `;
+      </div>
+    `;
+    const expectedForm = `
+      <div class="panel-body">
+        <form role="form">
+          ${expectedEmailInput}
+          ${expectedPasswordInput}
+          <button type="submit" class="btn btn-lg btn-success btn-block">
+            Login
+          </button>
+        </form>
+      </div>
+    `;
 
-      const expectedPasswordInput = `
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="Password" value="test"
-          />
-          <div class="help-block">
-          </div>
-        </div>
-      `;
-      const expectedForm = `
-        <div class="panel-body">
-          <form role="form">
-            ${expectedEmailInput}
-            ${expectedPasswordInput}
-            <button type="submit" class="btn btn-lg btn-success btn-block">
-              Login
-            </button>
-          </form>
-        </div>
-      `;
-
-      const expectedComponent = `
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-              <div class="panel panel-default">
-                ${expectedHeader}
-                ${expectedForm}
-              </div>
+    const expectedComponent = `
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+              ${expectedHeader}
+              ${expectedForm}
             </div>
           </div>
         </div>
-      `;
+      </div>
+    `;
 
-      // Act
-      const component = shallow(
-        <LoginFormComponent
-          loginCredentials={loginCredentials}
-          loginErrors={loginErrors}
-          loginRequest={onClickSpy}
-          updateLoginInfo={onChangeSpy}
-        />,
-      );
+    // Act
+    const component = shallow(
+      <LoginFormComponent
+        loginCredentials={loginCredentials}
+        loginErrors={loginErrors}
+        loginRequest={onClickSpy}
+        updateLoginInfo={onChangeSpy}
+      />,
+    );
 
-      // Assert
-      expect(component.html()).to.equal(multilineTrim(expectedComponent));
+    // Assert
+    expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 
-  it('calls to updateLoginInfo', () => {      // Arrange
-      const loginCredentials = new LoginCredentials();
-      loginCredentials.login = 'admin';
-      loginCredentials.password = 'test';
+  it('calls to updateLoginInfo', () => {
+    // Arrange
+    const loginCredentials = new LoginCredentials();
+    loginCredentials.login = 'admin';
+    loginCredentials.password = 'test';
 
-      const loginErrors: ILoginErrors = {
-        login: new FieldValidationResult(),
-        password: new FieldValidationResult(),
-      };
+    const loginErrors: ILoginErrors = {
+      login: new FieldValidationResult(),
+      password: new FieldValidationResult(),
+    };
 
-      const onChangeSpy = sinon.spy();
-      const onClickSpy = sinon.spy();
+    const onChangeSpy = sinon.spy();
+    const onClickSpy = sinon.spy();
 
-      // Act
-      const component = shallow(
-        <LoginFormComponent
-          loginCredentials={loginCredentials}
-          loginErrors={loginErrors}
-          loginRequest={onClickSpy}
-          updateLoginInfo={onChangeSpy}
-        />,
-      );
+    // Act
+    const component = shallow(
+      <LoginFormComponent
+        loginCredentials={loginCredentials}
+        loginErrors={loginErrors}
+        loginRequest={onClickSpy}
+        updateLoginInfo={onChangeSpy}
+      />,
+    );
 
-      component.find('div.panel').childAt(1).prop('updateLoginInfo')();
+    component.find('div.panel').childAt(1).prop('updateLoginInfo')();
 
-      // Assert
-      expect(onChangeSpy.called).to.be.true;
+    // Assert
+    expect(onChangeSpy.called).to.be.true;
   });
 
-  it('calls to loginRequest', () => {      // Arrange
-      const loginCredentials = new LoginCredentials();
-      loginCredentials.login = 'admin';
-      loginCredentials.password = 'test';
+  it('calls to loginRequest', () => {
+    // Arrange
+    const loginCredentials = new LoginCredentials();
+    loginCredentials.login = 'admin';
+    loginCredentials.password = 'test';
 
-      const loginErrors: ILoginErrors = {
-        login: new FieldValidationResult(),
-        password: new FieldValidationResult(),
-      };
+    const loginErrors: ILoginErrors = {
+      login: new FieldValidationResult(),
+      password: new FieldValidationResult(),
+    };
 
-      const onChangeSpy = sinon.spy();
-      const onClickSpy = sinon.spy();
+    const onChangeSpy = sinon.spy();
+    const onClickSpy = sinon.spy();
 
-      // Act
-      const component = shallow(
-        <LoginFormComponent
-          loginCredentials={loginCredentials}
-          loginErrors={loginErrors}
-          loginRequest={onClickSpy}
-          updateLoginInfo={onChangeSpy}
-        />,
-      );
+    // Act
+    const component = shallow(
+      <LoginFormComponent
+        loginCredentials={loginCredentials}
+        loginErrors={loginErrors}
+        loginRequest={onClickSpy}
+        updateLoginInfo={onChangeSpy}
+      />,
+    );
 
-      component.find('div.panel').childAt(1).prop('loginRequest')();
+    component.find('div.panel').childAt(1).prop('loginRequest')();
 
-      // Assert
-      expect(onClickSpy.called).to.be.true;
+    // Assert
+    expect(onClickSpy.called).to.be.true;
   });
 });
