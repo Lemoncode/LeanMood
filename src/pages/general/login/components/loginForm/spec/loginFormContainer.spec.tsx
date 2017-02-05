@@ -19,8 +19,8 @@ describe('LoginFormContainerComponent', () => {
       },
     });
 
-    const loginContentChangedCompletedActionStub = sinon.stub(loginContentChanged,
-    'loginContentChangedCompletedAction', () => ({ type: 'dummy' }));
+    const loginContentChangedStartedActionStub = sinon.stub(loginContentChanged,
+    'loginContentChangedStartedAction', () => ({ type: 'dummy' }));
 
     const loginRequestStartedActionStub = sinon.stub(loginRequest,
     'loginRequestStartedAction', () => ({ type: 'dummy' }));
@@ -49,8 +49,8 @@ describe('LoginFormContainerComponent', () => {
       },
     });
 
-    const loginContentChangedCompletedActionStub = sinon.stub(loginContentChanged,
-    'loginContentChangedCompletedAction', () => ({ type: 'dummy' }));
+    const loginContentChangedStartedActionStub = sinon.stub(loginContentChanged,
+    'loginContentChangedStartedAction', () => ({ type: 'dummy' }));
 
     const loginRequestStartedActionStub = sinon.stub(loginRequest,
     'loginRequestStartedAction', () => ({ type: 'dummy' }));

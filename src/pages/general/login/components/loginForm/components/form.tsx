@@ -4,25 +4,15 @@ import {InputComponent} from '../../../../../../common/components/form';
 
 interface IProps {
   loginCredentials: LoginCredentials;
-  updateLoginInfo: (loginCredentials: LoginCredentials) => void;
+  updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) => void;
   loginRequest: (loginCredentials: LoginCredentials) => void;
 }
 
 export const FormComponent = (props: IProps) => {
-  const updateLogin = (e) => {
-    const login = e.target.value;
-    props.updateLoginInfo({
-      login,
-      password: props.loginCredentials.password,
-    });
-  };
-
-  const updatePassword = (e) => {
-    const password = e.target.value;
-    props.updateLoginInfo({
-      login: props.loginCredentials.login,
-      password,
-    });
+  const updateLoginInfo = (e) => {
+    const fieldName = e.target.name;
+    const value = e.target.value;
+    props.updateLoginInfo(props.loginCredentials, fieldName, value);
   };
 
   const loginRequest = (e) => {
@@ -39,7 +29,7 @@ export const FormComponent = (props: IProps) => {
           placeholder="E-mail"
           name="email"
           value={props.loginCredentials.login}
-          onChange={updateLogin.bind(this)}
+          onChange={updateLoginInfo.bind(this)}
         />
         <InputComponent
           type="password"
@@ -47,7 +37,7 @@ export const FormComponent = (props: IProps) => {
           placeholder="Password"
           name="password"
           value={props.loginCredentials.password}
-          onChange={updatePassword.bind(this)}
+          onChange={updateLoginInfo.bind(this)}
         />
         <button
           type="submit"

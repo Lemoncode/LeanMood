@@ -5,7 +5,7 @@ import {FormComponent} from './components/form';
 
 interface IProps {
   loginCredentials: LoginCredentials;
-  updateLoginInfo: (loginCredentials: LoginCredentials) => void;
+  updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) => void;
   loginRequest: (loginCredentials: LoginCredentials) => void;
 }
 

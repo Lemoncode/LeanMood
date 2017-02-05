@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {IAppState} from '../../../../../reducers';
 import {LoginCredentials} from '../../../../../model/login/loginCredentials';
 import {LoginFormComponent} from './loginForm';
-import {loginContentChangedCompletedAction} from '../../actions/loginContentChanged';
+import {loginContentChangedStartedAction} from '../../actions/loginContentChanged';
 import {loginRequestStartedAction} from '../../actions/loginRequest';
 
 const mapStateToProps = (state: IAppState) => ({
@@ -10,7 +10,8 @@ const mapStateToProps = (state: IAppState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateLoginInfo: (loginCredentials: LoginCredentials) => (dispatch(loginContentChangedCompletedAction(null, null, null))),
+  updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) =>
+    (dispatch(loginContentChangedStartedAction(viewModel, fieldName, value))),
   loginRequest: (loginCredentials: LoginCredentials) => (dispatch(loginRequestStartedAction(loginCredentials))),
 });
 
