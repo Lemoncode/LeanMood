@@ -1,8 +1,8 @@
-import { UserProfile } from './../../model/userProfile';
-import { LoginResponse } from './../../model/loginResponse';
-import { loginActionEnums } from './../../common/actionEnums/login';
-import { LoginCredentials } from './../../model/loginCredentials';
-import { loginReducer, LoginState } from './../login';
+import { UserProfile } from '../../../model/userProfile';
+import { LoginResponse } from '../../../model/loginResponse';
+import { loginActionEnums } from '../../../common/actionEnums/login';
+import { LoginCredentials } from '../../../model/loginCredentials';
+import { loginReducer, LoginState } from '../index';
 
 describe('loginReducer', () => {
   it('should be defined', () => {

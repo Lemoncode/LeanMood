@@ -1,7 +1,7 @@
-import { UserProfile } from './../model/userProfile';
-import { LoginResponse } from './../model/loginResponse';
-import { LoginCredentials } from './../model/loginCredentials';
-import { loginActionEnums } from './../common/actionEnums/login';
+import { UserProfile } from '../../model/userProfile';
+import { LoginResponse } from '../../model/loginResponse';
+import { LoginCredentials } from '../../model/loginCredentials';
+import { loginActionEnums } from './../../common/actionEnums/login';
 
 export class LoginState {
   public editingLogin: LoginCredentials;
