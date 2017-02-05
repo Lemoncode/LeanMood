@@ -46,7 +46,7 @@ describe('loginRequestStarted', () => {
     expect(loginRequestStartedAction).not.to.be.undefined;
   });
 
-  it('should return request action type completed', () => {
+  it('should return request action type completed', (done) => {
     // Arrange
     const loginCredentials: LoginCredentials = {
       login: 'admin',
@@ -59,10 +59,11 @@ describe('loginRequestStarted', () => {
       .then(() => {
           // Assert
           expect(store.getActions()[0].type).to.equal(loginActionEnums.LOGIN_REQUEST);
+          done();
       });
   });
 
-  it('should return expected login Response', sinon.test(() => {
+  it('should return expected login Response', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -86,10 +87,11 @@ describe('loginRequestStarted', () => {
           // Assert
           expect(store.getActions()[0].payload).to.be.equal(loginCredentials);
           expect(loginStub.called).to.be.true;
+          done();
       });
   }).bind(this));
 
-  it('should called navigateToHomeBasedOnRole when login response equals true', sinon.test(() => {
+  it('should called navigateToHomeBasedOnRole when login response equals true', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -106,6 +108,13 @@ describe('loginRequestStarted', () => {
       userProfile,
     };
 
+    const loginStub = sinon.stub(loginApi, 'login');
+    loginStub.returns({
+      then: (callback) => {
+        callback(loginResponse);
+      },
+    });
+
     const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToHomeBasedOnRole');
 
     navigateToHomeBasedOnRoleStub.returns({
@@ -121,6 +130,7 @@ describe('loginRequestStarted', () => {
           // Assert
           expect(navigateToHomeBasedOnRoleStub.called).to.be.true;
           expect(navigateToHomeBasedOnRoleStub.calledWith('/test')).to.be.true;
+          done();
       });
   }).bind(this));
 });
