@@ -1,7 +1,6 @@
-import {} from 'mocha';
 import {LoginCredentials} from '../../../model/login/loginCredentials';
 import {LoginResponse} from '../../../model/login/loginResponse';
-import {loginMockResponses} from '../loginMockData';
+import * as loginMockData from '../loginMockData';
 import {loginApi} from '../loginAPI';
 
 describe('loginApi', () => {
@@ -47,11 +46,21 @@ describe('loginApi', () => {
   });
 
   it(`returns loginResponse.succeded equals true and loginResponse.userProfile.role equals admin
-    when pass admin credentials`, (done) => {
+    when pass admin credentials`, sinon.test((done) => {
     // Arrange
+    const sinon: sinon.SinonStatic = this;
+
     const loginCredentials = new LoginCredentials();
     loginCredentials.login = 'admin';
     loginCredentials.password = 'test';
+
+    const expectedLoginMockResponses = [
+      { succeded: true, userProfile: { id: 1, fullname: 'Admin', role: 'admin', email: 'admin'} },
+    ];
+
+    const loginMockDataStub = sinon.stub(loginMockData,
+      'loginMockResponses', expectedLoginMockResponses,
+    );
 
     // Act
     const result = loginApi.login(loginCredentials);
@@ -59,8 +68,8 @@ describe('loginApi', () => {
     result.then((loginResponse) => {
       // Assert
       expect(loginResponse.succeded).to.be.true;
-      expect(loginResponse.userProfile).to.equal(loginMockResponses[0].userProfile);
+      expect(loginResponse.userProfile).to.equal(expectedLoginMockResponses[0].userProfile);
       done();
     });
-  });
+  }).bind(this));
 });
