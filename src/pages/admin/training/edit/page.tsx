@@ -1,8 +1,7 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
+import {adminRouteEnums} from '../../../../common/routeEnums/admin';
 
-// <Link to="/students/training">Go to students</Link>
-// <Link to="/students/training">Go to trainings</Link>
 export class EditTrainingPage extends React.Component<{}, {}> {
    public render() {
        return (
@@ -10,9 +9,8 @@ export class EditTrainingPage extends React.Component<{}, {}> {
            <span> Edit Training Page: </span>
            <br/>
            <br/>
-           <Link to="/admin/training/list">Back to training list</Link>
-           <Link to="/admin">Back to Dashboard</Link>
-
+           <Link to={adminRouteEnums.training.list}>Back to training list</Link>
+           <Link to={adminRouteEnums.default}>Back to Dashboard</Link>
          </div>
         );
   }
