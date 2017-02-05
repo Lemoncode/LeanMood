@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { multilineTrim } from '../../../../../../../common/parse/multilineTrim';
-import { LoginCredentials } from '../../../../../../../model/loginCredentials';
+import { LoginCredentials } from '../../../../../../../model/login/loginCredentials';
 import { FormComponent } from '../form';
 
 describe('FormComponent', () => {

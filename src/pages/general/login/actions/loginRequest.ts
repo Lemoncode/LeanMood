@@ -1,7 +1,7 @@
 import { loginApi } from '../../../../rest-api/login/loginAPI';
-import { LoginCredentials } from './../../../../model/loginCredentials';
+import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
-import { LoginResponse } from './../../../../model/loginResponse';
+import { LoginResponse } from '../../../../model/login/loginResponse';
 import { navigationHelper } from '../../../../common/helper/navigationHelper/';
 
 export const loginRequestStartedAction = (loginCredentials: LoginCredentials) => {

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {IAppState} from '../../../../../reducers';
-import {LoginCredentials} from '../../../../../model/loginCredentials';
+import {LoginCredentials} from '../../../../../model/login/loginCredentials';
 import {LoginFormComponent} from './loginForm';
 import {loginContentChangedAction} from '../../actions/loginContentChanged';
 import {loginRequestStartedAction} from '../../actions/loginRequest';

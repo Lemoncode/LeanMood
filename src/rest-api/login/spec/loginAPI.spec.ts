@@ -1,6 +1,6 @@
 import {} from 'mocha';
-import {LoginCredentials} from '../../../model/loginCredentials';
-import {LoginResponse} from '../../../model/loginResponse';
+import {LoginCredentials} from '../../../model/login/loginCredentials';
+import {LoginResponse} from '../../../model/login/loginResponse';
 import {loginMockResponses} from '../loginMockData';
 import {loginApi} from '../loginAPI';
 

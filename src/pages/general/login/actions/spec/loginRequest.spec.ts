@@ -1,8 +1,8 @@
 import { navigationHelper } from '../../../../../common/helper/navigationHelper';
 import { loginApi } from '../../../../../rest-api/login/loginAPI';
-import { LoginCredentials } from './../../../../../model/loginCredentials';
+import { LoginCredentials } from '../../../../../model/login/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
-import { LoginResponse } from './../../../../../model/loginResponse';
+import { LoginResponse } from '../../../../../model/login/loginResponse';
 import { loginActionEnums } from './../../../../../common/actionEnums/login';
 import { loginRequestStartedAction, loginRequestCompletedAction } from '../loginRequest';
 import ReduxThunk from 'redux-thunk';

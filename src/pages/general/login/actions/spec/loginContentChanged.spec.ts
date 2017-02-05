@@ -1,4 +1,4 @@
-import { LoginCredentials } from './../../../../../model/loginCredentials';
+import { LoginCredentials } from '../../../../../model/login/loginCredentials';
 import {loginActionEnums} from '../../../../../common/actionEnums/login';
 import { loginContentChangedAction } from './../loginContentChanged';
 

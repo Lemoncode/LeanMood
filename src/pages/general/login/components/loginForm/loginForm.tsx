@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {LoginCredentials} from '../../../../../model/loginCredentials';
+import {LoginCredentials} from '../../../../../model/login/loginCredentials';
 import {HeaderComponent} from './components/header';
 import {FormComponent} from './components/form';
 

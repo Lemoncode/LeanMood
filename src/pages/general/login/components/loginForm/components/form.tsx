@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {LoginCredentials} from '../../../../../../model/loginCredentials';
+import {LoginCredentials} from '../../../../../../model/login/loginCredentials';
 import {InputComponent} from '../../../../../../common/components/form';
 
 interface IProps {

@@ -1,6 +1,6 @@
 import { UserProfile } from '../../model/userProfile';
-import { LoginResponse } from '../../model/loginResponse';
-import { LoginCredentials } from '../../model/loginCredentials';
+import { LoginResponse } from '../../model/login/loginResponse';
+import { LoginCredentials } from '../../model/login/loginCredentials';
 import { loginActionEnums } from './../../common/actionEnums/login';
 
 export class LoginState {

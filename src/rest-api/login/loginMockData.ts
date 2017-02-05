@@ -1,4 +1,4 @@
-import {LoginResponse} from '../../model/loginResponse';
+import {LoginResponse} from '../../model/login/loginResponse';
 
 export const loginMockResponses: LoginResponse[] = [
   { succeded: true, userProfile: { id: 1, fullname: 'Admin', role: 'admin', email: 'admin'} },

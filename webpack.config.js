@@ -29,7 +29,8 @@ module.exports = {
       "react-router",
       "react-router-redux",
       "redux",
-      "redux-thunk"
+      "redux-thunk",
+      "lc-form-validation",
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',

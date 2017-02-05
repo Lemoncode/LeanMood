@@ -1,7 +1,7 @@
 import { UserProfile } from '../../../model/userProfile';
-import { LoginResponse } from '../../../model/loginResponse';
+import { LoginResponse } from '../../../model/login/loginResponse';
 import { loginActionEnums } from '../../../common/actionEnums/login';
-import { LoginCredentials } from '../../../model/loginCredentials';
+import { LoginCredentials } from '../../../model/login/loginCredentials';
 import { loginReducer, LoginState } from '../index';
 
 describe('loginReducer', () => {
