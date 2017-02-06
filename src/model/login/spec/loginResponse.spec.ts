@@ -11,7 +11,7 @@ describe('loginResponse', () => {
   });
 
   describe('#constructor', () => {
-    it('Is initializaed with default values', () => {
+    it('Is initialized with default values', () => {
       // Arrange
       const loginResponse = new LoginResponse();
 
