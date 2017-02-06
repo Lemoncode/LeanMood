@@ -31,10 +31,12 @@ module.exports = {
       "redux",
       "redux-thunk",
       "lc-form-validation",
+      "toastr",
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',
       '../node_modules/font-awesome/css/font-awesome.css',
+      '../node_modules/toastr/build/toastr.css',
     ]
   },
 	output: {
