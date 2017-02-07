@@ -1,34 +1,33 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
 import {multilineTrim} from '../../../../../../../../common/parse/multilineTrim';
-import {ItalicIcon} from '../italicIcon';
+import {Icon} from '../icon';
 
-describe('ItalicIcon', () => {
-  it('is defined', () => {
-    // Arrange
-
+describe('Icon', () => {
+  it('should be defined', () => {
     // Act
     const component = shallow(
-      <ItalicIcon />,
+      <Icon icon={null} />,
     );
 
     // Assert
     expect(component).not.to.be.undefined;
   });
 
-  it('is defined', () => {
+  it('should renders as expected', () => {
     // Arrange
+    const icon = 'test icon';
+
     const expectedComponent = `
-      <span class="glyphicon glyphicon-italic">
+      <span class="test icon">
       </span>
     `;
-
     // Act
     const component = shallow(
-      <ItalicIcon />,
+      <Icon icon={icon} />,
     );
 
     // Assert
-    expect(component.html()).to.equals(multilineTrim(expectedComponent));
+    expect(component.html()).to.equal(multilineTrim(expectedComponent));
   });
 });

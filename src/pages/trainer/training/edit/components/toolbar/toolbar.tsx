@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {ToolbarButton} from './buttons';
-import {
-  HeaderIcon, BoldIcon, ItalicIcon, CodeIcon, LinkIcon, ImageIcon,
-  BulletedListIcon, NumberedListIcon, QuoteIcon,
-} from './icons';
+import {Icon, iconEnums} from './icons';
 
 interface IProps {
   editor: HTMLTextAreaElement;
@@ -20,7 +17,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={1}
           onClick={props.updateEditor}
         >
-          <HeaderIcon />
+          <Icon icon={iconEnums.header} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -28,7 +25,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={2}
           onClick={props.updateEditor}
         >
-          <BoldIcon />
+          <Icon icon={iconEnums.bold} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -36,7 +33,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={1}
           onClick={props.updateEditor}
         >
-          <ItalicIcon />
+          <Icon icon={iconEnums.italic} />
         </ToolbarButton>
       </div>
       <div className="btn-group">
@@ -46,7 +43,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={1}
           onClick={props.updateEditor}
         >
-          <CodeIcon />
+          <Icon icon={iconEnums.code} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -54,7 +51,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={1}
           onClick={props.updateEditor}
         >
-          <LinkIcon />
+          <Icon icon={iconEnums.link} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -62,7 +59,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={12}
           onClick={props.updateEditor}
         >
-          <ImageIcon />
+          <Icon icon={iconEnums.image} />
         </ToolbarButton>
       </div>
       <div className="btn-group">
@@ -72,7 +69,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={4}
           onClick={props.updateEditor}
         >
-          <BulletedListIcon />
+          <Icon icon={iconEnums.bulletedList} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -80,7 +77,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={5}
           onClick={props.updateEditor}
         >
-          <NumberedListIcon />
+          <Icon icon={iconEnums.numberedList} />
         </ToolbarButton>
         <ToolbarButton
           editor={props.editor}
@@ -88,7 +85,7 @@ export const ToolbarComponent = (props: IProps) => {
           offset={2}
           onClick={props.updateEditor}
         >
-          <QuoteIcon />
+          <Icon icon={iconEnums.quote} />
         </ToolbarButton>
       </div>
     </div>

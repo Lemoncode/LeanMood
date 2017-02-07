@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
 import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
+import {iconEnums} from '../icons';
 import {ToolbarComponent} from '../toolbar';
 
 describe('ToolbarComponent', () => {
@@ -27,71 +28,63 @@ describe('ToolbarComponent', () => {
 
     const expectedHeaderButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-header">
+        <span class="${iconEnums.header}">
         </span>
       </button>
     `;
 
     const expectedBoldButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-bold">
+        <span class="${iconEnums.bold}">
         </span>
       </button>
     `;
 
     const expectedItalicButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-italic">
+        <span class="${iconEnums.italic}">
         </span>
       </button>
     `;
 
     const expectedCodeButton = `
       <button type="button" class="btn btn-default">
-        <div>
-          <span class="glyphicon glyphicon-menu-left">
-          </span>
-          <span class="glyphicon glyphicon-menu-right">
-          </span>
-        </div>
+        <span class="${iconEnums.code}">
+        </span>
       </button>
     `;
 
     const expectedLinkButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-link">
+        <span class="${iconEnums.link}">
         </span>
       </button>
     `;
 
     const expectedImageButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-picture">
+        <span class="${iconEnums.image}">
         </span>
       </button>
     `;
 
     const expectedBulletedListButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-th-list">
+        <span class="${iconEnums.bulletedList}">
         </span>
       </button>
     `;
 
     const expectedNumberedListButton = `
       <button type="button" class="btn btn-default">
-        <div>
-          <span class="glyphicon glyphicon-sort-by-order">
-          </span>
-          <span class="glyphicon glyphicon-menu-hamburger">
-          </span>
-        </div>
+      <span class="${iconEnums.numberedList}">
+      </span>
       </button>
     `;
 
     const expectedQuoteButton = `
       <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-menu-right">
+        <span class="${iconEnums.quote}">
         </span>
       </button>
     `;
