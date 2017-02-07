@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
 import {multilineTrim} from '../../../../../../../common/parse/multilineTrim';
-import {ToolbarComponent} from '../presentational';
+import {ToolbarComponent} from '../toolbar';
 
 describe('ToolbarComponent', () => {
   it('is defined', () => {

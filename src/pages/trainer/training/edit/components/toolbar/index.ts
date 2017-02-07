@@ -1,4 +1,4 @@
-import {ToolbarContainerComponent} from './container';
+import {ToolbarContainerComponent} from './toolbarContainer';
 
 export {
   ToolbarContainerComponent,

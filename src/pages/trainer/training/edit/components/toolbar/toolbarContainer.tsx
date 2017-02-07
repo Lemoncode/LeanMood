@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {ToolbarComponent} from './presentational';
+import {ToolbarComponent} from './toolbar';
 import {IAppState} from '../../../../../../reducers/';
 import {updateEditorAction} from '../../actions/updateEditor';
 

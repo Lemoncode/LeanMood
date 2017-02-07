@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import * as cheerio from 'cheerio';
 import * as updateEditor from '../../../actions/updateEditor';
-import {ToolbarContainerComponent} from '../container';
+import {ToolbarContainerComponent} from '../toolbarContainer';
 
 const createStore = configureStore();
 
