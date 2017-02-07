@@ -160,6 +160,7 @@ describe('loginRequestStarted', () => {
     });
 
     const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
+    const toastrRemoveStub = sinon.stub(toastr, 'remove');
     const toastrErrorStub = sinon.stub(toastr, 'error');
 
     navigateToPath.returns({
@@ -173,6 +174,7 @@ describe('loginRequestStarted', () => {
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
+          expect(toastrRemoveStub.called).to.be.true;
           expect(toastrErrorStub.called).to.be.false;
           done();
       });
@@ -203,6 +205,7 @@ describe('loginRequestStarted', () => {
     });
 
     const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
+    const toastrRemoveStub = sinon.stub(toastr, 'remove');
     const toastrErrorStub = sinon.stub(toastr, 'error');
 
     // Act
@@ -210,6 +213,7 @@ describe('loginRequestStarted', () => {
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
+          expect(toastrRemoveStub.called).to.be.true;
           expect(toastrErrorStub.called).to.be.true;
           expect(toastrErrorStub.calledWith('Please, review your email or password')).to.be.true;
           done();

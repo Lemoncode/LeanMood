@@ -9,6 +9,9 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
   return (dispatcher) => {
     const promise = loginApi.login(loginCredentials);
 
+    // Let's remove any previous toast
+    toastr.remove();
+
     promise.then((data) => {
       dispatcher(loginRequestCompletedAction(data));
 
