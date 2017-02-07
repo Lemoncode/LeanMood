@@ -1,3 +1,4 @@
+import * as toastr from 'toastr';
 import { navigationHelper } from '../../../../../common/helper/navigationHelper';
 import { loginApi } from '../../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from '../../../../../model/login/loginCredentials';
@@ -91,7 +92,7 @@ describe('loginRequestStarted', () => {
       });
   }).bind(this));
 
-  it('should called navigateToPath when login response equals true', sinon.test((done) => {
+  it('should calls to navigateToPath when login response equals true', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -115,9 +116,9 @@ describe('loginRequestStarted', () => {
       },
     });
 
-    const navigateToHomeBasedOnRoleStub = sinon.stub(navigationHelper, 'navigateToPath');
+    const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
 
-    navigateToHomeBasedOnRoleStub.returns({
+    navigateToPath.returns({
       then: (callback) => {
         callback(loginResponse.userProfile.role);
       },
@@ -128,8 +129,89 @@ describe('loginRequestStarted', () => {
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
           // Assert
-          expect(navigateToHomeBasedOnRoleStub.called).to.be.true;
-          expect(navigateToHomeBasedOnRoleStub.calledWith('/test')).to.be.true;
+          expect(navigateToPath.called).to.be.true;
+          expect(navigateToPath.calledWith('/test')).to.be.true;
+          done();
+      });
+  }).bind(this));
+
+  it('should does not call to toastr.error when login response equals true', sinon.test((done) => {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+
+    const loginCredentials: LoginCredentials = {
+      login: 'admin',
+      password: 'test',
+    };
+
+    const userProfile = new UserProfile();
+    userProfile.role = 'test';
+
+    const loginResponse: LoginResponse = {
+      succeded: true,
+      userProfile,
+    };
+
+    const loginStub = sinon.stub(loginApi, 'login');
+    loginStub.returns({
+      then: (callback) => {
+        callback(loginResponse);
+      },
+    });
+
+    const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
+    const toastrErrorStub = sinon.stub(toastr, 'error');
+
+    navigateToPath.returns({
+      then: (callback) => {
+        callback(loginResponse.userProfile.role);
+      },
+    });
+
+    // Act
+    const store = mockStore([]);
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+          // Assert
+          expect(toastrErrorStub.called).to.be.false;
+          done();
+      });
+  }).bind(this));
+
+  it('should calls to toastr.error when login response equals false', sinon.test((done) => {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+
+    const loginCredentials: LoginCredentials = {
+      login: 'admin',
+      password: 'test',
+    };
+
+    const userProfile = new UserProfile();
+    userProfile.role = 'test';
+
+    const loginResponse: LoginResponse = {
+      succeded: false,
+      userProfile,
+    };
+
+    const loginStub = sinon.stub(loginApi, 'login');
+    loginStub.returns({
+      then: (callback) => {
+        callback(loginResponse);
+      },
+    });
+
+    const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
+    const toastrErrorStub = sinon.stub(toastr, 'error');
+
+    // Act
+    const store = mockStore([]);
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+          // Assert
+          expect(toastrErrorStub.called).to.be.true;
+          expect(toastrErrorStub.calledWith('Please, review your email or password')).to.be.true;
           done();
       });
   }).bind(this));

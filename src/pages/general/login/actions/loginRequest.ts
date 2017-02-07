@@ -1,3 +1,4 @@
+import * as toastr from 'toastr';
 import { loginApi } from '../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
@@ -13,6 +14,8 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
 
       if (data.succeded) {
         navigationHelper.navigateToPath(`/${data.userProfile.role}`);
+      } else {
+        toastr.error('Please, review your email or password');
       }
     });
 
