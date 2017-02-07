@@ -18,8 +18,8 @@ describe('updateEditorAction', () => {
       return '';
     });
 
-    const caculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
-    'caculateStartCursorPositionPlusOffset', () => {
+    const calculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
+    'calculateStartCursorPositionPlusOffset', () => {
       return 0;
     });
 
@@ -47,8 +47,8 @@ describe('updateEditorAction', () => {
       return expectedContent;
     });
 
-    const caculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
-    'caculateStartCursorPositionPlusOffset', () => {
+    const calculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
+    'calculateStartCursorPositionPlusOffset', () => {
       return 0;
     });
 
@@ -61,7 +61,7 @@ describe('updateEditorAction', () => {
   }).bind(this));
 
   it(`returns expected payload.cursorStartPosition equals cursorStartPosition and calls to
-     caculateStartCursorPositionPlusOffset`,
+     calculateStartCursorPositionPlusOffset`,
     sinon.test(() => {
       // Arrange
       const sinon: sinon.SinonStatic = this;
@@ -79,8 +79,8 @@ describe('updateEditorAction', () => {
         return '';
       });
 
-      const caculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
-      'caculateStartCursorPositionPlusOffset', () => {
+      const calculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
+      'calculateStartCursorPositionPlusOffset', () => {
         return expectedCursorStart;
       });
 
@@ -89,6 +89,6 @@ describe('updateEditorAction', () => {
 
       // Assert
       expect(actionResult.payload.cursorStartPosition).to.equal(expectedCursorStart);
-      expect(caculateStartCursorPositionPlusOffsetStub.calledWith(editor, offset));
+      expect(calculateStartCursorPositionPlusOffsetStub.calledWith(editor, offset));
   }).bind(this));
 });

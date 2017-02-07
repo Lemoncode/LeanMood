@@ -3,7 +3,7 @@ import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
 
 export const updateEditorAction = (editor: HTMLTextAreaElement, caret: string, offset: number) => {
   const contentWithCaret = textAreaTool.insertAtCaretGetText(editor, caret, offset);
-  const cursorStartPosition = textAreaTool.caculateStartCursorPositionPlusOffset(editor, offset);
+  const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(editor, offset);
 
   return {
     type: trainerActionEnums.UPDATE_EDITOR,

@@ -54,7 +54,7 @@ class TextAreaTool {
     return selectedText.length > 0;
   }
 
-  public caculateStartCursorPositionPlusOffset(textArea: HTMLTextAreaElement, offsetCursor: number): number {
+  public calculateStartCursorPositionPlusOffset(textArea: HTMLTextAreaElement, offsetCursor: number): number {
     return (textArea.selectionStart + offsetCursor);
   }
 }

@@ -231,10 +231,10 @@ describe('textAreaTool', () => {
     });
   });
 
-  describe('caculateStartCursorPositionPlusOffset', () => {
+  describe('calculateStartCursorPositionPlusOffset', () => {
     it('is defined', () => {
       // Assert
-      expect(textAreaTool.caculateStartCursorPositionPlusOffset).not.to.be.undefined;
+      expect(textAreaTool.calculateStartCursorPositionPlusOffset).not.to.be.undefined;
     });
 
     it('returns 0 when selectionStart and offsetCursor equals 0', () => {
@@ -247,7 +247,7 @@ describe('textAreaTool', () => {
       const offsetCursor = 0;
 
       // Act
-      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+      const result = textAreaTool.calculateStartCursorPositionPlusOffset(textArea, offsetCursor);
 
       // Assert
       expect(result).to.equals(0);
@@ -263,7 +263,7 @@ describe('textAreaTool', () => {
       const offsetCursor = 0;
 
       // Act
-      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+      const result = textAreaTool.calculateStartCursorPositionPlusOffset(textArea, offsetCursor);
 
       // Assert
       expect(result).to.equals(1);
@@ -279,7 +279,7 @@ describe('textAreaTool', () => {
       const offsetCursor = 1;
 
       // Act
-      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+      const result = textAreaTool.calculateStartCursorPositionPlusOffset(textArea, offsetCursor);
 
       // Assert
       expect(result).to.equals(2);
@@ -295,7 +295,7 @@ describe('textAreaTool', () => {
       const offsetCursor = -1;
 
       // Act
-      const result = textAreaTool.caculateStartCursorPositionPlusOffset(textArea, offsetCursor);
+      const result = textAreaTool.calculateStartCursorPositionPlusOffset(textArea, offsetCursor);
 
       // Assert
       expect(result).to.equals(0);
