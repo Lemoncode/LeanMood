@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { IndexRoute, Route } from 'react-router';
 import { LoginPage } from './login/page';
 

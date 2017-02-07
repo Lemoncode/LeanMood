@@ -1,0 +1,4 @@
+export const loginActionEnums = {
+  LOGIN_CONTENT_CHANGED: 'LOGIN_CONTENT_CHANGED',
+  LOGIN_REQUEST : 'LOGIN_REQUEST',
+};
