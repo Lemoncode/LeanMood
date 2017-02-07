@@ -98,7 +98,6 @@ describe('loginReducer', () => {
 
     // Assert
     expect(newState.userProfile).to.equal(loginReponse.userProfile);
-    expect(newState.isUserLoggedIn).to.equal(loginReponse.succeded);
     expect(originalState).to.be.frozen;
   });
 });

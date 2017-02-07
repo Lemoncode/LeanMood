@@ -8,13 +8,11 @@ import {ILoginContentChangedCompleted} from '../../pages/general/login/actions/l
 
 export class LoginState {
   public editingLogin: LoginCredentials;
-  public isUserLoggedIn: boolean;
   public userProfile: UserProfile;
   public loginErrors: ILoginErrors;
 
   constructor() {
     this.editingLogin = new LoginCredentials();
-    this.isUserLoggedIn = false;
     this.userProfile = new UserProfile();
     this.loginErrors = {login: new FieldValidationResult(), password: new FieldValidationResult()};
   }
@@ -45,6 +43,5 @@ const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChan
 
 const handleLoginRequest = (state: LoginState, payload: LoginResponse) => ({
   ...state,
-  isUserLoggedIn: payload.succeded,
   userProfile: payload.userProfile,
 });
