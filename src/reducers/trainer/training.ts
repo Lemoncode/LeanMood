@@ -1,15 +1,16 @@
 import {trainerActionEnums} from '../../common/actionEnums/trainer';
+import {ISelectCaretToInsertPayload} from '../../pages/trainer/training/edit/actions/selectCaretToInsert';
 
 export class TrainingState {
   public content: string;
-  public editor: HTMLTextAreaElement;
-  public cursorStartPosition: number;
+  public caret: string;
+  public offset: number;
   public shouldSetEditorFocus: boolean;
 
   constructor() {
     this.content = '';
-    this.editor = null;
-    this.cursorStartPosition = 0;
+    this.caret = null;
+    this.offset = 0;
     this.shouldSetEditorFocus = false;
   }
 }
@@ -20,11 +21,8 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
     case trainerActionEnums.TRAINING_CONTENT_CHANGED:
       return handleUpdateTrainingContent(state, action.payload);
 
-    case trainerActionEnums.INITIALIZE_EDITOR:
-      return handleInitializeEditor(state, action.payload);
-
-    case trainerActionEnums.UPDATE_EDITOR:
-      return handleUpdateEditor(state, action.payload);
+    case trainerActionEnums.SELECT_CARET_TO_INSERT:
+      return handleSelectCaretToInsert(state, action.payload);
 
     default:
       return state;
@@ -37,15 +35,9 @@ const handleUpdateTrainingContent = (state: TrainingState, payload: string) => (
   shouldSetEditorFocus: false,
 });
 
-const handleInitializeEditor = (state: TrainingState, payload: HTMLTextAreaElement) => ({
+const handleSelectCaretToInsert = (state: TrainingState, payload: ISelectCaretToInsertPayload) => ({
   ...state,
-  editor: payload,
-  shouldSetEditorFocus: true,
-});
-
-const handleUpdateEditor = (state: TrainingState, payload: {content: string, cursorStartPosition: number}) => ({
-  ...state,
-  content: payload.content,
-  cursorStartPosition: payload.cursorStartPosition,
+  caret: payload.caret,
+  offset: payload.offset,
   shouldSetEditorFocus: true,
 });

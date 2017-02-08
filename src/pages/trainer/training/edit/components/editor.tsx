@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {ToolbarContainerComponent} from './toolbar';
+import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
 const classNames: any = require('./editorStyles.scss');
 
 interface IProps {
   content: string;
-  cursorStartPosition: number;
+  caret: string;
+  offset: number;
   shouldSetEditorFocus: boolean;
   className: string;
   onContentChange: (content: string) => void;
-  initializeEditor: (editor: HTMLTextAreaElement) => void;
   updateEditorCursor: (editor: HTMLTextAreaElement, cursorStartPosition: number) => void;
 }
 
@@ -18,15 +19,20 @@ export class EditorComponent extends React.Component<IProps, {}> {
     textArea: (textArea) => { this.editor = textArea; },
   };
 
-  public componentDidMount() {
-    this.props.initializeEditor(this.editor);
-  }
-
-  public componentDidUpdate() {
-    if (this.props.shouldSetEditorFocus) {
-      this.props.updateEditorCursor(this.editor, this.props.cursorStartPosition);
+  public componentWillReceiveProps(nextProps: IProps) {
+    if (nextProps.caret !== this.props.caret && nextProps.offset !== this.props.offset) {
+      const editorConent = textAreaTool.insertAtCaretGetText(this.editor, nextProps.caret, nextProps.offset);
+      this.props.onContentChange(editorConent);
     }
   }
+
+  // public componentDidUpdate() {
+  //   if (this.props.shouldSetEditorFocus) {
+  //     const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editor, nextProps.offset);
+  //     textAreaTool.placeCursor(this.editor, cursorStartPosition);
+  //     this.props.updateEditorCursor(this.editor, this.props.cursorStartPosition);
+  //   }
+  // }
 
   private onContentChange(event) {
     const value = event.target.value;

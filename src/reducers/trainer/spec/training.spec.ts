@@ -119,62 +119,16 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals INITIALIZE_EDITOR
-      and originalState has shouldSetEditorFocus equals false`, () => {
-    // Arrange
-    const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = false;
-    const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
-
-    const action = {
-      type: trainerActionEnums.INITIALIZE_EDITOR,
-      payload: expectedEditor,
-    };
-
-    // Act
-    Object.freeze(originalState);
-    const nextState = trainingReducer(originalState, action);
-
-    // Assert
-    expect(nextState.editor).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.true;
-    expect(originalState).to.be.frozen;
-  });
-
-  it(`should return next state when passing action type equals INITIALIZE_EDITOR
-      and originalState has shouldSetEditorFocus equals true`, () => {
-    // Arrange
-    const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = true;
-    const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
-
-    const action = {
-      type: trainerActionEnums.INITIALIZE_EDITOR,
-      payload: expectedEditor,
-    };
-
-    // Act
-    Object.freeze(originalState);
-    const nextState = trainingReducer(originalState, action);
-
-    // Assert
-    expect(nextState.editor).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.true;
-    expect(originalState).to.be.frozen;
-  });
-
-  it(`should return next state when passing action type equals UPDATE_EDITOR
+  it(`should return next state when passing action type equals SELECT_CARET_TO_INSERT
       and originalState has shouldSetEditorFocus equals false`, () => {
     // Arrange
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = false;
     const action = {
-      type: trainerActionEnums.UPDATE_EDITOR,
+      type: trainerActionEnums.SELECT_CARET_TO_INSERT,
       payload: {
-        content: 'Test content',
-        cursorStartPosition: 5,
+        caret: 'Test caret',
+        offset: 5,
       },
     };
 
@@ -183,22 +137,22 @@ describe('trainingReducer', () => {
     const nextState = trainingReducer(originalState, action);
 
     // Assert
-    expect(nextState.content).to.equal(action.payload.content);
-    expect(nextState.cursorStartPosition).to.equal(action.payload.cursorStartPosition);
+    expect(nextState.caret).to.equal(action.payload.caret);
+    expect(nextState.offset).to.equal(action.payload.offset);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals UPDATE_EDITOR
+  it(`should return next state when passing action type equals SELECT_CARET_TO_INSERT
       and originalState has shouldSetEditorFocus equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = true;
     const action = {
-      type: trainerActionEnums.UPDATE_EDITOR,
+      type: trainerActionEnums.SELECT_CARET_TO_INSERT,
       payload: {
-        content: 'Test content',
-        cursorStartPosition: 5,
+        caret: 'Test caret',
+        offset: 5,
       },
     };
 
@@ -207,8 +161,8 @@ describe('trainingReducer', () => {
     const nextState = trainingReducer(originalState, action);
 
     // Assert
-    expect(nextState.content).to.equal(action.payload.content);
-    expect(nextState.cursorStartPosition).to.equal(action.payload.cursorStartPosition);
+    expect(nextState.caret).to.equal(action.payload.caret);
+    expect(nextState.offset).to.equal(action.payload.offset);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });

@@ -7,13 +7,11 @@ import {ToolbarComponent} from '../toolbar';
 describe('ToolbarComponent', () => {
   it('is defined', () => {
     // Arrange
-    const editor: HTMLTextAreaElement = null;
-    const updateEditor = sinon.spy();
+    const selectCaretToInsert = sinon.spy();
     // Act
     const component = shallow(
       <ToolbarComponent
-        editor={editor}
-        updateEditor={updateEditor}
+        selectCaretToInsert={selectCaretToInsert}
       />,
     );
 
@@ -23,8 +21,7 @@ describe('ToolbarComponent', () => {
 
   it('renders as expected', () => {
     // Arrange
-    const editor: HTMLTextAreaElement = null;
-    const updateEditor = sinon.spy();
+    const selectCaretToInsert = sinon.spy();
 
     const expectedHeaderButton = `
       <button type="button" class="btn btn-default">
@@ -112,8 +109,7 @@ describe('ToolbarComponent', () => {
     // Act
     const component = shallow(
       <ToolbarComponent
-        editor={editor}
-        updateEditor={updateEditor}
+        selectCaretToInsert={selectCaretToInsert}
       />,
     );
 

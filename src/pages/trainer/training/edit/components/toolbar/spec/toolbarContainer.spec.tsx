@@ -3,7 +3,7 @@ import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import * as cheerio from 'cheerio';
-import * as updateEditor from '../../../actions/updateEditor';
+import * as selectCaretToInsert from '../../../actions/selectCaretToInsert';
 import {ToolbarContainerComponent} from '../toolbarContainer';
 
 const createStore = configureStore();
@@ -19,8 +19,8 @@ describe('ToolbarContainerComponent', () => {
       },
     });
 
-    const updateEditorStub = sinon.stub(updateEditor,
-    'updateEditorAction', () => ({ type: 'dummy' }));
+    const selectCaretToInsertStub = sinon.stub(selectCaretToInsert,
+    'selectCaretToInsertAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
@@ -47,8 +47,8 @@ describe('ToolbarContainerComponent', () => {
       },
     });
 
-    const updateEditorStub = sinon.stub(updateEditor,
-    'updateEditorAction', () => ({ type: 'dummy' }));
+    const selectCaretToInsertStub = sinon.stub(selectCaretToInsert,
+    'selectCaretToInsertAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(

@@ -3,7 +3,6 @@ import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import * as trainingContentChanged from '../../actions/trainingContentChanged';
-import * as initializeEditor from '../../actions/initializeEditor';
 import * as updateEditorCursor from '../../actions/updateEditorCursor';
 import {EditorContainerComponent} from '../editorContainer';
 
@@ -24,9 +23,6 @@ describe('EditorContainerComponent', () => {
 
     const trainingContentChangedStub = sinon.stub(trainingContentChanged,
       'trainingContentChangedAction', () => ({ type: 'dummy' }));
-
-    const initializeEditorStub = sinon.stub(initializeEditor,
-      'initializeEditorAction', () => ({ type: 'dummy' }));
 
     const updateEditorCursorStub = sinon.stub(updateEditorCursor,
       'updateEditorCursorAction', () => ({ type: 'dummy' }));
@@ -56,9 +52,6 @@ describe('EditorContainerComponent', () => {
 
     const trainingContentChangedStartStub = sinon.stub(trainingContentChanged,
       'trainingContentChangedAction', () => ({ type: 'dummy' }));
-
-    const initializeEditorStub = sinon.stub(initializeEditor,
-      'initializeEditorAction', () => ({ type: 'dummy' }));
 
     const updateEditorCursorStub = sinon.stub(updateEditorCursor,
       'updateEditorCursorAction', () => ({ type: 'dummy' }));
