@@ -6,8 +6,7 @@ import {updateEditorCursorAction} from '../actions/updateEditorCursor';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
   content: state.trainer.training.content,
-  caret: state.trainer.training.caret,
-  offset: state.trainer.training.offset,
+  toolbarCommand: state.trainer.training.toolbarCommand,
   shouldSetEditorFocus: state.trainer.training.shouldSetEditorFocus,
   className: ownProps.className,
 });

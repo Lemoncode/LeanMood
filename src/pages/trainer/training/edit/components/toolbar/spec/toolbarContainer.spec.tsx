@@ -3,7 +3,7 @@ import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import * as cheerio from 'cheerio';
-import * as selectCaretToInsert from '../../../actions/selectCaretToInsert';
+import * as selectToolbarCommand from '../../../actions/selectToolbarCommand';
 import {ToolbarContainerComponent} from '../toolbarContainer';
 
 const createStore = configureStore();
@@ -19,8 +19,8 @@ describe('ToolbarContainerComponent', () => {
       },
     });
 
-    const selectCaretToInsertStub = sinon.stub(selectCaretToInsert,
-    'selectCaretToInsertAction', () => ({ type: 'dummy' }));
+    const selectToolbarCommandStub = sinon.stub(selectToolbarCommand,
+    'selectToolbarCommandAction', () => ({ type: 'dummy' }));
 
     // Act
     const container = mount(
@@ -31,35 +31,5 @@ describe('ToolbarContainerComponent', () => {
 
     // Assert
     expect(container).not.to.be.undefined;
-  }).bind(this));
-
-  it('should contain a property called editor and be informed', sinon.test(() => {
-    // Arrange
-    const sinon: sinon.SinonStatic = this;
-
-    const wrapper = cheerio.load('<textarea></textarea>');
-    const expectedEditor = wrapper('textarea') as HTMLTextAreaElement;
-    const mockStore: any = createStore({
-      trainer: {
-        training: {
-          editor: expectedEditor,
-        },
-      },
-    });
-
-    const selectCaretToInsertStub = sinon.stub(selectCaretToInsert,
-    'selectCaretToInsertAction', () => ({ type: 'dummy' }));
-
-    // Act
-    const container = mount(
-      <Provider store={mockStore}>
-        <ToolbarContainerComponent />
-      </Provider>,
-    );
-
-    // Assert
-    const firstToolbarButton = container.find('ToolbarButton').at(0);
-    expect(firstToolbarButton).not.to.be.undefined;
-    expect(firstToolbarButton.prop('editor')).to.equal(expectedEditor);
   }).bind(this));
 });

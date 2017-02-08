@@ -7,11 +7,11 @@ import {ToolbarComponent} from '../toolbar';
 describe('ToolbarComponent', () => {
   it('is defined', () => {
     // Arrange
-    const selectCaretToInsert = sinon.spy();
+    const selectToolbarCommand = sinon.spy();
     // Act
     const component = shallow(
       <ToolbarComponent
-        selectCaretToInsert={selectCaretToInsert}
+        selectToolbarCommand={selectToolbarCommand}
       />,
     );
 
@@ -21,7 +21,7 @@ describe('ToolbarComponent', () => {
 
   it('renders as expected', () => {
     // Arrange
-    const selectCaretToInsert = sinon.spy();
+    const selectToolbarCommand = sinon.spy();
 
     const expectedHeaderButton = `
       <button type="button" class="btn btn-default">
@@ -109,7 +109,7 @@ describe('ToolbarComponent', () => {
     // Act
     const component = shallow(
       <ToolbarComponent
-        selectCaretToInsert={selectCaretToInsert}
+        selectToolbarCommand={selectToolbarCommand}
       />,
     );
 

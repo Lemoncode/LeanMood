@@ -1,4 +1,3 @@
-import * as cheerio from 'cheerio';
 import {trainerActionEnums} from '../../../common/actionEnums/trainer';
 import {trainingReducer, TrainingState} from '../training';
 
@@ -119,16 +118,18 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals SELECT_CARET_TO_INSERT
+  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND
       and originalState has shouldSetEditorFocus equals false`, () => {
     // Arrange
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = false;
     const action = {
-      type: trainerActionEnums.SELECT_CARET_TO_INSERT,
+      type: trainerActionEnums.SELECT_TOOLBAR_COMMAND,
       payload: {
-        caret: 'Test caret',
-        offset: 5,
+        toolbarCommand: {
+          caret: 'Test caret',
+          offset: 5,
+        },
       },
     };
 
@@ -137,22 +138,24 @@ describe('trainingReducer', () => {
     const nextState = trainingReducer(originalState, action);
 
     // Assert
-    expect(nextState.caret).to.equal(action.payload.caret);
-    expect(nextState.offset).to.equal(action.payload.offset);
+    expect(nextState.toolbarCommand.caret).to.equal(action.payload.toolbarCommand.caret);
+    expect(nextState.toolbarCommand.offset).to.equal(action.payload.toolbarCommand.offset);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals SELECT_CARET_TO_INSERT
+  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND
       and originalState has shouldSetEditorFocus equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
     originalState.shouldSetEditorFocus = true;
     const action = {
-      type: trainerActionEnums.SELECT_CARET_TO_INSERT,
+      type: trainerActionEnums.SELECT_TOOLBAR_COMMAND,
       payload: {
-        caret: 'Test caret',
-        offset: 5,
+        toolbarCommand: {
+          caret: 'Test caret',
+          offset: 5,
+        },
       },
     };
 
@@ -161,8 +164,8 @@ describe('trainingReducer', () => {
     const nextState = trainingReducer(originalState, action);
 
     // Assert
-    expect(nextState.caret).to.equal(action.payload.caret);
-    expect(nextState.offset).to.equal(action.payload.offset);
+    expect(nextState.toolbarCommand.caret).to.equal(action.payload.toolbarCommand.caret);
+    expect(nextState.toolbarCommand.offset).to.equal(action.payload.toolbarCommand.offset);
     expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });

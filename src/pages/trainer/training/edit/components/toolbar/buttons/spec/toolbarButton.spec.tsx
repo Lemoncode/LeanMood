@@ -68,6 +68,10 @@ describe('BaseToolbarButton', () => {
     const onClickSpy = sinon.spy();
     const caret = '_';
     const offset = 2;
+    const expectedToolbarComponent = {
+      caret,
+      offset,
+    };
 
     // Act
     const component = mount(
@@ -82,6 +86,6 @@ describe('BaseToolbarButton', () => {
 
     // Assert
     expect(onClickSpy.calledOnce).to.be.true;
-    expect(onClickSpy.calledWith(caret, offset)).to.be.true;
+    expect(onClickSpy.calledWith(expectedToolbarComponent)).to.be.true;
   });
 });

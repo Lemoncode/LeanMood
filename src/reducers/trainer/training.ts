@@ -1,16 +1,15 @@
 import {trainerActionEnums} from '../../common/actionEnums/trainer';
-import {ISelectCaretToInsertPayload} from '../../pages/trainer/training/edit/actions/selectCaretToInsert';
+import {IToolbarCommand} from '../../pages/trainer/training/edit/components/toolbar';
+import {ISelectToolbarCommandPayload} from '../../pages/trainer/training/edit/actions/selectToolbarCommand';
 
 export class TrainingState {
   public content: string;
-  public caret: string;
-  public offset: number;
+  public toolbarCommand: IToolbarCommand;
   public shouldSetEditorFocus: boolean;
 
   constructor() {
     this.content = '';
-    this.caret = null;
-    this.offset = 0;
+    this.toolbarCommand = null;
     this.shouldSetEditorFocus = false;
   }
 }
@@ -21,8 +20,8 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
     case trainerActionEnums.TRAINING_CONTENT_CHANGED:
       return handleUpdateTrainingContent(state, action.payload);
 
-    case trainerActionEnums.SELECT_CARET_TO_INSERT:
-      return handleSelectCaretToInsert(state, action.payload);
+    case trainerActionEnums.SELECT_TOOLBAR_COMMAND:
+      return handleSelectToolbarCommand(state, action.payload);
 
     default:
       return state;
@@ -35,9 +34,8 @@ const handleUpdateTrainingContent = (state: TrainingState, payload: string) => (
   shouldSetEditorFocus: false,
 });
 
-const handleSelectCaretToInsert = (state: TrainingState, payload: ISelectCaretToInsertPayload) => ({
+const handleSelectToolbarCommand = (state: TrainingState, payload: ISelectToolbarCommandPayload) => ({
   ...state,
-  caret: payload.caret,
-  offset: payload.offset,
+  toolbarCommand: payload.toolbarCommand,
   shouldSetEditorFocus: true,
 });

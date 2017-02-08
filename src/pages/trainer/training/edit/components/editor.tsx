@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {ToolbarContainerComponent} from './toolbar';
+import {ToolbarContainerComponent, IToolbarCommand} from './toolbar';
 import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
 const classNames: any = require('./editorStyles.scss');
 
 interface IProps {
   content: string;
-  caret: string;
-  offset: number;
+  toolbarCommand: IToolbarCommand;
   shouldSetEditorFocus: boolean;
   className: string;
   onContentChange: (content: string) => void;
@@ -20,8 +19,9 @@ export class EditorComponent extends React.Component<IProps, {}> {
   };
 
   public componentWillReceiveProps(nextProps: IProps) {
-    if (nextProps.caret !== this.props.caret && nextProps.offset !== this.props.offset) {
-      const editorConent = textAreaTool.insertAtCaretGetText(this.editor, nextProps.caret, nextProps.offset);
+    if (nextProps.toolbarCommand !== this.props.toolbarCommand) {
+      const editorConent = textAreaTool
+        .insertAtCaretGetText(this.editor, nextProps.toolbarCommand.caret, nextProps.toolbarCommand.offset);
       this.props.onContentChange(editorConent);
     }
   }

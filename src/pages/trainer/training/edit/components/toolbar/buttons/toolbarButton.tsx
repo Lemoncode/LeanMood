@@ -1,9 +1,10 @@
 import * as React from 'react';
+import {IToolbarCommand} from '../toolbarCommand';
 
 interface IProps {
   caret: string;
   offset: number;
-  onClick: (caret: string, offset: number) => void;
+  onClick: (toolbarCommand: IToolbarCommand) => void;
 }
 
 export class ToolbarButton extends React.Component<IProps, {}> {
@@ -21,6 +22,6 @@ export class ToolbarButton extends React.Component<IProps, {}> {
 
   private onClick(event) {
     event.preventDefault();
-    this.props.onClick(this.props.caret, this.props.offset);
+    this.props.onClick({caret: this.props.caret, offset: this.props.offset});
   }
 }
