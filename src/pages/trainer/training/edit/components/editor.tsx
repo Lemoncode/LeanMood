@@ -5,11 +5,12 @@ const classNames: any = require('./editorStyles.scss');
 
 interface IProps {
   content: string;
+  cursorStartPosition: number;
+  shouldUpdateEditorCursor: boolean;
   toolbarCommand: IToolbarCommand;
-  shouldSetEditorFocus: boolean;
   className: string;
   onContentChange: (content: string) => void;
-  updateEditorCursor: (editor: HTMLTextAreaElement, cursorStartPosition: number) => void;
+  updateEditorCursor: (cursorStartPosition: number) => void;
 }
 
 export class EditorComponent extends React.Component<IProps, {}> {
@@ -20,19 +21,20 @@ export class EditorComponent extends React.Component<IProps, {}> {
 
   public componentWillReceiveProps(nextProps: IProps) {
     if (nextProps.toolbarCommand !== this.props.toolbarCommand) {
-      const editorConent = textAreaTool
+      const editorContent = textAreaTool
         .insertAtCaretGetText(this.editor, nextProps.toolbarCommand.caret, nextProps.toolbarCommand.offset);
-      this.props.onContentChange(editorConent);
+      this.props.onContentChange(editorContent);
+      const cursorStartPosition = textAreaTool
+        .calculateStartCursorPositionPlusOffset(this.editor, nextProps.toolbarCommand.offset);
+      this.props.updateEditorCursor(cursorStartPosition);
     }
   }
 
-  // public componentDidUpdate() {
-  //   if (this.props.shouldSetEditorFocus) {
-  //     const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editor, nextProps.offset);
-  //     textAreaTool.placeCursor(this.editor, cursorStartPosition);
-  //     this.props.updateEditorCursor(this.editor, this.props.cursorStartPosition);
-  //   }
-  // }
+  public componentDidUpdate() {
+    if (this.props.shouldUpdateEditorCursor) {
+      textAreaTool.placeCursor(this.editor, this.props.cursorStartPosition);
+    }
+  }
 
   private onContentChange(event) {
     const value = event.target.value;

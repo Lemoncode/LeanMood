@@ -39,10 +39,10 @@ describe('trainingReducer', () => {
   });
 
   it(`should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED
-     and originalState has shouldSetEditorFocus equals false`, () => {
+    and originalState has shouldUpdateEditorCursor equals false`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = false;
+    originalState.shouldUpdateEditorCursor = false;
     const action = {
       type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
       payload: 'Test content',
@@ -54,15 +54,15 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(nextState.shouldUpdateEditorCursor).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
   it(`should return next state when passing action type equals GET_TRAINING_CONTENT_REQUEST_COMPLETED
-     and originalState has shouldSetEditorFocus equals true`, () => {
+    and originalState has shouldUpdateEditorCursor equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = true;
+    originalState.shouldUpdateEditorCursor = true;
     const action = {
       type: trainerActionEnums.GET_TRAINING_CONTENT_REQUEST_COMPLETED,
       payload: 'Test content',
@@ -74,15 +74,15 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(nextState.shouldUpdateEditorCursor).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
   it(`should return next state when passing action type equals TRAINING_CONTENT_CHANGED
-      and originalState has shouldSetEditorFocus equals false`, () => {
+    and originalState has shouldUpdateEditorCursor equals false`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = false;
+    originalState.shouldUpdateEditorCursor = false;
     const action = {
       type: trainerActionEnums.TRAINING_CONTENT_CHANGED,
       payload: 'Test content',
@@ -94,15 +94,15 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(nextState.shouldUpdateEditorCursor).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
   it(`should return next state when passing action type equals TRAINING_CONTENT_CHANGED
-      and originalState has shouldSetEditorFocus equals true`, () => {
+    and originalState has shouldUpdateEditorCursor equals true`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = true;
+    originalState.shouldUpdateEditorCursor = true;
     const action = {
       type: trainerActionEnums.TRAINING_CONTENT_CHANGED,
       payload: 'Test content',
@@ -114,15 +114,13 @@ describe('trainingReducer', () => {
 
     // Assert
     expect(nextState.content).to.equal(action.payload);
-    expect(nextState.shouldSetEditorFocus).to.be.false;
+    expect(nextState.shouldUpdateEditorCursor).to.be.false;
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND
-      and originalState has shouldSetEditorFocus equals false`, () => {
+  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = false;
     const action = {
       type: trainerActionEnums.SELECT_TOOLBAR_COMMAND,
       payload: {
@@ -140,23 +138,15 @@ describe('trainingReducer', () => {
     // Assert
     expect(nextState.toolbarCommand.caret).to.equal(action.payload.toolbarCommand.caret);
     expect(nextState.toolbarCommand.offset).to.equal(action.payload.toolbarCommand.offset);
-    expect(nextState.shouldSetEditorFocus).to.be.true;
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND
-      and originalState has shouldSetEditorFocus equals true`, () => {
+  it(`should return next state when passing action type equals UPDATE_EDITOR_CURSOR`, () => {
     // Arrange
     const originalState = new TrainingState();
-    originalState.shouldSetEditorFocus = true;
     const action = {
-      type: trainerActionEnums.SELECT_TOOLBAR_COMMAND,
-      payload: {
-        toolbarCommand: {
-          caret: 'Test caret',
-          offset: 5,
-        },
-      },
+      type: trainerActionEnums.UPDATE_EDITOR_CURSOR,
+      payload: 10,
     };
 
     // Act
@@ -164,9 +154,8 @@ describe('trainingReducer', () => {
     const nextState = trainingReducer(originalState, action);
 
     // Assert
-    expect(nextState.toolbarCommand.caret).to.equal(action.payload.toolbarCommand.caret);
-    expect(nextState.toolbarCommand.offset).to.equal(action.payload.toolbarCommand.offset);
-    expect(nextState.shouldSetEditorFocus).to.be.true;
+    expect(nextState.cursorStartPosition).to.equal(action.payload);
+    expect(nextState.shouldUpdateEditorCursor).to.be.true;
     expect(originalState).to.be.frozen;
   });
 });

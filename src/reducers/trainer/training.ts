@@ -4,13 +4,15 @@ import {ISelectToolbarCommandPayload} from '../../pages/trainer/training/edit/ac
 
 export class TrainingState {
   public content: string;
+  public cursorStartPosition: number;
+  public shouldUpdateEditorCursor: boolean;
   public toolbarCommand: IToolbarCommand;
-  public shouldSetEditorFocus: boolean;
 
   constructor() {
     this.content = '';
+    this.cursorStartPosition = 0;
+    this.shouldUpdateEditorCursor = false;
     this.toolbarCommand = null;
-    this.shouldSetEditorFocus = false;
   }
 }
 
@@ -23,6 +25,9 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
     case trainerActionEnums.SELECT_TOOLBAR_COMMAND:
       return handleSelectToolbarCommand(state, action.payload);
 
+    case trainerActionEnums.UPDATE_EDITOR_CURSOR:
+      return handleUpdateEditorCursor(state, action.payload);
+
     default:
       return state;
   }
@@ -31,11 +36,16 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
 const handleUpdateTrainingContent = (state: TrainingState, payload: string) => ({
   ...state,
   content: payload,
-  shouldSetEditorFocus: false,
+  shouldUpdateEditorCursor: false,
 });
 
 const handleSelectToolbarCommand = (state: TrainingState, payload: ISelectToolbarCommandPayload) => ({
   ...state,
   toolbarCommand: payload.toolbarCommand,
-  shouldSetEditorFocus: true,
+});
+
+const handleUpdateEditorCursor = (state: TrainingState, payload: number) => ({
+  ...state,
+  cursorStartPosition: payload,
+  shouldUpdateEditorCursor: true,
 });

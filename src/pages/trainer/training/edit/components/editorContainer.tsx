@@ -6,15 +6,16 @@ import {updateEditorCursorAction} from '../actions/updateEditorCursor';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
   content: state.trainer.training.content,
+  cursorStartPosition: state.trainer.training.cursorStartPosition,
+  shouldUpdateEditorCursor: state.trainer.training.shouldUpdateEditorCursor,
   toolbarCommand: state.trainer.training.toolbarCommand,
-  shouldSetEditorFocus: state.trainer.training.shouldSetEditorFocus,
   className: ownProps.className,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onContentChange: (content: string) => dispatch(trainingContentChangedAction(content)),
-  updateEditorCursor: (editor: HTMLTextAreaElement, cursorStartPosition: number) =>
-    dispatch(updateEditorCursorAction(editor, cursorStartPosition)),
+  updateEditorCursor: (cursorStartPosition: number) =>
+    dispatch(updateEditorCursorAction(cursorStartPosition)),
 });
 
 export const EditorContainerComponent = connect(
