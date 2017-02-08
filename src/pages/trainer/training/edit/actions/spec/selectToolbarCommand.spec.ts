@@ -1,4 +1,3 @@
-import * as cheerio from 'cheerio';
 import {trainerActionEnums} from '../../../../../../common/actionEnums/trainer';
 import {IToolbarCommand} from '../../components/toolbar';
 import {selectToolbarCommandAction} from '../selectToolbarCommand';

@@ -2,7 +2,6 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import * as cheerio from 'cheerio';
 import * as selectToolbarCommand from '../../../actions/selectToolbarCommand';
 import {ToolbarContainerComponent} from '../toolbarContainer';
 

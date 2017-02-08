@@ -4,7 +4,6 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {multilineTrim} from '../../../../../../common/parse/multilineTrim';
 import {ToolbarContainerComponent} from '../toolbar';
-import {textAreaTool} from '../../../../../../common/ui/tools/textAreaTool';
 import {EditorComponent} from '../editor';
 
 const createStore = configureStore();

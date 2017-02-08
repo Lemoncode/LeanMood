@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
