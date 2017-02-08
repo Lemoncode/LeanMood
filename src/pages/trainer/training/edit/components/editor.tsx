@@ -21,13 +21,19 @@ export class EditorComponent extends React.Component<IProps, {}> {
 
   public componentWillReceiveProps(nextProps: IProps) {
     if (nextProps.toolbarCommand !== this.props.toolbarCommand) {
-      const editorContent = textAreaTool
-        .insertAtCaretGetText(this.editor, nextProps.toolbarCommand.caret, nextProps.toolbarCommand.offset);
-      this.props.onContentChange(editorContent);
-      const cursorStartPosition = textAreaTool
-        .calculateStartCursorPositionPlusOffset(this.editor, nextProps.toolbarCommand.offset);
-      this.props.updateEditorCursor(cursorStartPosition);
+      this.updateContentWithToolbarCommand(nextProps.toolbarCommand);
+      this.updateEditorCursor(nextProps.toolbarCommand.offset);
     }
+  }
+
+  private updateContentWithToolbarCommand(toolbarCommand: IToolbarCommand) {
+    const editorContent = textAreaTool.insertAtCaretGetText(this.editor, toolbarCommand.caret, toolbarCommand.offset);
+    this.props.onContentChange(editorContent);
+  }
+
+  private updateEditorCursor(offset: number) {
+    const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editor, offset);
+    this.props.updateEditorCursor(cursorStartPosition);
   }
 
   public componentDidUpdate() {
