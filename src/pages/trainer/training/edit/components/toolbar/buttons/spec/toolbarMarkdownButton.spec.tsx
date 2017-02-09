@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import {multilineTrim} from '../../../../../../../../common/parse/multilineTrim';
-import {ToolbarButton} from '../toolbarButton';
+import {ToolbarMarkdownButton} from '../ToolbarMarkdownButton';
 
-describe('BaseToolbarButton', () => {
+describe('ToolbarMarkdownButton', () => {
   it('is defined', () => {
     // Arrange
     const dummyOnClick = () => {};
     // Act
     const component = shallow(
-      <ToolbarButton
-        caret=""
-        offset={0}
+      <ToolbarMarkdownButton
+        mdCaret=""
+        caretCursorPosition={0}
         onClick={dummyOnClick}
       />,
     );
@@ -29,9 +29,9 @@ describe('BaseToolbarButton', () => {
     const dummyOnClick = () => {};
     // Act
     const component = shallow(
-      <ToolbarButton
-        caret=""
-        offset={0}
+      <ToolbarMarkdownButton
+        mdCaret=""
+        caretCursorPosition={0}
         onClick={dummyOnClick}
       />,
     );
@@ -50,13 +50,13 @@ describe('BaseToolbarButton', () => {
     const dummyOnClick = () => {};
     // Act
     const component = shallow(
-      <ToolbarButton
-        caret=""
-        offset={0}
+      <ToolbarMarkdownButton
+        mdCaret=""
+        caretCursorPosition={0}
         onClick={dummyOnClick}
       >
         <div/>
-      </ToolbarButton>,
+      </ToolbarMarkdownButton>,
     );
 
     // Assert
@@ -66,18 +66,18 @@ describe('BaseToolbarButton', () => {
   it('calls to onClick prop when simulate a click', () => {
     // Arrange
     const onClickSpy = sinon.spy();
-    const caret = '_';
-    const offset = 2;
-    const expectedToolbarComponent = {
-      caret,
-      offset,
+    const mdCaret = '_';
+    const caretCursorPosition = 2;
+    const expectedMarkdownEntry = {
+      mdCaret,
+      caretCursorPosition,
     };
 
     // Act
     const component = mount(
-      <ToolbarButton
-        caret={caret}
-        offset={offset}
+      <ToolbarMarkdownButton
+        mdCaret={mdCaret}
+        caretCursorPosition={caretCursorPosition}
         onClick={onClickSpy}
       />,
     );
@@ -86,6 +86,6 @@ describe('BaseToolbarButton', () => {
 
     // Assert
     expect(onClickSpy.calledOnce).to.be.true;
-    expect(onClickSpy.calledWith(expectedToolbarComponent)).to.be.true;
+    expect(onClickSpy.calledWith(expectedMarkdownEntry)).to.be.true;
   });
 });

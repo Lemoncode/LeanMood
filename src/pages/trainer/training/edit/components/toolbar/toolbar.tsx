@@ -1,83 +1,84 @@
 import * as React from 'react';
-import {ToolbarButton} from './buttons';
+import {ToolbarMarkdownButton} from './buttons';
 import {Icon, iconEnums} from './icons';
-import {IToolbarCommand} from './toolbarCommand';
+import {IMarkdownEntry} from '../../../../../../model/trainer/markdownEntry';
+import {markdownEntryConstants} from '../markdownEntryConstants';
 
 interface IProps {
-  selectToolbarCommand: (toolbarCommand: IToolbarCommand) => void;
+  insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
 }
 
 export const ToolbarComponent = (props: IProps) => {
   return (
     <div className="btn-toolbar">
       <div className="btn-group">
-        <ToolbarButton
-          caret="# "
-          offset={1}
-          onClick={props.selectToolbarCommand}
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.header.mdCaret}
+          caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.header} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="****"
-          offset={2}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.bold.mdCaret}
+          caretCursorPosition={markdownEntryConstants.bold.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.bold} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="**"
-          offset={1}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.italic.mdCaret}
+          caretCursorPosition={markdownEntryConstants.italic.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.italic} />
-        </ToolbarButton>
+        </ToolbarMarkdownButton>
       </div>
       <div className="btn-group">
-        <ToolbarButton
-          caret="``"
-          offset={1}
-          onClick={props.selectToolbarCommand}
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.code.mdCaret}
+          caretCursorPosition={markdownEntryConstants.code.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.code} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="[](url)"
-          offset={1}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.link.mdCaret}
+          caretCursorPosition={markdownEntryConstants.link.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.link} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="![alt text]()"
-          offset={12}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.image.mdCaret}
+          caretCursorPosition={markdownEntryConstants.image.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.image} />
-        </ToolbarButton>
+        </ToolbarMarkdownButton>
       </div>
       <div className="btn-group">
-        <ToolbarButton
-          caret="\n - "
-          offset={4}
-          onClick={props.selectToolbarCommand}
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.bulletedList.mdCaret}
+          caretCursorPosition={markdownEntryConstants.bulletedList.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.bulletedList} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="\n 1. "
-          offset={5}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.numberedList.mdCaret}
+          caretCursorPosition={markdownEntryConstants.numberedList.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.numberedList} />
-        </ToolbarButton>
-        <ToolbarButton
-          caret="> "
-          offset={2}
-          onClick={props.selectToolbarCommand}
+        </ToolbarMarkdownButton>
+        <ToolbarMarkdownButton
+          mdCaret={markdownEntryConstants.quote.mdCaret}
+          caretCursorPosition={markdownEntryConstants.quote.cursorPosition}
+          onClick={props.insertMarkdownEntry}
         >
           <Icon icon={iconEnums.quote} />
-        </ToolbarButton>
+        </ToolbarMarkdownButton>
       </div>
     </div>
   );

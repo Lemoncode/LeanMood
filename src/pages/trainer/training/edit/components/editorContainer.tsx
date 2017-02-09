@@ -8,7 +8,6 @@ const mapStateToProps = (state: IAppState, ownProps) => ({
   content: state.trainer.training.content,
   cursorStartPosition: state.trainer.training.cursorStartPosition,
   shouldUpdateEditorCursor: state.trainer.training.shouldUpdateEditorCursor,
-  toolbarCommand: state.trainer.training.toolbarCommand,
   className: ownProps.className,
 });
 

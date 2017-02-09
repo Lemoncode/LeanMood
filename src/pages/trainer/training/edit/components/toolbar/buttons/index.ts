@@ -1,5 +1,5 @@
-import {ToolbarButton} from './toolbarButton';
+import {ToolbarMarkdownButton} from './ToolbarMarkdownButton';
 
 export {
-  ToolbarButton,
+  ToolbarMarkdownButton,
 }

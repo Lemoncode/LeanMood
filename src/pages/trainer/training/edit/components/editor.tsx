@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {ToolbarContainerComponent, IToolbarCommand} from './toolbar';
+import {ToolbarComponent} from './toolbar';
+import {IMarkdownEntry} from '../../../../../model/trainer/markdownEntry';
 import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
 const classNames: any = require('./editorStyles.scss');
 
@@ -7,7 +8,6 @@ interface IProps {
   content: string;
   cursorStartPosition: number;
   shouldUpdateEditorCursor: boolean;
-  toolbarCommand: IToolbarCommand;
   className: string;
   onContentChange: (content: string) => void;
   updateEditorCursor: (cursorStartPosition: number) => void;
@@ -19,20 +19,19 @@ export class EditorComponent extends React.Component<IProps, {}> {
     textArea: (textArea) => { this.editor = textArea; },
   };
 
-  public componentWillReceiveProps(nextProps: IProps) {
-    if (nextProps.toolbarCommand !== this.props.toolbarCommand) {
-      this.updateContentWithToolbarCommand(nextProps.toolbarCommand);
-      this.updateEditorCursor(nextProps.toolbarCommand.offset);
-    }
+  private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
+    this.updateContentWithMarkdownEntry(markdownEntry);
+    this.updateEditorCursor(markdownEntry.caretCursorPosition);
   }
 
-  private updateContentWithToolbarCommand(toolbarCommand: IToolbarCommand) {
-    const editorContent = textAreaTool.insertAtCaretGetText(this.editor, toolbarCommand.caret, toolbarCommand.offset);
+  private updateContentWithMarkdownEntry(markdownEntry: IMarkdownEntry) {
+    const editorContent = textAreaTool.insertAtCaretGetText(this.editor, markdownEntry.mdCaret,
+      markdownEntry.caretCursorPosition);
     this.props.onContentChange(editorContent);
   }
 
-  private updateEditorCursor(offset: number) {
-    const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editor, offset);
+  private updateEditorCursor(caretCursorPosition: number) {
+    const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editor, caretCursorPosition);
     this.props.updateEditorCursor(cursorStartPosition);
   }
 
@@ -50,7 +49,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
   public render() {
     return (
       <div className={this.props.className}>
-        <ToolbarContainerComponent />
+        <ToolbarComponent insertMarkdownEntry={this.insertMarkdownEntry.bind(this)}/>
         <textarea
           className={classNames.textArea}
           onChange={this.onContentChange.bind(this)}

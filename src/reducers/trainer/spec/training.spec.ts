@@ -118,29 +118,6 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-  it(`should return next state when passing action type equals SELECT_TOOLBAR_COMMAND`, () => {
-    // Arrange
-    const originalState = new TrainingState();
-    const action = {
-      type: trainerActionEnums.SELECT_TOOLBAR_COMMAND,
-      payload: {
-        toolbarCommand: {
-          caret: 'Test caret',
-          offset: 5,
-        },
-      },
-    };
-
-    // Act
-    Object.freeze(originalState);
-    const nextState = trainingReducer(originalState, action);
-
-    // Assert
-    expect(nextState.toolbarCommand.caret).to.equal(action.payload.toolbarCommand.caret);
-    expect(nextState.toolbarCommand.offset).to.equal(action.payload.toolbarCommand.offset);
-    expect(originalState).to.be.frozen;
-  });
-
   it(`should return next state when passing action type equals UPDATE_EDITOR_CURSOR`, () => {
     // Arrange
     const originalState = new TrainingState();

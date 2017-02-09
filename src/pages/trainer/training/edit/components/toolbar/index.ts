@@ -1,7 +1,5 @@
-import {ToolbarContainerComponent} from './toolbarContainer';
-import {IToolbarCommand} from './toolbarCommand';
+import {ToolbarComponent} from './toolbar';
 
 export {
-  ToolbarContainerComponent,
-  IToolbarCommand,
+  ToolbarComponent,
 };
