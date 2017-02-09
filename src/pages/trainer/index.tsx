@@ -7,5 +7,5 @@ export {
   DashboardPage,
   EvaluationPage,
   TrainingListPage,
-  TrainingRoutes
+  TrainingRoutes,
 }

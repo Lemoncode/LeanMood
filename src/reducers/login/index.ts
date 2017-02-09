@@ -4,7 +4,7 @@ import { LoginResponse } from '../../model/login/loginResponse';
 import { LoginCredentials } from '../../model/login/loginCredentials';
 import {ILoginErrors} from '../../model/login/loginErrors';
 import { loginActionEnums } from './../../common/actionEnums/login';
-import {ILoginContentChangedCompleted} from '../../pages/general/login/actions/loginContentChanged';
+import {ILoginContentChangedCompletedPayload} from '../../pages/general/login/actions/loginContentChanged';
 
 export class LoginState {
   public editingLogin: LoginCredentials;
@@ -29,7 +29,7 @@ export const loginReducer = (state: LoginState = new LoginState(), action) => {
   }
 };
 
-const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChangedCompleted) => ({
+const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChangedCompletedPayload) => ({
   ...state,
   editingLogin: {
     ...state.editingLogin,

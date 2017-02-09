@@ -15,7 +15,7 @@ export const loginContentChangedStartedAction = (viewModel: LoginCredentials, fi
   };
 };
 
-export interface ILoginContentChangedCompleted {
+export interface ILoginContentChangedCompletedPayload {
   fieldName: string;
   value: any;
   fieldValidationResult: FieldValidationResult;

@@ -21,17 +21,25 @@ describe('Trainer DashboardPage', () => {
 
   it('should render as expected', () => {
     // Arrange
+    const flexBasis = 100 / 3;
     const expectedDashboardItemOne = `
-      <a class="btn btn-default item" style="flex-basis:50%;">
+      <a class="btn btn-default item" style="flex-basis:${flexBasis}%;">
         <i class="${dashboardIcons.evaluation}"></i>
         <h4 class="name">Student evaluation</h4>
       </a>
     `;
 
     const expectedDashboardItemTwo = `
-      <a class="btn btn-default item" style="flex-basis:50%;">
+      <a class="btn btn-default item" style="flex-basis:${flexBasis}%;">
         <i class="${dashboardIcons.trainings}"></i>
         <h4 class="name">Trainings</h4>
+      </a>
+    `;
+
+    const expectedDashboardItemThree = `
+      <a class="btn btn-default item" style="flex-basis:${flexBasis}%;">
+        <i class="${dashboardIcons.training}"></i>
+        <h4 class="name">Edit training content</h4>
       </a>
     `;
 
@@ -42,6 +50,7 @@ describe('Trainer DashboardPage', () => {
           <div class="dashboardItems">
             ${expectedDashboardItemOne}
             ${expectedDashboardItemTwo}
+            ${expectedDashboardItemThree}
           </div>
         </div>
       </div>
@@ -58,5 +67,7 @@ describe('Trainer DashboardPage', () => {
     // NOTE: html() does not render Link.to property as href
     expect(component.find('DashboardComponent').prop('items')[0].linkTo).to.be.equal(trainerRouteEnums.evaluation);
     expect(component.find('DashboardComponent').prop('items')[1].linkTo).to.be.equal(trainerRouteEnums.default);
+    expect(component.find('DashboardComponent').prop('items')[2].linkTo).to.be
+      .equal(`${trainerRouteEnums.training.edit}/1`);
   });
 });

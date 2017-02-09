@@ -45,6 +45,7 @@
     "@types/redux-thunk": "^2.1.31",
     "@types/webpack-env": "^1.12.1",    
     "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
     "core-js": "^2.4.1",
     "css-loader": "^0.25.0",
     "deep-freeze": "0.0.1",
