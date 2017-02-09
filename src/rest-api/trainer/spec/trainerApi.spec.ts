@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import * as trainerMockData from '../trainerMockData';
-import {EditTrainingSummary} from '../../../model/editTrainingSummary';
+import {EditTrainingSummary} from '../../../model/trainer/editTrainingSummary';
 import {trainerApi} from '../trainerApi';
 
 describe('TrainerApi', () => {

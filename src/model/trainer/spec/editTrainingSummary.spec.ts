@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import {EditTrainingSummary} from '../editTrainingSummary'
+import {EditTrainingSummary} from '../editTrainingSummary';
 
 describe('EditTrainingSummary', () => {
   let editTrainingSummary = null;
@@ -20,5 +19,4 @@ describe('EditTrainingSummary', () => {
       expect(editTrainingSummary.content).to.be.equal('');
     });
   });
-
 });

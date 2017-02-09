@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {trainerActionEnums} from '../index';
 
 describe('trainerActionEnums', () => {

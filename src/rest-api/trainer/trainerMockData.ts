@@ -1,4 +1,4 @@
-import {EditTrainingSummary} from '../../model/editTrainingSummary';
+import {EditTrainingSummary} from '../../model/trainer/editTrainingSummary';
 
 export const trainingContentMockData: EditTrainingSummary[] = [
   {
