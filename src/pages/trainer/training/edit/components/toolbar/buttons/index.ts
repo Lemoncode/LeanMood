@@ -1,4 +1,4 @@
-import {ToolbarMarkdownButton} from './ToolbarMarkdownButton';
+import {ToolbarMarkdownButton} from './toolbarMarkdownButton';
 
 export {
   ToolbarMarkdownButton,

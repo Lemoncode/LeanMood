@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 import {multilineTrim} from '../../../../../../../../common/parse/multilineTrim';
-import {ToolbarMarkdownButton} from '../ToolbarMarkdownButton';
+import {ToolbarMarkdownButton} from '../toolbarMarkdownButton';
 
 describe('ToolbarMarkdownButton', () => {
   it('is defined', () => {
