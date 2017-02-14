@@ -44,24 +44,13 @@ export class EditStudentPage extends React.Component<IProps, {}> {
   };
 
   private updateStudent(property: string, value: any) {
-    // Clone the object
-    this.props.student = {
-      id: this.props.student.id,
-      fullname: this.props.student.fullname,
-      email: this.props.student.email,
-      phoneNumber: this.props.student.phoneNumber,
-      isActive: this.props.student.isActive,
-    };
-
-    this.props.student[property] = value;
+    // TODO: How to update the student property?
   }
 
   private saveStudent(event) {
     event.preventDefault();
 
-    // if(!this.memberFormIsValid()) {
-    //   return;
-    // }
+    // TODO: How to validate the entity?
 
     this.props.saveStudent(this.props.student);
   };
