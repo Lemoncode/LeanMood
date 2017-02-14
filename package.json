@@ -35,7 +35,17 @@
     "@types/react-redux": "^4.4.33",
     "@types/redux-mock-store": "0.0.6",
     "@types/sinon": "^1.16.32",
+    "@types/toastr": "^2.1.32",
+    "@types/history": "^2.0.39",
+    "@types/node": "^6.0.45",
+    "@types/react": "^0.14.39",
+    "@types/react-dom": "^0.14.17",
+    "@types/react-router": "^2.0.37",
+    "@types/react-router-redux": "^4.0.35",
+    "@types/redux-thunk": "^2.1.31",
+    "@types/webpack-env": "^1.12.1",    
     "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
     "core-js": "^2.4.1",
     "css-loader": "^0.25.0",
     "deep-freeze": "0.0.1",
@@ -76,21 +86,16 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "@types/history": "^2.0.39",
-    "@types/node": "^6.0.45",
-    "@types/react": "^0.14.39",
-    "@types/react-dom": "^0.14.17",
-    "@types/react-router": "^2.0.37",
-    "@types/react-router-redux": "^4.0.35",
-    "@types/redux-thunk": "^2.1.31",
-    "@types/webpack-env": "^1.12.1",
     "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "lc-form-validation": "^0.1.7",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^4.4.6",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.7",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "toastr": "^2.1.2"
   }
 }

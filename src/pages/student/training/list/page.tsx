@@ -8,7 +8,7 @@ export class TrainingListPage extends React.Component<{}, {}> {
            <span>** Student list of Trainings Page: </span>
            <br/>
            <br/>
-           <Link to="/students/maintoc/">Go to training main toc</Link>
+           <Link to="/student/maintoc/">Go to training main toc</Link>
          </div>
         );
   }

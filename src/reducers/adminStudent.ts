@@ -22,9 +22,8 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
     case adminActionEnums.POST_STUDENT_REQUEST_COMPLETED:
       return handlePostStudentRequestCompleted(state, action.payload);
     default:
+      return state;
   }
-
-  return state;
 };
 
 const handleGetSummaryStudentRequestCompleted =
