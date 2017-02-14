@@ -51,11 +51,11 @@ describe('EditStudentComponent', () => {
     const expectedDomTree = `
       <div>
         <input type="text" value="John Doe"/>
-        <br />
+        <br/>
         <input type="text" value="test@test.com"/>
-        <br />
+        <br/>
         <input type="checkbox" checked=""/>
-        <br />
+        <br/>
         <button>Save</button>
       </div>
       `;
