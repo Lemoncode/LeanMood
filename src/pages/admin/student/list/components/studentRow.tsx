@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import {TableRowProps, TableRowComponent} from '../../../../../common/virtualized/tableRow';
+const classNames: any = require('./studentRowStyles.scss');
 
 interface Props extends TableRowProps {
   rowData: StudentSummary;
@@ -14,7 +15,7 @@ export const StudentRowComponent = (props: Props) => {
       {...props}
       rowKey={props.key}
       // We have enable camelCase parser in webpack.config.js
-      className={`${props.className}`}
+      className={`${props.className} ${classNames.rowStriped}`}
     >
       <span>{props.rowData.fullname}</span>
       <span>{props.rowData.email}</span>
