@@ -4,7 +4,7 @@ import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { StudentSummary } from '../../../../../../model/studentSummary';
 import { StudentTableComponent } from '../studentTable';
 
-describe('StudentTableComponent', () => {
+describe.skip('StudentTableComponent', () => {
   it('Should not be undefined', () => {
     // Act
     const studentTableComponent = shallow(

@@ -4,7 +4,7 @@ import { StudentSummary } from '../../../../../model/studentSummary';
 import { StudentTableComponent } from '../components/studentTable';
 import { ListStudentPage } from '../page';
 
-describe('admin/student/list/page', () => {
+describe.skip('admin/student/list/page', () => {
   it('is defined', () => {
     // Arrange
     const students: StudentSummary[] = [

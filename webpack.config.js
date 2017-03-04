@@ -25,6 +25,8 @@ module.exports = {
     vendor: [
       "react",
       "react-dom",
+      "react-addons-shallow-compare",
+      "react-virtualized",      
       "react-redux",
       "react-router",
       "react-router-redux",

@@ -8,7 +8,7 @@ import { ListStudentPageContainer } from '../pageContainer';
 
 const createStore = configureStore();
 
-describe('pageContainer', () => {
+describe.skip('pageContainer', () => {
   it('Should be defined', sinon.test(() => {
     const sinon: sinon.SinonStatic = this;
 

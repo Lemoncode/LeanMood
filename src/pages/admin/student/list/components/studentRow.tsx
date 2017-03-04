@@ -1,19 +1,23 @@
 import * as React from 'react';
 import { StudentSummary } from '../../../../../model/studentSummary';
+import {TableRowProps, TableRowComponent} from '../../../../../common/virtualized/tableRow';
 
-interface IProps {
-  student: StudentSummary;
+interface Props extends TableRowProps {
+  rowData: StudentSummary;
 }
 
-export const StudentRowComponent = (props: IProps) => {
+// We can use spread operator for React properties too
+// https://facebook.github.io/react/docs/jsx-in-depth.html#spread-attributes
+export const StudentRowComponent = (props: Props) => {
   return (
-    <tr>
-      <td>
-        <span>{props.student.fullname}</span>
-      </td>
-      <td>
-        <span>{props.student.email}</span>
-      </td>
-    </tr>
+    <TableRowComponent
+      {...props}
+      rowKey={props.key}
+      // We have enable camelCase parser in webpack.config.js
+      className={`${props.className}`}
+    >
+      <span>{props.rowData.fullname}</span>
+      <span>{props.rowData.email}</span>
+    </TableRowComponent>
   );
 };
