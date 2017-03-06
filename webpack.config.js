@@ -26,7 +26,7 @@ module.exports = {
       "react",
       "react-dom",
       "react-addons-shallow-compare",
-      "react-virtualized",      
+      "react-virtualized",
       "react-redux",
       "react-router",
       "react-router-redux",
@@ -39,6 +39,7 @@ module.exports = {
       '../node_modules/bootstrap/dist/css/bootstrap.css',
       '../node_modules/font-awesome/css/font-awesome.css',
       '../node_modules/toastr/build/toastr.css',
+      '../node_modules/react-virtualized/styles.css',
     ]
   },
 	output: {

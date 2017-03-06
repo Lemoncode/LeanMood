@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import { StudentRowComponent } from './studentRow';
 import {AutoSizer, Table, Column} from 'react-virtualized';
+const classNames: any = require('./studentTableStyles.scss');
 
 interface IProps {
   studentList: StudentSummary[];
@@ -24,10 +25,12 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({student
             width={width}
             height={500}
             headerHeight={40}
+            headerClassName={classNames.header}
             rowCount={studentList.length}
             rowHeight={50}
             rowGetter={rowGetter}
             rowRenderer={StudentRowComponent}
+            rowClassName={classNames.row}
           >
             <Column
               label="Fullname"
@@ -36,7 +39,7 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({student
             />
             <Column
               label="EMail"
-              dataKey="fullname"
+              dataKey="email"
               width={getWidthByPercentage(width, 50)}
             />
           </Table>}
