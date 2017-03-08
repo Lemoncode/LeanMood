@@ -1,12 +1,9 @@
-import { expect } from 'chai';
-import { } from 'mocha';
-import { } from 'core-js';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
 import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
 import { studentFetchRequestStarted, studentFetchRequestCompleted } from '../studentFetchRequest';
-import { Student } from '../../../../../../model/student';
+import { Student } from '../../../../../../model/student/student';
 import { studentApi } from '../../../../../../rest-api';
 
 const middlewares = [ReduxThunk];

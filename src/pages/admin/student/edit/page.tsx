@@ -1,39 +1,33 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import { Student } from '../../../../model/student';
+import { Student } from '../../../../model/student/student';
+import { IEditStudentErrors } from '../../../../model/student/editStudentErrors';
 import { EditStudentComponent } from './components/editStudentComponent';
+const classNames: any = require('./pageStyles.scss');
 
 interface IProps extends React.Props<EditStudentPage> {
+  studentId: number;
   student: Student;
-  getStudent: (id: number) => void;
+  editStudentError: IEditStudentErrors;
+  fetchStudent: (id: number) => void;
+  updateStudent: (viewModel: Student, fieldName: string, value: string) => void;
   saveStudent: (student: Student) => void;
 }
 
 export class EditStudentPage extends React.Component<IProps, {}> {
   public componentDidMount() {
-    // TODO: Get the Student Id from the URL
-    this.props.getStudent(32);
+    this.props.fetchStudent(this.props.studentId);
   }
 
   public render() {
-    if (this.props.student.id === -1) {
-      return (
-        <div>
-        <h2>Loading...</h2>
-        <br />
-        <br />
-        <Link to="/admin/student/list">Back to student list</Link>
-        <Link to="/admin">Back to Dashboard</Link>
-      </div>);
-    }
-
     return (
-      <div>
+      <div className={`container-fluid ${classNames.page}`}>
         <h2>{this.props.student.fullname}</h2>
         <EditStudentComponent
           student={this.props.student}
-          updateStudent={this.updateStudent.bind(this)}
-          saveStudent={this.saveStudent.bind(this)}
+          editStudentErrors={this.props.editStudentError}
+          updateStudent={this.props.updateStudent}
+          saveStudentRequest={this.props.saveStudent}
         />
         <br />
         <br />
@@ -42,17 +36,4 @@ export class EditStudentPage extends React.Component<IProps, {}> {
       </div>
     );
   };
-
-  private updateStudent(property: string, value: any) {
-    // TODO: How to update the student property?
-  }
-
-  private saveStudent(event) {
-    event.preventDefault();
-
-    // TODO: How to validate the entity?
-
-    this.props.saveStudent(this.props.student);
-  };
-
 }

@@ -1,15 +1,22 @@
 import { Action } from 'redux';
-import { StudentSummary } from '../model/studentSummary';
-import { Student } from '../model/student';
+import { StudentSummary } from '../model/student/studentSummary';
+import { Student } from '../model/student/student';
+import { FieldValidationResult } from 'lc-form-validation';
+import { IEditStudentErrors } from '../model/student/editStudentErrors';
 import { adminActionEnums } from '../common/actionEnums/admin';
 
 export class AdminStudentState {
   public studentSummaryList: StudentSummary[];
   public editingStudent: Student;
+  public editingStudentErrors: IEditStudentErrors;
 
   public constructor() {
     this.studentSummaryList = [];
     this.editingStudent = new Student();
+    this.editingStudentErrors = {
+      fullname: new FieldValidationResult(),
+      email: new FieldValidationResult()
+    };
   }
 }
 

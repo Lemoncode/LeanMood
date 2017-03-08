@@ -3,8 +3,8 @@ import * as deepFreeze from 'deep-freeze';
 import { } from 'mocha';
 import { } from 'core-js';
 import { adminStudentReducer, AdminStudentState } from '../adminStudent';
-import { StudentSummary } from '../../model/studentSummary';
-import { Student } from '../../model/student';
+import { StudentSummary } from '../../model/student/studentSummary';
+import { Student } from '../../model/student/student';
 import { summaryStudentListRequestCompleted } from '../../pages/admin/student/list/actions/summaryStudentListRequest';
 import { adminActionEnums } from '../../common/actionEnums/admin';
 

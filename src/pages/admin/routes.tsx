@@ -15,7 +15,7 @@ export const AdminRoutes = (
     <div>
       <Route path={adminRouteEnums.default} component={DashboardPage}/>
       <Route path={adminRouteEnums.student.list} component={ListStudentPageContainer}/>
-      <Route path={adminRouteEnums.student.edit} component={EditStudentPage}/>
+      <Route path={`${adminRouteEnums.student.edit}/:studentId`} component={EditStudentPage}/>
       <Route path={adminRouteEnums.training.list} component={ListTrainingPageContainer}/>
       <Route path={adminRouteEnums.training.edit} component={EditTrainingPage}/>
     </div>

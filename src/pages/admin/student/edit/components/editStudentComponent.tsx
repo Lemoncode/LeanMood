@@ -1,52 +1,65 @@
 import * as React from 'react';
-import { Student } from '../../../../../model/student';
+import { Student } from '../../../../../model/student/student';
+import { IEditStudentErrors } from '../../../../../model/student/editStudentErrors';
+import { InputComponent } from '../../../../../common/components/form';
 
 interface IProps {
   student: Student;
-  updateStudent: (property: string, value: any) => void;
-  saveStudent: (event: any) => void;
+  editStudentErrors: IEditStudentErrors;
+  updateStudent: (viewModel: Student, fieldName: string, value: string) => void;
+  saveStudentRequest: (student: Student) => void;
 }
 
-function updateStudentFullName(e: any) {
-  this.props.updateStudent('fullname', e.target.value);
-}
+export const EditStudentComponent = (props: IProps) => {
 
-function updateStudentEmail(e: any) {
-  this.props.updateStudent('email', e.target.value);
-}
+  const updateStudent = (e) => {
+    const fieldName = e.target.name;
+    const value = e.target.value;
+    props.updateStudent(props.student, fieldName, value);
+  };
 
-function updateStudentIsActive(e: any) {
-  this.props.updateStudent('isActive', e.target.value);
-}
+  const saveStudentRequest = (e) => {
+    e.preventDefault();
+    props.saveStudentRequest(props.student);
+  };
 
-function saveStudent(e: any) {
-  this.props.saveStudent(event);
-}
-
-export class EditStudentComponent extends React.Component<IProps, {}>  {
-  public render() {
-    return (
-      <div>
-        <input
+  // TODO: Extract input checkbox to a CheckboxComponent in common?
+  return (
+    <div>
+      <form role="form">
+        <InputComponent
           type="text"
-          value={this.props.student.fullname}
-          onChange={updateStudentFullName.bind(this)}
+          label="Full name"
+          placeholder="Full name"
+          name="fullname"
+          value={props.student.fullname}
+          onChange={updateStudent.bind(this)}
+          error={props.editStudentErrors.fullname.succeeded ? '' : props.editStudentErrors.fullname.errorMessage}
         />
-        <br />
-        <input
+        <InputComponent
           type="text"
-          value={this.props.student.email}
-          onChange={updateStudentEmail.bind(this)}
+          label="Email"
+          placeholder="Email"
+          name="email"
+          value={props.student.email}
+          onChange={updateStudent.bind(this)}
+          error={props.editStudentErrors.email.succeeded ? '' : props.editStudentErrors.email.errorMessage}
         />
-        <br />
         <input
           type="checkbox"
-          checked={this.props.student.isActive}
-          onChange={updateStudentIsActive.bind(this)}
+          label="Active"
+          name="isactive"
+          checked={props.student.isActive}
+          onChange={updateStudent.bind(this)}
         />
-        <br />
-        <button onClick={saveStudent.bind(this)}>Save</button>
-      </div>
-    );
-  };
-}
+        <button
+          type="submit"
+          className="btn btn-lg btn-success btn-block"
+          onClick={saveStudentRequest.bind(this)}
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  );
+};

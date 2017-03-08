@@ -1,31 +1,48 @@
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { Student } from '../../../../../model/student';
+import { FieldValidationResult } from 'lc-form-validation';
+import { Student } from '../../../../../model/student/student';
+import { IEditStudentErrors } from '../../../../../model/student/editStudentErrors';
 import { EditStudentComponent } from '../components/editStudentComponent';
 import { EditStudentPage } from '../page';
 
 describe('admin/student/edit/page', () => {
   let student: Student = null;
+  let editStudentErrors: IEditStudentErrors = null;
 
   beforeEach(() => {
     student = {
-        email: 'test@test.com',
-        fullname: 'John Doe',
-        phoneNumber: '999-999',
-        isActive: true,
-        id: 2,
-      };
+      email: 'test@test.com',
+      fullname: 'John Doe',
+      phoneNumber: '999-999',
+      isActive: true,
+      id: 2,
+    };
+
+    editStudentErrors = {
+      fullname: new FieldValidationResult(),
+      email: new FieldValidationResult(),
+    };
   });
 
   it('is defined', () => {
     // Arrange
     const onSaveSpy = sinon.spy();
     const onGetSpy = sinon.spy();
+    const onUpdateSpy = sinon.spy();
+    const onErrorSpy = sinon.spy();
 
     // Act
     const page = shallow(
-      <EditStudentPage student={student} saveStudent={onSaveSpy} getStudent={onGetSpy} />,
+      <EditStudentPage
+        studentId={1}
+        student={student}
+        saveStudent={onSaveSpy}
+        fetchStudent={onGetSpy}
+        updateStudent={onUpdateSpy}
+        editStudentError={editStudentErrors}
+      />,
     );
 
     // Assert
@@ -36,10 +53,19 @@ describe('admin/student/edit/page', () => {
     // Arrange
     const onSaveSpy = sinon.spy();
     const onGetSpy = sinon.spy();
+    const onUpdateSpy = sinon.spy();
+    const onErrorSpy = sinon.spy();
 
     // Act
     const pageWrapper = shallow(
-      <EditStudentPage student={student} saveStudent={onSaveSpy} getStudent={onGetSpy} />,
+      <EditStudentPage
+        studentId={1}
+        student={student}
+        saveStudent={onSaveSpy}
+        fetchStudent={onGetSpy}
+        updateStudent={onUpdateSpy}
+        editStudentError={editStudentErrors}
+      />,
     );
 
     // Assert

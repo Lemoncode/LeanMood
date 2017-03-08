@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { } from 'mocha'
 import { } from 'core-js'
-import { Student } from '../../model/student';
+import { Student } from '../../model/student/student';
 import { studentApi } from '../student';
 
 let studentList: Student[];

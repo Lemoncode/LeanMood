@@ -1,5 +1,5 @@
 import { adminActionEnums } from '../../../../../common/actionEnums/admin';
-import { Student } from '../../../../../model/student';
+import { Student } from '../../../../../model/student/student';
 import { studentApi } from '../../../../../rest-api';
 
 export const studentFetchRequestStarted = (studentId) => {

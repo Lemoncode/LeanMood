@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store';
 
 import {adminActionEnums} from '../../../../../../common/actionEnums/admin';
 import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
-import { StudentSummary} from '../../../../../../model/studentSummary';
+import { StudentSummary} from '../../../../../../model/student/studentSummary';
 import { studentApi } from '../../../../../../rest-api';
 
 const middlewares = [ReduxThunk];

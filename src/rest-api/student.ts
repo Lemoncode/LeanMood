@@ -1,5 +1,5 @@
-import { Student } from '../model/student';
-import { StudentSummary } from '../model/studentSummary';
+import { Student } from '../model/student/student';
+import { StudentSummary } from '../model/student/studentSummary';
 import { studentMockData } from './studentMockData';
 
 class StudentApi {

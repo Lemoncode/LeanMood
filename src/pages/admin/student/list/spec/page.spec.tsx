@@ -1,6 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/student/studentSummary';
 import { StudentTableComponent } from '../components/studentTable';
 import { ListStudentPage } from '../page';
 

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
-import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../../model/student/studentSummary';
 import { StudentRowComponent } from '../studentRow';
 
 describe('StudentRowComponent', () => {

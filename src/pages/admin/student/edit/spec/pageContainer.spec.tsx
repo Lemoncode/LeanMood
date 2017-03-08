@@ -22,6 +22,10 @@ describe('pageContainer', () => {
           isActive: true,
           id: 2,
         },
+        editingStudentErrors: {
+          fullname: { errorMessage: ''},
+          email: { errorMessage: ''},
+        }
       },
     });
   });
@@ -44,7 +48,7 @@ describe('pageContainer', () => {
     // Act
     const pageContainer = mount(
       <Provider store={nonTypedMockStore}>
-        <EditStudentPageContainer />
+        <EditStudentPageContainer params={{ studentId: ''}} />
       </Provider>,
     );
 
@@ -52,7 +56,7 @@ describe('pageContainer', () => {
     expect(pageContainer).not.to.be.undefined;
   }).bind(this));
 
-  it('Should contain a property called EditStudent and be informed', sinon.test(() => {
+  it('Should contain a property editStudentId equal to 10 whne params is 10', sinon.test(() => {
     const sinon: sinon.SinonStatic = this;
 
     // Arrange
@@ -69,14 +73,40 @@ describe('pageContainer', () => {
     const nonTypedMockStore: any = mockStore;
     const pageContainer = mount(
       <Provider store={nonTypedMockStore}>
-        <EditStudentPageContainer />
+        <EditStudentPageContainer params={{ studentId: '10'}} />
       </Provider>,
     );
 
     // Assert
     const pagePresentationalWrapper = pageContainer.find('EditStudentPage');
     expect(pagePresentationalWrapper).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('student')).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('student').fullname).equals('John Doe');
+    expect(pagePresentationalWrapper.prop('studentId')).to.equal(10);
+
+  }).bind(this));
+
+  it('Should calls to fetchStudent with expected studentId', sinon.test(() => {
+    const sinon: sinon.SinonStatic = this;
+
+    // Arrange
+    const studentFetchRequestStartedMock =
+      sinon.stub(studentFetchRequest,
+        'studentFetchRequestStarted',
+        () => {
+          return {
+            type: 'dummy',
+          };
+        });
+
+    // Act
+    const nonTypedMockStore: any = mockStore;
+    const pageContainer = mount(
+      <Provider store={nonTypedMockStore}>
+        <EditStudentPageContainer params={{ studentId: '10'}} />
+      </Provider>,
+    );
+
+    // Assert
+    expect(studentFetchRequestStartedMock.calledOnce).to.be.true;
+    expect(studentFetchRequestStartedMock.calledWith(10)).to.be.true;
   }).bind(this));
 });

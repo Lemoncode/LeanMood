@@ -6,7 +6,7 @@ var basePath = __dirname;
 module.exports = function (config) {
   const configObject =  {
     basePath: '',
-    frameworks: ['mocha', 'chai', 'sinon-chai', 'es6-shim'],
+    frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
       './test/test_index.js'
     ],
