@@ -33,14 +33,24 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({student
             rowClassName={classNames.row}
           >
             <Column
+              label="is Active"
+              dataKey="isActive"
+              width={getWidthByPercentage(width, 10)}
+            />
+            <Column
               label="Fullname"
               dataKey="fullname"
-              width={getWidthByPercentage(width, 50)}
+              width={getWidthByPercentage(width, 40)}
             />
             <Column
               label="EMail"
               dataKey="email"
-              width={getWidthByPercentage(width, 50)}
+              width={getWidthByPercentage(width, 30)}
+            />
+            <Column
+              label=""
+              dataKey=""
+              width={getWidthByPercentage(width, 20)}
             />
           </Table>}
     </AutoSizer>

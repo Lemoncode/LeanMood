@@ -17,8 +17,10 @@ export const StudentRowComponent = (props: Props) => {
       // We have enable camelCase parser in webpack.config.js
       className={`${props.className} ${classNames.rowStriped}`}
     >
+      <input type="checkbox" disabled={true} checked={props.rowData.isActive}/>
       <span>{props.rowData.fullname}</span>
       <span>{props.rowData.email}</span>
+      <a className=" btn btn-primary"><i className="glyphicon glyphicon-pencil" /></a>
     </TableRowComponent>
   );
 };
