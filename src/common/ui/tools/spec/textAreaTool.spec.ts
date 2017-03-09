@@ -136,6 +136,7 @@ describe('textAreaTool', () => {
       'when we passing selectionStart equals 1 and selectionEnd equals undefined', () => {
       // Arrange
       const textArea = document.createElement('textArea') as HTMLTextAreaElement;
+      textArea.value = 'foo';
       const selectionStart = 1;
       const selectionEnd = undefined;
 
@@ -154,6 +155,7 @@ describe('textAreaTool', () => {
       'when we passing selectionStart equals 1 and selectionEnd equals null', () => {
       // Arrange
       const textArea = document.createElement('textArea') as HTMLTextAreaElement;
+      textArea.value = 'foo';
       const selectionStart = 1;
       const selectionEnd = null;
 
