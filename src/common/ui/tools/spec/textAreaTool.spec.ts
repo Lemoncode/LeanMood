@@ -1,4 +1,3 @@
-import * as cheerio from 'cheerio';
 import {textAreaTool} from '../textAreaTool';
 
 describe('textAreaTool', () => {
