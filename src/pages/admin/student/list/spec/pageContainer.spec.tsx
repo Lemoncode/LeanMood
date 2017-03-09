@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as summaryStudentListRequest from '../actions/summaryStudentListRequest';
+import { StudentSummary } from '../../../../../model/studentSummary';
 import { ListStudentPage } from '../page';
 import { ListStudentPageContainer } from '../pageContainer';
 
@@ -92,7 +93,7 @@ describe('pageContainer', () => {
     expect(pagePresentationalWrapper).not.to.be.undefined;
     expect(pagePresentationalWrapper.prop('fetchStudents')).not.to.be.undefined;
     expect(pagePresentationalWrapper.prop('studentList')).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('studentList').length).equals(2);
+    expect(pagePresentationalWrapper.prop<StudentSummary[]>('studentList').length).equals(2);
     expect(pagePresentationalWrapper.prop('studentList')[0].fullname).equals('John Doe');
     expect(pagePresentationalWrapper.prop('studentList')[1].fullname).equals('Mark Somez');
   }).bind(this));
