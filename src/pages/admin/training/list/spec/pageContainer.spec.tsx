@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as summaryTrainingListRequest from '../actions/summaryTrainingListRequest';
+import {TrainingSummary} from '../../../../../model/trainingSummary';
 import { ListTrainingPage } from '../page';
 import { ListTrainingPageContainer } from '../pageContainer';
 
@@ -92,7 +93,7 @@ describe('pageContainer', () => {
     expect(pagePresentationalWrapper).not.to.be.undefined;
     expect(pagePresentationalWrapper.prop('fetchTrainings')).not.to.be.undefined;
     expect(pagePresentationalWrapper.prop('trainingList')).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('trainingList').length).equals(2);
+    expect(pagePresentationalWrapper.prop<TrainingSummary[]>('trainingList').length).equals(2);
     expect(pagePresentationalWrapper.prop('trainingList')[0].name).equals('John Doe');
     expect(pagePresentationalWrapper.prop('trainingList')[1].name).equals('Mark Somez');
   }).bind(this));
