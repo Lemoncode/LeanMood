@@ -4,13 +4,13 @@ import { StudentRowComponent } from './studentRow';
 import { AutoSizer, Table, Column } from 'react-virtualized';
 const classNames: any = require('./studentTableStyles.scss');
 
-interface IProps {
+interface StudentTableComponentProps {
   studentList: StudentSummary[];
 }
 
 // More info about react-virtualized:
 // https://github.com/Lemoncode/react-training-ts/tree/master/02%20Sample%20App/04%20TrainingListB
-export const StudentTableComponent: React.StatelessComponent<IProps> = ({ studentList }: IProps = { studentList: [] }) => {
+export const StudentTableComponent: React.StatelessComponent<StudentTableComponentProps> = ({ studentList }) => {
 
   const getWidthByPercentage = (width, percentage) => {
     return (percentage * width) / 100;
@@ -19,7 +19,7 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({ studen
   const rowGetter = ({ index }) => studentList[index];
 
   return (
-    <AutoSizer disableHeight>
+    <AutoSizer disableHeight={true}>
       {({ width }) =>
         <Table
           width={width}
@@ -33,7 +33,7 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({ studen
           rowClassName={classNames.row}
         >
           <Column
-            label="is Active"
+            label="Active"
             dataKey="isActive"
             width={getWidthByPercentage(width, 10)}
           />
@@ -43,12 +43,11 @@ export const StudentTableComponent: React.StatelessComponent<IProps> = ({ studen
             width={getWidthByPercentage(width, 40)}
           />
           <Column
-            label="EMail"
+            label="Email"
             dataKey="email"
             width={getWidthByPercentage(width, 30)}
           />
           <Column
-            label=""
             dataKey=""
             width={getWidthByPercentage(width, 20)}
           />
