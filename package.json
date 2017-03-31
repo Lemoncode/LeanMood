@@ -27,7 +27,7 @@
   "homepage": "https://github.com/MasterLemon2016/LeanMood#readme",
   "devDependencies": {
     "@types/chai": "^3.4.34",
-    "@types/core-js": "^0.9.34",
+    "@types/core-js": "0.9.36",
     "@types/deep-freeze": "0.0.29",
     "@types/enzyme": "^2.5.38",
     "@types/history": "^3.2.1",
