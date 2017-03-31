@@ -1,4 +1,4 @@
-import { adminActionEnums} from '../common/actionEnums/admin';
+import { adminActionEnums } from '../common/actionEnums/admin';
 import { StudentSummary } from '../model/studentSummary';
 
 export class AdminStudentState {
@@ -20,6 +20,6 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
 
 const handleGetSummaryStudentRequestCompleted =
   (state: AdminStudentState, payload: StudentSummary[]) => {
-      const newState = Object.assign({}, state, {studentSummaryList: payload});
-      return newState;
-};
+    const newState = Object.assign({}, state, { studentSummaryList: payload });
+    return newState;
+  };

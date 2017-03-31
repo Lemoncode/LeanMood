@@ -4,14 +4,14 @@ import { summaryStudentListRequestStarted } from './actions/summaryStudentListRe
 import { ListStudentPage } from './page';
 
 const mapStateToProps = (state: IAppState) => ({
-    studentList :   state.adminStudent.studentSummaryList,
+  studentList: state.adminStudent.studentSummaryList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchStudents : () => dispatch(summaryStudentListRequestStarted()),
+  fetchStudents: () => dispatch(summaryStudentListRequestStarted()),
 });
 
 export const ListStudentPageContainer = connect(
-        mapStateToProps,
-        mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(ListStudentPage);
