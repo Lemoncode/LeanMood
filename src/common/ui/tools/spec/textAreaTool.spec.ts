@@ -1,4 +1,3 @@
-import * as cheerio from 'cheerio';
 import {textAreaTool} from '../textAreaTool';
 
 describe('textAreaTool', () => {
@@ -10,8 +9,7 @@ describe('textAreaTool', () => {
 
     it('returns empty string passing textArea value and caret equals empty and offsetCursor equals 0', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = '';
       const caret = '';
       const offsetCursor = 0;
@@ -25,8 +23,7 @@ describe('textAreaTool', () => {
 
     it('returns expected string passing textArea equal test, caret equals * and offsetCursor equals 0', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'test';
       textArea.selectionStart = 0;
       textArea.selectionEnd = 0;
@@ -43,8 +40,7 @@ describe('textAreaTool', () => {
     it('returns expected string passing textArea equal test, caret equals ** and offsetCursor equals 0 ' +
       'and there is no selected text', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'test';
       textArea.selectionStart = 0;
       textArea.selectionEnd = 0;
@@ -61,8 +57,7 @@ describe('textAreaTool', () => {
     it('returns expected string passing textArea equal test, caret equals ** and offsetCursor equals 0 ' +
       'and there is selected text', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'test';
       textArea.selectionStart = 1;
       textArea.selectionEnd = 2;
@@ -79,8 +74,7 @@ describe('textAreaTool', () => {
     it('returns expected string passing textArea equal test, caret equals ** and offsetCursor equals 1 ' +
       'and there is selected text', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'test';
       textArea.selectionStart = 1;
       textArea.selectionEnd = 2;
@@ -105,8 +99,7 @@ describe('textAreaTool', () => {
     it('place cursor to selectionStart equals 0 and selectionEnd equals 0 and calls to focus ' +
       'when we passing selectionStart and selectionEnd equals undefined', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       const selectionStart = undefined;
       const selectionEnd = undefined;
 
@@ -124,8 +117,7 @@ describe('textAreaTool', () => {
     it('place cursor to selectionStart equals 0 and selectionEnd equals 0 and calls to focus ' +
       'when we passing selectionStart and selectionEnd equals null', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       const selectionStart = null;
       const selectionEnd = null;
 
@@ -143,8 +135,8 @@ describe('textAreaTool', () => {
     it('place cursor to selectionStart equals 1 and selectionEnd equals 1 and calls to focus ' +
       'when we passing selectionStart equals 1 and selectionEnd equals undefined', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
+      textArea.value = 'foo';
       const selectionStart = 1;
       const selectionEnd = undefined;
 
@@ -162,8 +154,8 @@ describe('textAreaTool', () => {
     it('place cursor to selectionStart equals 1 and selectionEnd equals 1 and calls to focus ' +
       'when we passing selectionStart equals 1 and selectionEnd equals null', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
+      textArea.value = 'foo';
       const selectionStart = 1;
       const selectionEnd = null;
 
@@ -187,8 +179,7 @@ describe('textAreaTool', () => {
 
     it('returns false when selectionStart and selectionEnd equals 0', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = '';
       textArea.selectionStart = 0;
       textArea.selectionEnd = 0;
@@ -202,8 +193,7 @@ describe('textAreaTool', () => {
 
     it('returns false when selectionStart and selectionEnd equals 1', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'a';
       textArea.selectionStart = 1;
       textArea.selectionEnd = 1;
@@ -217,8 +207,7 @@ describe('textAreaTool', () => {
 
     it('returns false when selectionStart equals 0 and selectionEnd equals 1', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'a';
       textArea.selectionStart = 0;
       textArea.selectionEnd = 1;
@@ -239,8 +228,7 @@ describe('textAreaTool', () => {
 
     it('returns 0 when selectionStart and offsetCursor equals 0', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = '';
       textArea.selectionStart = 0;
 
@@ -255,8 +243,7 @@ describe('textAreaTool', () => {
 
     it('returns 1 when selectionStart equals 1 and offsetCursor equals 0', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'a';
       textArea.selectionStart = 1;
 
@@ -271,8 +258,7 @@ describe('textAreaTool', () => {
 
     it('returns 2 when selectionStart equals 1 and offsetCursor equals 1', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'a';
       textArea.selectionStart = 1;
 
@@ -287,8 +273,7 @@ describe('textAreaTool', () => {
 
     it('returns 0 when selectionStart equals 1 and offsetCursor equals -1', () => {
       // Arrange
-      const wrapper = cheerio.load('<textarea></textarea>');
-      const textArea = wrapper('textarea') as HTMLTextAreaElement;
+      const textArea = document.createElement('textArea') as HTMLTextAreaElement;
       textArea.value = 'a';
       textArea.selectionStart = 1;
 

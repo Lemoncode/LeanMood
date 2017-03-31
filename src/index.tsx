@@ -1,7 +1,3 @@
-// Temporary workaroind issue with webpack-env.d.ts
-// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/10578
-// <reference path="../node_modules/@types/webpack-env/index.d.ts" />
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
