@@ -29,10 +29,8 @@ export const TableRowComponent: React.StatelessComponent<TableRowProps> = (props
   };
 
   return (
-    <div className={props.className} key={props.rowKey} style={props.style}>
-      {
-        React.Children.toArray(props.children).map((child, i) => cellRenderer(child, i))
-      }
+    <div className={props.className} style={props.style}>
+      {React.Children.toArray(props.children).map(cellRenderer)}
     </div>
   );
 };
