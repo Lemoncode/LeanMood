@@ -39,7 +39,7 @@ module.exports = function (config) {
               test: /\.scss$/,
               exclude:/node_modules/,
               //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
-              loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[local]!sass-loader')
+              loader: ExtractTextPlugin.extract('style','css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
             }
           ],
           //Configuration required to import sinon on spec.ts files

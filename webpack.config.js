@@ -80,7 +80,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude:/node_modules/,
-        loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+        loader: ExtractTextPlugin.extract('style','css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
