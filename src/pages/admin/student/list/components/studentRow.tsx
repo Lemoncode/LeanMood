@@ -16,15 +16,19 @@ export const StudentRowComponent: React.StatelessComponent<Props> = (props) => {
   return (
     <TableRowComponent
       {...props}
-      // We have enable camelCase parser in webpack.config.js
       className={`${props.className} ${classNames.rowStriped}`}
     >
       <input type="checkbox" disabled={true} checked={props.rowData.isActive} />
       <span>{props.rowData.fullname}</span>
       <span>{props.rowData.email}</span>
-      <Link to={`${adminRouteEnums.student.edit}/${props.rowData.id}`} className="btn btn-primary">
-        <i className="glyphicon glyphicon-pencil" />
-      </Link>
+      <div className={classNames.btnGroup}>
+        <Link to={`${adminRouteEnums.student.edit}/${props.rowData.id}`} className="btn btn-primary">
+          <i className="glyphicon glyphicon-pencil" />
+        </Link>
+        <button type="button" className="btn btn-danger">
+          <i className="glyphicon glyphicon-trash" />
+        </button>
+      </div>
     </TableRowComponent>
   );
 };

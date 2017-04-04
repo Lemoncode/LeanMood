@@ -16,21 +16,21 @@ export interface TableRowProps {
 }
 
 export const TableRowComponent: React.StatelessComponent<TableRowProps> = (props) => {
-  const cellRenderer = (cell, index) => {
-    return (
-      <div
-        key={index}
-        className={props.columns[index].props.className}
-        style={props.columns[index].props.style}
-      >
-        {cell}
-      </div>
-    );
-  };
-
   return (
     <div className={props.className} style={props.style}>
-      {React.Children.toArray(props.children).map(cellRenderer)}
+      {React.Children.toArray(props.children).map(cellRenderer(props))}
+    </div>
+  );
+};
+
+const cellRenderer = ({columns}) => (cell, index) => {
+  return (
+    <div
+      key={index}
+      className={columns[index].props.className}
+      style={columns[index].props.style}
+    >
+      {cell}
     </div>
   );
 };
