@@ -15,12 +15,7 @@ export interface TableRowProps {
   onRowMouseOut?: () => void;
 }
 
-interface IProps extends TableRowProps {
-  rowKey: any;
-  children?: React.ReactNode | React.ReactNode[];
-}
-
-export const TableRowComponent = (props: IProps) => {
+export const TableRowComponent: React.StatelessComponent<TableRowProps> = (props) => {
   const cellRenderer = (cell, index) => {
     return (
       <div
