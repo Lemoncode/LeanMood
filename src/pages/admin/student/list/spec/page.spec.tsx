@@ -1,11 +1,13 @@
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
+import { mount, shallow } from 'enzyme';
+import { Link } from 'react-router';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import { StudentTableComponent } from '../components/studentTable';
 import { ListStudentPage } from '../page';
+import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 
-describe.skip('admin/student/list/page', () => {
-  it('is defined', () => {
+describe('ListStudentPage', () => {
+  it('should return a div', () => {
     // Arrange
     const students: StudentSummary[] = [
       {
@@ -22,70 +24,62 @@ describe.skip('admin/student/list/page', () => {
       },
     ];
 
-    const dummyFetchStudents = () => {};
+    const dummyFetchStudents = () => { };
 
     // Act
-    const page = shallow(
-      <ListStudentPage studentList={students} fetchStudents={dummyFetchStudents}/>,
+    const listStudentPage = shallow(
+      <ListStudentPage studentList={students} fetchStudents={dummyFetchStudents} />,
     );
+
     // Assert
-    expect(page).not.to.be.undefined;
+    expect(listStudentPage.type()).to.be.equals('div');
   });
 
-  it('renders a student table', () => {
+  it('should render a header', () => {
     // Arrange
-    const students: StudentSummary[] = [
-      {
-        email: 'test@test.com',
-        fullname: 'John Doe',
-        id: 2,
-        isActive: true,
-      },
-      {
-        email: 'mark@test.com',
-        fullname: 'Mark Somez',
-        id: 3,
-        isActive: true,
-      },
-    ];
-
-    const dummyFetchStudents = () => {};
+    const students = [];
+    const fetchStudents = () => { };
 
     // Act
-    const pageWrapper = shallow(
-      <ListStudentPage  studentList={students} fetchStudents={dummyFetchStudents}/>,
+    const listStudentPage = shallow(
+      <ListStudentPage studentList={students} fetchStudents={fetchStudents} />,
     );
+    const header = listStudentPage.childAt(0);
 
     // Assert
-    expect(pageWrapper.children().at(0).type()).to.be.equal(StudentTableComponent);
+    expect(header.type()).to.be.equals('h1');
+    expect(header.childAt(0).text()).to.be.equals('Students');
   });
 
-  // sinon.test(
-  it('renders a student table', () => {
+  it('should render a student table', () => {
     // Arrange
-    const students: StudentSummary[] = [
-      {
-        email: 'test@test.com',
-        fullname: 'John Doe',
-        id: 2,
-        isActive: true,
-      },
-      {
-        email: 'mark@test.com',
-        fullname: 'Mark Somez',
-        id: 3,
-        isActive: true,
-      },
-    ];
-
-    const dummyFetchStudentSpy = sinon.spy();
+    const students = [];
+    const fetchStudents = () => { };
 
     // Act
-    const pageWrapper = mount(
-      <ListStudentPage  studentList={students} fetchStudents={dummyFetchStudentSpy}/>,
+    const listStudentPage = shallow(
+      <ListStudentPage studentList={students} fetchStudents={fetchStudents} />,
     );
+    const studentsTable = listStudentPage.childAt(1);
 
     // Assert
-    expect(dummyFetchStudentSpy.calledOnce).to.be.true;
+    expect(studentsTable.type()).to.be.equal(StudentTableComponent);
+  });
+
+  it('should render a link to go back to dashboard', () => {
+    // Arrange
+    const students = [];
+    const fetchStudents = () => { };
+
+    // Act
+    const listStudentPage = shallow(
+      <ListStudentPage studentList={students} fetchStudents={fetchStudents} />,
+    );
+    const link = listStudentPage.childAt(2);
+
+    // Assert
+    expect(link.is(Link)).to.be.true;
+    expect(link.prop('to')).to.be.equals(adminRouteEnums.default);
+    expect(link.childAt(0).text()).to.be.equals('Go back to dashboard');
   });
 });

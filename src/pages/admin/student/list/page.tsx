@@ -19,7 +19,7 @@ export class ListStudentPage extends React.Component<IProps, {}> {
       <div>
         <h1>Students</h1>
         <StudentTableComponent studentList={this.props.studentList} />
-        <Link to={adminRouteEnums.student.edit}>Go to student Edit</Link>
+        <Link to={adminRouteEnums.default}>Go back to dashboard</Link>
       </div>
     );
   }

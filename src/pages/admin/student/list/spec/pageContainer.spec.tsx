@@ -10,7 +10,7 @@ import { ListStudentPageContainer } from '../pageContainer';
 const createStore = configureStore();
 
 describe.skip('pageContainer', () => {
-  it('Should be defined', sinon.test(() => {
+  it('should be defined', sinon.test(() => {
     const sinon: sinon.SinonStatic = this;
 
     const mockStore = createStore({
@@ -31,20 +31,20 @@ describe.skip('pageContainer', () => {
     });
 
     const summaryStudentListRequestStartedMock =
-              sinon.stub(summaryStudentListRequest,
-                        'summaryStudentListRequestStarted',
-                        () => {
-                          return {
-                            type: 'dummy',
-                          };
-                        });
+      sinon.stub(summaryStudentListRequest,
+        'summaryStudentListRequestStarted',
+        () => {
+          return {
+            type: 'dummy',
+          };
+        });
 
     const nonTypedMockStore: any = mockStore;
     const pageContainer = mount(
-                            <Provider store={nonTypedMockStore}>
-                              <ListStudentPageContainer/>
-                            </Provider>,
-                          );
+      <Provider store={nonTypedMockStore}>
+        <ListStudentPageContainer />
+      </Provider>,
+    );
 
     expect(pageContainer).not.to.be.undefined;
   }).bind(this));
@@ -71,21 +71,21 @@ describe.skip('pageContainer', () => {
     });
 
     const summaryStudentListRequestStartedMock =
-              sinon.stub(summaryStudentListRequest,
-                        'summaryStudentListRequestStarted',
-                        () => {
-                          return {
-                            type: 'dummy',
-                          };
-                        });
+      sinon.stub(summaryStudentListRequest,
+        'summaryStudentListRequestStarted',
+        () => {
+          return {
+            type: 'dummy',
+          };
+        });
 
     // Act
     const nonTypedMockStore: any = mockStore;
     const pageContainer = mount(
-                            <Provider store={nonTypedMockStore}>
-                              <ListStudentPageContainer/>
-                            </Provider>,
-                          );
+      <Provider store={nonTypedMockStore}>
+        <ListStudentPageContainer />
+      </Provider>,
+    );
 
     // Assert
     // ListStudentPage
