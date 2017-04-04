@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {EditorContainerComponent} from './components/editorContainer';
+import {HeadingComponent} from './components/heading/heading';
 const classNames: any = require('./pageStyles.scss');
 
 interface IProps {
@@ -15,6 +16,7 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
   public render() {
     return (
       <div className={`container-fluid ${classNames.page}`}>
+        <HeadingComponent className={classNames.heading} />
         <EditorContainerComponent className={classNames.editor} />
       </div>
     );
