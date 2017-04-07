@@ -4,7 +4,7 @@ var path = require("path");
 var basePath = __dirname;
 
 module.exports = function (config) {
-  const configObject =  {
+  const configObject = {
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
@@ -24,46 +24,46 @@ module.exports = function (config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-          loaders: [
-              {
-                  test: /\.spec\.(ts|tsx)$/,
-                  exclude: /node_modules/,
-                  loader: 'ts-loader'
-            },
-            //Configuration required by enzyme
-            {
-                test: /\.json$/,
-                loader: 'json'
-            },
-            {
-              test: /\.scss$/,
-              exclude:/node_modules/,
-              //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
-              loader: ExtractTextPlugin.extract('style','css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
-            }
-          ],
-          //Configuration required to import sinon on spec.ts files
-          noParse: [
-              /node_modules(\\|\/)sinon/,
-          ],
-          // https://www.npmjs.com/package/istanbul-instrumenter-loader
-          postLoaders: [
-            {
-                  test: /\.(ts|tsx)/,
-                  exclude: /(node_modules|spec)/,
-                  loaders: ['istanbul-instrumenter','ts-loader']
-            }
-          ]
+        loaders: [
+          {
+            test: /\.spec\.(ts|tsx)$/,
+            exclude: /node_modules/,
+            loader: 'ts-loader'
+          },
+          //Configuration required by enzyme
+          {
+            test: /\.json$/,
+            loader: 'json'
+          },
+          {
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
+            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
+          }
+        ],
+        //Configuration required to import sinon on spec.ts files
+        noParse: [
+          /node_modules(\\|\/)sinon/,
+        ],
+        // https://www.npmjs.com/package/istanbul-instrumenter-loader
+        postLoaders: [
+          {
+            test: /\.(ts|tsx)/,
+            exclude: /(node_modules|spec)/,
+            loaders: ['istanbul-instrumenter', 'ts-loader']
+          }
+        ]
       },
       resolve: {
-          //Added .json extension required by cheerio (enzyme dependency)
-          extensions: ['', '.js', '.ts', '.tsx', '.json'],
-          //Configuration required to import sinon on spec.ts files
-          // https://github.com/webpack/webpack/issues/304
-          alias: {
-            sinon: 'sinon/pkg/sinon',
-            'globalStyles': path.join(basePath, "src/content/sass/")
-          }
+        //Added .json extension required by cheerio (enzyme dependency)
+        extensions: ['', '.js', '.ts', '.tsx', '.json'],
+        //Configuration required to import sinon on spec.ts files
+        // https://github.com/webpack/webpack/issues/304
+        alias: {
+          sinon: 'sinon/pkg/sinon',
+          'globalStyles': path.join(basePath, "src/content/sass/")
+        }
       },
       //Configuration required by enzyme
       externals: {
@@ -76,9 +76,9 @@ module.exports = function (config) {
       ]
     },
     webpackMiddleware: {
-        // webpack-dev-middleware configuration
-        // i. e.
-        noInfo: true
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true
     },
 
     reporters: ['mocha'],
@@ -92,7 +92,7 @@ module.exports = function (config) {
   }
 
   if (process.env.TRAVIS) {
-      config.browsers = ['Chrome_travis_ci'];
+    config.browsers = ['Chrome_travis_ci'];
   }
 
   config.set(configObject);

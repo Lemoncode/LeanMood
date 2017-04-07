@@ -78,8 +78,22 @@ describe('ListStudentPage', () => {
     const link = listStudentPage.childAt(2);
 
     // Assert
-    expect(link.is(Link)).to.be.true;
+    expect(link.type()).to.be.equals(Link);
     expect(link.prop('to')).to.be.equals(adminRouteEnums.default);
     expect(link.childAt(0).text()).to.be.equals('Go back to dashboard');
+  });
+
+  it('should call "fetchStudents" action when mounted', () => {
+    // Arrange
+    const students = [];
+    const fetchStudents = sinon.spy(() => { });
+
+    // Act
+    const listStudentPage = mount(
+      <ListStudentPage studentList={students} fetchStudents={fetchStudents} />,
+    );
+
+    // Assert
+    expect(fetchStudents.calledOnce).to.be.true;
   });
 });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { StudentSummary } from '../../../../../model/studentSummary';
-import { TableRowProps, TableRowComponent } from '../../../../../common/virtualized/tableRow';
+import { TableRowProps, TableRowComponent } from '../../../../../common/components/virtualized/tableRow';
 import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 
 const classNames: any = require('./studentRowStyles.scss');

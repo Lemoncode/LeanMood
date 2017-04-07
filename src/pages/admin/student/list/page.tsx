@@ -4,12 +4,12 @@ import { StudentSummary } from '../../../../model/studentSummary';
 import { StudentTableComponent } from './components/studentTable';
 import { adminRouteEnums } from '../../../../common/routeEnums/admin';
 
-interface IProps extends React.Props<ListStudentPage> {
+interface ListStudentPageProps extends React.Props<ListStudentPage> {
   studentList: StudentSummary[];
-  fetchStudents: () => void;
+  fetchStudents(): void;
 }
 
-export class ListStudentPage extends React.Component<IProps, {}> {
+export class ListStudentPage extends React.Component<ListStudentPageProps, {}> {
   public componentDidMount() {
     this.props.fetchStudents();
   }

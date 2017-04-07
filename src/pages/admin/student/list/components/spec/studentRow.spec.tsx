@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Link } from 'react-router';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { adminRouteEnums } from '../../../../../../common/routeEnums/admin';
-import { TableRowComponent } from '../../../../../../common/virtualized/tableRow';
+import { TableRowComponent } from '../../../../../../common/components/virtualized/tableRow';
 import { StudentSummary } from '../../../../../../model/studentSummary';
 import { StudentRowComponent } from '../studentRow';
 

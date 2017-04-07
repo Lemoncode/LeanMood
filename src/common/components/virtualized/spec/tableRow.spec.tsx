@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { TableRowComponent } from '../tableRow';
+import { TableCellComponent } from '../tableCell';
 
 describe('TableRowComponent tests', () => {
-  it('should return a div with passed "className", "key" and "style"', () => {
+  it('should return a div with passed "className" and "style"', () => {
     // Arrange
     const props = {
       className: 'rowClassName',
       columns: [],
       index: 0,
-      key: 0,
+      key: 5,
       isScrolling: false,
       style: { color: 'red' },
-      rowKey: 5,
     };
 
     // Act
@@ -38,7 +38,6 @@ describe('TableRowComponent tests', () => {
       key: 0,
       isScrolling: false,
       style: {},
-      rowKey: 0,
     };
 
     // Act
@@ -54,40 +53,27 @@ describe('TableRowComponent tests', () => {
     expect(tableRowComponent.children().length).to.be.equals(3);
   });
 
-  it('should wrap each child with a div with "style" and "className" from "columns" object', () => {
+  it('should render as many TableCellComponents as childs it has', () => {
     // Arrange
     const props = {
       className: '',
-      columns: [
-        { props: { className: 'column0', style: { color: '#000' } } },
-        { props: { className: 'column1', style: { color: '#001' } } },
-        { props: { className: 'column2', style: { color: '#002' } } },
-      ],
+      columns: [],
       index: 0,
       key: 0,
       isScrolling: false,
       style: {},
-      rowKey: 5,
     };
 
     // Act
     const tableRowComponent = shallow(
       <TableRowComponent {...props}>
-        <span>Span 1</span>
-        <span>Span 2</span>
-        <span>Span 3</span>
+        <span>Column 1</span>
+        <span>Column 2</span>
+        <span>Column 3</span>
       </TableRowComponent>,
     );
 
     // Assert
-    tableRowComponent.children().forEach((child, index) => {
-      const divWrapper = child.at(0);
-      expect(child.key()).to.be.equals(String(index));
-      expect(child.prop('className')).to.be.equals(`column${index}`);
-      expect(child.prop('style')).to.be.deep.equals({ color: `#00${index}` });
-      expect(divWrapper.type()).to.be.equals('div');
-      expect(divWrapper.childAt(0).type()).to.be.equals('span');
-      expect(divWrapper.childAt(0).text()).to.be.equals(`Span ${index + 1}`);
-    });
+    expect(tableRowComponent.children().length).to.be.equals(3);
   });
 });

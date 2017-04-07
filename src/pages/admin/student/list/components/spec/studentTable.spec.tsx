@@ -6,7 +6,6 @@ import { StudentSummary } from '../../../../../../model/studentSummary';
 import { InnerStudentTableComponent, StudentTableComponent } from '../studentTable';
 import { StudentRowComponent } from '../studentRow';
 
-
 describe('StudentTableComponent', () => {
   it('Should return a react-virtualized Table', () => {
     // Arrange

@@ -1,36 +1,26 @@
 import * as React from 'react';
+import { TableCellComponent } from './tableCell';
 
 // https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md
 // https://github.com/bvaughn/react-virtualized/blob/master/source/Table/defaultRowRenderer.js
 export interface TableRowProps {
   className: string;
-  style: React.CSSProperties;
-  columns: any[];
+  columns: React.ReactNode[];
   index: number;
-  key: any;
   isScrolling: boolean;
   onRowClick?: () => void;
   onRowDoubleClick?: () => void;
   onRowMouseOver?: () => void;
   onRowMouseOut?: () => void;
+  style: React.CSSProperties;
 }
 
 export const TableRowComponent: React.StatelessComponent<TableRowProps> = (props) => {
   return (
     <div className={props.className} style={props.style}>
-      {React.Children.toArray(props.children).map(cellRenderer(props))}
-    </div>
-  );
-};
-
-const cellRenderer = ({columns}) => (cell, index) => {
-  return (
-    <div
-      key={index}
-      className={columns[index].props.className}
-      style={columns[index].props.style}
-    >
-      {cell}
+      {React.Children.toArray(props.children).map(
+        (cell, index) => <TableCellComponent cell={cell} key={index} column={props.columns[index]} />,
+      )}
     </div>
   );
 };
