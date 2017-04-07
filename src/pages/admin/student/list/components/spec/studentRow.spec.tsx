@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router';
-import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { adminRouteEnums } from '../../../../../../common/routeEnums/admin';
 import { TableRowComponent } from '../../../../../../common/components/virtualized/tableRow';
 import { StudentSummary } from '../../../../../../model/studentSummary';
@@ -12,49 +11,47 @@ describe('StudentRowComponent', () => {
     // Arrange
     const student = new StudentSummary();
     const props = {
-      isScrolling: false,
+      className: '',
       columns: [],
       index: 0,
-      className: '',
-      key: 0,
+      isScrolling: false,
       rowData: student,
       style: {},
     };
 
     // Act
-    const studentRowComponent = shallow(
-      <StudentRowComponent {...props} />,
+    const tableRowComponent = shallow(
+      <StudentRowComponent {...props} rowData={props.rowData} />,
     );
 
     // Assert
-    expect(studentRowComponent.type()).to.be.equals(TableRowComponent);
+    expect(tableRowComponent.type()).to.be.equals(TableRowComponent);
   });
 
-  it('should pass their properties to TableRowComponent ', () => {
+  it('should pass its properties to TableRowComponent ', () => {
     // Arrange
     const student = new StudentSummary();
     const props = {
-      isScrolling: false,
+      className: 'rowClassName',
       columns: [],
       index: 2,
-      className: 'rowClassName',
-      key: 0,
+      isScrolling: false,
       rowData: student,
       style: { color: 'red' },
     };
 
     // Act
-    const studentRowComponent = shallow(
+    const tableRowComponent = shallow(
       <StudentRowComponent {...props} />,
     );
 
     // Assert
-    expect(studentRowComponent.prop('isScrolling')).to.be.false;
-    expect(studentRowComponent.prop('columns')).to.be.deep.equals([]);
-    expect(studentRowComponent.prop('index')).to.be.equals(2);
-    expect(studentRowComponent.hasClass('rowClassName')).to.be.true;
-    expect(studentRowComponent.prop('rowData')).to.be.equals(student);
-    expect(studentRowComponent.prop('style')).to.be.deep.equals({ color: 'red' });
+    expect(tableRowComponent.hasClass('rowClassName')).to.be.true;
+    expect(tableRowComponent.prop('columns')).to.be.deep.equals([]);
+    expect(tableRowComponent.prop('index')).to.be.equals(2);
+    expect(tableRowComponent.prop('isScrolling')).to.be.false;
+    expect(tableRowComponent.prop('rowData')).to.be.equals(student);
+    expect(tableRowComponent.prop('style')).to.be.deep.equals({ color: 'red' });
   });
 
   describe('when passing columns to TableRowComponent', () => {
@@ -66,20 +63,19 @@ describe('StudentRowComponent', () => {
       student.email = 'jdoe@example.com';
       student.isActive = true;
       const props = {
-        isScrolling: false,
+        className: 'rowClassName',
         columns: [],
         index: 2,
-        className: 'rowClassName',
-        key: 4,
+        isScrolling: false,
         rowData: student,
         style: { color: 'red' },
       };
 
       // Act
-      const studentRowComponent = shallow(
+      const tableRowComponent = shallow(
         <StudentRowComponent {...props} />,
       );
-      const checkbox = studentRowComponent.childAt(0);
+      const checkbox = tableRowComponent.childAt(0);
 
       // Assert
       expect(checkbox.type()).to.be.equals('input');
@@ -96,20 +92,19 @@ describe('StudentRowComponent', () => {
       student.email = 'jdoe@example.com';
       student.isActive = true;
       const props = {
-        isScrolling: false,
+        className: 'rowClassName',
         columns: [],
         index: 2,
-        className: 'rowClassName',
-        key: 4,
+        isScrolling: false,
         rowData: student,
         style: { color: 'red' },
       };
 
       // Act
-      const studentRowComponent = shallow(
+      const tableRowComponent = shallow(
         <StudentRowComponent {...props} />,
       );
-      const span = studentRowComponent.childAt(1);
+      const span = tableRowComponent.childAt(1);
 
       // Assert
       expect(span.type()).to.be.equals('span');
@@ -124,20 +119,19 @@ describe('StudentRowComponent', () => {
       student.email = 'jdoe@example.com';
       student.isActive = true;
       const props = {
-        isScrolling: false,
+        className: 'rowClassName',
         columns: [],
         index: 2,
-        className: 'rowClassName',
-        key: 4,
+        isScrolling: false,
         rowData: student,
         style: { color: 'red' },
       };
 
       // Act
-      const studentRowComponent = shallow(
+      const tableRowComponent = shallow(
         <StudentRowComponent {...props} />,
       );
-      const span = studentRowComponent.childAt(2);
+      const span = tableRowComponent.childAt(2);
 
       // Assert
       expect(span.type()).to.be.equals('span');
@@ -152,20 +146,19 @@ describe('StudentRowComponent', () => {
       student.email = 'jdoe@example.com';
       student.isActive = true;
       const props = {
-        isScrolling: false,
+        className: 'rowClassName',
         columns: [],
         index: 2,
-        className: 'rowClassName',
-        key: 4,
+        isScrolling: false,
         rowData: student,
         style: { color: 'red' },
       };
 
       // Act
-      const studentRowComponent = shallow(
+      const tableRowComponent = shallow(
         <StudentRowComponent {...props} />,
       );
-      const div = studentRowComponent.childAt(3);
+      const div = tableRowComponent.childAt(3);
 
       // Assert
       expect(div.type()).to.be.equals('div');
@@ -182,20 +175,19 @@ describe('StudentRowComponent', () => {
         student.email = 'jdoe@example.com';
         student.isActive = true;
         const props = {
-          isScrolling: false,
+          className: 'rowClassName',
           columns: [],
           index: 2,
-          className: 'rowClassName',
-          key: 4,
+          isScrolling: false,
           rowData: student,
           style: { color: 'red' },
         };
 
         // Act
-        const studentRowComponent = shallow(
+        const tableRowComponent = shallow(
           <StudentRowComponent {...props} />,
         );
-        const div = studentRowComponent.childAt(3);
+        const div = tableRowComponent.childAt(3);
         const link = div.childAt(0);
         const icon = link.childAt(0);
 
@@ -215,20 +207,19 @@ describe('StudentRowComponent', () => {
         student.email = 'jdoe@example.com';
         student.isActive = true;
         const props = {
-          isScrolling: false,
+          className: 'rowClassName',
           columns: [],
           index: 2,
-          className: 'rowClassName',
-          key: 4,
+          isScrolling: false,
           rowData: student,
           style: { color: 'red' },
         };
 
         // Act
-        const studentRowComponent = shallow(
+        const tableRowComponent = shallow(
           <StudentRowComponent {...props} />,
         );
-        const div = studentRowComponent.childAt(3);
+        const div = tableRowComponent.childAt(3);
         const button = div.childAt(1);
         const icon = button.childAt(0);
 

@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { Link } from 'react-router';
+import { TableRowProps } from 'react-virtualized';
 import { StudentSummary } from '../../../../../model/studentSummary';
-import { TableRowProps, TableRowComponent } from '../../../../../common/components/virtualized/tableRow';
+import { TableRowComponent } from '../../../../../common/components/virtualized/tableRow';
 import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 
 const classNames: any = require('./studentRowStyles.scss');
 
-interface Props extends TableRowProps {
+interface StudentRowComponentProps extends TableRowProps {
   rowData: StudentSummary;
 }
 
 // We can use spread operator for React properties too
 // https://facebook.github.io/react/docs/jsx-in-depth.html#spread-attributes
-export const StudentRowComponent: React.StatelessComponent<Props> = (props) => {
+export const StudentRowComponent: React.StatelessComponent<StudentRowComponentProps> = (props) => {
   return (
     <TableRowComponent
       {...props}
