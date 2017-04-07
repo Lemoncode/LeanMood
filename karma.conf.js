@@ -26,7 +26,7 @@ module.exports = function (config) {
       module: {
         loaders: [
           {
-            test: /\.spec\.(ts|tsx)$/,
+            test: /\.tsx?$/,
             exclude: /node_modules/,
             loader: 'ts-loader'
           },
@@ -39,21 +39,13 @@ module.exports = function (config) {
             test: /\.scss$/,
             exclude: /node_modules/,
             //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
-            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
+            loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[local]!sass-loader')
           }
         ],
         //Configuration required to import sinon on spec.ts files
         noParse: [
           /node_modules(\\|\/)sinon/,
         ],
-        // https://www.npmjs.com/package/istanbul-instrumenter-loader
-        postLoaders: [
-          {
-            test: /\.(ts|tsx)/,
-            exclude: /(node_modules|spec)/,
-            loaders: ['istanbul-instrumenter', 'ts-loader']
-          }
-        ]
       },
       resolve: {
         //Added .json extension required by cheerio (enzyme dependency)
