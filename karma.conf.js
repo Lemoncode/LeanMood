@@ -26,7 +26,7 @@ module.exports = function (config) {
       module: {
           loaders: [
               {
-                  test: /\.spec\.(ts|tsx)$/,
+                  test: /\.tsx?$/,
                   exclude: /node_modules/,
                   loader: 'ts-loader'
             },
@@ -46,14 +46,6 @@ module.exports = function (config) {
           noParse: [
               /node_modules(\\|\/)sinon/,
           ],
-          // https://www.npmjs.com/package/istanbul-instrumenter-loader
-          postLoaders: [
-            {
-                  test: /\.(ts|tsx)/,
-                  exclude: /(node_modules|spec)/,
-                  loaders: ['istanbul-instrumenter','ts-loader']
-            }
-          ]
       },
       resolve: {
           //Added .json extension required by cheerio (enzyme dependency)
