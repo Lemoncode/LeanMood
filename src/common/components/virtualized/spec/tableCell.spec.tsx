@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
-import { TableCellComponent } from '../tableCell';
+import { shallow } from 'enzyme';
+import { TableCellComponent, TableCellColumnProps } from '../tableCell';
 
 describe('TableCellComponent', () => {
   it('should render a div', () => {
@@ -10,12 +10,13 @@ describe('TableCellComponent', () => {
       props: {
         className: '',
         style: {},
+        title: null,
       },
-    };
+    } as React.ReactElement<TableCellColumnProps>;
 
     // Act
     const tableCellComponent = shallow(
-      <TableCellComponent cellContent={cellContent} column={column} />
+      <TableCellComponent cellContent={cellContent} column={column} />,
     );
 
     // Assert
@@ -31,8 +32,9 @@ describe('TableCellComponent', () => {
         style: {
           backgroundColor: 'red',
         },
+        title: null,
       },
-    };
+    } as React.ReactElement<TableCellColumnProps>;
 
     // Act
     const tableCellComponent = shallow(
@@ -51,8 +53,9 @@ describe('TableCellComponent', () => {
       props: {
         className: '',
         style: {},
+        title: null,
       },
-    };
+    } as React.ReactElement<TableCellColumnProps>;
 
     // Act
     const tableCellComponent = shallow(

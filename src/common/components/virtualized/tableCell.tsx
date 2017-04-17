@@ -1,8 +1,15 @@
 import * as React from 'react';
 
-// "originalColumn" will remain as <any> (same like react-virtualized) but it is actually a React node.
+// Generic properties column properties
+// from https://github.com/bvaughn/react-virtualized/blob/master/source/Table/Table.js#L400
+export interface TableCellColumnProps {
+  className: string;
+  style: React.CSSProperties;
+  title: string | null;
+}
+
 interface TableCellComponentsProps {
-  column: any;
+  column: React.ReactElement<TableCellColumnProps>;
   cellContent: React.ReactNode;
 }
 
