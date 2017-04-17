@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { TableRowComponent } from '../tableRow';
 import { TableCellComponent } from '../tableCell';
 
