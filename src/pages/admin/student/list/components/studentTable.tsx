@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { AutoSizer, Table, Column } from 'react-virtualized';
+import { Table, Column } from 'react-virtualized';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import { StudentRowComponent } from './studentRow';
+import { getSizeByPercentage } from '../../../../../common/helper/percentage/getSizeByPercentage';
 const classNames: any = require('./studentTableStyles.scss');
 
 interface Props {
@@ -9,14 +10,26 @@ interface Props {
   width: number;
 }
 
+const TABLE_STYLES = {
+  height: 500,
+  headerHeight: 40,
+  rowHeight: 50,
+  columnsWidthPercentage: {
+    isActive: 10,
+    fullName: 40,
+    email: 30,
+    actionsPanel: 20,
+  },
+};
+
 export const StudentTableComponent: React.StatelessComponent<Props> = ({ width, studentList }) => (
   <Table
     width={width}
-    height={500}
-    headerHeight={40}
+    height={TABLE_STYLES.height}
+    headerHeight={TABLE_STYLES.headerHeight}
     headerClassName={classNames.header}
     rowCount={studentList.length}
-    rowHeight={50}
+    rowHeight={TABLE_STYLES.rowHeight}
     rowGetter={rowGetter(studentList)}
     rowRenderer={StudentRowComponent}
     rowClassName={classNames.row}
@@ -25,26 +38,23 @@ export const StudentTableComponent: React.StatelessComponent<Props> = ({ width, 
     <Column
       label="Active"
       dataKey="isActive"
-      width={getWidthByPercentage(width, 10)}
+      width={getSizeByPercentage(width, TABLE_STYLES.columnsWidthPercentage.isActive)}
     />
     <Column
       label="Fullname"
       dataKey="fullname"
-      width={getWidthByPercentage(width, 40)}
+      width={getSizeByPercentage(width, TABLE_STYLES.columnsWidthPercentage.fullName)}
     />
     <Column
       label="Email"
       dataKey="email"
-      width={getWidthByPercentage(width, 30)}
+      width={getSizeByPercentage(width, TABLE_STYLES.columnsWidthPercentage.email)}
     />
     <Column
       dataKey=""
-      width={getWidthByPercentage(width, 20)}
+      width={getSizeByPercentage(width, TABLE_STYLES.columnsWidthPercentage.actionsPanel)}
     />
   </Table>
 );
 
 const rowGetter = (studentList) => ({ index }) => studentList[index];
-const getWidthByPercentage = (width, percentage) => {
-  return (percentage * width) / 100;
-};

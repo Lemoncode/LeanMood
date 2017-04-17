@@ -7,13 +7,13 @@ import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 
 const classNames: any = require('./studentRowStyles.scss');
 
-interface StudentRowComponentProps extends TableRowProps {
+interface Props extends TableRowProps {
   rowData: StudentSummary;
 }
 
 // We can use spread operator for React properties too
 // https://facebook.github.io/react/docs/jsx-in-depth.html#spread-attributes
-export const StudentRowComponent: React.StatelessComponent<StudentRowComponentProps> = (props) => {
+export const StudentRowComponent: React.StatelessComponent<Props> = (props) => {
   return (
     <TableRowComponent
       {...props}

@@ -19,5 +19,8 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
 };
 
 const handleGetSummaryStudentRequestCompleted = (state: AdminStudentState, payload: StudentSummary[]) => {
-  return Object.assign({}, state, { studentSummaryList: payload });
+  return {
+    ...state,
+    studentSummaryList: payload,
+  };
 };

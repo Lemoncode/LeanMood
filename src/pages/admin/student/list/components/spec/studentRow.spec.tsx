@@ -21,7 +21,7 @@ describe('StudentRowComponent', () => {
 
     // Act
     const tableRowComponent = shallow(
-      <StudentRowComponent {...props} rowData={props.rowData} />,
+      <StudentRowComponent {...props} />,
     );
 
     // Assert
