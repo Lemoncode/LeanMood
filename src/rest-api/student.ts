@@ -19,6 +19,7 @@ class StudentApi {
       summary.id = student.id;
       summary.fullname = student.fullname;
       summary.email = student.email;
+      summary.isActive = student.isActive;
 
       return summary;
     });

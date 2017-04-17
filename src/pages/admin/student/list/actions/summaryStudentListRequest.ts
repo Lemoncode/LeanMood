@@ -1,9 +1,9 @@
 import { adminActionEnums } from '../../../../../common/actionEnums/admin';
-import { StudentSummary} from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/studentSummary';
 import { studentApi } from '../../../../../rest-api';
 
 export const summaryStudentListRequestStarted = () => {
-  return (dispatcher)  => {
+  return (dispatcher) => {
     const promise = studentApi.getSummaryStudentList();
 
     promise.then(
