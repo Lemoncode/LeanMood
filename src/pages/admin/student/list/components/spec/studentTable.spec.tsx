@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { Table, AutoSizer } from 'react-virtualized';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { StudentSummary } from '../../../../../../model/studentSummary';
-import { InnerStudentTableComponent, StudentTableComponent } from '../studentTable';
+import { StudentTableComponent } from '../studentTable';
 import { StudentRowComponent } from '../studentRow';
 
 describe('StudentTableComponent', () => {
@@ -14,7 +14,7 @@ describe('StudentTableComponent', () => {
 
     // Act
     const studentTableComponent = shallow(
-      <InnerStudentTableComponent width={width} studentList={studentList} />,
+      <StudentTableComponent width={width} studentList={studentList} />,
     );
 
     // Assert
@@ -29,7 +29,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = shallow(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
       const headerColumns = studentTableComponent.children();
 
@@ -47,7 +47,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = shallow(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
       const headerColumns = studentTableComponent.children();
 
@@ -65,7 +65,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = shallow(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
       const headerColumns = studentTableComponent.children();
 
@@ -83,7 +83,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = shallow(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
       const headerColumns = studentTableComponent.children();
 
@@ -103,7 +103,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = shallow(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
 
       // Assert
@@ -130,7 +130,7 @@ describe('StudentTableComponent', () => {
 
       // Act
       const studentTableComponent = mount(
-        <InnerStudentTableComponent width={width} studentList={studentList} />,
+        <StudentTableComponent width={width} studentList={studentList} />,
       );
 
       // Assert

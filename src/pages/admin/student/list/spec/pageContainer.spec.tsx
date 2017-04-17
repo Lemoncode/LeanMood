@@ -12,7 +12,7 @@ const createStore = configureStore();
 
 describe('ListStudentPageContainer', () => {
   describe('structure tests', () => {
-    it('should render a ListStudentPageContainer that connects a ListStudentPage', sinon.test(function () {
+    it('should render a ListStudentPageContainer that connects a ListStudentPage', sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const store: any = createStore({
@@ -39,7 +39,7 @@ describe('ListStudentPageContainer', () => {
       expect(pageContainer.find(ListStudentPage).length).to.be.equal(1);
     }));
 
-    it('should inject the studentsSummaryList as "studentList" property from the state', sinon.test(function () {
+    it('should inject the studentsSummaryList as "studentList" property from the state', sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const studentSummaryList = [
@@ -79,7 +79,7 @@ describe('ListStudentPageContainer', () => {
     }));
 
     it('should inject a fetchStudents function that dispatches a summaryStudentListRequestStarted',
-      sinon.test(function () {
+      sinon.test(function() {
         // Arrange
         const sinon: sinon.SinonStatic = this;
         const studentSummaryList = [];

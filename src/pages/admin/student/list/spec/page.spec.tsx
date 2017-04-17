@@ -57,13 +57,13 @@ describe('ListStudentPage', () => {
     const fetchStudents = () => { };
 
     // Act
-    const listStudentPage = shallow(
+    const listStudentPage = mount(
       <ListStudentPage studentList={students} fetchStudents={fetchStudents} />,
     );
     const studentsTable = listStudentPage.childAt(1);
 
     // Assert
-    expect(studentsTable.type()).to.be.equal(StudentTableComponent);
+    expect(studentsTable.find(StudentTableComponent).length).to.be.equals(1);
   });
 
   it('should render a link to go back to dashboard', () => {
