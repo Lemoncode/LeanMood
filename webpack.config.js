@@ -29,10 +29,14 @@ module.exports = {
       "react-router",
       "react-router-redux",
       "redux",
-      "redux-thunk"
+      "redux-thunk",
+      "lc-form-validation",
+      "toastr",
     ],
     vendorStyles: [
-      '../node_modules/bootstrap/dist/css/bootstrap.css'
+      '../node_modules/bootstrap/dist/css/bootstrap.css',
+      '../node_modules/font-awesome/css/font-awesome.css',
+      '../node_modules/toastr/build/toastr.css',
     ]
   },
 	output: {
@@ -67,7 +71,7 @@ module.exports = {
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
-        include: /node_modules\\bootstrap/,
+        include: /node_modules/,
         loader: ExtractTextPlugin.extract('style','css')
       },
       //NOTE: src css configuration

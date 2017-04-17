@@ -113,6 +113,7 @@
         "jsx-no-multiline-js": false,
         "jsx-wrap-multiline": false,
         "no-var-requires": false,
-        "no-empty": false
+        "no-empty": false,
+        "member-ordering": false
     }
 }

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { TrainingSummary } from "../../../../../model/trainingSummary";
+import * as React from 'react';
+import { TrainingSummary } from '../../../../../model/trainingSummary';
 
 interface IProps {
   training: TrainingSummary;

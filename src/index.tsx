@@ -1,19 +1,15 @@
-// Temporary workaroind issue with webpack-env.d.ts
-// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/10578
-// <reference path="../node_modules/@types/webpack-env/index.d.ts" />
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { hashHistory, Router  } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import reduxThunk from 'redux-thunk';
+import {AppRoutes} from './routes';
 
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { hashHistory, Router  } from "react-router";
-import { syncHistoryWithStore } from "react-router-redux";
-import { applyMiddleware, compose, createStore } from "redux";
-import reduxThunk from "redux-thunk";
-import {AppRoutes} from "./routes";
+import { reducers } from './reducers';
 
-import { reducers } from "./reducers";
-
-let store = createStore(
+const store = createStore(
   reducers,
   compose(
     applyMiddleware(reduxThunk),
@@ -29,6 +25,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory} routes={AppRoutes}/>
   </Provider>
-  , document.getElementById("root"));
+  , document.getElementById('root'));
 
 const history = syncHistoryWithStore(hashHistory, store);

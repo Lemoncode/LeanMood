@@ -1,5 +1,5 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
 
 export class TrainingListPage extends React.Component<{}, {}> {
    public render() {
@@ -8,7 +8,7 @@ export class TrainingListPage extends React.Component<{}, {}> {
            <span>** Student list of Trainings Page: </span>
            <br/>
            <br/>
-           <Link to="/students/maintoc/">Go to training main toc</Link>
+           <Link to="/student/maintoc/">Go to training main toc</Link>
          </div>
         );
   }

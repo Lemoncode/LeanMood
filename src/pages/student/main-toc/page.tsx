@@ -1,5 +1,5 @@
-import * as React from "react";
-import {Link} from "react-router";
+import * as React from 'react';
+import {Link} from 'react-router';
 
 export class MainTocPage extends React.Component<{}, {}> {
    public render() {
@@ -8,7 +8,7 @@ export class MainTocPage extends React.Component<{}, {}> {
            <span> ##### Main Toc Page: </span>
            <br/>
            <br/>
-           <Link to="students">Back to student"s trainings list (main page)</Link>
+           <Link to="/student">Back to student"s trainings list (main page)</Link>
          </div>
         );
   }
