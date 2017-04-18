@@ -1,101 +1,110 @@
-import { mount } from 'enzyme';
 import * as React from 'react';
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as summaryStudentListRequest from '../actions/summaryStudentListRequest';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import { ListStudentPage } from '../page';
 import { ListStudentPageContainer } from '../pageContainer';
+import { IAppState } from '../../../../../reducers';
 
 const createStore = configureStore();
 
-describe('pageContainer', () => {
-  it('Should be defined', sinon.test(() => {
-    const sinon: sinon.SinonStatic = this;
+describe('ListStudentPageContainer', () => {
+  describe('structure tests', () => {
+    it('should render a ListStudentPageContainer that connects a ListStudentPage', sinon.test(function() {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const store: any = createStore({
+        adminStudent: {
+          studentSummaryList: [],
+        },
+      });
+      const summaryStudentListRequestStarted = sinon.stub(
+        summaryStudentListRequest,
+        'summaryStudentListRequestStarted',
+      );
+      summaryStudentListRequestStarted.returns({ type: 'dummy' });
 
-    const mockStore = createStore({
-      adminStudent: {
-        studentSummaryList: [
-          {
-            email: 'test@test.com',
-            fullname: 'John Doe',
-            id: 2,
-          },
-          {
-            email: 'mark@test.com',
-            fullname: 'Mark Somez',
-            id: 3,
-          },
-        ],
-      },
-    });
+      // Act
+      const wrapper = mount(
+        <Provider store={store}>
+          <ListStudentPageContainer />
+        </Provider>,
+      );
+      const pageContainer = wrapper.find(ListStudentPageContainer);
 
-    const summaryStudentListRequestStartedMock =
-              sinon.stub(summaryStudentListRequest,
-                        'summaryStudentListRequestStarted',
-                        () => {
-                          return {
-                            type: 'dummy',
-                          };
-                        });
+      // Assert
+      expect(pageContainer.length).to.be.equal(1);
+      expect(pageContainer.find(ListStudentPage).length).to.be.equal(1);
+    }));
 
-    const nonTypedMockStore: any = mockStore;
-    const pageContainer = mount(
-                            <Provider store={nonTypedMockStore}>
-                              <ListStudentPageContainer/>
-                            </Provider>,
-                          );
+    it('should inject the studentsSummaryList as "studentList" property from the state', sinon.test(function() {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const studentSummaryList = [
+        {
+          email: 'test@test.com',
+          fullname: 'John Doe',
+          id: 2,
+          isActive: false,
+        },
+        {
+          email: 'mark@test.com',
+          fullname: 'Mark Somez',
+          id: 3,
+          isActive: false,
+        },
+      ];
+      const store: any = createStore({
+        adminStudent: { studentSummaryList },
+      });
+      const summaryStudentListRequestStartedMock = sinon.stub(
+        summaryStudentListRequest,
+        'summaryStudentListRequestStarted',
+      );
+      summaryStudentListRequestStartedMock.returns({ type: 'dummy' });
 
-    expect(pageContainer).not.to.be.undefined;
-  }).bind(this));
+      // Act
+      const wrapper = mount(
+        <Provider store={store}>
+          <ListStudentPageContainer />
+        </Provider>,
+      );
+      const studentListPage = wrapper.find(ListStudentPageContainer).find(ListStudentPage);
 
-  it('Should contain a property called StudentList and be informed', sinon.test(() => {
-    const sinon: sinon.SinonStatic = this;
+      // Assert
+      expect(studentListPage.prop('studentList')).to.be.an.instanceof(Array);
+      expect(studentListPage.prop('studentList')).to.be.deep.equals(studentSummaryList);
+    }));
 
-    // Arrange
-    const mockStore = createStore({
-      adminStudent: {
-        studentSummaryList: [
-          {
-            email: 'test@test.com',
-            fullname: 'John Doe',
-            id: 2,
-          },
-          {
-            email: 'mark@test.com',
-            fullname: 'Mark Somez',
-            id: 3,
-          },
-        ],
-      },
-    });
+    it('should inject a fetchStudents function that dispatches a summaryStudentListRequestStarted',
+      sinon.test(function() {
+        // Arrange
+        const sinon: sinon.SinonStatic = this;
+        const studentSummaryList = [];
+        const store: any = createStore({
+          adminStudent: { studentSummaryList },
+        });
+        const summaryStudentListRequestStartedMock = sinon.stub(
+          summaryStudentListRequest,
+          'summaryStudentListRequestStarted',
+        );
+        summaryStudentListRequestStartedMock.returns({ type: 'dummy' });
 
-    const summaryStudentListRequestStartedMock =
-              sinon.stub(summaryStudentListRequest,
-                        'summaryStudentListRequestStarted',
-                        () => {
-                          return {
-                            type: 'dummy',
-                          };
-                        });
+        // Act
+        const wrapper = mount(
+          <Provider store={store}>
+            <ListStudentPageContainer />
+          </Provider>,
+        );
+        const studentListPage = wrapper.find(ListStudentPageContainer).find(ListStudentPage);
 
-    // Act
-    const nonTypedMockStore: any = mockStore;
-    const pageContainer = mount(
-                            <Provider store={nonTypedMockStore}>
-                              <ListStudentPageContainer/>
-                            </Provider>,
-                          );
-
-    // Assert
-    // ListStudentPage
-    const pagePresentationalWrapper = pageContainer.find('ListStudentPage');
-    expect(pagePresentationalWrapper).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('fetchStudents')).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop('studentList')).not.to.be.undefined;
-    expect(pagePresentationalWrapper.prop<StudentSummary[]>('studentList').length).equals(2);
-    expect(pagePresentationalWrapper.prop('studentList')[0].fullname).equals('John Doe');
-    expect(pagePresentationalWrapper.prop('studentList')[1].fullname).equals('Mark Somez');
-  }).bind(this));
-
+        // Assert
+        expect(studentListPage.prop('fetchStudents')).to.be.instanceOf(Function);
+        // Call fetchStudents to test if it calles the mocked method we expect it calls
+        studentListPage.prop('fetchStudents')();
+        expect(summaryStudentListRequestStartedMock.called).to.be.true;
+      }));
+  });
 });

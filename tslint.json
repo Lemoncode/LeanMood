@@ -3,6 +3,7 @@
     "jsRules": {
         "class-name": true,
         "object-literal-sort-keys": false,
+        "interface-name": false,
         "comment-format": [
             true,
             "check-space"
@@ -53,6 +54,7 @@
         "jsx-alignment": true,
         "jsx-self-close": true,
         "class-name": true,
+        "interface-name": false,
         "object-literal-sort-keys": false,
         "ordered-imports": [
             false
@@ -70,6 +72,9 @@
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
+        "only-arrow-functions": [
+          false
+        ],
         "one-line": [
             true,
             "check-open-brace",
