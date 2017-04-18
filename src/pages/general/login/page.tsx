@@ -1,8 +1,5 @@
 import * as React from 'react';
 import {Link} from 'react-router';
-import {adminRouteEnums} from '../../../common/routeEnums/admin';
-import {trainerRouteEnums} from '../../../common/routeEnums/trainer';
-import { LoginCredentials } from '../../../model/login/loginCredentials';
 import { LoginFormContainerComponent } from './components/loginForm';
 
 export const LoginPage = () => {
