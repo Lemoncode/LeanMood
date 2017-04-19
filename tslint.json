@@ -72,6 +72,9 @@
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
+        "only-arrow-functions": [
+          false
+        ],
         "one-line": [
             true,
             "check-open-brace",
