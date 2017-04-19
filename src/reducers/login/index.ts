@@ -1,10 +1,10 @@
-import {FieldValidationResult} from 'lc-form-validation';
+import { FieldValidationResult } from 'lc-form-validation';
 import { UserProfile } from '../../model/userProfile';
 import { LoginResponse } from '../../model/login/loginResponse';
 import { LoginCredentials } from '../../model/login/loginCredentials';
-import {ILoginErrors} from '../../model/login/loginErrors';
+import { ILoginErrors } from '../../model/login/loginErrors';
 import { loginActionEnums } from './../../common/actionEnums/login';
-import {ILoginContentChangedCompletedPayload} from '../../pages/general/login/actions/loginContentChanged';
+import { ILoginContentChangedCompletedPayload } from '../../pages/general/login/actions/loginContentChanged';
 
 export class LoginState {
   public editingLogin: LoginCredentials;
@@ -14,9 +14,9 @@ export class LoginState {
   constructor() {
     this.editingLogin = new LoginCredentials();
     this.userProfile = new UserProfile();
-    this.loginErrors = {login: new FieldValidationResult(), password: new FieldValidationResult()};
+    this.loginErrors = { login: new FieldValidationResult(), password: new FieldValidationResult() };
   }
-};
+}
 
 export const loginReducer = (state: LoginState = new LoginState(), action) => {
   switch (action.type) {
