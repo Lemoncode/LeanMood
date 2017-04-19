@@ -1,0 +1,56 @@
+import * as React from 'react';
+import { marksy } from 'marksy';
+import { Link } from 'react-router';
+import { studentRouteEnums } from '../../../../common/routeEnums/student';
+import { TrainingTOC } from '../../../../model/student/trainingToc';
+
+const compile = marksy();
+
+export interface TrainingTOCPageProps {
+  trainingId: number;
+  trainingTOC: TrainingTOC;
+  fetchTrainingTOC(trainingId: number): void;
+}
+
+export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
+  private getTrainingTOC() {
+    const { trainingId } = this.props;
+    if (trainingId) {
+      this.props.fetchTrainingTOC(trainingId);
+    }
+  }
+
+  public componentDidMount() {
+    this.getTrainingTOC();
+  }
+
+  public componentDidUpdate() {
+    // Fetch the new training TOC if route changes
+    if (this.props.trainingId !== this.props.trainingTOC.id) {
+      this.getTrainingTOC();
+    }
+  }
+
+  public render() {
+
+    return (
+      <div>
+        <h2 className="text-center">{this.props.trainingTOC.name}</h2>
+        <h2>asd</h2>
+        {this.getMarkDownChildren()}
+        <Link to={studentRouteEnums.trainingList}>Back to training list</Link>
+      </div>
+    );
+  }
+
+  private getMarkDownChildren(): React.ReactNode {
+    let childrenComponent: React.ReactNode = null;
+    const { trainingTOC } = this.props;
+
+    if (trainingTOC) {
+      childrenComponent = compile(trainingTOC.content).tree;
+    }
+
+    return childrenComponent;
+  }
+}

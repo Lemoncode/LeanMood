@@ -18,10 +18,13 @@ describe('StudentAPI', () => {
   it('should return a "TrainingTOC" instance if id exists', (done) => {
     // Arrange
     const trainingId = 1;
+    const trainingName = 'Training 1';
+    const trainingContent = 'Content of TOC from training 1';
     const trainingList: TrainingTOC[] = [
       {
-        id: 1,
-        content: 'Content of TOC from training 1',
+        id: trainingId,
+        name: trainingName,
+        content: trainingContent,
       },
     ];
     studentAPI.setMockedTrainings(trainingList);
@@ -29,7 +32,10 @@ describe('StudentAPI', () => {
     // Act
     studentAPI.getTOCByTraining(trainingId).then((trainingTOC) => {
       // Assert
-      expect(trainingTOC).to.be.a('string').and.be.equals('Content of TOC from training 1');
+      expect(trainingTOC).to.be.an('object');
+      expect(trainingTOC.id).to.be.equals(trainingId);
+      expect(trainingTOC.name).to.be.equals(trainingName);
+      expect(trainingTOC.content).to.be.equals(trainingContent);
       done();
     }).catch(done);
   });

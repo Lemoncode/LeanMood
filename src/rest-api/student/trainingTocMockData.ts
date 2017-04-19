@@ -3,10 +3,9 @@ import { TrainingTOC } from '../../model/student/trainingToc';
 export const trainingTOCMockData: TrainingTOC[] = [
   {
     id: 1,
+    name: 'Responsive web design',
     content: `
-# Module 1:
-
-## Layout and CSS
+## Module 1: Layout and CSS
 
 Some training description.
 
@@ -24,17 +23,18 @@ Some training description.
 
   {
     id: 2,
+    name: 'AngularJS 2',
     content: `
-# Module 2
-
-## JavaScript and TypeScript
+## Module 2: Angular 2
 
 Some training description.
 
 ### Summary
-- JavaScript basis.
-- ECMAScript 6.
-- TypeScript.
+- Components
+- Services
+- Pipes
+- Http
+- Routing
     `,
   },
 ];

@@ -12,14 +12,8 @@ class StudentAPI {
     this.trainingList = newTrainingList;
   }
 
-  public getTOCByTraining(id: number): Promise<string> {
-    let trainingTOC: string;
-    const foundTraining = this.trainingList.find((training) => training.id === id);
-
-    if (foundTraining) {
-      trainingTOC = foundTraining.content;
-    }
-
+  public getTOCByTraining(id: number): Promise<TrainingTOC> {
+    const trainingTOC = this.trainingList.find((training) => training.id === id);
     return Promise.resolve(trainingTOC);
   }
 }

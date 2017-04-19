@@ -1,18 +1,17 @@
 import thunk from 'redux-thunk';
 import configureStore, { IStore } from 'redux-mock-store';
 import { fetchTrainingTOCStarted, fetchTrainingTOCCompleted } from '../fetchTrainingToc';
-import { StudentState } from '../../../../../../reducers/student/student';
 import { studentActionEnums } from '../../../../../../common/actionEnums/student/';
 import { studentAPI } from '../../../../../../rest-api/student/studentApi';
 import { TrainingTOC } from '../../../../../../model/student/trainingToc';
 
-const mockStore = configureStore<StudentState>([thunk]);
-let store: IStore<StudentState>;
+const mockStore = configureStore<TrainingTOC>([thunk]);
+let store: IStore<TrainingTOC>;
 
-describe('Student Module', () => {
+describe('Student Module --> Training TOC actions', () => {
   describe('fetchTrainingTOCStarted', () => {
     beforeEach(() => {
-      store = mockStore(new StudentState());
+      store = mockStore(new TrainingTOC());
     });
 
     it('should be a function', () => {
@@ -60,15 +59,19 @@ describe('Student Module', () => {
 
     it('should return an action of type STUDENT_FETCH_TRAINING_TOC with the content as payload', () => {
       // Arrange
-      const content = 'Markdown text';
+      const trainingTOC: TrainingTOC = {
+        id: 123,
+        name: 'Training name',
+        content: 'Training content',
+      };
 
       // Act
-      const action = fetchTrainingTOCCompleted(content);
+      const action = fetchTrainingTOCCompleted(trainingTOC);
 
       // Assert
       expect(action).to.be.an('object').not.null;
       expect(action).to.have.property('type').that.is.equals(studentActionEnums.FETCH_TRAINING_TOC_COMPLETED);
-      expect(action).to.have.property('payload').that.is.equals(content);
+      expect(action).to.have.property('payload').that.is.deep.equals(trainingTOC);
     });
   });
 });
