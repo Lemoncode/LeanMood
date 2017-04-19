@@ -3,12 +3,12 @@ import {EditorContainerComponent} from './components/editorContainer';
 import {HeadingComponent} from './components/heading/heading';
 const classNames: any = require('./pageStyles.scss');
 
-interface IProps {
+interface Props {
   trainingId: number;
   fetchTrainingContent: (trainingId: number) => void;
 }
 
-export class EditTrainingPage extends React.Component<IProps, {}> {
+export class EditTrainingPage extends React.Component<Props, {}> {
   public componentDidMount() {
     this.props.fetchTrainingContent(this.props.trainingId);
   }
@@ -16,8 +16,10 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
   public render() {
     return (
       <div className={`container-fluid ${classNames.page}`}>
-        <HeadingComponent className={classNames.heading} />
-        <EditorContainerComponent className={classNames.editor} />
+        <div className="col-md-10">
+          <HeadingComponent className={`row ${classNames.heading}`} />
+          <EditorContainerComponent className={`row ${classNames.editor}`} />
+        </div>
       </div>
     );
   }

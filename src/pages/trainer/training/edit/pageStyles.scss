@@ -1,12 +1,12 @@
 .page {
   display: flex;
-  flex-flow: row nowrap;
-}
-
-.editor {
-  flex-basis: 75%;
+  flex-flow: row wrap;
 }
 
 .heading {
   flex-basis: 100%;
+}
+
+.editor {
+  flex-basis: 75%;
 }
