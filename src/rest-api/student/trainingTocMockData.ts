@@ -1,5 +1,6 @@
 import { TrainingTOC } from '../../model/student/trainingToc';
 
+/* tslint:disable:max-line-length */
 export const trainingTOCMockData: TrainingTOC[] = [
   {
     id: 1,
@@ -13,12 +14,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### Sessions
 
-  [UX Concepts - recording session](http://www.lemoncode.net) 
+  [UX Concepts - recording session](http://www.lemoncode.net)
   [UI Design - recording session](http://www.lemoncode.net)
 
 #### Demos / Sample material
 
-  [Layout module demos github repository](http://www.lemoncode.net) 
+  [Layout module demos github repository](http://www.lemoncode.net)
 
 #### Excercise 1 - Low fidelity application
 
@@ -32,7 +33,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### Sessions
 
-  [HTML 5 + CSS 3/4 Recording Session](http://www.lemoncode.net) 
+  [HTML 5 + CSS 3/4 Recording Session](http://www.lemoncode.net)
   [Bootstrap Session](http://www.lemoncode.net)
 
 #### Excercise 1 - Build a page layout
@@ -52,7 +53,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### Sessions
 
-  [Javascript recording session](http://www.lemoncode.net) 
+  [Javascript recording session](http://www.lemoncode.net)
   [Typescript](http://www.lemoncode.net)
 
 #### Excercise 1 - Modelling formula 1
@@ -72,11 +73,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 #### Sessions
 
-  [webpack 2 recording session](http://www.lemoncode.net) 
+  [webpack 2 recording session](http://www.lemoncode.net)
 
 #### Demos / Sample material
 
-  [Webpack 2 by sample](http://www.lemoncode.net) 
+  [Webpack 2 by sample](http://www.lemoncode.net)
 
 ## Module 5- Front End Frameworks
 
@@ -86,29 +87,29 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 JQuery:
 
-  [Jquery  session](http://www.lemoncode.net) 
+  [Jquery  session](http://www.lemoncode.net)
 
 React + Redux:
 
-  [React + Redux  session 1](http://www.lemoncode.net) 
-  [React + Redux  session 1](http://www.lemoncode.net)   
-  [React + Redux  session 2](http://www.lemoncode.net) 
-  [React + Redux  session 3](http://www.lemoncode.net) 
+  [React + Redux  session 1](http://www.lemoncode.net)
+  [React + Redux  session 1](http://www.lemoncode.net)
+  [React + Redux  session 2](http://www.lemoncode.net)
+  [React + Redux  session 3](http://www.lemoncode.net)
 
 Unit Testing:
 
-  [Test Frameworks + CI session 1](http://www.lemoncode.net) 
-  [Test Frameworks + CI session 2](http://www.lemoncode.net) 
+  [Test Frameworks + CI session 1](http://www.lemoncode.net)
+  [Test Frameworks + CI session 2](http://www.lemoncode.net)
   [Test Frameworks + CI session 3](http://www.lemoncode.net)
 
-Angular: 
+Angular:
 
   [Angular session 1](http://www.lemoncode.net)
-  [Angular session 2](http://www.lemoncode.net)   
-  
+  [Angular session 2](http://www.lemoncode.net)
+
 #### Demos / Sample material
 
-  [Webpack 2 by sample](http://www.lemoncode.net) 
+  [Webpack 2 by sample](http://www.lemoncode.net)
     `,
   },
 ];
