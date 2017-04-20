@@ -7,7 +7,10 @@ describe('studentRouteEnums', () => {
   });
 
   it('should have routes defined', () => {
-    expect(studentRouteEnums.trainingList).to.be.equals('/student/training/list');
-    expect(studentRouteEnums.trainingTOC).to.be.equals('/student/training/:trainingId/toc');
+    expect(studentRouteEnums.default).to.be.equals('/student');
+    expect(studentRouteEnums.training.base).to.be.equals('/student/training');
+    expect(studentRouteEnums.training.list).to.be.equals('/student/training/list');
+    expect(studentRouteEnums.training.id.base).to.be.equals('/student/training/:trainingId');
+    expect(studentRouteEnums.training.id.toc).to.be.equals('/student/training/:trainingId/toc');
   });
 });

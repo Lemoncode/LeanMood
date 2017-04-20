@@ -1,9 +1,15 @@
 const defaultPath = '/student';
-const trainingRoute = `${defaultPath}/training`;
+const trainingPath = `${defaultPath}/training`;
+const trainingResourcePath = `${trainingPath}/:trainingId`;
 
 export const studentRouteEnums = {
-  defaultPath,
-  trainingRoute,
-  trainingList: `${trainingRoute}/list`,
-  trainingTOC: `${trainingRoute}/:trainingId/toc`,
+  default: defaultPath,
+  training: {
+    base: trainingPath,
+    list: `${trainingPath}/list`,
+    id: {
+      base: trainingResourcePath,
+      toc: `${trainingResourcePath}/toc`,
+    },
+  },
 };
