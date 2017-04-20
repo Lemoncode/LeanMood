@@ -1,0 +1,20 @@
+.droppable {
+  margin-top: 5px;
+  border: 2px dashed black;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.icon {
+  margin-top: auto;
+  font-size: 10em;
+}
+
+.text {
+  margin-bottom: auto;
+  margin-top: 20px;
+  font-size: 1.2em;
+}
