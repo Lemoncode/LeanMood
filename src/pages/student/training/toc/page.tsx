@@ -25,7 +25,7 @@ export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
   }
 
   public componentDidUpdate() {
-    // Fetch the new training TOC if route changes
+    // Fetch the new training TOC when route changes
     if (this.props.trainingId !== this.props.trainingTOC.id) {
       this.getTrainingTOC();
     }

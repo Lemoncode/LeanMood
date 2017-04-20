@@ -26,14 +26,14 @@ describe('TrainingTOCPageContainer', () => {
     });
   });
 
-  it('should render a TrainingTOCPageContainer that connects a TrainingTOCPage', sinon.test(function () {
+  it('should render a TrainingTOCPageContainer that connects a TrainingTOCPage', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-    const fetchTrainingTOCStartedStub = sinon.stub(
+    const fetchTrainingTOCStarted = sinon.stub(
       studentTrainingActions,
       'fetchTrainingTOCStarted',
     );
-    fetchTrainingTOCStartedStub.returns({ type: 'ACTION' });
+    fetchTrainingTOCStarted.returns({ type: 'ACTION' });
 
     // Act
     const wrapper = mount(
@@ -44,7 +44,7 @@ describe('TrainingTOCPageContainer', () => {
 
     wrapper.setProps({
       params: { trainingId: 123 },
-    }).update();
+    });
 
     const pageContainer = wrapper.find(TrainingTOCPageContainer);
 
@@ -53,15 +53,15 @@ describe('TrainingTOCPageContainer', () => {
     expect(pageContainer.find(TrainingTOCPage)).to.have.lengthOf(1);
   }));
 
-  it('should inject the "trainingId" as property from params', sinon.test(function () {
+  it('should inject the "trainingId" as property from params', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const trainingId = 123;
-    const fetchTrainingTOCStartedStub = sinon.stub(
+    const fetchTrainingTOCStarted = sinon.stub(
       studentTrainingActions,
       'fetchTrainingTOCStarted',
     );
-    fetchTrainingTOCStartedStub.returns({ type: 'ACTION' });
+    fetchTrainingTOCStarted.returns({ type: 'ACTION' });
 
     // Act
     const wrapper = mount(
@@ -75,16 +75,54 @@ describe('TrainingTOCPageContainer', () => {
     expect(studentListPage.prop('params')).to.have.property('trainingId').that.is.equals(trainingId);
   }));
 
+  it('should inject a "trainingTOC" from state', sinon.test(function() {
+    // Arrange
+
+    const sinon: sinon.SinonStatic = this;
+    const trainingId = 123;
+    const trainingTOC: TrainingTOC = {
+      id: 123,
+      content: 'Markdown content',
+      name: 'Training name',
+    };
+    store = createStore({
+      adminStudent: null,
+      adminTraining: null,
+      login: null,
+      student: {
+        training: {
+          toc: trainingTOC,
+        },
+      },
+      trainer: null,
+    });
+    const fetchTrainingTOCStarted = sinon.stub(
+      studentTrainingActions,
+      'fetchTrainingTOCStarted',
+    );
+    fetchTrainingTOCStarted.returns({ type: 'ACTION' });
+
+    // Act
+    const wrapper = mount(
+      <Provider store={store}>
+        <TrainingTOCPageContainer params={{ trainingId }} />
+      </Provider>,
+    );
+    const studentListPage = wrapper.find(TrainingTOCPageContainer).find(TrainingTOCPage);
+
+    // Assert
+    expect(studentListPage.prop('trainingTOC')).to.be.deep.equals(trainingTOC);
+  }));
+
   it('should inject a fetchTrainingTOC function that dispatches a fetchTrainingTOCStarted action',
-    sinon.test(function () {
+    sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const trainingId = 123;
-      const fetchTrainingTOCStartedStub = sinon.stub(
+      const fetchTrainingTOCStarted = sinon.stub(
         studentTrainingActions,
         'fetchTrainingTOCStarted',
-      );
-      fetchTrainingTOCStartedStub.returns({ type: 'ACTION' });
+      ).returns({ type: 'ACTION' });
 
       // Act
       const wrapper = mount(
@@ -98,6 +136,6 @@ describe('TrainingTOCPageContainer', () => {
       expect(studentListPage.prop('fetchTrainingTOC')).to.be.a('function');
       // Trigger the mock
       studentListPage.prop('fetchTrainingTOC')(trainingId);
-      expect(fetchTrainingTOCStartedStub.calledWithExactly(trainingId)).to.be.true;
+      expect(fetchTrainingTOCStarted.calledWithExactly(trainingId)).to.be.true;
     }));
 });

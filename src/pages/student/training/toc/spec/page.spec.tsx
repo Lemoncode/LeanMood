@@ -24,9 +24,10 @@ describe('TrainingTOCPage', () => {
   it('should call "fetchTrainingTOC" method when mounted', () => {
     // Arrange
     const fetchTrainingTOC = sinon.spy();
+    const trainingId = 123;
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
-      trainingId: 123,
+      trainingId,
       trainingTOC: new TrainingTOC(),
     };
 
@@ -36,25 +37,56 @@ describe('TrainingTOCPage', () => {
     );
 
     // Assert
-    expect(fetchTrainingTOC.calledOnce).to.be.true;
+    expect(fetchTrainingTOC.calledWithExactly(trainingId)).to.be.true;
   });
 
-  it('should call "fetchTrainingTOC" method when updated', () => {
+  it('should not call "fetchTrainingTOC" on update if trainingId and trainingTOC id are the same', () => {
     // Arrange
     const fetchTrainingTOC = sinon.spy();
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
       trainingId: 123,
-      trainingTOC: new TrainingTOC(),
+      trainingTOC: {
+        id: 123,
+        name: 'Training name',
+        content: 'Training content',
+      },
     };
 
     // Act
     const trainingTOCPage = mount(
       <TrainingTOCPage {...props} />,
     );
+
+    // Trigger componentDidUpdate
     trainingTOCPage.update();
 
     // Assert
+    expect(fetchTrainingTOC.calledOnce).to.be.true;
+  });
+
+  it('should call "fetchTrainingTOC" on update when trainingId and trainingTOC id are differents', () => {
+    // Arrange
+    const fetchTrainingTOC = sinon.spy();
+    const props: TrainingTOCPageProps = {
+      fetchTrainingTOC,
+      trainingId: 123,
+      trainingTOC: {
+        id: 123,
+        name: 'Training name',
+        content: 'Training content',
+      },
+    };
+
+    // Act
+    const trainingTOCPage = mount(
+      <TrainingTOCPage {...props} />,
+    );
+
+    // Change trainingId
+    trainingTOCPage.setProps({ trainingId: 124 });
+
+    // Assert (that fetchTraining is called on componentDidMount and componentDidUpdate)
     expect(fetchTrainingTOC.calledTwice).to.be.true;
   });
 
@@ -71,7 +103,7 @@ describe('TrainingTOCPage', () => {
     const trainingTOCPage = mount(
       <TrainingTOCPage {...props} />,
     );
-    trainingTOCPage.setProps({ trainingId: NaN }).update();
+    trainingTOCPage.setProps({ trainingId: NaN });
 
     // Assert
     expect(fetchTrainingTOC.called).to.be.false;
@@ -100,9 +132,30 @@ describe('TrainingTOCPage', () => {
     );
 
     // Assert
-    expect(trainingTOCPage.find('h2').someWhere((h2) => h2.text() === 'Training name')).to.be.true;
     expect(trainingTOCPage.contains(expectedTitle)).to.be.true;
     expect(trainingTOCPage.contains(expectedParagraph)).to.be.true;
+  });
+
+  it('should render trainingTOC name in a h2', () => {
+    // Arrange
+    const trainingTOCName = 'Training name';
+    const props: TrainingTOCPageProps = {
+      fetchTrainingTOC: () => { },
+      trainingId: 123,
+      trainingTOC: {
+        id: 123,
+        content: '',
+        name: trainingTOCName,
+      },
+    };
+
+    // Act
+    const trainingTOCPage = shallow(
+      <TrainingTOCPage {...props} />,
+    );
+
+    // Assert
+    expect(trainingTOCPage.find('h2').someWhere((h2) => h2.text() === trainingTOCName)).to.be.true;
   });
 
 });
