@@ -30,7 +30,7 @@ describe('Student Module --> Training TOC actions', () => {
       expect(result).to.be.a('function');
     });
 
-    it('should dispatch the a fetched trainingTOC', sinon.test(function (done) {
+    it('should dispatch the a fetched trainingTOC', sinon.test(function(done) {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const trainingId = 123;
