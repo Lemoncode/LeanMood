@@ -4,10 +4,8 @@ import { TrainingTOC } from '../../model/student/trainingToc';
 export const trainingTOCMockData: TrainingTOC[] = [
   {
     id: 1,
-    name: 'Responsive web design',
+    name: 'Full Stack Online Máster',
     content: `
-# Full Stack Online M�ster
-
 ## Module 1 - UX + Design
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
