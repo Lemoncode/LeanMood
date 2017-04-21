@@ -1,7 +1,17 @@
 import * as React from 'react';
-import { DroppableComponent } from './components/droppable';
+import { DroppableFileComponent } from './components/droppableFile';
 
 export class ExerciseDeliveryPage extends React.Component<{}, {}> {
+  constructor() {
+    super();
+
+    this.state = {
+      uploadedFile: null,
+    };
+
+    this.attachFile = this.attachFile.bind(this);
+  }
+
   public render() {
     return (
       <div>
@@ -11,12 +21,15 @@ export class ExerciseDeliveryPage extends React.Component<{}, {}> {
           quidem blanditiis laboriosam! Amet sint nesciunt delectus facilis, vero nemo cupiditate aliquam obcaecati ab,
           quam dolores!
         </p>
-        <p>
-          <a href="#">Download Exercise definition</a>
-        </p>
         <div className="btn btn-primary">Upload your exercise</div>
-        <DroppableComponent />
+        <DroppableFileComponent
+          onFileChange={this.attachFile}
+        />
       </div>
     );
+  }
+
+  private attachFile(uploadedFile: File) {
+    // TODO: Connect with Redux to not lose current file
   }
 }

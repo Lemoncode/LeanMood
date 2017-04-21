@@ -12,6 +12,8 @@ export const StudentsRoutes = (
   <div>
     <Route path="/student" component={TrainingListPage} />
     <Route path="/student/maintoc/" component={MainTocPage} />
-    <Route path="/student/training/delivery" component={ExerciseDeliveryPage} />
+
+    {/* Mocked link */}
+    <Route path="/student/training/1/exercise/1/delivery" component={ExerciseDeliveryPage} />
   </div>
 );
