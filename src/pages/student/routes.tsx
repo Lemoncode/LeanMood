@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router';
 import { TrainingTOCPageContainer } from './training/toc/pageContainer';
 import { TrainingListPage } from './training/list/page';
 import { studentRouteEnums } from '../../common/routeEnums/student';
+import { ExerciseAssessmentPage } from './training/exercise/assessment/page';
 
 // http://stackoverflow.com/questions/35048738/react-router-import-routes
 // AssembliesRoutes.js
@@ -15,5 +16,8 @@ export const StudentsRoutes = (
     <Redirect from={studentRouteEnums.default} to={studentRouteEnums.training.list} />
     <Redirect from={studentRouteEnums.training.base} to={studentRouteEnums.training.list} />
     <Redirect from={studentRouteEnums.training.id.base} to={studentRouteEnums.training.id.toc} />
+
+    {/*Mocked links */}
+    <Route path={`${studentRouteEnums.training.base}/1/exercise`} component={ExerciseAssessmentPage} />
   </div>
 );
