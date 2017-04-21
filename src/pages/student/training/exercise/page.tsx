@@ -5,10 +5,6 @@ export class ExerciseDeliveryPage extends React.Component<{}, {}> {
   constructor() {
     super();
 
-    this.state = {
-      uploadedFile: null,
-    };
-
     this.attachFile = this.attachFile.bind(this);
   }
 
@@ -21,10 +17,12 @@ export class ExerciseDeliveryPage extends React.Component<{}, {}> {
           quidem blanditiis laboriosam! Amet sint nesciunt delectus facilis, vero nemo cupiditate aliquam obcaecati ab,
           quam dolores!
         </p>
-        <div className="btn btn-primary">Upload your exercise</div>
-        <DroppableFileComponent
-          onFileChange={this.attachFile}
-        />
+        <div className="row">
+          <div className="col-md-3">
+            <button className="btn btn-primary btn-block">Upload your exercise</button>
+          </div>
+        </div>
+        <DroppableFileComponent />
       </div>
     );
   }

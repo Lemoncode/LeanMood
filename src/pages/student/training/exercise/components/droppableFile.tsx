@@ -5,11 +5,7 @@ interface State {
   uploadedFile: File;
 }
 
-interface Props {
-  onFileChange(file: File): any;
-}
-
-export class DroppableFileComponent extends React.Component<Props, State> {
+export class DroppableFileComponent extends React.Component<{}, State> {
   private inputFile: HTMLInputElement;
 
   constructor() {
@@ -77,7 +73,7 @@ export class DroppableFileComponent extends React.Component<Props, State> {
 
   private onFileChange(file: File) {
     if (file) {
-      this.props.onFileChange(file);
+      this.setState({ uploadedFile: file });
     }
   }
 
