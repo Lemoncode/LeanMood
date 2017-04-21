@@ -10,13 +10,15 @@ interface Props {
   loginRequest: (loginCredentials: LoginCredentials) => void;
 }
 
+// Both updateLoginInfo and loginRequest functions were extracted from FormComponent
+// to not be declared every time <FormComponent /> is called
 const updateLoginInfo = (props: Props) => (event) => {
   const fieldName = event.target.name;
   const value = event.target.value;
   props.updateLoginInfo(props.loginCredentials, fieldName, value);
 };
 
-const loginRequest = (props) => (event) => {
+const loginRequest = (props: Props) => (event) => {
   event.preventDefault();
   props.loginRequest(props.loginCredentials);
 };
