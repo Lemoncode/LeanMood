@@ -22,7 +22,9 @@ export const ExerciseAssessmentPage: React.StatelessComponent<never> = () => {
           <h6>Jaime Salas - April 8 2017 at 17:02</h6>
           <p>
             <em>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem assumenda doloribus, minus magni sequi sint vel possimus perspiciatis dolorem, quis perferendis, odit culpa laboriosam voluptates nemo quaerat quo sed aspernatur.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem assumenda doloribus, minus
+               magni sequi sint vel possimus perspiciatis dolorem, quis perferendis, odit culpa laboriosam voluptates
+               nemo quaerat quo sed aspernatur.
             </em>
           </p>
         </div>
@@ -30,7 +32,9 @@ export const ExerciseAssessmentPage: React.StatelessComponent<never> = () => {
           <h6>Jaime Salas - April 9 2017 at 09:12</h6>
           <p>
             <em>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed doloremque adipisci blanditiis fuga aperiam illum voluptates eligendi quam nostrum libero culpa, officia cumque recusandae dolorum porro, rerum animi ullam. Quas!
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed doloremque adipisci blanditiis fuga aperiam
+               illum voluptates eligendi quam nostrum libero culpa, officia cumque recusandae dolorum porro,
+               rerum animi ullam. Quas!
             </em>
           </p>
         </div>
