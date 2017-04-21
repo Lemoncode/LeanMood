@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {ToolbarComponent} from './toolbar';
-import {IMarkdownEntry} from '../../../../../model/trainer/markdownEntry';
-import {textAreaTool} from '../../../../../common/ui/tools/textAreaTool';
+import { ToolbarComponent } from './toolbar';
+import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
+import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
 const classNames: any = require('./editorStyles.scss');
 
 interface IProps {
@@ -15,6 +15,14 @@ interface IProps {
 
 export class EditorComponent extends React.Component<IProps, {}> {
   private editor: HTMLTextAreaElement;
+
+  constructor() {
+    super();
+
+    this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
+    this.onContentChange = this.onContentChange.bind(this);
+  }
+
   private refHandlers = {
     textArea: (textArea) => { this.editor = textArea; },
   };
@@ -49,10 +57,10 @@ export class EditorComponent extends React.Component<IProps, {}> {
   public render() {
     return (
       <div className={this.props.className}>
-        <ToolbarComponent insertMarkdownEntry={this.insertMarkdownEntry.bind(this)}/>
+        <ToolbarComponent insertMarkdownEntry={this.insertMarkdownEntry} />
         <textarea
           className={classNames.textArea}
-          onChange={this.onContentChange.bind(this)}
+          onChange={this.onContentChange}
           ref={this.refHandlers.textArea}
           value={this.props.content}
         />
