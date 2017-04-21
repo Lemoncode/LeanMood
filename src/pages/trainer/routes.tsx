@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Route } from 'react-router';
 import { DashboardPage } from './dashboard/page';
 import { EvaluationPage } from './evaluation/page';
