@@ -11,25 +11,46 @@ interface IProps {
 
 export const CommandGroupComponent = (props: IProps) => {
   return (
-      <div className={classNames.container}>
-        <ToolbarLabeledMarkdownButton
-          mdCaret={markdownEntryConstants.header.mdCaret}
-          caretCursorPosition={markdownEntryConstants.header.cursorPosition}
-          onClick={props.insertMarkdownEntry}
-          label="Upload File"
-        >
-          <Icon icon={iconEnums.upload} />
-        </ToolbarLabeledMarkdownButton>
+      <div className={classNames.verticalContainer}>
+        <div className={classNames.horizontalContainer}>
+          <ToolbarLabeledMarkdownButton
+            mdCaret={markdownEntryConstants.header.mdCaret}
+            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+            onClick={props.insertMarkdownEntry}
+            label="Upload File"
+          >
+            <Icon icon={iconEnums.upload} />
+          </ToolbarLabeledMarkdownButton>
 
-        <ToolbarLabeledMarkdownButton
-          mdCaret={markdownEntryConstants.header.mdCaret}
-          caretCursorPosition={markdownEntryConstants.header.cursorPosition}
-          onClick={props.insertMarkdownEntry}
-          label="Add Evaluation"
-        >
-          <Icon icon={iconEnums.evaluation} />
-        </ToolbarLabeledMarkdownButton>
-        
+          <ToolbarLabeledMarkdownButton
+            mdCaret={markdownEntryConstants.header.mdCaret}
+            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+            onClick={props.insertMarkdownEntry}
+            label="Add Evaluation"
+          >
+            <Icon icon={iconEnums.evaluation} />
+          </ToolbarLabeledMarkdownButton>        
+        </div>
+
+        <div className={classNames.horizontalContainer}>
+          <ToolbarLabeledMarkdownButton
+            mdCaret={markdownEntryConstants.header.mdCaret}
+            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+            onClick={props.insertMarkdownEntry}
+            label="Add Delivery"
+          >
+            <Icon icon={iconEnums.delivery} />
+          </ToolbarLabeledMarkdownButton>
+
+          <ToolbarLabeledMarkdownButton
+            mdCaret={markdownEntryConstants.header.mdCaret}
+            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+            onClick={props.insertMarkdownEntry}
+            label="Preview"
+          >
+            <Icon icon={iconEnums.preview} />
+          </ToolbarLabeledMarkdownButton>        
+        </div>        
       </div>
   );
 };
