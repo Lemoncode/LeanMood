@@ -3,6 +3,7 @@ import {ToolbarMarkdownButton} from './buttons';
 import {Icon, iconEnums} from './icons';
 import {IMarkdownEntry} from '../../../../../../model/trainer/markdownEntry';
 import {markdownEntryConstants} from '../markdownEntryConstants';
+import { FontGroupComponent } from './groups';
 
 interface IProps {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
@@ -11,29 +12,9 @@ interface IProps {
 export const ToolbarComponent = (props: IProps) => {
   return (
     <div className="btn-toolbar">
-      <div className="btn-group">
-        <ToolbarMarkdownButton
-          mdCaret={markdownEntryConstants.header.mdCaret}
-          caretCursorPosition={markdownEntryConstants.header.cursorPosition}
-          onClick={props.insertMarkdownEntry}
-        >
-          <Icon icon={iconEnums.header} />
-        </ToolbarMarkdownButton>
-        <ToolbarMarkdownButton
-          mdCaret={markdownEntryConstants.bold.mdCaret}
-          caretCursorPosition={markdownEntryConstants.bold.cursorPosition}
-          onClick={props.insertMarkdownEntry}
-        >
-          <Icon icon={iconEnums.bold} />
-        </ToolbarMarkdownButton>
-        <ToolbarMarkdownButton
-          mdCaret={markdownEntryConstants.italic.mdCaret}
-          caretCursorPosition={markdownEntryConstants.italic.cursorPosition}
-          onClick={props.insertMarkdownEntry}
-        >
-          <Icon icon={iconEnums.italic} />
-        </ToolbarMarkdownButton>
-      </div>
+      
+      <FontGroupComponent insertMarkdownEntry={props.insertMarkdownEntry}/>
+
       <div className="btn-group">
         <ToolbarMarkdownButton
           mdCaret={markdownEntryConstants.code.mdCaret}
