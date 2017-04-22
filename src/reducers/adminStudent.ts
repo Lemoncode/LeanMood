@@ -15,7 +15,7 @@ export class AdminStudentState {
     this.editingStudent = new Student();
     this.editingStudentErrors = {
       fullname: new FieldValidationResult(),
-      email: new FieldValidationResult()
+      email: new FieldValidationResult(),
     };
   }
 }

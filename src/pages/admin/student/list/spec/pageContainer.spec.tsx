@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as summaryStudentListRequest from '../actions/summaryStudentListRequest';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/student/studentSummary';
 import { ListStudentPage } from '../page';
 import { ListStudentPageContainer } from '../pageContainer';
 

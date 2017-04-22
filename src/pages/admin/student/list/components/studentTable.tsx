@@ -15,7 +15,7 @@ export const StudentTableComponent = (props: IProps = { studentList: [] }) => {
             <StudentRowComponent
               key={student.id}
               student={student}
-              />,
+            />,
           )
         }
       </tbody>

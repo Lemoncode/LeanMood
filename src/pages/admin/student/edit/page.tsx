@@ -15,8 +15,9 @@ interface IProps extends React.Props<EditStudentPage> {
 }
 
 export class EditStudentPage extends React.Component<IProps, {}> {
-  public componentDidMount() {
-    this.props.fetchStudent(this.props.studentId);
+  public constructor(props) {
+    super(props);
+    props.fetchStudent(props.studentId);
   }
 
   public render() {
