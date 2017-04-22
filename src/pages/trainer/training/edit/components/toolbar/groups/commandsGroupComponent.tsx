@@ -3,6 +3,7 @@ import { ToolbarLabeledMarkdownButton } from '../buttons';
 import {Icon, iconEnums} from '../icons';
 import {IMarkdownEntry} from '../../../../../../../model/trainer/markdownEntry';
 import {markdownEntryConstants} from '../../markdownEntryConstants';
+const classNames: any = require('./groupStyles.scss');
 
 interface IProps {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
@@ -10,7 +11,7 @@ interface IProps {
 
 export const CommandGroupComponent = (props: IProps) => {
   return (
-      <div>
+      <div className={classNames.container}>
         <ToolbarLabeledMarkdownButton
           mdCaret={markdownEntryConstants.header.mdCaret}
           caretCursorPosition={markdownEntryConstants.header.cursorPosition}
@@ -19,6 +20,16 @@ export const CommandGroupComponent = (props: IProps) => {
         >
           <Icon icon={iconEnums.upload} />
         </ToolbarLabeledMarkdownButton>
+
+        <ToolbarLabeledMarkdownButton
+          mdCaret={markdownEntryConstants.header.mdCaret}
+          caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+          onClick={props.insertMarkdownEntry}
+          label="Add Evaluation"
+        >
+          <Icon icon={iconEnums.evaluation} />
+        </ToolbarLabeledMarkdownButton>
+        
       </div>
   );
 };
