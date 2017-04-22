@@ -8,4 +8,5 @@ export const iconEnums = {
   link: 'fa fa-link',
   numberedList: 'fa fa-list-ol',
   quote: 'fa fa-quote-right',
+  upload: 'fa fa-cloud-upload',
 };
