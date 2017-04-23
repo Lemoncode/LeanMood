@@ -5,7 +5,7 @@ import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
 import { PreviewComponent } from './preview'
 const classNames: any = require('./editorStyles.scss');
 
-interface IProps {
+interface Props {
   content: string;
   cursorStartPosition: number;
   shouldUpdateEditorCursor: boolean;
@@ -14,7 +14,11 @@ interface IProps {
   updateEditorCursor: (cursorStartPosition: number) => void;
 }
 
-export class EditorComponent extends React.Component<IProps, {}> {
+interface State {
+  showPreview: boolean;
+}
+
+export class EditorComponent extends React.Component<Props, State> {
   private editor: HTMLTextAreaElement;
 
   constructor() {
@@ -22,6 +26,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+    this.state = {showPreview : false};
   }
 
   private refHandlers = {
@@ -59,13 +64,17 @@ export class EditorComponent extends React.Component<IProps, {}> {
     return (
       <div className={this.props.className}>
         <ToolbarComponent insertMarkdownEntry={this.insertMarkdownEntry} />
-        <textarea
-          className={classNames.textArea}
-          onChange={this.onContentChange}
-          ref={this.refHandlers.textArea}
-          value={this.props.content}
-        />
-        <PreviewComponent content={this.props.content}/>
+        {
+          !this.state.showPreview ?
+              <textarea
+                className={classNames.textArea}
+                onChange={this.onContentChange}
+                ref={this.refHandlers.textArea}
+                value={this.props.content}
+              />
+          :
+            <PreviewComponent content={this.props.content}/>
+        }
       </div>
     );
   }
