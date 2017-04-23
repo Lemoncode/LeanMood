@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
+import { PreviewComponent } from './preview'
 const classNames: any = require('./editorStyles.scss');
 
 interface IProps {
@@ -64,6 +65,7 @@ export class EditorComponent extends React.Component<IProps, {}> {
           ref={this.refHandlers.textArea}
           value={this.props.content}
         />
+        <PreviewComponent content={this.props.content}/>
       </div>
     );
   }
