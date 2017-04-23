@@ -3,7 +3,7 @@ import { marksy } from 'marksy';
 
 const compile = marksy();
 
-interface Props {
+export interface Props {
   content: string;
 }
 

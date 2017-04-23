@@ -9,7 +9,7 @@ describe('trainingContentChangedAction', () => {
 
   it('returns expected type equals TRAINING_CONTENT_CHANGED', () => {
     // Act
-    const actionResult = toggleEditorPreviewAction(null);
+    const actionResult = toggleEditorPreviewAction();
 
     // Assert
     expect(actionResult.type).to.equal(trainerActionEnums.TOGGLE_EDITOR_PREVIEW);
