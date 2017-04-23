@@ -7,6 +7,7 @@ interface IProps {
   onClick: (markdownEntry: IMarkdownEntry) => void;
 }
 
+// TODO: This component could use toolbarButton
 export class ToolbarMarkdownButton extends React.Component<IProps, {}> {
 
   constructor() {
