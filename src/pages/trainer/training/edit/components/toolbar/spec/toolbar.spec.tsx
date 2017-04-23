@@ -8,10 +8,12 @@ describe('ToolbarComponent', () => {
   it('is defined', () => {
     // Arrange
     const insertMarkdownEntry = sinon.spy();
+    const togglePreviewMode = sinon.spy();
     // Act
     const component = shallow(
       <ToolbarComponent
         insertMarkdownEntry={insertMarkdownEntry}
+        togglePreviewMode={togglePreviewMode}
       />,
     );
 
@@ -24,6 +26,7 @@ describe('ToolbarComponent', () => {
   xit('renders as expected', () => {
     // Arrange
     const insertMarkdownEntry = sinon.spy();
+    const togglePreviewMode = sinon.spy();
 
     const expectedHeaderButton = `
       <button type="button" class="btn btn-default">
@@ -112,6 +115,7 @@ describe('ToolbarComponent', () => {
     const component = shallow(
       <ToolbarComponent
         insertMarkdownEntry={insertMarkdownEntry}
+        togglePreviewMode={togglePreviewMode}
       />,
     );
 

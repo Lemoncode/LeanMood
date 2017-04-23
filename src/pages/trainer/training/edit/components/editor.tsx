@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
-import { PreviewComponent } from './preview'
+import { PreviewComponent } from './preview';
 const classNames: any = require('./editorStyles.scss');
 
 interface Props {
@@ -26,12 +26,17 @@ export class EditorComponent extends React.Component<Props, State> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+    this.togglePreviewMode = this.togglePreviewMode.bind(this);
     this.state = {showPreview : false};
   }
 
   private refHandlers = {
     textArea: (textArea) => { this.editor = textArea; },
   };
+
+  private togglePreviewMode() {
+    this.setState({showPreview: !this.state.showPreview});
+  }
 
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
     this.updateContentWithMarkdownEntry(markdownEntry);
@@ -63,7 +68,10 @@ export class EditorComponent extends React.Component<Props, State> {
   public render() {
     return (
       <div className={this.props.className}>
-        <ToolbarComponent insertMarkdownEntry={this.insertMarkdownEntry} />
+        <ToolbarComponent
+          insertMarkdownEntry={this.insertMarkdownEntry}
+          togglePreviewMode={this.togglePreviewMode}
+        />
         {
           !this.state.showPreview ?
               <textarea

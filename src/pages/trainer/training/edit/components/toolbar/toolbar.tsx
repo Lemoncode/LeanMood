@@ -7,6 +7,7 @@ const classNames: any = require('./toolbarStyles.scss');
 
 interface IProps {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
+  togglePreviewMode: () => void;
 }
 
 export const ToolbarComponent = (props: IProps) => {
@@ -17,7 +18,10 @@ export const ToolbarComponent = (props: IProps) => {
         <LinksGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
         <ListGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
       </div>
-      <CommandGroupComponent insertMarkdownEntry={props.insertMarkdownEntry}/>
+      <CommandGroupComponent
+        insertMarkdownEntry={props.insertMarkdownEntry}
+        togglePreviewMode={props.togglePreviewMode}
+      />
     </div>
   );
 };

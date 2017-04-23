@@ -9,7 +9,3 @@ export const PreviewComponent = ({content}: Props) => {
       <MarkDownViewerComponent content={content}/>
   );
 };
-
-
-
-
