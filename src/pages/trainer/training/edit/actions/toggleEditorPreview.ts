@@ -1,5 +1,5 @@
 import {trainerActionEnums} from '../../../../../common/actionEnums/trainer';
 
-export const toggleEditorPreviewAction = (content: string) => ({
+export const toggleEditorPreviewAction = () => ({
   type: trainerActionEnums.TOGGLE_EDITOR_PREVIEW,
 });

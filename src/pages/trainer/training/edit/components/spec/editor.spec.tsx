@@ -13,8 +13,10 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldUpdateEditorCursor = false;
     const className = '';
+    const showPreview = false;
     const dummyOnContentChange = () => {};
     const dummyUpdateEditorCursor = () => {};
+    const dummyTogglePreview = () => {};
 
     // Act
     const component = shallow(
@@ -25,6 +27,8 @@ describe('EditorComponent', () => {
         className={className}
         onContentChange={dummyOnContentChange}
         updateEditorCursor={dummyUpdateEditorCursor}
+        showPreview={showPreview}
+        togglePreviewMode={dummyTogglePreview}
       />,
     );
 
@@ -38,8 +42,10 @@ describe('EditorComponent', () => {
     const cursorStartPosition = 0;
     const shouldUpdateEditorCursor = false;
     const className = 'testClass';
+    const showPreview = false;
     const dummyOnContentChange = () => {};
     const dummyUpdateEditorCursor = () => {};
+    const dummyTogglePreview = () => {};
 
     const expectedEditor = `
       <textarea class="textArea">
@@ -56,6 +62,8 @@ describe('EditorComponent', () => {
         className={className}
         onContentChange={dummyOnContentChange}
         updateEditorCursor={dummyUpdateEditorCursor}
+        showPreview={showPreview}
+        togglePreviewMode={dummyTogglePreview}
       />,
     );
 
@@ -74,6 +82,8 @@ describe('EditorComponent', () => {
     const className = '';
     const onContentChangeSpy = sinon.spy();
     const dummyUpdateEditorCursor = () => {};
+    const showPreview = false;
+    const dummyTogglePreview = () => {};
 
     // Act
     const component = mount(
@@ -84,6 +94,8 @@ describe('EditorComponent', () => {
         className={className}
         onContentChange={onContentChangeSpy}
         updateEditorCursor={dummyUpdateEditorCursor}
+        showPreview={showPreview}
+        togglePreviewMode={dummyTogglePreview}
       />,
     );
 
@@ -103,6 +115,8 @@ describe('EditorComponent', () => {
     const className = '';
     const onContentChangeSpy = sinon.spy();
     const dummyUpdateEditorCursor = () => {};
+    const showPreview = false;
+    const dummyTogglePreview = () => {};
 
     const expectedContent = 'test content with caret';
     const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
@@ -124,6 +138,8 @@ describe('EditorComponent', () => {
         className={className}
         onContentChange={onContentChangeSpy}
         updateEditorCursor={dummyUpdateEditorCursor}
+        showPreview={showPreview}
+        togglePreviewMode={dummyTogglePreview}
       />,
     );
 
@@ -147,6 +163,8 @@ describe('EditorComponent', () => {
     const className = '';
     const onContentChangeSpy = sinon.spy();
     const updateEditorCursorSpy = sinon.spy();
+    const showPreview = false;
+    const dummyTogglePreview = () => {};
 
     const expectedContent = 'test content with caret';
     const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
@@ -169,6 +187,8 @@ describe('EditorComponent', () => {
         className={className}
         onContentChange={onContentChangeSpy}
         updateEditorCursor={updateEditorCursorSpy}
+        showPreview={showPreview}
+        togglePreviewMode={dummyTogglePreview}
       />,
     );
 

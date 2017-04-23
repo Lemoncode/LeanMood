@@ -10,15 +10,13 @@ interface Props {
   cursorStartPosition: number;
   shouldUpdateEditorCursor: boolean;
   className: string;
+  showPreview: boolean;
   onContentChange: (content: string) => void;
   updateEditorCursor: (cursorStartPosition: number) => void;
+  togglePreviewMode: () => void;
 }
 
-interface State {
-  showPreview: boolean;
-}
-
-export class EditorComponent extends React.Component<Props, State> {
+export class EditorComponent extends React.Component<Props, {}> {
   private editor: HTMLTextAreaElement;
 
   constructor() {
@@ -26,17 +24,12 @@ export class EditorComponent extends React.Component<Props, State> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.togglePreviewMode = this.togglePreviewMode.bind(this);
     this.state = {showPreview : false};
   }
 
   private refHandlers = {
     textArea: (textArea) => { this.editor = textArea; },
   };
-
-  private togglePreviewMode() {
-    this.setState({showPreview: !this.state.showPreview});
-  }
 
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
     this.updateContentWithMarkdownEntry(markdownEntry);
@@ -70,10 +63,10 @@ export class EditorComponent extends React.Component<Props, State> {
       <div className={this.props.className}>
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
-          togglePreviewMode={this.togglePreviewMode}
+          togglePreviewMode={this.props.togglePreviewMode}
         />
         {
-          !this.state.showPreview ?
+          !this.props.showPreview ?
               <textarea
                 className={classNames.textArea}
                 onChange={this.onContentChange}
