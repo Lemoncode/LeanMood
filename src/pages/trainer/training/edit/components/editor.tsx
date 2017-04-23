@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
+import { PanelComponent } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
 const classNames: any = require('./editorStyles.scss');
 
@@ -64,7 +65,8 @@ export class EditorComponent extends React.Component<Props, {}> {
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
-        />
+        /> 
+        <PanelComponent activePanelId={''} panelList={[]}  />       
         {
           !this.props.showPreview ?
               <textarea
