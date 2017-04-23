@@ -1,5 +1,8 @@
 import { adminActionEnums } from '../common/actionEnums/admin';
-import { StudentSummary } from '../model/studentSummary';
+import { StudentSummary } from '../model/student/studentSummary';
+import { Student } from '../model/student/student';
+import { IEditStudentErrors } from '../model/student/editStudentErrors';
+import {FieldValidationResult} from 'lc-form-validation';
 
 export class AdminStudentState {
   public studentSummaryList: StudentSummary[];
@@ -36,13 +39,13 @@ const handleGetSummaryStudentRequestCompleted = (state: AdminStudentState, paylo
   };
 };
 
-const handleGetStudentRequestCompleted =
-  (state: AdminStudentState, payload: Student) => {
-    const newState = Object.assign({}, state, { editingStudent: payload });
-    return newState;
+const handleGetStudentRequestCompleted = (state: AdminStudentState, payload: Student) => {
+    return {
+      ...state,
+      editingStudent: payload,
+    };
   };
 
-const handlePostStudentRequestCompleted =
-  (state: AdminStudentState, payload: boolean) => {
+const handlePostStudentRequestCompleted = (state: AdminStudentState, payload: boolean) => {
     return state;
   };
