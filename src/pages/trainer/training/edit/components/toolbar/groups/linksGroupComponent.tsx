@@ -3,6 +3,7 @@ import {ToolbarMarkdownButton} from '../buttons';
 import {Icon, iconEnums} from '../icons';
 import {IMarkdownEntry} from '../../../../../../../model/trainer/markdownEntry';
 import {markdownEntryConstants} from '../../markdownEntryConstants';
+const classNames: any = require('./groupStyles.scss');
 
 interface IProps {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
@@ -10,7 +11,7 @@ interface IProps {
 
 export const LinksGroupComponent = (props: IProps) => {
   return (
-      <div className="btn-group">
+      <div className={`btn-group ${classNames.itemLinks}`}>
         <ToolbarMarkdownButton
           mdCaret={markdownEntryConstants.code.mdCaret}
           caretCursorPosition={markdownEntryConstants.code.cursorPosition}

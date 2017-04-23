@@ -6,4 +6,17 @@
 .vertical-container {
   display:flex;
   flex-direction: column;
+  padding-left: 5px; 
+}
+
+.item-font {
+  padding-right: 5px;
+}
+
+.item-links {
+  margin-bottom: 5px;
+}
+
+.command-row-up {
+  margin-bottom: 5px;
 }
