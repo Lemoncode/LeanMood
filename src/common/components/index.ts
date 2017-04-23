@@ -1,7 +1,8 @@
 import { MarkDownViewerComponent } from './markdownViewer';
-import { PanelComponent } from './panel';
+import { PanelComponent, PanelItem } from './panel';
 
 export {
   MarkDownViewerComponent,
   PanelComponent,
+  PanelItem
 };

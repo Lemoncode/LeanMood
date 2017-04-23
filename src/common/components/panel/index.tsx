@@ -1,5 +1,6 @@
-import { PanelComponent } from './panel';
+import { PanelComponent, PanelItem } from './panel';
 
 export {
-  PanelComponent
+  PanelComponent,
+  PanelItem,
 };

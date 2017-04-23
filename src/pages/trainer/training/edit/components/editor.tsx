@@ -2,8 +2,9 @@ import * as React from 'react';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
-import { PanelComponent } from '../../../../../common/components';
+import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
+import { uploadFilePanelComponent } from './upload/uploadFilePanelComponent';
 const classNames: any = require('./editorStyles.scss');
 
 interface Props {
@@ -16,6 +17,8 @@ interface Props {
   updateEditorCursor: (cursorStartPosition: number) => void;
   togglePreviewMode: () => void;
 }
+
+const panelList: PanelItem[] = [{panelId: 'UPLOAD', component: uploadFilePanelComponent}];
 
 export class EditorComponent extends React.Component<Props, {}> {
   private editor: HTMLTextAreaElement;

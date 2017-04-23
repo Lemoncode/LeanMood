@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export class PanelItem  {
     public panelId: string;
-    public component: React.ComponentClass<any>;
+    public component: (React.ComponentClass<any> | React.StatelessComponent<any>);
 }
 
 interface Props {
