@@ -25,6 +25,8 @@ module.exports = {
     vendor: [
       "react",
       "react-dom",
+      "react-addons-shallow-compare",
+      "react-virtualized",
       "react-redux",
       "react-router",
       "react-router-redux",
@@ -32,11 +34,13 @@ module.exports = {
       "redux-thunk",
       "lc-form-validation",
       "toastr",
+      "marksy",
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',
       '../node_modules/font-awesome/css/font-awesome.css',
       '../node_modules/toastr/build/toastr.css',
+      '../node_modules/react-virtualized/styles.css',
     ]
   },
 	output: {
@@ -50,7 +54,6 @@ module.exports = {
     contentBase: './dist', //Content base
     inline: true, //Enable watch and live reload
     hot: true,
-    noInfo: true,
     host: 'localhost',
     port: 8080,
     stats: 'errors-only'
@@ -78,7 +81,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude:/node_modules/,
-        loader: ExtractTextPlugin.extract('style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+        loader: ExtractTextPlugin.extract('style','css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader

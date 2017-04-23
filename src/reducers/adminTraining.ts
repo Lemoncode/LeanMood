@@ -19,8 +19,9 @@ export const adminTrainingReducer = (state: AdminTrainingState = new AdminTraini
   return state;
 };
 
-const handleGetSummaryTrainingRequestCompleted =
-  (state: AdminTrainingState, payload: TrainingSummary[]) => {
-    const newState = Object.assign({}, state, { trainingSummaryList: payload });
-    return newState;
+const handleGetSummaryTrainingRequestCompleted = (state: AdminTrainingState, payload: TrainingSummary[]) => {
+  return {
+    ...state,
+    trainingSummaryList: payload,
   };
+};

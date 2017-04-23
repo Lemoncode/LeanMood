@@ -1,24 +1,25 @@
-import ReduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
-import {adminActionEnums} from '../../../../../../common/actionEnums/admin';
+import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
 import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
 import { StudentSummary} from '../../../../../../model/student/studentSummary';
 import { studentApi } from '../../../../../../rest-api';
 
-const middlewares = [ReduxThunk];
-const mockStore = configureStore(middlewares);
+const mockStore = configureStore([thunk]);
 
 describe('summaryStudentListRequestCompleted', () => {
-  it('is defined', () => {
+  it('should be an object', () => {
     // Assert
-    expect(summaryStudentListRequestCompleted).not.to.be.undefined;
+    expect(summaryStudentListRequestCompleted).not.to.be.an('object');
   });
 
   it('contains the expected type GET_SUMMARY_STUDENT_REQUEST_COMPLETED', () => {
+    // Act
+    const action = summaryStudentListRequestCompleted([]);
+
     // Assert
-    expect(summaryStudentListRequestCompleted([]).type).to.be
-      .equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
+    expect(action.type).to.be.equals(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
   });
 
   it('contains the expected payload including the student summary list', () => {
@@ -28,11 +29,13 @@ describe('summaryStudentListRequestCompleted', () => {
         id: 2,
         fullname: 'John Doe',
         email: 'test@test.com',
+        isActive: true,
       },
       {
         id: 3,
         fullname: 'Mark Somez',
         email: 'mark@test.com',
+        isActive: true,
       },
     ];
 
@@ -40,33 +43,32 @@ describe('summaryStudentListRequestCompleted', () => {
     const actionResult = summaryStudentListRequestCompleted(students);
 
     // Assert
-    expect(actionResult.payload).not.to.be.undefined;
+    expect(actionResult.payload).to.be.an('array');
     expect(actionResult.payload.length).equal(2);
     expect(actionResult.payload).eql(students);
   });
 });
 
 describe('summaryStudentListRequestStarted', () => {
-  it('should be defined', () => {
+  it('should return a function', () => {
     // Assert
-    expect(summaryStudentListRequestStarted).not.to.be.undefined;
+    expect(summaryStudentListRequestStarted()).to.be.a('function');
   });
 
-  it('should return request action type completed', sinon.test((done) => {
+  it('should return request action type completed', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
     // Act
     const store = mockStore([]);
-    store.dispatch(summaryStudentListRequestStarted())
-      .then(() => {
-        // Assert
-        expect(store.getActions()[0].type).to.be.equal(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
-        done();
-      });
-  }).bind(this));
+    store.dispatch(summaryStudentListRequestStarted()).then(() => {
+      // Assert
+      expect(store.getActions()[0].type).to.be.equal(adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED);
+      done();
+    });
+  }));
 
-  it('should return expected student summary data', sinon.test((done) => {
+  it('should return expected student summary data', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -75,11 +77,13 @@ describe('summaryStudentListRequestStarted', () => {
         id: 2,
         fullname: 'John Doe',
         email: 'test@test.com',
+        isActive: true,
       },
       {
         id: 3,
         fullname: 'Mark Somez',
         email: 'mark@test.com',
+        isActive: true,
       },
     ];
 
@@ -93,12 +97,11 @@ describe('summaryStudentListRequestStarted', () => {
 
     // Act
     const store = mockStore([]);
-    store.dispatch(summaryStudentListRequestStarted())
-      .then(() => {
-        // Assert
-        expect(store.getActions()[0].payload).to.be.equal(students);
-        expect(getSummaryStudentListStub.called).to.be.true;
-        done();
-      });
-  }).bind(this));
+    store.dispatch(summaryStudentListRequestStarted()).then(() => {
+      // Assert
+      expect(store.getActions()[0].payload).to.be.equal(students);
+      expect(getSummaryStudentListStub.called).to.be.true;
+      done();
+    });
+  }));
 });

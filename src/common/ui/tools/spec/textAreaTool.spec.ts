@@ -89,7 +89,6 @@ describe('textAreaTool', () => {
     });
   });
 
-
   describe('placeCursor', () => {
     it('is defined', () => {
       // Assert

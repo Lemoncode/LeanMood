@@ -39,18 +39,20 @@ describe('adminStudentReducer', () => {
 
       deepFreeze(originalState);
 
-      const students: StudentSummary[] = [
-        {
-          id: 2,
-          fullname: 'John Doe',
-          email: 'test@test.com',
-        },
-        {
-          id: 3,
-          fullname: 'Mark Somez',
-          email: 'mark@test.com',
-        },
-      ];
+    const students: StudentSummary[] = [
+      {
+        id: 2,
+        fullname: 'John Doe',
+        email: 'test@test.com',
+        isActive: true,
+      },
+      {
+        id: 3,
+        fullname: 'Mark Somez',
+        email: 'mark@test.com',
+        isActive: true,
+      },
+    ];
 
       const actionResult = {
         type: adminActionEnums.GET_SUMMARY_STUDENT_REQUEST_COMPLETED,

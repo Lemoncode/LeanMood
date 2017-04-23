@@ -11,3 +11,4 @@ typings/
 /src/**/*.css.d.ts
 /src/**/*.scss.d.ts
 yarn.lock
+*.log

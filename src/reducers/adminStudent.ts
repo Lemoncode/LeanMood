@@ -1,9 +1,5 @@
-import { Action } from 'redux';
-import { StudentSummary } from '../model/student/studentSummary';
-import { Student } from '../model/student/student';
-import { FieldValidationResult } from 'lc-form-validation';
-import { IEditStudentErrors } from '../model/student/editStudentErrors';
 import { adminActionEnums } from '../common/actionEnums/admin';
+import { StudentSummary } from '../model/studentSummary';
 
 export class AdminStudentState {
   public studentSummaryList: StudentSummary[];
@@ -33,11 +29,12 @@ export const adminStudentReducer = (state: AdminStudentState = new AdminStudentS
   }
 };
 
-const handleGetSummaryStudentRequestCompleted =
-  (state: AdminStudentState, payload: StudentSummary[]) => {
-    const newState = Object.assign({}, state, { studentSummaryList: payload });
-    return newState;
+const handleGetSummaryStudentRequestCompleted = (state: AdminStudentState, payload: StudentSummary[]) => {
+  return {
+    ...state,
+    studentSummaryList: payload,
   };
+};
 
 const handleGetStudentRequestCompleted =
   (state: AdminStudentState, payload: Student) => {

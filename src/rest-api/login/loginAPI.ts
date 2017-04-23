@@ -1,6 +1,5 @@
 import { LoginCredentials } from '../../model/login/loginCredentials';
 import { LoginResponse } from '../../model/login/loginResponse';
-import { UserProfile } from '../../model/userProfile';
 import {loginMockResponses} from './loginMockData';
 
 class LoginAPI {
