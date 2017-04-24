@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { studentRouteEnums } from '../../../../../common/routeEnums/student/';
 import { TrainingTOCPage, TrainingTOCPageProps } from '../page';
 import { TrainingTOC } from '../../../../../model/student/trainingToc';
+import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer/';
 
 describe('TrainingTOCPage', () => {
   it('should return a div', () => {
@@ -111,31 +112,31 @@ describe('TrainingTOCPage', () => {
     expect(fetchTrainingTOC.called).to.be.false;
   });
 
-  xit('should render the trainingTOC as React components with the training name', () => {
+  it('should render a MarkDownViewerComponent passing the trainingTOC content', () => {
     // Arrange
+    const content = [
+      '# Main title',
+      'Description text with **bold text**',
+    ].join('\n');
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC: () => { },
       trainingId: 123,
       trainingTOC: {
         id: 123,
-        content: [
-          '# Main title',
-          'Description text with **bold text**',
-        ].join('\n'),
+        content,
         name: 'Training name',
       },
     };
-    const expectedTitle = <h1 id="main-title">Main title</h1>;
-    const expectedParagraph = <p>Description text with <strong>bold text</strong></p>;
 
     // Act
     const trainingTOCPage = shallow(
       <TrainingTOCPage {...props} />,
     );
+    const markdownComponent = trainingTOCPage.find(MarkDownViewerComponent);
 
     // Assert
-    expect(trainingTOCPage.contains(expectedTitle)).to.be.true;
-    expect(trainingTOCPage.contains(expectedParagraph)).to.be.true;
+    expect(markdownComponent).to.have.lengthOf(1);
+    expect(markdownComponent.prop('content')).to.be.equals(content);
   });
 
   it('should render trainingTOC name in a h2', () => {
