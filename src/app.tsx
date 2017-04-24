@@ -2,28 +2,31 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { GeneralRoutes } from './pages/general/';
 import { HeaderComponent } from './common/components/header/header';
+import { UserProfile } from './model/userProfile';
 
-export class App extends React.Component<RouteComponentProps<{}, {}>, {}> {
-  public render() {
-    let header = null;
+interface Props extends RouteComponentProps<{}, {}> {
+  userProfile: UserProfile;
+}
 
-    // Show header if route is not the login one
-    if (this.isNotLoginRoute(this.props.location.pathname)) {
-      header = <HeaderComponent />;
-    }
+export const App: React.StatelessComponent<Props> = (props) => {
+  let header = null;
 
-    return (
-      <div>
-        {header}
-        <main className="container-fluid">
-          {this.props.children}
-        </main>
-      </div>
-    );
+  // Show header if route is not the login one
+  if (isNotLoginRoute(props.location.pathname)) {
+    header = <HeaderComponent userProfile={props.userProfile} />;
   }
 
-  private isNotLoginRoute(path) {
-    const loginRoutes = ['/', '/home'];
-    return loginRoutes.indexOf(path) === -1;
-  }
+  return (
+    <div>
+      {header}
+      <main className="container-fluid">
+        {props.children}
+      </main>
+    </div>
+  );
+};
+
+function isNotLoginRoute(path): boolean {
+  const loginRoutes = ['/', '/home'];
+  return loginRoutes.indexOf(path) === -1;
 }

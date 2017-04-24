@@ -3,6 +3,7 @@ export class UserProfile {
   public fullname: string;
   public role: string;
   public email: string;
+  public avatar: string;
 
   constructor() {
     // Likely to be changed by string or guid
@@ -10,5 +11,6 @@ export class UserProfile {
     this.fullname = '';
     this.role = '';
     this.email = '';
+    this.avatar = '';
   }
 }
