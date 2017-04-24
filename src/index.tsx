@@ -13,7 +13,7 @@ const store = createStore(
   compose(
     applyMiddleware(reduxThunk),
     /* tslint:disable-next-line */
-    window["devToolsExtension"] && window["devToolsExtension"]()
+    window["devToolsExtension"] ? window["devToolsExtension"]() : (f) => f,
   ),
 );
 const history = syncHistoryWithStore(hashHistory, store);

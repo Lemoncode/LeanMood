@@ -1,0 +1,20 @@
+.container {
+  display:flex;
+  flex-direction: row;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.vertical {
+  display:flex;
+  flex-direction: column;
+}
+
+
+.item-links {
+  border-left: 1px solid rgb(227, 227, 227);
+  border-right: 1px solid rgb(227, 227, 227);
+  box-sizing: border-box;
+  padding-right: 5px;
+  padding-left: 5px;
+}
