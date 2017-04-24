@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IMarkdownEntry } from '../../../../../../../model/trainer/markdownEntry';
 import { ToolbarButton } from './toolbarButton';
+const classNames: any = require('./buttonStyles.scss');
 
 interface IProps {
   onClick: () => void;
@@ -16,13 +17,15 @@ export class ToolbarLabeledButton extends React.Component<IProps, {}> {
 
   public render() {
     return (
-      <div>
+      <div className={classNames.column}>
         <ToolbarButton
             onClick={this.props.onClick}
         >
           {this.props.children}
         </ToolbarButton>
-        <span>{this.props.label}</span>
+        <div className={classNames.labelWrapper}>
+          <span>{this.props.label}</span>
+        </div>
       </div>
     );
   }

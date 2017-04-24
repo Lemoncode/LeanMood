@@ -12,9 +12,9 @@ interface IProps {
 
 export const ToolbarComponent = (props: IProps) => {
   return (
-    <div className={`btn btn-default ${classNames.container}`}>      
+    <div className={`well ${classNames.container}`}>      
       <FontGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
-      <div className={classNames.vertical}>
+      <div className={`${classNames.itemLinks}  ${classNames.vertical}`}>
         <LinksGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
         <ListGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
       </div>

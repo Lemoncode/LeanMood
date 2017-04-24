@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IMarkdownEntry } from '../../../../../../../model/trainer/markdownEntry';
+const classNames: any = require('./buttonStyles.scss');
 
 interface IProps {
   onClick: () => void;
@@ -21,7 +22,7 @@ export class ToolbarButton extends React.Component<IProps, {}> {
     return (
       <button
         type="button"
-        className="btn btn-default"
+        className={`btn btn-default ${classNames.commandButton}`}
         onClick={this.onClick}
       >
         {this.props.children}

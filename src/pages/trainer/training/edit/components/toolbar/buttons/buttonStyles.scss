@@ -1,0 +1,17 @@
+.column {
+  display: flex;
+  flex-direction: row;
+}
+
+.command-label {
+  margin-left: 0.4rem;
+}
+
+.command-button {
+  width: 50px;
+}
+
+.label-wrapper {
+  align-self: center;
+  width: 100px;
+}

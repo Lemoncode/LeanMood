@@ -14,7 +14,7 @@ interface IProps {
 export const CommandGroupComponent = (props: IProps) => {
   return (
       <div className={classNames.verticalContainer}>
-        <div className={classNames.horizontalContainer}>
+        <div className={`${classNames.horizontalContainer} ${classNames.commandRowUp}`}>
           <ToolbarLabeledMarkdownButton
             mdCaret={markdownEntryConstants.header.mdCaret}
             caretCursorPosition={markdownEntryConstants.header.cursorPosition}
