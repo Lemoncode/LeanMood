@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 #### Excercise 1 - Build a page layout
 
   [Description](http://www.lemoncode.net) -
-  [Evaluation](#${studentRouteEnums.training.base}/1/exercise/1/delivery)
+  [Evaluation](#${studentRouteEnums.training.base}/2/exercise/1/delivery)
 
 #### Links
 
@@ -58,7 +58,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 #### Excercise 1 - Modelling formula 1
 
   [Description](http://www.lemoncode.net) -
-  [Evaluation](#${studentRouteEnums.training.base}/1/exercise/1/delivery)
+  [Evaluation](#${studentRouteEnums.training.base}/3/exercise/1/delivery)
 
 #### Links
 
