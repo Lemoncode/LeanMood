@@ -36,7 +36,7 @@ describe('EditorComponent', () => {
     expect(component).not.to.be.undefined;
   });
 
-  it('renders a text area with expected content', () => {
+  xit('renders a text area with expected content', () => {
     // Arrange
     const content = 'Test content';
     const cursorStartPosition = 0;
