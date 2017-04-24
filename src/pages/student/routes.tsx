@@ -4,7 +4,8 @@ import { TrainingTOCPageContainer } from './training/toc/pageContainer';
 import { TrainingListPage } from './training/list/page';
 import { studentRouteEnums } from '../../common/routeEnums/student';
 import { ListTrainingPageContainer } from './training/list/pageContainer';
-import { ExerciseDeliveryPage } from './training/exercise/page';
+import { ExerciseAssessmentPage } from './training/exercise/assessment/page';
+import { ExerciseDeliveryPage } from './training/exercise/delivery/page';
 
 // http://stackoverflow.com/questions/35048738/react-router-import-routes
 // AssembliesRoutes.js
@@ -19,8 +20,11 @@ export const StudentsRoutes = (
     <Redirect from={studentRouteEnums.training.id.base} to={studentRouteEnums.training.id.toc} />
 
     {/* Mocked links */}
-    <Route path="/student/training/34/exercise/1/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/34/exercise/2/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/34/exercise/3/delivery" component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/1/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/2/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/3/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/1/assessment`} component={ExerciseAssessmentPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/2/assessment`} component={ExerciseAssessmentPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/3/assessment`} component={ExerciseAssessmentPage} />
   </div>
 );

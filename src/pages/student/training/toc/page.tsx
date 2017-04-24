@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { marksy } from 'marksy';
 import { Link } from 'react-router';
+import { MarkDownViewerComponent } from '../../../../common/components/markdownViewer';
 import { studentRouteEnums } from '../../../../common/routeEnums/student';
 import { TrainingTOC } from '../../../../model/student/trainingToc';
-
-const compile = marksy();
 
 export interface TrainingTOCPageProps {
   trainingId: number;
@@ -36,19 +35,8 @@ export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
       <div>
         <h2 className="text-center">{this.props.trainingTOC.name}</h2>
         <Link to={studentRouteEnums.training.list}>Back to training list</Link>
-        {this.getMarkDownChildren()}
+        <MarkDownViewerComponent content={this.props.trainingTOC.content}/>
       </div>
     );
-  }
-
-  private getMarkDownChildren(): React.ReactNode {
-    let childrenComponent: React.ReactNode = null;
-    const { trainingTOC } = this.props;
-
-    if (trainingTOC) {
-      childrenComponent = compile(trainingTOC.content).tree;
-    }
-
-    return childrenComponent;
   }
 }
