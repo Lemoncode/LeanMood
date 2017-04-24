@@ -3,14 +3,10 @@ import { IMarkdownEntry } from '../../../../../../../model/trainer/markdownEntry
 const classNames: any = require('./buttonStyles.scss');
 
 interface IProps {
-  mdCaret: string;
-  caretCursorPosition: number;
-  panelId?: string;
-  onClick: (markdownEntry: IMarkdownEntry) => void;
+  onClick: () => void;
 }
 
-// TODO: This component could use toolbarButton
-export class ToolbarMarkdownButton extends React.Component<IProps, {}> {
+export class ToolbarButton extends React.Component<IProps, {}> {
 
   constructor() {
     super();
@@ -19,10 +15,7 @@ export class ToolbarMarkdownButton extends React.Component<IProps, {}> {
   }
   private onClick(event) {
     event.preventDefault();
-    this.props.onClick({ mdCaret: this.props.mdCaret,
-                            caretCursorPosition: this.props.caretCursorPosition,
-                            panelId: this.props.panelId,
-                        });
+    this.props.onClick();
   }
 
   public render() {
