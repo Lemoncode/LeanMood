@@ -36,7 +36,7 @@ export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
       <div>
         <h2 className="text-center">{this.props.trainingTOC.name}</h2>
         <Link to={studentRouteEnums.training.list}>Back to training list</Link>
-        <MarkDownViewerComponent content={this.props.trainingTOC.content}/>        
+        <MarkDownViewerComponent content={this.props.trainingTOC.content}/>
       </div>
     );
   }

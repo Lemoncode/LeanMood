@@ -5,27 +5,25 @@ import {ProgressBarComponent} from '../progressBarComponent';
 
 describe('ProgressBarComponent', () => {
 
-  it('should be defined', () => {
-    // Arrange
+  it('should render a progress element', () => {
     // Act
     const progressBarComponent = shallow(
       <ProgressBarComponent current={5} max={10} min={0} />,
     );
 
     // Assert
-    expect(progressBarComponent).not.to.be.undefined;
+    expect(progressBarComponent.type()).to.be.equals('progress');
   });
 
   it('should render the progress tag', () => {
-    // Arrange
     // Act
     const progressBarComponent = shallow(
       <ProgressBarComponent current={5} max={10} min={0} />,
     );
 
     // Assert
-    const expectedDomTree = '<progress min=\"0\" max=\"10\" value=\"5\"></progress>';
-
-    expect(progressBarComponent.html()).to.be.equal(expectedDomTree);
+    expect(progressBarComponent.prop('min')).to.be.equal(0);
+    expect(progressBarComponent.prop('max')).to.be.equal(10);
+    expect(progressBarComponent.prop('value')).to.be.equal(5);
   });
 });

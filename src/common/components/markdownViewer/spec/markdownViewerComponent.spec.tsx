@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
-import { MarkDownViewerComponent, Props } from '../markdownViewerComponent';
+import { MarkDownViewerComponent, MarkDownViewerComponentProps } from '../markdownViewerComponent';
 
 describe('MarkdownViewer Component', () => {
   it('should render the content as React components', () => {
     // Arrange
-    const props: Props = {
-        content: [
-          '# Main title',
-          'Description text with **bold text**',
-        ].join('\n'),
+    const props: MarkDownViewerComponentProps = {
+      content: [
+        '# Main title',
+        'Description text with **bold text**',
+      ].join('\n'),
     };
 
     const expectedTitle = <h1 id="main-title">Main title</h1>;
     const expectedParagraph = <p>Description text with <strong>bold text</strong></p>;
 
     // Act
-    const trainingTOCPage = shallow(
+    const trainingTOCPage = mount(
       <MarkDownViewerComponent {...props} />,
     );
 
@@ -27,8 +27,8 @@ describe('MarkdownViewer Component', () => {
 
   it('should render nothing when the content is empty', () => {
     // Arrange
-    const props: Props = {
-        content: '',
+    const props: MarkDownViewerComponentProps = {
+      content: '',
     };
 
     // Act
@@ -42,8 +42,8 @@ describe('MarkdownViewer Component', () => {
 
   it('should render nothing when the content is empty', () => {
     // Arrange
-    const props: Props = {
-        content: null,
+    const props: MarkDownViewerComponentProps = {
+      content: null,
     };
 
     // Act
