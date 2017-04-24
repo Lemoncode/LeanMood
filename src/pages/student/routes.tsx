@@ -19,11 +19,11 @@ export const StudentsRoutes = (
     <Redirect from={studentRouteEnums.training.id.base} to={studentRouteEnums.training.id.toc} />
 
     {/* Mocked links */}
-    <Route path="/student/training/1/exercise/1/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/1/exercise/2/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/1/exercise/3/delivery" component={ExerciseDeliveryPage} />
-    <Route path={`${studentRouteEnums.training.base}/1/exercise`} component={ExerciseAssessmentPage} />
-    <Route path={`${studentRouteEnums.training.base}/2/exercise`} component={ExerciseAssessmentPage} />
-    <Route path={`${studentRouteEnums.training.base}/3/exercise`} component={ExerciseAssessmentPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/1/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/2/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/3/delivery`} component={ExerciseDeliveryPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/1/assessment`} component={ExerciseAssessmentPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/2/assessment`} component={ExerciseAssessmentPage} />
+    <Route path={`${studentRouteEnums.training.base}/1/exercise/3/assessment`} component={ExerciseAssessmentPage} />
   </div>
 );

@@ -4,7 +4,11 @@ import { Link } from 'react-router';
 import { studentRouteEnums } from '../../../../common/routeEnums/student';
 import { TrainingTOC } from '../../../../model/student/trainingToc';
 
-const compile = marksy();
+const compile = marksy({
+  a: ({ target, children, ...other }) => (
+    <a target="_self" {...other}>{children}</a>
+  ),
+});
 
 export interface TrainingTOCPageProps {
   trainingId: number;
