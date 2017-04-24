@@ -135,4 +135,40 @@ describe('trainingReducer', () => {
     expect(nextState.shouldUpdateEditorCursor).to.be.true;
     expect(originalState).to.be.frozen;
   });
+
+  it(`should return next state when passing action type equals TOGGLE_EDITOR_PREVIEW
+    and newState.showPreview == !prevState.showPreview (false case)`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.showPreview = false;
+    const action = {
+      type: trainerActionEnums.TOGGLE_EDITOR_PREVIEW,
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.showPreview).to.be.true;
+    expect(originalState).to.be.frozen;
+  });
+
+  it(`should return next state when passing action type equals TOGGLE_EDITOR_PREVIEW
+    and newState.showPreview == !prevState.showPreview (true case)`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    originalState.showPreview = true;
+    const action = {
+      type: trainerActionEnums.TOGGLE_EDITOR_PREVIEW,
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.showPreview).to.be.false;
+    expect(originalState).to.be.frozen;
+  });
 });

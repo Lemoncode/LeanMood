@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ToolbarLabeledMarkdownButton } from '../buttons';
+import { ToolbarLabeledMarkdownButton, ToolbarLabeledButton } from '../buttons';
 import {Icon, iconEnums} from '../icons';
 import {IMarkdownEntry} from '../../../../../../../model/trainer/markdownEntry';
 import {markdownEntryConstants} from '../../markdownEntryConstants';
@@ -7,6 +7,7 @@ const classNames: any = require('./groupStyles.scss');
 
 interface IProps {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
+  togglePreviewMode: () => void;
 }
 
 export const CommandGroupComponent = (props: IProps) => {
@@ -42,14 +43,12 @@ export const CommandGroupComponent = (props: IProps) => {
             <Icon icon={iconEnums.delivery} />
           </ToolbarLabeledMarkdownButton>
 
-          <ToolbarLabeledMarkdownButton
-            mdCaret={markdownEntryConstants.header.mdCaret}
-            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
-            onClick={props.insertMarkdownEntry}
+          <ToolbarLabeledButton
+            onClick={props.togglePreviewMode}
             label="Preview"
           >
             <Icon icon={iconEnums.preview} />
-          </ToolbarLabeledMarkdownButton>        
+          </ToolbarLabeledButton>        
         </div>        
       </div>
   );

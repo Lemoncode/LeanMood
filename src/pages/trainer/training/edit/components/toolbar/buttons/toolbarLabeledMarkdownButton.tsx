@@ -10,6 +10,7 @@ interface IProps {
   label: string;
 }
 
+// TODO: This component could make use of toolbarLabeledButton
 export class ToolbarLabeledMarkdownButton extends React.Component<IProps, {}> {
 
   constructor() {
