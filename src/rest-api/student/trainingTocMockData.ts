@@ -55,7 +55,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   [Javascript recording session](http://www.lemoncode.net)
   [Typescript](http://www.lemoncode.net)
 
-#### Excercise 1 - Modelling formula 1
+#### Excercise 1 - Modeling formula 1
 
   [Description](http://www.lemoncode.net) -
   [Evaluation](#${studentRouteEnums.training.base}/34/exercise/3/delivery)
@@ -163,7 +163,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   [Javascript recording session](http://www.lemoncode.net)
   [Typescript](http://www.lemoncode.net)
 
-#### Excercise 1 - Modelling formula 1
+#### Excercise 1 - Modeling formula 1
 
   [Description](http://www.lemoncode.net) -
   [Evaluation](#${studentRouteEnums.training.base}/34/exercise/3/delivery)

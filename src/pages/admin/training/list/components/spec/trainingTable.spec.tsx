@@ -5,7 +5,7 @@ import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { TrainingSummary } from '../../../../../../model/trainingSummary';
 import { TrainingTableComponent } from '../trainingTable';
 
-describe('TrainingTabletComponent', () => {
+describe('TrainingTableComponent', () => {
   it('Should not be undefined', () => {
     // Act
     const trainingTableComponent = shallow(
