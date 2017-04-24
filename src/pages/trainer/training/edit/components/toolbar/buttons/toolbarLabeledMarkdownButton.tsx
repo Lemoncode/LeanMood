@@ -5,6 +5,7 @@ import { ToolbarMarkdownButton } from './toolbarMarkdownButton';
 interface IProps {
   mdCaret: string;
   caretCursorPosition: number;
+  paneldId?: string;
   onClick: (markdownEntry: IMarkdownEntry) => void;
   label: string;
 }
@@ -14,12 +15,6 @@ export class ToolbarLabeledMarkdownButton extends React.Component<IProps, {}> {
 
   constructor() {
     super();
-
-    this.onClick = this.onClick.bind(this);
-  }
-  private onClick(event) {
-    event.preventDefault();
-    this.props.onClick({ mdCaret: this.props.mdCaret, caretCursorPosition: this.props.caretCursorPosition });
   }
 
   public render() {
@@ -28,7 +23,8 @@ export class ToolbarLabeledMarkdownButton extends React.Component<IProps, {}> {
         <ToolbarMarkdownButton
             mdCaret={this.props.mdCaret}
             caretCursorPosition={this.props.caretCursorPosition}
-            onClick={this.onClick}
+            panelId={this.props.paneldId}
+            onClick={this.props.onClick}
         >
           {this.props.children}
         </ToolbarMarkdownButton>

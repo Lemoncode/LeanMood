@@ -4,7 +4,7 @@ import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
-import { uploadFilePanelComponent } from './upload/uploadFilePanelComponent';
+import { panelIds, panelList} from './panels';
 const classNames: any = require('./editorStyles.scss');
 
 interface Props {
@@ -18,9 +18,11 @@ interface Props {
   togglePreviewMode: () => void;
 }
 
-const panelList: PanelItem[] = [{panelId: 'UPLOAD', component: uploadFilePanelComponent}];
+interface State {
+  activePanelId: string;
+}
 
-export class EditorComponent extends React.Component<Props, {}> {
+export class EditorComponent extends React.Component<Props, State> {
   private editor: HTMLTextAreaElement;
 
   constructor() {
@@ -28,7 +30,7 @@ export class EditorComponent extends React.Component<Props, {}> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.state = {showPreview : false};
+    this.state = {activePanelId : ''};
   }
 
   private refHandlers = {
@@ -36,8 +38,14 @@ export class EditorComponent extends React.Component<Props, {}> {
   };
 
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
-    this.updateContentWithMarkdownEntry(markdownEntry);
-    this.updateEditorCursor(markdownEntry.caretCursorPosition);
+    if (markdownEntry.panelId && markdownEntry.panelId !== '') {
+        // Set State active panel !!
+        // and updated component as well
+        this.setState({activePanelId: markdownEntry.panelId});
+    } else {
+      this.updateContentWithMarkdownEntry(markdownEntry);
+      this.updateEditorCursor(markdownEntry.caretCursorPosition);
+    }
   }
 
   private updateContentWithMarkdownEntry(markdownEntry: IMarkdownEntry) {
@@ -69,7 +77,7 @@ export class EditorComponent extends React.Component<Props, {}> {
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
         /> 
-        <PanelComponent activePanelId={''} panelList={[]}  />       
+        <PanelComponent activePanelId={this.state.activePanelId} panelList={panelList}  />       
         {
           !this.props.showPreview ?
               <textarea

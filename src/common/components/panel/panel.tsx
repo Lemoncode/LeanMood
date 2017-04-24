@@ -18,10 +18,10 @@ const renderSelectedComponent = ({activePanelId, panelList}: Props) => {
     );
   }
 
-  const panel = this.props.panels.find((currentPanel) => currentPanel.panelId === this.props.activePanelId);
+  const panel = panelList.find((currentPanel) => currentPanel.panelId === activePanelId);
 
   if (panel && panel.component) {
-    return React.createElement(panel.component);
+    return React.createElement(panel.component as any);
   } else {
     return (
       <div/>
