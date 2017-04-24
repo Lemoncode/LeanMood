@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IMarkdownEntry } from '../../../../../../../model/trainer/markdownEntry';
 import { ToolbarMarkdownButton } from './toolbarMarkdownButton';
+const classNames: any = require('./buttonStyles.scss');
 
 interface IProps {
   mdCaret: string;
@@ -24,7 +25,7 @@ export class ToolbarLabeledMarkdownButton extends React.Component<IProps, {}> {
 
   public render() {
     return (
-      <div>
+      <div className={classNames.column}>
         <ToolbarMarkdownButton
             mdCaret={this.props.mdCaret}
             caretCursorPosition={this.props.caretCursorPosition}
@@ -32,7 +33,9 @@ export class ToolbarLabeledMarkdownButton extends React.Component<IProps, {}> {
         >
           {this.props.children}
         </ToolbarMarkdownButton>
-        <span>{this.props.label}</span>
+        <div className={classNames.labelWrapper}>
+          <span className={classNames.commandLabel}>{this.props.label}</span>
+        </div>
       </div>
     );
   }
