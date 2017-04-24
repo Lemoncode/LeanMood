@@ -5,6 +5,7 @@ const classNames: any = require('./buttonStyles.scss');
 interface IProps {
   mdCaret: string;
   caretCursorPosition: number;
+  panelId?: string;
   onClick: (markdownEntry: IMarkdownEntry) => void;
 }
 
@@ -18,7 +19,10 @@ export class ToolbarMarkdownButton extends React.Component<IProps, {}> {
   }
   private onClick(event) {
     event.preventDefault();
-    this.props.onClick({ mdCaret: this.props.mdCaret, caretCursorPosition: this.props.caretCursorPosition });
+    this.props.onClick({ mdCaret: this.props.mdCaret,
+                            caretCursorPosition: this.props.caretCursorPosition,
+                            panelId: this.props.panelId,
+                        });
   }
 
   public render() {

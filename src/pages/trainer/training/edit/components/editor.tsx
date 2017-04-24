@@ -2,7 +2,9 @@ import * as React from 'react';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
+import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
+import { panelIds, panelList} from './panels';
 const classNames: any = require('./editorStyles.scss');
 
 interface Props {
@@ -11,9 +13,11 @@ interface Props {
   shouldUpdateEditorCursor: boolean;
   className: string;
   showPreview: boolean;
+  activePanelId: string;
   onContentChange: (content: string) => void;
   updateEditorCursor: (cursorStartPosition: number) => void;
   togglePreviewMode: () => void;
+  setActivePanelId: (panelId: string) => void;
 }
 
 export class EditorComponent extends React.Component<Props, {}> {
@@ -24,16 +28,27 @@ export class EditorComponent extends React.Component<Props, {}> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.state = {showPreview : false};
   }
 
   private refHandlers = {
     textArea: (textArea) => { this.editor = textArea; },
   };
 
+  private handlePanel(panelId) {
+      if (panelId !== this.props.activePanelId) {
+        this.props.setActivePanelId(panelId);
+      } else {
+        this.props.setActivePanelId('');
+      }
+  }
+
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
-    this.updateContentWithMarkdownEntry(markdownEntry);
-    this.updateEditorCursor(markdownEntry.caretCursorPosition);
+    if (markdownEntry.panelId && markdownEntry.panelId !== '') {
+        this.handlePanel(markdownEntry.panelId);
+    } else {
+      this.updateContentWithMarkdownEntry(markdownEntry);
+      this.updateEditorCursor(markdownEntry.caretCursorPosition);
+    }
   }
 
   private updateContentWithMarkdownEntry(markdownEntry: IMarkdownEntry) {
@@ -64,7 +79,8 @@ export class EditorComponent extends React.Component<Props, {}> {
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
-        />
+        /> 
+        <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList}  />       
         {
           !this.props.showPreview ?
               <textarea

@@ -68,9 +68,11 @@ describe('ToolbarMarkdownButton', () => {
     const onClickSpy = sinon.spy();
     const mdCaret = '_';
     const caretCursorPosition = 2;
+    const panelId = 'test';
     const expectedMarkdownEntry = {
       mdCaret,
       caretCursorPosition,
+      panelId,
     };
 
     // Act
@@ -78,6 +80,7 @@ describe('ToolbarMarkdownButton', () => {
       <ToolbarMarkdownButton
         mdCaret={mdCaret}
         caretCursorPosition={caretCursorPosition}
+        panelId={panelId}
         onClick={onClickSpy}
       />,
     );

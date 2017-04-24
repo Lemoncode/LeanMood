@@ -5,12 +5,14 @@ export class TrainingState {
   public cursorStartPosition: number;
   public shouldUpdateEditorCursor: boolean;
   public showPreview: boolean;
+  public activePanelId: string;
 
   constructor() {
     this.content = '';
     this.cursorStartPosition = 0;
     this.shouldUpdateEditorCursor = false;
     this.showPreview = false;
+    this.activePanelId = '';
   }
 }
 
@@ -25,6 +27,9 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
 
     case trainerActionEnums.TOGGLE_EDITOR_PREVIEW:
       return handleToggleEditorPreview(state);
+
+    case trainerActionEnums.SET_ACTIVE_PANEL:
+      return handleSetActivePanel(state, action.payload);
 
     default:
       return state;
@@ -41,6 +46,11 @@ const handleUpdateEditorCursor = (state: TrainingState, payload: number) => ({
   ...state,
   cursorStartPosition: payload,
   shouldUpdateEditorCursor: true,
+});
+
+const handleSetActivePanel = (state: TrainingState, payload: string) => ({
+  ...state,
+  activePanelId: payload,
 });
 
 const handleToggleEditorPreview = (state: TrainingState) => ({

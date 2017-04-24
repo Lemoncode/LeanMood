@@ -11,5 +11,6 @@ describe('trainerActionEnums', () => {
     expect(trainerActionEnums.TRAINING_CONTENT_CHANGED).to.equal('TRAINING_MODULE/TRAINING_CONTENT_CHANGED');
     expect(trainerActionEnums.UPDATE_EDITOR_CURSOR).to.equal('TRAINING_MODULE/UPDATE_EDITOR_CURSOR');
     expect(trainerActionEnums.TOGGLE_EDITOR_PREVIEW).to.equal('TRAINING_MODULE/TOGGLE_EDITOR_PREVIEW');
+    expect(trainerActionEnums.SET_ACTIVE_PANEL).to.equal('TRAINING_MODULE/SET_ACTIVE_PANEL');
   });
 });
