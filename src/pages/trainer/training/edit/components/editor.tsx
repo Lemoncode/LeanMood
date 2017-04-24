@@ -37,11 +37,17 @@ export class EditorComponent extends React.Component<Props, State> {
     textArea: (textArea) => { this.editor = textArea; },
   };
 
+  private handlePanel(panelId) {
+      if (panelId !== this.state.activePanelId) {
+        this.setState({activePanelId: panelId});
+      } else {
+        this.setState({activePanelId: ''});
+      }
+  }
+
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
     if (markdownEntry.panelId && markdownEntry.panelId !== '') {
-        // Set State active panel !!
-        // and updated component as well
-        this.setState({activePanelId: markdownEntry.panelId});
+        this.handlePanel(markdownEntry.panelId);
     } else {
       this.updateContentWithMarkdownEntry(markdownEntry);
       this.updateEditorCursor(markdownEntry.caretCursorPosition);
