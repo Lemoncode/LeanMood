@@ -23,7 +23,7 @@ describe('ToolbarMarkdownButton', () => {
   it('renders as expected without children', () => {
     // Arrange
     const expectedComponent = `
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-default command-button">
       </button>
     `;
     const dummyOnClick = () => {};
@@ -43,7 +43,7 @@ describe('ToolbarMarkdownButton', () => {
   it('renders as expected with children', () => {
     // Arrange
     const expectedComponent = `
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-default command-button">
         <div></div>
       </button>
     `;
