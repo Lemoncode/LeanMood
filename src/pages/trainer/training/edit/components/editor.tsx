@@ -13,16 +13,14 @@ interface Props {
   shouldUpdateEditorCursor: boolean;
   className: string;
   showPreview: boolean;
+  activePanelId: string;
   onContentChange: (content: string) => void;
   updateEditorCursor: (cursorStartPosition: number) => void;
   togglePreviewMode: () => void;
+  setActivePanelId: (panelId: string) => void;
 }
 
-interface State {
-  activePanelId: string;
-}
-
-export class EditorComponent extends React.Component<Props, State> {
+export class EditorComponent extends React.Component<Props, {}> {
   private editor: HTMLTextAreaElement;
 
   constructor() {
@@ -30,7 +28,6 @@ export class EditorComponent extends React.Component<Props, State> {
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.state = {activePanelId : ''};
   }
 
   private refHandlers = {
@@ -38,10 +35,10 @@ export class EditorComponent extends React.Component<Props, State> {
   };
 
   private handlePanel(panelId) {
-      if (panelId !== this.state.activePanelId) {
-        this.setState({activePanelId: panelId});
+      if (panelId !== this.props.activePanelId) {
+        this.props.setActivePanelId(panelId);
       } else {
-        this.setState({activePanelId: ''});
+        this.props.setActivePanelId('');
       }
   }
 
@@ -83,7 +80,7 @@ export class EditorComponent extends React.Component<Props, State> {
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
         /> 
-        <PanelComponent activePanelId={this.state.activePanelId} panelList={panelList}  />       
+        <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList}  />       
         {
           !this.props.showPreview ?
               <textarea

@@ -136,6 +136,24 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
+  it(`should return next state when passing action type equals SET_ACTIVE_PANEL`, () => {
+    // Arrange
+    const originalState = new TrainingState();
+    const action = {
+      type: trainerActionEnums.SET_ACTIVE_PANEL,
+      payload: 'mypanel',
+    };
+
+    // Act
+    Object.freeze(originalState);
+    const nextState = trainingReducer(originalState, action);
+
+    // Assert
+    expect(nextState.activePanelId).to.equal(action.payload);
+    expect(originalState).to.be.frozen;
+  });
+
+
   it(`should return next state when passing action type equals TOGGLE_EDITOR_PREVIEW
     and newState.showPreview == !prevState.showPreview (false case)`, () => {
     // Arrange
