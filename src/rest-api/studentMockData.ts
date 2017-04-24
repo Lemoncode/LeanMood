@@ -176,4 +176,11 @@ export const studentMockData: Student[] = [
     isActive: true,
     phoneNumber: '',
   },
+  {
+    email: 'student@lemoncode.net',
+    fullname: 'Student',
+    id: 3,
+    isActive: true,
+    phoneNumber: '',
+  },
 ];

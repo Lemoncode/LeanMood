@@ -24,11 +24,15 @@ describe('TrainingTabletComponent', () => {
         id: 2,
         isActive: true,
         name: 'John Doe',
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 3,
         isActive: false,
         name: 'Mark Somez',
+        start: new Date(),
+        end: new Date(),
       },
     ];
 
