@@ -1,12 +1,16 @@
-import {studentRouteEnums} from '../index';
+import { studentRouteEnums } from '../index';
 
 describe('studentRouteEnums', () => {
-  it('should be defined', () => {
-    expect(studentRouteEnums).not.to.be.undefined;
+  it('should be an object', () => {
+    // Assert
+    expect(studentRouteEnums).to.be.an('object').not.null;
   });
 
-  it('should have keys defined', () => {
+  it('should have routes defined', () => {
     expect(studentRouteEnums.default).to.be.equals('/student');
-    expect(studentRouteEnums.training).to.be.equals('/student/training');
+    expect(studentRouteEnums.training.base).to.be.equals('/student/training');
+    expect(studentRouteEnums.training.list).to.be.equals('/student/training/list');
+    expect(studentRouteEnums.training.id.base).to.be.equals('/student/training/:trainingId');
+    expect(studentRouteEnums.training.id.toc).to.be.equals('/student/training/:trainingId/toc');
   });
 });

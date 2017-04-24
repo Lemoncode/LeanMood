@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import { studentRouteEnums } from '../../../../common/routeEnums/student';
 import { TrainingSummary } from '../../../../model/trainingSummary';
 import { TrainingTableComponent } from './components/trainingTable';
@@ -23,7 +23,8 @@ export class TrainingListPage extends React.Component<IProps, {}> {
         <AutoSizer disableHeight={true}>
           {({ width }) => <TrainingTableComponent width={width} trainingList={this.props.trainingList} />}
         </AutoSizer>
-        <Link to={studentRouteEnums.training}>Go to Training page</Link>
+        
+        <Link to={`${studentRouteEnums.training.base}/1`} >Go to training TOC with id 1</Link>
       </div>
     );
   }

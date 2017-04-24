@@ -1,9 +1,9 @@
-import { MainTocPage } from './main-toc/page';
+import { TrainingTOCPageContainer } from './training/toc/pageContainer';
 import { StudentsRoutes } from './routes';
 import { TrainingListPage } from './training/list/page';
 
 export {
-    TrainingListPage,
-    MainTocPage,
-    StudentsRoutes
+  TrainingListPage,
+  TrainingTOCPageContainer,
+  StudentsRoutes,
 }
