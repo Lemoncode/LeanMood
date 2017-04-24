@@ -2,7 +2,7 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MarkDownViewerComponent, MarkDownViewerComponentProps } from '../markdownViewerComponent';
 
-describe.only('MarkdownViewer Component', () => {
+describe('MarkdownViewer Component', () => {
   it('should render the content as React components', () => {
     // Arrange
     const props: MarkDownViewerComponentProps = {
