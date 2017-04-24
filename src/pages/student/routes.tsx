@@ -19,8 +19,8 @@ export const StudentsRoutes = (
     <Redirect from={studentRouteEnums.training.id.base} to={studentRouteEnums.training.id.toc} />
 
     {/* Mocked links */}
-    <Route path="/student/training/1/exercise/1/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/1/exercise/2/delivery" component={ExerciseDeliveryPage} />
-    <Route path="/student/training/1/exercise/3/delivery" component={ExerciseDeliveryPage} />
+    <Route path="/student/training/34/exercise/1/delivery" component={ExerciseDeliveryPage} />
+    <Route path="/student/training/34/exercise/2/delivery" component={ExerciseDeliveryPage} />
+    <Route path="/student/training/34/exercise/3/delivery" component={ExerciseDeliveryPage} />
   </div>
 );

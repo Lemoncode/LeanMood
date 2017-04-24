@@ -30,4 +30,13 @@ export const trainingMockData: Training[] = [
     students: new Array<Student>(),
     trainers: new Array<Trainer>(),
   },
+  {
+    end: new Date(2017, 0, 31),
+    id: 34,
+    isActive: true,
+    name: 'Full Stack Online Máster',
+    start: new Date(2017, 0, 1),
+    students: [{id: 3, fullname: 'Student', isActive: true, email: 'student', phoneNumber: ''}],
+    trainers: new Array<Trainer>(),
+  },
 ];

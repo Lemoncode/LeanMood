@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-import {StudentTrainingState, studentTrainingReducer} from './training';
+import {trainingReducer as training, TrainingState} from './training/';
 
 export interface StudentState {
-  training: StudentTrainingState;
-  studentId: number;
+  training: TrainingState;
 }
 
 export const studentReducer = combineReducers<StudentState>({
-  training: studentTrainingReducer,
+  training,
 });

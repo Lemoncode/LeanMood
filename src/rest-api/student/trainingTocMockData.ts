@@ -4,7 +4,7 @@ import { studentRouteEnums } from '../../common/routeEnums/student/';
 /* tslint:disable:max-line-length */
 export const trainingTOCMockData: TrainingTOC[] = [
   {
-    id: 1,
+    id: 34,
     name: 'Full Stack Online Máster',
     content: `
 ## Module 1 - UX + Design
@@ -23,7 +23,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 #### Excercise 1 - Low fidelity application
 
   [Description](http://www.lemoncode.net) -
-  [Evaluation](#${studentRouteEnums.training.base}/1/exercise/1/delivery)
+  [Evaluation](#${studentRouteEnums.training.base}/34/exercise/1/delivery)
 
 
 ## Module 2 - Layout
@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 #### Excercise 1 - Build a page layout
 
   [Description](http://www.lemoncode.net) -
-  [Evaluation](#${studentRouteEnums.training.base}/1/exercise/1/delivery)
+  [Evaluation](#${studentRouteEnums.training.base}/34/exercise/2/delivery)
 
 #### Links
 
@@ -58,7 +58,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 #### Excercise 1 - Modelling formula 1
 
   [Description](http://www.lemoncode.net) -
-  [Evaluation](#${studentRouteEnums.training.base}/1/exercise/1/delivery)
+  [Evaluation](#${studentRouteEnums.training.base}/34/exercise/3/delivery)
 
 #### Links
 

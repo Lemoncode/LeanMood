@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { TableRowProps } from 'react-virtualized';
 import { TrainingSummary } from '../../../../../model/trainingSummary';
 import { TableRowComponent } from '../../../../../common/components/virtualized/tableRow';
+import { studentRouteEnums } from '../../../../../common/routeEnums/student';
 
 const classNames: any = require('./trainingRowStyles.scss');
 
@@ -19,7 +20,7 @@ export const TrainingRowComponent: React.StatelessComponent<Props> = (props) => 
       className={`${props.className} ${classNames.rowStriped}`}
     >
       <input type="checkbox" disabled={true} checked={props.rowData.isActive} />
-      <span>{props.rowData.name}</span>
+      <Link to={`${studentRouteEnums.training.base}/${props.rowData.id}`}>{props.rowData.name}</Link>
       <span>{props.rowData.start.toLocaleDateString()}</span>
       <span>{props.rowData.end.toLocaleDateString()}</span>
     </TableRowComponent>
