@@ -90,6 +90,7 @@
     "jquery": "^3.1.1",
     "lc-form-validation": "^0.1.7",
     "marksy": "^0.3.0",
+    "moment": "^2.18.1",
     "react": "^15.4.1",
     "react-addons-shallow-compare": "^15.4.2",
     "react-dom": "^15.4.1",
