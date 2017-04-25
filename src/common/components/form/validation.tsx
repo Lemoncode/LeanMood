@@ -6,7 +6,7 @@ interface IProps {
 
 export class ValidationComponent extends React.Component<IProps, {}> {
   public render() {
-    let wrapperClass: string = 'form-group';
+    let wrapperClass: string = 'form-group clearfix';
     if (this.props.error && this.props.error.length > 0) {
       wrapperClass = `${wrapperClass} has-error`;
     }

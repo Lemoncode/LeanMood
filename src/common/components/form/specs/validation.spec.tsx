@@ -17,7 +17,7 @@ describe('ValidationComponent', () => {
   it('should renders as expected when has no errors', () => {
     // Arrange
     const expectedComponent = `
-      <div class="form-group">
+      <div class="form-group clearfix">
         <h1>test field</h1>
         <div class="help-block">
         </div>
@@ -37,7 +37,7 @@ describe('ValidationComponent', () => {
   it('should renders as expected when has errors', () => {
     // Arrange
     const expectedComponent = `
-      <div class="form-group has-error">
+      <div class="form-group clearfix has-error">
         <h1>test field</h1>
         <div class="help-block">
           This is a error
