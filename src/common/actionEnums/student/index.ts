@@ -1,4 +1,5 @@
 const namespace = 'STUDENT_';
 export const studentActionEnums = {
   FETCH_TRAINING_TOC_COMPLETED: `${namespace}FETCH_TRAINING_TOC_COMPLETED`,
+  GET_SUMMARY_TRAINING_REQUEST_COMPLETED: `${namespace}GET_SUMMARY_TRAINING_REQUEST_COMPLETED`,
 };

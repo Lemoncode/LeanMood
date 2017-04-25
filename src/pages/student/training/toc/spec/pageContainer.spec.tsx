@@ -19,6 +19,7 @@ describe('TrainingTOCPageContainer', () => {
       login: null,
       student: {
         training: {
+          list: [],
           toc: new TrainingTOC(),
         },
       },
@@ -92,6 +93,7 @@ describe('TrainingTOCPageContainer', () => {
       student: {
         training: {
           toc: trainingTOC,
+          list: [],
         },
       },
       trainer: null,
