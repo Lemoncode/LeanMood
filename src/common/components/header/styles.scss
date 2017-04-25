@@ -1,0 +1,31 @@
+.header {
+  padding: 10px 20px;
+  background-color: #5b4fd9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 64px;
+  margin-right: 10px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  color: #f5f5f5;
+  font-weight: 500;
+}
+
+.actions {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.btn-icon {
+  vertical-align: text-top;
+}
+

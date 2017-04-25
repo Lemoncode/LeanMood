@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Route } from 'react-router';
 
-import { App } from './app';
+import { AppContainer } from './appContainer';
 import { AdminRoutes } from './pages/admin';
 import { GeneralRoutes, NotFoundPage } from './pages/general';
 import { StudentsRoutes } from './pages/student';
 import { TrainingRoutes } from './pages/trainer';
 
 export const AppRoutes = (
-  <Route path="/" component={App}>
+  <Route path="/" component={AppContainer}>
 
     {GeneralRoutes}
     {AdminRoutes}
