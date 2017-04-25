@@ -12,11 +12,15 @@ describe('admin/training/list/page', () => {
        id : 1,
        isActive: true,
        name : 'Antonio',
+       start: new Date(),
+       end: new Date(),
       },
       {
         id: 2,
         isActive: true,
         name : 'Santi',
+        start: new Date(),
+        end: new Date(),
       },
     ];
 
@@ -36,11 +40,15 @@ describe('admin/training/list/page', () => {
         id: 2,
         isActive: true,
         name: 'John Doe',
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 3,
         isActive: false,
         name: 'Mark Somez',
+        start: new Date(),
+        end: new Date(),
       },
     ];
 
@@ -63,11 +71,15 @@ describe('admin/training/list/page', () => {
         id: 2,
         isActive: true,
         name: 'John Doe',
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 3,
         isActive: false,
         name: 'Mark Somez',
+        start: new Date(),
+        end: new Date(),
       },
     ];
 

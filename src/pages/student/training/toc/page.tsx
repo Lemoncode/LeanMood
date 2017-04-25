@@ -31,7 +31,6 @@ export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
   }
 
   public render() {
-
     return (
       <div>
         <h2 className="text-center">{this.props.trainingTOC.name}</h2>

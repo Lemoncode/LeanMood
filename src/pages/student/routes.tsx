@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router';
 import { TrainingTOCPageContainer } from './training/toc/pageContainer';
 import { TrainingListPage } from './training/list/page';
 import { studentRouteEnums } from '../../common/routeEnums/student';
+import { ListTrainingPageContainer } from './training/list/pageContainer';
 import { ExerciseAssessmentPage } from './training/exercise/assessment/page';
 import { ExerciseDeliveryPage } from './training/exercise/delivery/page';
 
@@ -11,7 +12,7 @@ import { ExerciseDeliveryPage } from './training/exercise/delivery/page';
 // http://randycoulman.com/blog/2016/02/02/composing-routes-in-react-router/
 export const StudentsRoutes = (
   <div>
-    <Route path={studentRouteEnums.training.list} component={TrainingListPage} />
+    <Route path={studentRouteEnums.training.list} component={ListTrainingPageContainer} />
     <Route path={studentRouteEnums.training.id.toc} component={TrainingTOCPageContainer} />
 
     <Redirect from={studentRouteEnums.default} to={studentRouteEnums.training.list} />

@@ -30,16 +30,22 @@ describe('summaryTrainingListRequestCompleted', () => {
         id: 32,
         name: 'React/Redux',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 12,
         name: 'Responsive web design',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 33,
         name: 'AngularJS 2.0',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
     ];
     // Act
@@ -80,16 +86,22 @@ describe('summaryTrainingListRequestStarted', () => {
         id: 32,
         name: 'React/Redux',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 12,
         name: 'Responsive web design',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
       {
         id: 33,
         name: 'AngularJS 2.0',
         isActive: true,
+        start: new Date(),
+        end: new Date(),
       },
     ];
 
