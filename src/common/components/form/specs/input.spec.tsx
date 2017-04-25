@@ -1,17 +1,17 @@
 import * as React from 'react';
-import {shallow} from 'enzyme';
-import {multilineTrim} from '../../../parse/multilineTrim';
-import {InputComponent} from '../input';
+import { shallow } from 'enzyme';
+import { multilineTrim } from '../../../parse/multilineTrim';
+import { InputComponent, InputComponentProps } from '../input';
 
 describe('InputComponent', () => {
   it('should be defined', () => {
     // Arrange
-    const props = {
+    const props: InputComponentProps = {
       name: '',
       label: '',
       value: '',
       type: '',
-      onChange: () => {},
+      onChange: () => { },
     };
 
     // Act
@@ -25,21 +25,21 @@ describe('InputComponent', () => {
 
   it('should renders as expected', () => {
     // Arrange
-    const props = {
+    const props: InputComponentProps = {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
       type: 'Test type',
-      onChange: () => {},
+      onChange: () => { },
     };
 
     const expectedComponent = `
-      <div class="form-group">
+      <div class="form-group clearfix">
         <label for="${props.name}">${props.label}</label>
-        <input type="${props.type}" name="${props.name}" class="form-control" value="${props.value}"
-        />
-        <div class="help-block">
+        <div>
+          <input type="${props.type}" name="${props.name}" class="form-control" value="${props.value}"/>
         </div>
+        <div class="help-block"></div>
       </div>
     `;
 
@@ -54,22 +54,26 @@ describe('InputComponent', () => {
 
   it('should renders as expected with optional properties', () => {
     // Arrange
-    const props = {
+    const props: InputComponentProps = {
       name: 'Test name',
       label: 'Test label',
+      labelClassName: 'test-classname',
+      wrapperClassName: 'col-lg-3',
       value: 'Test value',
       type: 'Test type',
-      onChange: () => {},
+      onChange: () => { },
       placeholder: 'Test placeholder',
-      onBlur: () => {},
+      onBlur: () => { },
     };
 
-    /* tslint:disable */
+    /* tslint:disable:max-line-length */
     const expectedComponent = `
-      <div class="form-group">
-        <label for="${props.name}">${props.label}</label>
-        <input type="${props.type}" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}"
-        />
+      <div class="form-group clearfix">
+        <label for="${props.name}" class="${props.labelClassName}">${props.label}</label>
+        <div class="${props.wrapperClassName}">
+          <input type="${props.type}" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}"
+          />
+        </div>
         <div class="help-block">
         </div>
       </div>
@@ -87,14 +91,14 @@ describe('InputComponent', () => {
 
   it('should calls to onChange', () => {
     // Arrange
-    const props = {
+    const props: InputComponentProps = {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',
       type: 'Test type',
       onChange: sinon.spy(),
       placeholder: 'Test placeholder',
-      onBlur: () => {},
+      onBlur: () => { },
     };
 
     // Act
@@ -110,7 +114,7 @@ describe('InputComponent', () => {
 
   it('should calls to onBlur', () => {
     // Arrange
-    const props = {
+    const props: InputComponentProps = {
       name: 'Test name',
       label: 'Test label',
       value: 'Test value',

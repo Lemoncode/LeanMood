@@ -1,5 +1,2 @@
-import {InputComponent} from './input';
-
-export {
-  InputComponent,
-};
+export * from './input';
+export * from './textarea';

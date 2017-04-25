@@ -1,5 +1,2 @@
-import { DeliveryPanelComponent } from './deliveryPanelComponent';
-
-export {
-  DeliveryPanelComponent
-};
+export { DeliveryPanelComponent } from './deliveryPanelComponent';
+export { DeliveryPanelContainer } from './deliveryPanelContainer';

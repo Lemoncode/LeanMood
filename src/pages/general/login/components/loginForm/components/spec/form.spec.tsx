@@ -50,20 +50,22 @@ describe('FormComponent', () => {
       const onClickSpy = sinon.spy();
 
       const expectedEmailInput = `
-        <div class="form-group">
+        <div class="form-group clearfix">
           <label for="login">E-mail</label>
-          <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"
-          />
+          <div>
+            <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"/>
+          </div>
           <div class="help-block">
           </div>
         </div>
       `;
 
       const expectedPasswordInput = `
-        <div class="form-group">
+        <div class="form-group clearfix">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="Password" value="test"
-          />
+          <div>
+            <input type="password" name="password" class="form-control" placeholder="Password" value="test"/>
+          </div>
           <div class="help-block">
           </div>
         </div>
@@ -113,10 +115,11 @@ describe('FormComponent', () => {
       const onClickSpy = sinon.spy();
 
       const expectedEmailInput = `
-        <div class="form-group has-error">
+        <div class="form-group clearfix has-error">
           <label for="login">E-mail</label>
-          <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"
-          />
+          <div>
+            <input type="text" name="login" class="form-control" placeholder="E-mail" value="admin"/>
+          </div>
           <div class="help-block">
             ${failedValidationResult.errorMessage}
           </div>
@@ -124,10 +127,11 @@ describe('FormComponent', () => {
       `;
 
       const expectedPasswordInput = `
-        <div class="form-group">
+        <div class="form-group clearfix">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="Password" value="test"
-          />
+          <div>
+            <input type="password" name="password" class="form-control" placeholder="Password" value="test"/>
+          </div>
           <div class="help-block">
           </div>
         </div>

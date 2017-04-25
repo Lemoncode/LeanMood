@@ -1,9 +1,17 @@
 import * as React from 'react';
+import { DeliveryFormComponent } from './deliveryForm';
 
-export const DeliveryPanelComponent = () => {
+interface Props {
+  togglePanel(): void;
+}
+
+export const DeliveryPanelComponent: React.StatelessComponent<Props> = (props) => {
   return (
     <div>
-      <h1>Delivery panel component</h1>
+      <h4>Add delivery</h4>
+      <DeliveryFormComponent togglePanel={props.togglePanel} />
     </div>
   );
 };
+
+DeliveryPanelComponent.displayName = 'DeliveryPanelComponent';

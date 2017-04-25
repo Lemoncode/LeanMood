@@ -1,32 +1,41 @@
 import * as React from 'react';
 import {ValidationComponent} from './validation';
 
-interface IProps {
+export interface CommonInputProps {
   name: string;
   label: string;
+  labelClassName?: string;
+  wrapperClassName?: string;
   value: string;
-  type: string;
   placeholder?: string;
   error?: string;
   onChange: any;
   onBlur?: any;
 }
 
-export const InputComponent = (props: IProps) => {
+export interface InputComponentProps extends CommonInputProps {
+  type: string;
+}
+
+export const InputComponent: React.StatelessComponent<InputComponentProps> = (props) => {
   return (
     <ValidationComponent error={props.error}>
-      <label htmlFor={props.name}>
+      <label htmlFor={props.name} className={props.labelClassName}>
         {props.label}
       </label>
-      <input
-        type={props.type}
-        name={props.name}
-        className="form-control"
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
-        onBlur={props.onBlur}
-      />
+      <div className={props.wrapperClassName}>
+        <input
+          type={props.type}
+          name={props.name}
+          className="form-control"
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+        />
+      </div>
     </ValidationComponent>
   );
 };
+
+InputComponent.displayName = 'InputComponent';
