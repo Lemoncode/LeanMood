@@ -1,40 +1,42 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
 import createMockStore from 'redux-mock-store';
-import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
-import { DeliveryPanelComponent, DeliveryPanelContainer } from '../';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { UploadFilePanelComponent, UploadFilePanelContainer } from '../';
 import { IAppState } from '../../../../../../../../reducers/index';
 import * as actions from '../../../../actions/setActivePanel';
 
 const configureStore = createMockStore<IAppState>([thunk]);
 
-describe('DeliveryPanelContainer', () => {
+describe('UploadFilePanelContainer', () => {
   let store;
+
   beforeEach(() => {
     store = configureStore({
       adminStudent: null,
       adminTraining: null,
-      login: null,
       student: null,
+      login: null,
       trainer: null,
     });
   });
-  it('should connect a DeliveryPanelComponent', () => {
+
+  it('should connect a UploadFilePanelComponent', () => {
     // Act
     const container = mount(
       <Provider store={store}>
-        <DeliveryPanelContainer />
+        <UploadFilePanelContainer />
       </Provider>,
     );
 
     // Assert
-    expect(container.find(DeliveryPanelContainer)).to.have.lengthOf(1);
-    expect(container.find(DeliveryPanelComponent)).to.have.lengthOf(1);
+    expect(container.find(UploadFilePanelContainer)).to.have.lengthOf(1);
+    expect(container.find(UploadFilePanelComponent)).to.have.lengthOf(1);
   });
 
-  it('should pass togglePanel to DeliveryPanelContainer dispatching ' +
-    'a TRAINING_MODULE/ SET_ACTIVE_PANEL action with empty payload', sinon.test(function() {
+  it('should pass togglePanel to UploadFilePanelComponent dispatching ' +
+    'a TRAINING_MODULE/ SET_ACTIVE_PANEL action with empty payload', sinon.test(function () {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const setActivePanelAction = sinon.stub(actions, 'setActivePanelAction').returns({ type: 'ACTION' });
@@ -42,16 +44,15 @@ describe('DeliveryPanelContainer', () => {
       // Act
       const container = mount(
         <Provider store={store}>
-          <DeliveryPanelContainer />
+          <UploadFilePanelContainer />
         </Provider>,
       );
-      const deliveryPanel = container.find(DeliveryPanelComponent);
-      const togglePanel = deliveryPanel.prop('togglePanel');
+      const uploadFilePanel = container.find(UploadFilePanelComponent);
+      const togglePanel = uploadFilePanel.prop('togglePanel');
 
-      // Act
+      // Assert
       expect(togglePanel).to.be.a('function');
       togglePanel();
       expect(setActivePanelAction.calledWithExactly('')).to.be.true;
     }));
 });
-

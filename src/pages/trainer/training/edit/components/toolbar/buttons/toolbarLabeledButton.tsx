@@ -24,7 +24,7 @@ export class ToolbarLabeledButton extends React.Component<IProps, {}> {
           {this.props.children}
         </ToolbarButton>
         <div className={classNames.labelWrapper}>
-          <span>{this.props.label}</span>
+          <span className={classNames.commandLabel}>{this.props.label}</span>
         </div>
       </div>
     );

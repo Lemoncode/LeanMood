@@ -1,9 +1,15 @@
 import * as React from 'react';
+import { UploadFileFormComponent } from './uploadFileForm';
 
-export const UploadFilePanelComponent = () => {
+interface Props {
+  togglePanel(): void;
+}
+
+export const UploadFilePanelComponent: React.StatelessComponent<Props> = (props) => {
   return (
     <div>
-      <h1>Add here upload file componnent</h1>
+      <h4>Upload file</h4>
+      <UploadFileFormComponent togglePanel={props.togglePanel} />
     </div>
   );
 };

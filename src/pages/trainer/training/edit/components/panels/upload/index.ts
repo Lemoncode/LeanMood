@@ -1,5 +1,2 @@
-import { UploadFilePanelComponent } from './uploadFilePanelComponent';
-
-export {
-  UploadFilePanelComponent
-};
+export { UploadFilePanelComponent } from './uploadFilePanelComponent';
+export { UploadFilePanelContainer } from './uploadFilePanelContainer';
