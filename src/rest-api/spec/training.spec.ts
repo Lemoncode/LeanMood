@@ -17,7 +17,7 @@ beforeEach(() => {
       isActive: true,
       name: 'React/Redux',
       start: new Date(1, 1, 2017),
-      students: new Array<Student>(),
+      students: [{id: 3, fullname: 'Student', isActive: true, email: 'student', phoneNumber: ''}],
       trainers: new Array<Trainer>(),
     },
     {
@@ -68,6 +68,8 @@ describe('TrainingApi', () => {
           id: training.id,
           isActive: training.isActive,
           name: training.name,
+          start: training.start,
+          end: training.end,
         };
       });
 
@@ -82,4 +84,28 @@ describe('TrainingApi', () => {
       });
     }).bind(this));
   });
+
+  describe('getSummaryTrainingListByStudent', () => {
+    it('Get the expected summary training list for a given student', sinon.test((done) => {
+      // Arrange
+      let expectedSummaryList: TrainingSummary[];
+      let studentId = 3;
+
+      // Act
+      expectedSummaryList = trainingList.filter((training) => {
+        return training.students && (training.students.findIndex((student) => student.id === studentId) >= 0);
+      });
+
+      trainingApi.setMockDataSeed(trainingList);
+
+      const summaryListPromise = trainingApi.getSummaryTrainingListByStudent(studentId);
+
+      summaryListPromise.then((summaryList) => {
+        // Assert
+        expect(summaryList).to.eql(expectedSummaryList);
+        done();
+      });
+    }).bind(this));
+  });
+
 });

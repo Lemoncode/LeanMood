@@ -19,7 +19,17 @@ class TrainingApi {
         id: training.id,
         isActive: training.isActive,
         name: training.name,
+        start: training.start,
+        end: training.end,
       };
+    });
+
+    return Promise.resolve(trainingSummaryList);
+  }
+
+  public getSummaryTrainingListByStudent(studentId: number) {
+    const trainingSummaryList: TrainingSummary[] = this.trainingList.filter((training) => {
+      return (training.students && training.students.findIndex((s) => s.id === studentId) >= 0);
     });
 
     return Promise.resolve(trainingSummaryList);
