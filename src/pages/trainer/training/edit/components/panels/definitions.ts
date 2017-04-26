@@ -1,4 +1,4 @@
-import { UploadFilePanelComponent } from './upload';
+import { UploadFilePanelContainer } from './upload';
 import { DeliveryPanelContainer } from './delivery';
 import { EvaluationPanelContainer } from './evaluation';
 import { PanelItem } from '../../../../../../common/components';
@@ -12,7 +12,7 @@ export const panelIds = {
 export const panelList: PanelItem[] = [
   {
     panelId: panelIds.upload,
-    component: UploadFilePanelComponent,
+    component: UploadFilePanelContainer,
   },
   {
     panelId: panelIds.evaluation,
