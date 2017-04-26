@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DroppableFileComponent } from './components/droppableFile';
+import { DroppableFileComponent } from '../../../../../common/components/form/droppableFile/droppableFile';
 
 export class ExerciseDeliveryPage extends React.Component<{}, {}> {
   constructor() {

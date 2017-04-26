@@ -1,11 +1,15 @@
 import * as React from 'react';
 const styles: any = require('./droppableFile.scss');
 
+interface Props {
+  onFileChange?(file: File): any;
+}
+
 interface State {
   uploadedFile: File;
 }
 
-export class DroppableFileComponent extends React.Component<{}, State> {
+export class DroppableFileComponent extends React.PureComponent<Props, State> {
   private inputFile: HTMLInputElement;
 
   constructor() {
@@ -74,6 +78,10 @@ export class DroppableFileComponent extends React.Component<{}, State> {
   private onFileChange(file: File) {
     if (file) {
       this.setState({ uploadedFile: file });
+    }
+
+    if (this.props.onFileChange) {
+      this.props.onFileChange(file);
     }
   }
 

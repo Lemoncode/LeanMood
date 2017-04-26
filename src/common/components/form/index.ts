@@ -1,2 +1,9 @@
-export * from './input';
-export * from './textarea';
+export {
+  InputComponent,
+  InputComponentProps,
+  CommonInputProps,
+} from './input';
+export {
+  TextAreaComponent,
+  TextAreaComponentProps,
+} from './textarea';
