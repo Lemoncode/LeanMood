@@ -1,6 +1,6 @@
 import { UploadFilePanelComponent } from './upload';
 import { DeliveryPanelContainer } from './delivery';
-import { EvaluationPanelComponent } from './evaluation';
+import { EvaluationPanelContainer } from './evaluation';
 import { PanelItem } from '../../../../../../common/components';
 
 export const panelIds = {
@@ -16,7 +16,7 @@ export const panelList: PanelItem[] = [
   },
   {
     panelId: panelIds.evaluation,
-    component: EvaluationPanelComponent,
+    component: EvaluationPanelContainer,
   },
   {
     panelId: panelIds.delivery,
