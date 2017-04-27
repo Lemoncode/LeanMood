@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
-import { panelIds, panelList} from './panels';
+import { panelIds, panelList } from './panels';
+import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
 const classNames: any = require('./editorStyles.scss');
 
 interface Props {
@@ -35,16 +37,16 @@ export class EditorComponent extends React.Component<Props, {}> {
   };
 
   private handlePanel(panelId) {
-      if (panelId !== this.props.activePanelId) {
-        this.props.setActivePanelId(panelId);
-      } else {
-        this.props.setActivePanelId('');
-      }
+    if (panelId !== this.props.activePanelId) {
+      this.props.setActivePanelId(panelId);
+    } else {
+      this.props.setActivePanelId('');
+    }
   }
 
   private insertMarkdownEntry(markdownEntry: IMarkdownEntry) {
     if (markdownEntry.panelId && markdownEntry.panelId !== '') {
-        this.handlePanel(markdownEntry.panelId);
+      this.handlePanel(markdownEntry.panelId);
     } else {
       this.updateContentWithMarkdownEntry(markdownEntry);
       this.updateEditorCursor(markdownEntry.caretCursorPosition);
@@ -76,21 +78,22 @@ export class EditorComponent extends React.Component<Props, {}> {
   public render() {
     return (
       <div className={this.props.className}>
+        <Link to={`${trainerRouteEnums.training.base}/1/dashboard`}>Go back to dashboard</Link>
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
-        /> 
-        <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList}  />       
+        />
+        <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
         {
           !this.props.showPreview ?
-              <textarea
-                className={classNames.textArea}
-                onChange={this.onContentChange}
-                ref={this.refHandlers.textArea}
-                value={this.props.content}
-              />
-          :
-            <PreviewComponent content={this.props.content}/>
+            <textarea
+              className={classNames.textArea}
+              onChange={this.onContentChange}
+              ref={this.refHandlers.textArea}
+              value={this.props.content}
+            />
+            :
+            <PreviewComponent content={this.props.content} />
         }
       </div>
     );

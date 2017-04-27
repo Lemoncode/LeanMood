@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
-import {multilineTrim} from '../../../../../../common/parse/multilineTrim';
-import {ToolbarComponent} from '../toolbar';
-import {IMarkdownEntry} from '../../../../../../model/trainer/markdownEntry';
-import {textAreaTool} from '../../../../../../common/ui/tools/textAreaTool';
-import {EditorComponent} from '../editor';
+import { shallow, mount } from 'enzyme';
+import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
+import { ToolbarComponent } from '../toolbar';
+import { IMarkdownEntry } from '../../../../../../model/trainer/markdownEntry';
+import { textAreaTool } from '../../../../../../common/ui/tools/textAreaTool';
+import { EditorComponent } from '../editor';
 
 describe('EditorComponent', () => {
   it('is defined', () => {
@@ -14,11 +14,11 @@ describe('EditorComponent', () => {
     const shouldUpdateEditorCursor = false;
     const className = '';
     const showPreview = false;
-    const dummyOnContentChange = () => {};
-    const dummyUpdateEditorCursor = () => {};
-    const dummyTogglePreview = () => {};
+    const dummyOnContentChange = () => { };
+    const dummyUpdateEditorCursor = () => { };
+    const dummyTogglePreview = () => { };
     const activePanelId = '';
-    const dummySetActivePanelId = () => {};
+    const dummySetActivePanelId = () => { };
 
     // Act
     const component = shallow(
@@ -31,8 +31,8 @@ describe('EditorComponent', () => {
         updateEditorCursor={dummyUpdateEditorCursor}
         showPreview={showPreview}
         togglePreviewMode={dummyTogglePreview}
-        activePanelId = {activePanelId}
-        setActivePanelId = {dummySetActivePanelId}
+        activePanelId={activePanelId}
+        setActivePanelId={dummySetActivePanelId}
       />,
     );
 
@@ -47,11 +47,11 @@ describe('EditorComponent', () => {
     const shouldUpdateEditorCursor = false;
     const className = 'testClass';
     const showPreview = false;
-    const dummyOnContentChange = () => {};
-    const dummyUpdateEditorCursor = () => {};
-    const dummyTogglePreview = () => {};
+    const dummyOnContentChange = () => { };
+    const dummyUpdateEditorCursor = () => { };
+    const dummyTogglePreview = () => { };
     const activePanelId = '';
-    const dummySetActivePanelId = () => {};
+    const dummySetActivePanelId = () => { };
 
     const expectedEditor = `
       <textarea class="textArea">
@@ -70,8 +70,8 @@ describe('EditorComponent', () => {
         updateEditorCursor={dummyUpdateEditorCursor}
         showPreview={showPreview}
         togglePreviewMode={dummyTogglePreview}
-        activePanelId = {activePanelId}
-        setActivePanelId = {dummySetActivePanelId}
+        activePanelId={activePanelId}
+        setActivePanelId={dummySetActivePanelId}
       />,
     );
 
@@ -89,11 +89,11 @@ describe('EditorComponent', () => {
     const shouldUpdateEditorCursor = false;
     const className = '';
     const onContentChangeSpy = sinon.spy();
-    const dummyUpdateEditorCursor = () => {};
+    const dummyUpdateEditorCursor = () => { };
     const showPreview = false;
-    const dummyTogglePreview = () => {};
+    const dummyTogglePreview = () => { };
     const activePanelId = '';
-    const dummySetActivePanelId = () => {};
+    const dummySetActivePanelId = () => { };
 
     // Act
     const component = mount(
@@ -106,8 +106,8 @@ describe('EditorComponent', () => {
         updateEditorCursor={dummyUpdateEditorCursor}
         showPreview={showPreview}
         togglePreviewMode={dummyTogglePreview}
-        activePanelId = {activePanelId}
-        setActivePanelId = {dummySetActivePanelId}
+        activePanelId={activePanelId}
+        setActivePanelId={dummySetActivePanelId}
       />,
     );
 
@@ -126,11 +126,11 @@ describe('EditorComponent', () => {
     const shouldUpdateEditorCursor = false;
     const className = '';
     const onContentChangeSpy = sinon.spy();
-    const dummyUpdateEditorCursor = () => {};
+    const dummyUpdateEditorCursor = () => { };
     const showPreview = false;
-    const dummyTogglePreview = () => {};
+    const dummyTogglePreview = () => { };
     const activePanelId = '';
-    const dummySetActivePanelId = () => {};
+    const dummySetActivePanelId = () => { };
 
     const expectedContent = 'test content with caret';
     const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
@@ -154,13 +154,17 @@ describe('EditorComponent', () => {
         updateEditorCursor={dummyUpdateEditorCursor}
         showPreview={showPreview}
         togglePreviewMode={dummyTogglePreview}
-        activePanelId = {activePanelId}
-        setActivePanelId = {dummySetActivePanelId}
+        activePanelId={activePanelId}
+        setActivePanelId={dummySetActivePanelId}
       />,
     );
 
-    const toolbarComponent = component.childAt(0);
-    const testMarkdownEntry = {};
+    const toolbarComponent = component.find(ToolbarComponent);
+    const testMarkdownEntry: IMarkdownEntry = {
+      caretCursorPosition: 0,
+      mdCaret: '',
+      panelId: '',
+    };
     toolbarComponent.prop('insertMarkdownEntry')(testMarkdownEntry);
 
     // Assert
@@ -170,57 +174,61 @@ describe('EditorComponent', () => {
 
   it(`calls to calculateStartCursorPositionPlusOffset and updateEditorCursor
     when insertMarkdownEntry in ToolbarComponent`, sinon.test(() => {
-    // Arrange
-    const sinon: sinon.SinonStatic = this;
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
 
-    const content = 'Test content';
-    const cursorStartPosition = 0;
-    const shouldUpdateEditorCursor = false;
-    const className = '';
-    const onContentChangeSpy = sinon.spy();
-    const updateEditorCursorSpy = sinon.spy();
-    const showPreview = false;
-    const dummyTogglePreview = () => {};
-    const activePanelId = '';
-    const dummySetActivePanelId = () => {};
+      const content = 'Test content';
+      const cursorStartPosition = 0;
+      const shouldUpdateEditorCursor = false;
+      const className = '';
+      const onContentChangeSpy = sinon.spy();
+      const updateEditorCursorSpy = sinon.spy();
+      const showPreview = false;
+      const dummyTogglePreview = () => { };
+      const activePanelId = '';
+      const dummySetActivePanelId = () => { };
 
 
-    const expectedContent = 'test content with caret';
-    const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
-      'insertAtCaretGetText', () => {
-        return expectedContent;
-      },
-    );
+      const expectedContent = 'test content with caret';
+      const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
+        'insertAtCaretGetText', () => {
+          return expectedContent;
+        },
+      );
 
-    const expectedCursorStartPosition = 2;
-    const calculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
-      'calculateStartCursorPositionPlusOffset', () => expectedCursorStartPosition,
-    );
+      const expectedCursorStartPosition = 2;
+      const calculateStartCursorPositionPlusOffsetStub = sinon.stub(textAreaTool,
+        'calculateStartCursorPositionPlusOffset', () => expectedCursorStartPosition,
+      );
 
-    // Act
-    const component = shallow(
-      <EditorComponent
-        content={content}
-        cursorStartPosition={cursorStartPosition}
-        shouldUpdateEditorCursor={shouldUpdateEditorCursor}
-        className={className}
-        onContentChange={onContentChangeSpy}
-        updateEditorCursor={updateEditorCursorSpy}
-        showPreview={showPreview}
-        togglePreviewMode={dummyTogglePreview}
-        activePanelId = {activePanelId}
-        setActivePanelId = {dummySetActivePanelId}
-      />,
-    );
+      // Act
+      const component = shallow(
+        <EditorComponent
+          content={content}
+          cursorStartPosition={cursorStartPosition}
+          shouldUpdateEditorCursor={shouldUpdateEditorCursor}
+          className={className}
+          onContentChange={onContentChangeSpy}
+          updateEditorCursor={updateEditorCursorSpy}
+          showPreview={showPreview}
+          togglePreviewMode={dummyTogglePreview}
+          activePanelId={activePanelId}
+          setActivePanelId={dummySetActivePanelId}
+        />,
+      );
 
-    const toolbarComponent = component.childAt(0);
-    const testMarkdownEntry = {};
-    toolbarComponent.prop('insertMarkdownEntry')(testMarkdownEntry);
+      const toolbarComponent = component.find(ToolbarComponent);
+      const testMarkdownEntry: IMarkdownEntry = {
+        caretCursorPosition: 0,
+        mdCaret: '',
+        panelId: '',
+      };
+      toolbarComponent.prop('insertMarkdownEntry')(testMarkdownEntry);
 
-    // Assert
-    expect(calculateStartCursorPositionPlusOffsetStub.called).to.true;
-    expect(updateEditorCursorSpy.calledWith(expectedCursorStartPosition)).to.true;
-  }).bind(this));
+      // Assert
+      expect(calculateStartCursorPositionPlusOffsetStub.called).to.true;
+      expect(updateEditorCursorSpy.calledWith(expectedCursorStartPosition)).to.true;
+    }).bind(this));
 
   // TODO: Pending to test updateEditorCursor. Issue with componentDidUpdate
 });

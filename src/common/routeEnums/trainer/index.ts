@@ -1,12 +1,17 @@
-const defaultRoute = '/trainer';
-const trainingRoute = `${defaultRoute}/training`;
+const defaultPath = '/trainer';
+const trainingPath = `${defaultPath}/training`;
+const trainingResourcePath = `${trainingPath}/:trainingId`;
 
 export const trainerRouteEnums = {
-  default: defaultRoute,
-  dashboard: `${defaultRoute}/dashboard`,
-  evaluation: `${defaultRoute}/evaluation`,
+  default: defaultPath,
   training: {
-    edit: `${trainingRoute}/edit`,
-    list: `${trainingRoute}/list`,
+    base: trainingPath,
+    list: `${trainingPath}/list`,
+    byId: {
+      base: trainingResourcePath,
+      dashboard: `${trainingResourcePath}/dashboard`,
+      evaluation: `${trainingResourcePath}/evaluation`,
+      edit: `${trainingResourcePath}/edit`,
+    },
   },
 };

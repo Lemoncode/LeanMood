@@ -9,10 +9,11 @@ import { EditTrainingContainerPage } from './training/edit/pageContainer';
 export const TrainingRoutes = (
   <div>
     <Route path={trainerRouteEnums.training.list} component={TrainingListPageContainer} />
-    <Route path={trainerRouteEnums.dashboard} component={DashboardPage} />
-    <Route path={trainerRouteEnums.evaluation} component={EvaluationPage} />
-    <Route path={`${trainerRouteEnums.training.edit}/:trainingId`} component={EditTrainingContainerPage} />
+    <Route path={trainerRouteEnums.training.byId.dashboard} component={DashboardPage} />
+    <Route path={trainerRouteEnums.training.byId.evaluation} component={EvaluationPage} />
+    <Route path={trainerRouteEnums.training.byId.edit} component={EditTrainingContainerPage} />
 
     <Redirect from={trainerRouteEnums.default} to={trainerRouteEnums.training.list} />
+    <Redirect from={trainerRouteEnums.training.byId.base} to={trainerRouteEnums.training.byId.dashboard} />
   </div>
 );
