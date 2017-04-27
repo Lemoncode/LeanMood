@@ -34,6 +34,14 @@ class TrainingApi {
 
     return Promise.resolve(trainingSummaryList);
   }
+
+  public getSummaryTrainingListByTrainer(trainerId: number) {
+    const trainingSummaryList: TrainingSummary[] = this.trainingList.filter((training) => {
+      return (training.trainers.findIndex((trainer) => trainer.id === trainerId) >= 0);
+    });
+
+    return Promise.resolve(trainingSummaryList);
+  }
 }
 
 export const trainingApi = new TrainingApi();
