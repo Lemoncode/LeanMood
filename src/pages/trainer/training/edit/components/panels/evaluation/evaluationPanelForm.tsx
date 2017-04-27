@@ -29,16 +29,6 @@ export class EvaluationFormComponent extends React.Component<Props, State> {
     return (
       <form onSubmit={this.props.onSubmit} className="form-horizontal">
         <fieldset>
-          <InputComponent
-            type="text"
-            label="Title"
-            labelClassName={`col-sm-2 control-label`}
-            wrapperClassName="col-sm-8"
-            name="title"
-            onChange={this.onTitleChange}
-            value={this.state.title}
-            placeholder="Evaluation link title"
-          />
           <SelectComponent
             label="Exercise"
             labelClassName={`col-sm-2 control-label`}
@@ -49,6 +39,16 @@ export class EvaluationFormComponent extends React.Component<Props, State> {
           >
             {this.props.exercises.map(this.renderOption)}
           </SelectComponent>
+          <InputComponent
+            type="text"
+            label="Title"
+            labelClassName={`col-sm-2 control-label`}
+            wrapperClassName="col-sm-8"
+            name="title"
+            onChange={this.onTitleChange}
+            value={this.state.title}
+            placeholder="Evaluation link title"
+          />
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
               <button className="btn btn-primary" type="submit">Add evaluation</button>
