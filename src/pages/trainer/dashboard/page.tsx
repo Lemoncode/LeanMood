@@ -6,7 +6,7 @@ const classNames: any = require('./pageStyles.scss');
 export class DashboardPage extends React.Component<{}, {}> {
   private dashboardItems: IDashboardItem[] = [
     { icon: dashboardIcons.evaluation, name: 'Student evaluation', linkTo: trainerRouteEnums.evaluation },
-    { icon: dashboardIcons.trainings, name: 'Trainings', linkTo: trainerRouteEnums.default },
+    { icon: dashboardIcons.trainings, name: 'Trainings', linkTo: trainerRouteEnums.training.list },
     { icon: dashboardIcons.training, name: 'Edit training content', linkTo: `${trainerRouteEnums.training.edit}/1` },
   ];
   public render() {

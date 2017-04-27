@@ -7,5 +7,6 @@ export const trainerRouteEnums = {
   evaluation: `${defaultRoute}/evaluation`,
   training: {
     edit: `${trainingRoute}/edit`,
+    list: `${trainingRoute}/list`,
   },
 };

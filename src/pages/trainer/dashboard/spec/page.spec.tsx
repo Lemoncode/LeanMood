@@ -66,7 +66,7 @@ describe('Trainer DashboardPage', () => {
 
     // NOTE: html() does not render Link.to property as href
     expect(component.find('DashboardComponent').prop('items')[0].linkTo).to.be.equal(trainerRouteEnums.evaluation);
-    expect(component.find('DashboardComponent').prop('items')[1].linkTo).to.be.equal(trainerRouteEnums.default);
+    expect(component.find('DashboardComponent').prop('items')[1].linkTo).to.be.equal(trainerRouteEnums.training.list);
     expect(component.find('DashboardComponent').prop('items')[2].linkTo).to.be
       .equal(`${trainerRouteEnums.training.edit}/1`);
   });
