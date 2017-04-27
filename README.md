@@ -1,4 +1,4 @@
-# LeanMood Front end  ![build status](https://travis-ci.org/LeanMood/LeanMood.svg?branch=master "Build Status")
+# LeanMood Front end  ![build status](https://travis-ci.org/Lemoncode/LeanMood.svg?branch=master "Build Status")
 
 Work in progress.
 
