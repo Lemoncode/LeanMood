@@ -3,13 +3,13 @@
   flex-direction: row;
   background-color: white;
   margin-top: 10px;
+  flex-basis: 100%;
 }
 
 .vertical {
   display:flex;
   flex-direction: column;
 }
-
 
 .item-links {
   border-left: 1px solid rgb(227, 227, 227);

@@ -1,8 +1,4 @@
-.page {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
 .editor {
-  flex-basis: 75%;
+  display: flex;
+  flex-wrap: wrap;
 }
