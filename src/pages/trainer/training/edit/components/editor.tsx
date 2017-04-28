@@ -7,7 +7,7 @@ import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
 import { panelIds, panelList } from './panels';
 import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
-const classNames: any = require('./editorStyles.scss');
+const styles: any = require('./editorStyles.scss');
 
 interface Props {
   content: string;
@@ -83,18 +83,20 @@ export class EditorComponent extends React.Component<Props, {}> {
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
         />
-        <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
-        {
-          !this.props.showPreview ?
-            <textarea
-              className={classNames.textArea}
-              onChange={this.onContentChange}
-              ref={this.refHandlers.textArea}
-              value={this.props.content}
-            />
-            :
-            <PreviewComponent content={this.props.content} />
-        }
+        <div className={styles.editorContainer}>
+          <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
+          {
+            !this.props.showPreview ?
+              <textarea
+                className={styles.textArea}
+                onChange={this.onContentChange}
+                ref={this.refHandlers.textArea}
+                value={this.props.content}
+              />
+              :
+              <PreviewComponent content={this.props.content} />
+          }
+        </div>
       </div>
     );
   }
