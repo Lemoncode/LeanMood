@@ -1,0 +1,17 @@
+.row {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  flex-basis: 0;
+
+  img {
+     width: 128px;
+  }
+}
