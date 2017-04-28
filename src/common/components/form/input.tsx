@@ -6,7 +6,7 @@ export interface CommonInputProps {
   label: string;
   labelClassName?: string;
   wrapperClassName?: string;
-  value: string;
+  value: string | number;
   placeholder?: string;
   error?: string;
   onChange: any;

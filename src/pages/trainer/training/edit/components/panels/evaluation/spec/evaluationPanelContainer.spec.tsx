@@ -3,13 +3,13 @@ import { Provider } from 'react-redux';
 import createMockStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
-import { DeliveryPanelComponent, DeliveryPanelContainer } from '../';
+import { EvaluationPanelContainer, EvaluationPanelComponent } from '../';
 import { IAppState } from '../../../../../../../../reducers/index';
 import * as actions from '../../../../actions/setActivePanel';
 
 const configureStore = createMockStore<IAppState>([thunk]);
 
-describe('DeliveryPanelContainer', () => {
+describe('EvaluationPanelContainer', () => {
   let store;
   beforeEach(() => {
     store = configureStore({
@@ -20,21 +20,21 @@ describe('DeliveryPanelContainer', () => {
       trainer: null,
     });
   });
-  it('should connect a DeliveryPanelComponent', () => {
+  it('should connect a EvaluationPanelComponent', () => {
     // Act
     const container = mount(
       <Provider store={store}>
-        <DeliveryPanelContainer />
+        <EvaluationPanelContainer />
       </Provider>,
     );
 
     // Assert
-    expect(container.find(DeliveryPanelContainer)).to.have.lengthOf(1);
-    expect(container.find(DeliveryPanelComponent)).to.have.lengthOf(1);
+    expect(container.find(EvaluationPanelContainer)).to.have.lengthOf(1);
+    expect(container.find(EvaluationPanelComponent)).to.have.lengthOf(1);
   });
 
-  it('should pass togglePanel to DeliveryPanelContainer dispatching ' +
-    'a TRAINING_MODULE/ SET_ACTIVE_PANEL action with empty payload', sinon.test(function() {
+  it('should pass togglePanel to EvaluationPanelContainer dispatching ' +
+    'a TRAINING_MODULE/SET_ACTIVE_PANEL action with empty payload', sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const setActivePanelAction = sinon.stub(actions, 'setActivePanelAction').returns({ type: 'ACTION' });
@@ -42,11 +42,11 @@ describe('DeliveryPanelContainer', () => {
       // Act
       const container = mount(
         <Provider store={store}>
-          <DeliveryPanelContainer />
+          <EvaluationPanelContainer />
         </Provider>,
       );
-      const deliveryPanel = container.find(DeliveryPanelComponent);
-      const togglePanel = deliveryPanel.prop('togglePanel');
+      const evaluationPanel = container.find(EvaluationPanelComponent);
+      const togglePanel = evaluationPanel.prop('togglePanel');
 
       // Act
       expect(togglePanel).to.be.a('function');

@@ -1,5 +1,2 @@
-import { EvaluationPanelComponent } from './evaluationPanelComponent';
-
-export {
-  EvaluationPanelComponent
-};
+export { EvaluationPanelContainer } from './evaluationPanelContainer';
+export { EvaluationPanelComponent } from './evaluationPanelComponent';

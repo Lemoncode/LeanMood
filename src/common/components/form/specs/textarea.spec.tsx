@@ -109,7 +109,7 @@ describe('TextAreaComponent', () => {
     expect(onChange.calledOnce).to.be.true;
   });
 
-  it('should trigger call passed onChange prop in onChange event', () => {
+  it('should trigger call passed onBlur prop in onBlur event', () => {
     // Arrange
     const onBlur = sinon.spy();
     const props: TextAreaComponentProps = {

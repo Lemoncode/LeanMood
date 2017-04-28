@@ -1,9 +1,12 @@
 export {
   InputComponent,
-  InputComponentProps,
   CommonInputProps,
+  InputComponentProps,
 } from './input';
 export {
   TextAreaComponent,
   TextAreaComponentProps,
 } from './textarea';
+export {
+  SelectComponent,
+} from './select';

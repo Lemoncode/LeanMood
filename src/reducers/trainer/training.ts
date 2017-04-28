@@ -1,4 +1,5 @@
-import {trainerActionEnums} from '../../common/actionEnums/trainer';
+import { trainerActionEnums } from '../../common/actionEnums/trainer';
+import { TrainingSummary } from '../../model/trainingSummary';
 
 export class TrainingState {
   public content: string;
@@ -6,6 +7,7 @@ export class TrainingState {
   public shouldUpdateEditorCursor: boolean;
   public showPreview: boolean;
   public activePanelId: string;
+  public list: TrainingSummary[];
 
   constructor() {
     this.content = '';
@@ -13,6 +15,7 @@ export class TrainingState {
     this.shouldUpdateEditorCursor = false;
     this.showPreview = false;
     this.activePanelId = '';
+    this.list = [];
   }
 }
 
@@ -30,6 +33,9 @@ export const trainingReducer = (state: TrainingState = new TrainingState(), acti
 
     case trainerActionEnums.SET_ACTIVE_PANEL:
       return handleSetActivePanel(state, action.payload);
+
+    case trainerActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
+      return handleGetSummaryTrainingRequestCompleted(state, action.payload);
 
     default:
       return state;
@@ -56,4 +62,9 @@ const handleSetActivePanel = (state: TrainingState, payload: string) => ({
 const handleToggleEditorPreview = (state: TrainingState) => ({
   ...state,
   showPreview: !state.showPreview,
+});
+
+const handleGetSummaryTrainingRequestCompleted = (state: TrainingState, payload: TrainingSummary[]) => ({
+  ...state,
+  list: payload,
 });

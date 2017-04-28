@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { textAreaTool } from '../../../../../common/ui/tools/textAreaTool';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
 import { panelIds, panelList } from './panels';
+import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
 const styles: any = require('./editorStyles.scss');
 
 interface Props {
@@ -76,6 +78,7 @@ export class EditorComponent extends React.Component<Props, {}> {
   public render() {
     return (
       <div className={this.props.className}>
+        <Link to={`${trainerRouteEnums.training.base}/1/dashboard`}>Go back to dashboard</Link>
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}
