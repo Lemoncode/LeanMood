@@ -1,12 +1,12 @@
 import { panelIds, panelList } from './definitions';
-import { UploadFilePanelContainer } from './upload';
-import { EvaluationPanelComponent } from './evaluation';
+import { UploadFilePanelComponent } from './upload';
+import { EvaluationPanelContainer } from './evaluation';
 import { DeliveryPanelComponent } from './delivery';
 
 export {
   panelIds,
   panelList,
-  UploadFilePanelContainer,
-  EvaluationPanelComponent,
+  UploadFilePanelComponent,
+  EvaluationPanelContainer,
   DeliveryPanelComponent,
 }

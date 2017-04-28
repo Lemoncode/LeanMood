@@ -1,10 +1,10 @@
-import {combineReducers} from 'redux';
-import {TrainingState, trainingReducer} from './training';
+import { combineReducers } from 'redux';
+import { TrainingState, trainingReducer as training } from './training';
 
-export interface ITrainerState {
+export interface TrainerState {
   training: TrainingState;
 }
 
-export const trainerReducer = combineReducers<ITrainerState>({
-  training: trainingReducer,
+export const trainerReducer = combineReducers<TrainerState>({
+  training,
 });
