@@ -70,6 +70,7 @@ describe('SelectComponent', () => {
       labelClassName: 'control-label',
       error: 'Mandatory field',
       wrapperClassName: 'col-xs-10',
+      disabled: true,
     };
     const expectedHTML = multilineTrim(`
       <div class="form-group clearfix has-error">
@@ -77,7 +78,7 @@ describe('SelectComponent', () => {
           ${props.label}
         </label>
         <div class="${props.wrapperClassName}">
-          <select name="${props.name}" class="form-control">
+          <select name="${props.name}" class="form-control" disabled="">
             <option value="1">Option 1</option>
             <option selected="" value="2">Option 2</option>
           </select>
