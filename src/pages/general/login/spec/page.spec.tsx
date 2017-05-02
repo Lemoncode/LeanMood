@@ -23,9 +23,6 @@ describe('LoginPage', () => {
     );
 
     // Assert
-    expect(component.type()).to.equal('div');
-    expect(component.childAt(0).type()).to.equal(LoginFormContainerComponent);
-    expect(component.childAt(1).type()).to.equal('footer');
-    expect(component.childAt(1).childAt(0).type()).to.equal(Link);
+    expect(component.find(LoginFormContainerComponent)).to.have.lengthOf(1);
   });
 });

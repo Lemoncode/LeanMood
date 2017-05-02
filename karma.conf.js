@@ -40,6 +40,10 @@ module.exports = function (config) {
             exclude: /node_modules/,
             //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
             loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url?limit=10000&mimetype=image/svg+xml'
           }
         ],
         //Configuration required to import sinon on spec.ts files
