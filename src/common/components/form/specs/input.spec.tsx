@@ -64,6 +64,7 @@ describe('InputComponent', () => {
       onChange: () => { },
       placeholder: 'Test placeholder',
       onBlur: () => { },
+      disabled: true,
     };
 
     /* tslint:disable:max-line-length */
@@ -71,7 +72,7 @@ describe('InputComponent', () => {
       <div class="form-group clearfix">
         <label for="${props.name}" class="${props.labelClassName}">${props.label}</label>
         <div class="${props.wrapperClassName}">
-          <input type="${props.type}" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}"
+          <input type="${props.type}" name="${props.name}" class="form-control" placeholder="${props.placeholder}" value="${props.value}" disabled=""
           />
         </div>
         <div class="help-block">
