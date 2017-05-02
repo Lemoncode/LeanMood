@@ -23,7 +23,7 @@ describe('trainer/training/edit/page', () => {
     expect(page).not.to.be.undefined;
   });
 
-  it('renders a div with a EditorContainerComponent inside', () => {
+  it('renders a EditorContainerComponent', () => {
     // Arrang
     const fetchTrainingContentSpy = sinon.spy();
 
@@ -36,11 +36,7 @@ describe('trainer/training/edit/page', () => {
     );
 
     // Assert
-    expect(page.type()).to.equal('div');
-    expect(page.hasClass('container-fluid page')).to.be.true;
-    expect(page.childAt(0).type()).to.equal(EditorContainerComponent);
-    expect(page.childAt(0).hasClass('editor')).to.be.true;
-    expect(page.childAt(1).type()).to.be.null;
+    expect(page.find(EditorContainerComponent)).to.have.lengthOf(1);
   });
 
   it('calls to fetchTrainingContent with expected trainingId', () => {

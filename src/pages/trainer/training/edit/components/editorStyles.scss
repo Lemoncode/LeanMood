@@ -4,3 +4,8 @@
   height: 800px;
   width: 100%;
 }
+
+// FIXME: revert to 75% when aside is implemented
+.editor-container {
+  flex-basis: 100%;
+}
