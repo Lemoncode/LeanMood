@@ -1,6 +1,11 @@
 import { ExerciseEvaluation } from '../../model/trainer/deliveryEvaluation';
 import { Exercise } from '../../model/trainer/exercise';
 
+const exercises = [
+  { id: 123, name: 'Exercise delivery - Module UX + Design' },
+  { id: 124, name: 'Exercise delivery - Module Layout' },
+  { id: 125, name: 'Exercise delivery - Module Languages' },
+];
 const students = [
   {
     id: 10,
@@ -17,17 +22,17 @@ const students = [
     avatar: 'http://static.dnnsharp.com/icons/user77.png',
     fullname: 'Peter Siege',
   },
-]
+];
+
 export const exerciseEvaluationMockedData: ExerciseEvaluation[] = [
   {
-    id: 123,
-    name: 'Exercise delivery - Module UX + Design',
+    ...exercises[0],
     studentDelivery: [
       {
         id: 324,
         deliveryDate: new Date(2017, 3, 15),
         isDelivered: true,
-        link: '#',
+        link: `/trainer/training/1/evaluation/${exercises[0].id}/student/${students[0].id}/delivery`,
         grade: 50,
         student: students[0],
       },
@@ -35,7 +40,7 @@ export const exerciseEvaluationMockedData: ExerciseEvaluation[] = [
         id: 325,
         deliveryDate: null,
         isDelivered: false,
-        link: '#',
+        link: `/trainer/training/1/evaluation/${exercises[0].id}/student/${students[1].id}/delivery`,
         grade: NaN,
         student: students[1],
       },
@@ -43,29 +48,28 @@ export const exerciseEvaluationMockedData: ExerciseEvaluation[] = [
         id: 326,
         deliveryDate: new Date(2017, 3, 14),
         isDelivered: true,
-        link: '#',
-        grade: 90,
+        link: `/trainer/training/1/evaluation/${exercises[0].id}/student/${students[2].id}/delivery`,
+        grade: 80,
         student: students[2],
       },
     ],
   },
   {
-    id: 124,
-    name: 'Exercise delivery - Module Layout',
+    ...exercises[1],
     studentDelivery: [
       {
         id: 327,
         deliveryDate: new Date(2017, 3, 9),
         isDelivered: true,
-        link: '#',
-        grade: 50,
+        link: `/trainer/training/1/evaluation/${exercises[1].id}/student/${students[0].id}/delivery`,
+        grade: 60,
         student: students[0],
       },
       {
         id: 328,
         deliveryDate: null,
         isDelivered: false,
-        link: '#',
+        link: `/trainer/training/1/evaluation/${exercises[1].id}/student/${students[1].id}/delivery`,
         grade: NaN,
         student: students[1],
       },
@@ -73,38 +77,37 @@ export const exerciseEvaluationMockedData: ExerciseEvaluation[] = [
         id: 329,
         deliveryDate: null,
         isDelivered: false,
-        link: '#',
-        grade: 90,
+        link: `/trainer/training/1/evaluation/${exercises[1].id}/student/${students[2].id}/delivery`,
+        grade: NaN,
         student: students[2],
       },
     ],
   },
   {
-    id: 125,
-    name: 'Exercise delivery - Module Languages',
+    ...exercises[2],
     studentDelivery: [
       {
         id: 330,
         deliveryDate: new Date(2017, 4, 21),
         isDelivered: true,
-        link: '#',
-        grade: 50,
+        link: `/trainer/training/1/evaluation/${exercises[2].id}/student/${students[0].id}/delivery`,
+        grade: 100,
         student: students[0],
       },
       {
         id: 331,
         deliveryDate: new Date(2017, 4, 13),
         isDelivered: true,
-        link: '#',
-        grade: NaN,
+        link: `/trainer/training/1/evaluation/${exercises[2].id}/student/${students[1].id}/delivery`,
+        grade: 70,
         student: students[1],
       },
       {
         id: 332,
         deliveryDate: new Date(2017, 4, 17),
         isDelivered: true,
-        link: '#',
-        grade: 90,
+        link: `/trainer/training/1/evaluation/${exercises[2].id}/student/${students[2].id}/delivery`,
+        grade: 30,
         student: students[2],
       },
     ],

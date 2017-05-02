@@ -15,6 +15,7 @@ export const SelectComponent: React.StatelessComponent<CommonInputProps> = (prop
           value={props.value}
           onChange={props.onChange}
           onBlur={props.onBlur}
+          disabled={props.disabled}
         >
           {props.children}
         </select>

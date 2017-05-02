@@ -11,6 +11,7 @@ export interface CommonInputProps {
   error?: string;
   onChange: any;
   onBlur?: any;
+  disabled?: boolean;
 }
 
 export interface InputComponentProps extends CommonInputProps {
@@ -32,6 +33,7 @@ export const InputComponent: React.StatelessComponent<InputComponentProps> = (pr
           value={props.value}
           onChange={props.onChange}
           onBlur={props.onBlur}
+          disabled={props.disabled}
         />
       </div>
     </ValidationComponent>

@@ -1,23 +1,25 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { SelectComponent } from '../../../../common/components/form';
 import { Exercise } from '../../../../model/trainer/exercise';
-import { StudentDeliveryListComponent } from './studentDeliveryList';
-import { exerciseEvaluationMockedData } from '../../../../rest-api/trainer/exerciseEvaluationMockedData';
 import { ExerciseEvaluation, StudentDelivery } from '../../../../model/trainer/deliveryEvaluation';
+import { exerciseEvaluationMockedData } from '../../../../rest-api/trainer/exerciseEvaluationMockedData';
+import { StudentDeliveryListComponent } from './studentDeliveryList';
 const styles: any = require('./evaluationForm.scss');
 
 interface State {
   selectedExerciseId: number;
-  exerciseEvaluation: ExerciseEvaluation[];
+  exerciseEvaluationList: ExerciseEvaluation[];
 }
 
+// FIXME: Extract exerciseEvaluationList from state to props and change grade using actions.
 export class EvaluationFormComponent extends React.Component<{}, State> {
   constructor() {
     super();
 
     this.state = {
       selectedExerciseId: exerciseEvaluationMockedData[0].id,
-      exerciseEvaluation: exerciseEvaluationMockedData,
+      exerciseEvaluationList: exerciseEvaluationMockedData,
     };
 
     this.onDeliveryChange = this.onDeliveryChange.bind(this);
@@ -25,6 +27,10 @@ export class EvaluationFormComponent extends React.Component<{}, State> {
   }
 
   public render() {
+    const selectedExercise = this.state.exerciseEvaluationList.find((exercise) => {
+      return exercise.id === this.state.selectedExerciseId;
+    });
+
     return (
       <form>
         <SelectComponent
@@ -33,15 +39,18 @@ export class EvaluationFormComponent extends React.Component<{}, State> {
           onChange={this.onDeliveryChange}
           value={this.state.selectedExerciseId}
         >
-          {this.state.exerciseEvaluation.map((exercise) => (
+          {this.state.exerciseEvaluationList.map((exercise) => (
             <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
           ))}
         </SelectComponent>
         <div className="col-sm-8">
-          <StudentDeliveryListComponent deliveryList={this.state.exerciseEvaluation} onGradeChange={this.onGradeChange} />
+          <StudentDeliveryListComponent
+            deliveryList={selectedExercise.studentDelivery}
+            onGradeChange={this.onGradeChange}
+          />
           <div className="form-group">
             <div className="col-xs-12 text-center">
-              <button type="submit" className={`${styles.submitBtn} btn btn-primary`}>Save</button>
+              <Link to="/trainer/training/1/dashboard" className={`${styles.submitBtn} btn btn-primary`}>Save</Link>
             </div>
           </div>
         </div>
@@ -49,29 +58,49 @@ export class EvaluationFormComponent extends React.Component<{}, State> {
     );
   }
 
-  public onDeliveryChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { value } = event.currentTarget;
+  private onDeliveryChange(event: React.FormEvent<HTMLSelectElement>) {
+    const selectedExerciseId = Number(event.currentTarget.value);
     this.setState({
       ...this.state,
-      selectedExerciseId: Number(value),
+      selectedExerciseId,
     });
   }
 
-  public onGradeChange(deliveryId: number, grade: number) {
-    const selectedEvaluation = this.state.exerciseEvaluation[this.state.selectedExerciseId];
-    const index = selectedEvaluation.studentDelivery.findIndex((delivery) => delivery.id === deliveryId);
-    if (index > -1) {
-      const newStudentDelivery: StudentDelivery = { ...selectedEvaluation.studentDelivery[index] };
-      newStudentDelivery.grade = grade;
+  // FIXME: Let the reducer change the state
+  private onGradeChange(deliveryId: number, grade: number) {
+    const { exerciseEvaluationList, selectedExerciseId } = this.state;
+    const exercisePosition = exerciseEvaluationList.findIndex((exercise) => exercise.id === selectedExerciseId);
 
-      this.setState({
-        ...this.state,
-        deliveryEvaluations: [
-          ...this.state.exerciseEvaluation.slice(0, index),
-          newStudentDelivery,
-          ...this.state.exerciseEvaluation.slice(index + 1),
-        ],
-      });
+    if (exercisePosition > -1) {
+      const selectedExercise = exerciseEvaluationList[exercisePosition];
+      const deliveryPosition = selectedExercise.studentDelivery.findIndex((delivery) => delivery.id === deliveryId);
+
+      if (deliveryPosition > -1) {
+        const changedStudentDelivery: StudentDelivery = {
+          ...selectedExercise.studentDelivery[deliveryPosition],
+          grade,
+        };
+
+        const changedExercise: ExerciseEvaluation = {
+          ...selectedExercise,
+          studentDelivery: [
+            ...selectedExercise.studentDelivery.slice(0, deliveryPosition),
+            changedStudentDelivery,
+            ...selectedExercise.studentDelivery.slice(deliveryPosition + 1),
+          ],
+        };
+
+        this.setState({
+          ...this.state,
+          exerciseEvaluationList: [
+            ...this.state.exerciseEvaluationList.slice(0, exercisePosition),
+            changedExercise,
+            ...this.state.exerciseEvaluationList.slice(exercisePosition + 1),
+          ] as ExerciseEvaluation[],
+        });
+      }
     }
+
   }
+
 };
