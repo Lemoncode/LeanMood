@@ -1,0 +1,31 @@
+.navigation {
+  margin-bottom: 0;
+}
+
+.navigation-img {
+  width: 32px;
+  padding-right: 5px;
+}
+
+.counter-wrapper {
+  display: inline-block;
+  background-color: #fff;
+}
+
+.btn-counter {
+  cursor: default;
+  padding: 3px 10px;
+  border: 1px solid #ccc;
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.right-item {
+  float: right;
+
+  &:before {
+    content: none !important;
+  }
+}

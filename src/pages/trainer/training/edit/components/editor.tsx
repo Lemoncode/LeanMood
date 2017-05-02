@@ -78,7 +78,6 @@ export class EditorComponent extends React.Component<Props, {}> {
   public render() {
     return (
       <div className={this.props.className}>
-        <Link to={`${trainerRouteEnums.training.base}/1/dashboard`}>Go back to dashboard</Link>
         <ToolbarComponent
           insertMarkdownEntry={this.insertMarkdownEntry}
           togglePreviewMode={this.props.togglePreviewMode}

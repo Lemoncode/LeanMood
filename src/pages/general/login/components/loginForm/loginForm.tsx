@@ -2,7 +2,8 @@ import * as React from 'react';
 import {LoginCredentials} from '../../../../../model/login/loginCredentials';
 import {ILoginErrors} from '../../../../../model/login/loginErrors';
 import {HeaderComponent} from './components/header';
-import {FormComponent} from './components/form';
+import { FormComponent } from './components/form';
+const styles: any = require('./loginForm.styles.scss');
 
 interface IProps {
   loginCredentials: LoginCredentials;
@@ -16,7 +17,7 @@ export const LoginFormComponent = (props: IProps) => {
     <div className="container">
       <div className="row">
         <div className="col-md-4 col-md-offset-4">
-          <div className="panel panel-default">
+          <div className={`panel panel-default ${styles.formContainer}`}>
             <HeaderComponent />
             <FormComponent
               loginCredentials={props.loginCredentials}

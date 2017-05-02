@@ -36,6 +36,7 @@ module.exports = {
       "toastr",
       "marksy",
     ],
+    appStyles: './content/sass/styles.scss',
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',
       '../node_modules/font-awesome/css/font-awesome.css',
