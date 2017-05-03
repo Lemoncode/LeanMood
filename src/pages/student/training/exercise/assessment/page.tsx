@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { ProgressBarComponent } from '../../../../../common/components/progressBar/progressBarComponent';
+import { NavigationBar } from './components/navigation';
 const styles: any = require('./styles.scss');
 
 export const ExerciseAssessmentPage: React.StatelessComponent<never> = () => {
   return (
     <div>
+      <NavigationBar />
       <h1>Asessment - Layout exercise</h1>
       <h3 className={`text-center ${styles.assessmentPercentage}`}>90%</h3>
       <ProgressBarComponent min={0} max={100} current={90} />

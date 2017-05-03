@@ -1,0 +1,24 @@
+.counter-wrapper {
+  display: inline-block;
+}
+
+.btn-counter {
+  cursor: default;
+  padding: 3px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+
+  &, &:focus, &:active {
+    outline: none;
+  }
+
+  img {
+    max-width: 16px;
+  }
+
+  &:not(.btn-default):active {
+    box-shadow: none;
+  }
+}

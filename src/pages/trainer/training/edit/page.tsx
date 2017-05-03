@@ -16,9 +16,9 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
 
   public render() {
     return (
-      <div className={styles.editorContainer}>
+      <div>
         <NavigationBar />
-        <EditorContainerComponent className={`${styles.editor} container-fluid`} />
+        <EditorContainerComponent className={styles.editor} />
       </div>
     );
   }
