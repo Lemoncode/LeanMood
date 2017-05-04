@@ -5,14 +5,14 @@ import {markdownEntryConstants} from '../markdownEntryConstants';
 import { FontGroupComponent, LinksGroupComponent, ListGroupComponent, CommandGroupComponent } from './groups';
 const classNames: any = require('./toolbarStyles.scss');
 
-interface IProps {
+interface Props {
   insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
   togglePreviewMode: () => void;
 }
 
-export const ToolbarComponent = (props: IProps) => {
+export const ToolbarComponent: React.StatelessComponent<Props> = (props) => {
   return (
-    <div className={`well ${classNames.container}`}>      
+    <div className={`well ${classNames.container}`}>
       <FontGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
       <div className={`${classNames.itemLinks}  ${classNames.vertical}`}>
         <LinksGroupComponent insertMarkdownEntry={props.insertMarkdownEntry} />
@@ -25,3 +25,5 @@ export const ToolbarComponent = (props: IProps) => {
     </div>
   );
 };
+
+ToolbarComponent.displayName = 'ToolbarComponent';

@@ -32,11 +32,15 @@ module.exports = {
       "react-router-redux",
       "redux",
       "redux-thunk",
+      "react-css-transition-replace",
       "lc-form-validation",
       "toastr",
       "marksy",
     ],
-    appStyles: './content/sass/styles.scss',
+    appStyles: [
+      './content/sass/styles.scss',
+      './content/sass/animations/cross-fade.scss',
+    ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',
       '../node_modules/font-awesome/css/font-awesome.css',
@@ -81,8 +85,13 @@ module.exports = {
       //NOTE: src css configuration
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|animations)/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+      },
+      {
+        test: /\.scss$/,
+        include: /animations/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader

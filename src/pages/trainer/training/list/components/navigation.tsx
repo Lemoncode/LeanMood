@@ -12,13 +12,6 @@ export const NavigationBar: React.StatelessComponent<{}> = () => (
         <Link to="/trainer">Lemoncode</Link>
       </BreadcrumbItem>
       <BreadcrumbItem active={true}>My Trainings</BreadcrumbItem>
-      <BreadcrumbItem wrapOnly={true} right={true} withoutSeparator={true}>
-        <CounterButton
-          logo="http://0.ptlp.co/resource-all/icon/svg/user.svg"
-          total={18}
-          text="Students"
-        />
-      </BreadcrumbItem>
     </Breadcrumb>
   </div>
 );
