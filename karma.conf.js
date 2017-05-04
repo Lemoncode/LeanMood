@@ -44,6 +44,10 @@ module.exports = function (config) {
           {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'url?limit=10000&mimetype=image/svg+xml'
+          },
+          {
+            test: /\.(png|jpg|ico)?$/,
+            loader: 'url?limit=10000&mimetype=image/png'
           }
         ],
         //Configuration required to import sinon on spec.ts files

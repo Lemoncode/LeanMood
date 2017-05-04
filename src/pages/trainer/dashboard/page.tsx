@@ -23,9 +23,7 @@ export class DashboardPage extends React.Component<{}, {}> {
       <div>
         <NavigationBar />
         <h3 className={styles.title}>Trainer dashboard</h3>
-        <DashboardComponent
-          items={this.dashboardItems}
-        />
+        <DashboardComponent items={this.dashboardItems} />
       </div>
     );
   }
