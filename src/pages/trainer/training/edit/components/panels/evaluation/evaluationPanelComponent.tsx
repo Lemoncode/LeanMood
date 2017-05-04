@@ -16,7 +16,7 @@ export const EvaluationPanelComponent: React.StatelessComponent<Props> = (props)
   return (
     <div>
       <h4>Evaluation Component</h4>
-      <EvaluationFormComponent exercises={exercises} onSubmit={props.togglePanel} />
+      <EvaluationFormComponent exercises={exercises} togglePanel={props.togglePanel} />
     </div>
   );
 };
