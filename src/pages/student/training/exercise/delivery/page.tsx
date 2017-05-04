@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DroppableFileComponent } from '../../../../../common/components/form/droppableFile/droppableFile';
+import { NavigationBar } from './components/navigation';
 
 export class ExerciseDeliveryPage extends React.Component<{}, {}> {
   constructor() {
@@ -11,6 +12,7 @@ export class ExerciseDeliveryPage extends React.Component<{}, {}> {
   public render() {
     return (
       <div>
+        <NavigationBar />
         <h1>Exercise - Build Bootstrap layout</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates vitae beatae ipsum harum optio,

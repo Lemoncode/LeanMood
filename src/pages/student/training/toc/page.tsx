@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { MarkDownViewerComponent } from '../../../../common/components/markdownViewer';
 import { studentRouteEnums } from '../../../../common/routeEnums/student';
 import { TrainingTOC } from '../../../../model/student/trainingToc';
+import { NavigationBar } from './components/navigation';
 
 export interface TrainingTOCPageProps {
   trainingId: number;
@@ -33,9 +34,9 @@ export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {
   public render() {
     return (
       <div>
+        <NavigationBar />
         <h2 className="text-center">{this.props.trainingTOC.name}</h2>
-        <Link to={studentRouteEnums.training.list}>Back to training list</Link>
-        <MarkDownViewerComponent content={this.props.trainingTOC.content}/>
+        <MarkDownViewerComponent content={this.props.trainingTOC.content} />
       </div>
     );
   }

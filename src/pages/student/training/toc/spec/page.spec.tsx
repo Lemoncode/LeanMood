@@ -161,23 +161,4 @@ describe('TrainingTOCPage', () => {
     expect(trainingTOCPage.find('h2').someWhere((h2) => h2.text() === trainingTOCName)).to.be.true;
   });
 
-  it('should have a link to redirect back to training list', () => {
-    // Arrange
-    const props: TrainingTOCPageProps = {
-      fetchTrainingTOC: () => { },
-      trainingId: 123,
-      trainingTOC: new TrainingTOC(),
-    };
-
-    // Act
-    const trainingTOCPage = shallow(
-      <TrainingTOCPage {...props} />,
-    );
-    const links = trainingTOCPage.find(Link);
-
-    // Assert
-    expect(links).to.have.lengthOf(1);
-    expect(links.someWhere((link) => link.prop('to') === studentRouteEnums.training.list)).to.be.true;
-  });
-
 });

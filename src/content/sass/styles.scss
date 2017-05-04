@@ -1,0 +1,17 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+}
+
+body > div, [data-reactroot] {
+  display: flex;
+  flex: 1;
+}
+
+[data-reactroot] {
+  flex-direction: column;
+}

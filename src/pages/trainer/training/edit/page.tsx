@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { EditorContainerComponent } from './components/editorContainer';
-const classNames: any = require('./pageStyles.scss');
+import { NavigationBar } from './components/navigation/navigation';
+const styles: any = require('./page.scss');
 
 interface IProps {
   trainingId: number;
@@ -14,7 +16,10 @@ export class EditTrainingPage extends React.Component<IProps, {}> {
 
   public render() {
     return (
-      <EditorContainerComponent className={classNames.editor} />
+      <div>
+        <NavigationBar />
+        <EditorContainerComponent className={styles.editor} />
+      </div>
     );
   }
 }

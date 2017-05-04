@@ -1,0 +1,37 @@
+.footer {
+  margin-top: auto;
+}
+
+.separator {
+  max-width: 95%;
+}
+
+.content {
+  padding: 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  display: flex;
+  flex-basis: calc(50% - 24px);
+
+  li {
+    padding: 0 6px;
+    color: #999;
+    flex-basis: 0;
+
+    @media (min-width: 767px) {
+      flex-basis: auto;
+    }
+  }
+
+  &:last-child {
+    justify-content: flex-end;
+  }
+}
+
+.logo {
+  max-width: 24px;
+  align-self: flex-start;
+}

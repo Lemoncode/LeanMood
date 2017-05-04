@@ -7,8 +7,8 @@ var basePath = __dirname;
 
 module.exports = {
   context: path.join(basePath, "src"),
-	resolve: {
-    extensions: ['', '.js','.ts', '.tsx'],
+  resolve: {
+    extensions: ['', '.js', '.ts', '.tsx'],
     alias: {
       'globalStyles': path.join(basePath, "src/content/sass/"),
       // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
@@ -16,25 +16,31 @@ module.exports = {
       //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
     },
   },
-	entry: {
+  entry: {
     app: [
       "webpack-dev-server/client?http://localhost:8080",
       "webpack/hot/only-dev-server",
       "./index.tsx"
     ],
     vendor: [
+      "lc-form-validation",
+      "marksy",
+      "moment",
       "react",
-      "react-dom",
       "react-addons-shallow-compare",
-      "react-virtualized",
+      "react-css-transition-replace",
+      "react-dom",
+      "redux",
       "react-redux",
       "react-router",
       "react-router-redux",
-      "redux",
+      "react-virtualized",
       "redux-thunk",
-      "lc-form-validation",
       "toastr",
-      "marksy",
+    ],
+    appStyles: [
+      './content/sass/styles.scss',
+      './content/sass/animations/cross-fade.scss',
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css',
@@ -43,12 +49,12 @@ module.exports = {
       '../node_modules/react-virtualized/styles.css',
     ]
   },
-	output: {
-		path: path.join(basePath, "dist"),
-		filename: "[name].js"
-	},
+  output: {
+    path: path.join(basePath, "dist"),
+    filename: "[name].js"
+  },
 
-	devtool: 'source-map',
+  devtool: 'source-map',
 
   devServer: {
     contentBase: './dist', //Content base
@@ -59,29 +65,34 @@ module.exports = {
     stats: 'errors-only'
   },
 
-	module: {
+  module: {
     preLoaders: [
       {
         test: /\.(ts|tsx)$/,
         loader: 'tslint-loader'
       }
     ],
-		loaders: [
-			{
-	      test: /\.(ts|tsx)$/,
-	      loaders: ['react-hot', 'ts-loader']
+    loaders: [
+      {
+        test: /\.(ts|tsx)$/,
+        loaders: ['react-hot', 'ts-loader']
       },
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
         include: /node_modules/,
-        loader: ExtractTextPlugin.extract('style','css')
+        loader: ExtractTextPlugin.extract('style', 'css')
       },
       //NOTE: src css configuration
       {
         test: /\.scss$/,
-        exclude:/node_modules/,
-        loader: ExtractTextPlugin.extract('style','css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+        exclude: /(node_modules|animations)/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+      },
+      {
+        test: /\.scss$/,
+        include: /animations/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
@@ -100,10 +111,14 @@ module.exports = {
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=image/svg+xml'
+      },
+      {
+        test: /\.(png|jpg|ico)?$/,
+        loader: 'url?limit=10000&mimetype=image/png'
       }
-		]
-	},
-	plugins:[
+    ]
+  },
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css'),
@@ -111,7 +126,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html', //Name of file in ./dist/
       template: 'index.html', //Name of template in ./src
-			hash: true
+      favicon: 'content/image/logo.png',
+      hash: true
     })
   ]
 }
