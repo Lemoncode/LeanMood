@@ -88,7 +88,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
-    "lc-form-validation": "^0.1.7",
+    "lc-form-validation": "^1.0.0",
     "marksy": "^0.3.0",
     "moment": "^2.18.1",
     "react": "^15.4.1",
