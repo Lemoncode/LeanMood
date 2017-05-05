@@ -3,7 +3,7 @@ import { InputComponent, SelectComponent } from '../../../../../../../common/com
 import { Exercise } from '../../../../../../../model/trainer/exercise';
 
 interface Props {
-  onSubmit(event: React.FormEvent<HTMLFormElement>): void;
+  togglePanel(): void;
   exercises: Exercise[];
 }
 
@@ -23,11 +23,12 @@ export class EvaluationFormComponent extends React.Component<Props, State> {
 
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onSelectExercise = this.onSelectExercise.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   public render() {
     return (
-      <form onSubmit={this.props.onSubmit} className="form-horizontal">
+      <form onSubmit={this.onSubmit} className="form-horizontal">
         <fieldset>
           <SelectComponent
             label="Exercise"
@@ -79,5 +80,10 @@ export class EvaluationFormComponent extends React.Component<Props, State> {
       ...this.state,
       selectedExercise: Number(value),
     });
+  }
+
+  private onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    this.props.togglePanel();
   }
 }

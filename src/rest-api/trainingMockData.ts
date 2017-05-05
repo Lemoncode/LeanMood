@@ -9,7 +9,7 @@ export const trainingMockData: Training[] = [
     isActive: true,
     name: 'React/Redux',
     start: new Date(2017, 0, 1),
-    students: [{ id: 3, fullname: 'Student', isActive: true, email: 'student', phoneNumber: '' }],
+    students: [],
     trainers: [],
   },
   {

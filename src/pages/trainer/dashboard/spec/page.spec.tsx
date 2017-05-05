@@ -5,6 +5,7 @@ import { multilineTrim } from '../../../../common/parse/multilineTrim';
 import { dashboardIcons, DashboardComponent } from '../../../../common/components/dashboard';
 import { trainerRouteEnums } from '../../../../common/routeEnums/trainer';
 import { DashboardPage } from '../page';
+import { NavigationBar } from '../components/navigation';
 
 describe('Trainer DashboardPage', () => {
   it('should return a div', () => {
@@ -19,48 +20,36 @@ describe('Trainer DashboardPage', () => {
     expect(component.type()).to.be.equals('div');
   });
 
-  it('should render as expected', () => {
-    // Arrange
-    const flexBasis = 100 / 2;
-    const expectedDashboardItemOne = `
-      <a class="btn btn-default item" style="flex-basis:${flexBasis}%;">
-        <i class="${dashboardIcons.evaluation}"></i>
-        <h4 class="name">Student evaluation</h4>
-      </a>
-    `;
-
-    const expectedDashboardItemTwo = `
-      <a class="btn btn-default item" style="flex-basis:${flexBasis}%;">
-        <i class="${dashboardIcons.training}"></i>
-        <h4 class="name">Edit training content</h4>
-      </a>
-    `;
-
-    const expectedComponent = `
-      <div class="container">
-        <a>Go back to training list</a>
-        <h3 class="title">Trainer dashboard</h3>
-        <div class="dashboard">
-          <div class="dashboardItems">
-            ${expectedDashboardItemOne}
-            ${expectedDashboardItemTwo}
-          </div>
-        </div>
-      </div>
-    `;
-
+  it('should render a DashboardComponent', () => {
     // Act
-    const component = shallow(
+    const page = shallow(
       <DashboardPage />,
     );
 
     // Assert
-    expect(component.html()).to.be.equal(multilineTrim(expectedComponent));
+    expect(page.find(DashboardComponent)).to.have.lengthOf(1);
+  });
 
-    // NOTE: html() does not render Link.to property as href
-    expect(component.find(DashboardComponent).prop('items')[0].linkTo)
-      .to.be.equal(`${trainerRouteEnums.training.base}/1/evaluation`);
-    expect(component.find(DashboardComponent).prop('items')[1].linkTo).to.be
-      .to.be.equal(`${trainerRouteEnums.training.base}/1/edit`);
+  it('should render a heading', () => {
+    // Arrange
+    const expectedHeading = '<h3 class="title">Trainer dashboard</h3>';
+
+    // Act
+    const page = shallow(
+      <DashboardPage />,
+    );
+
+    // Assert
+    expect(page.html()).to.contain(expectedHeading);
+  });
+
+  it('should render a NavigationBar', () => {
+    // Act
+    const page = shallow(
+      <DashboardPage />,
+    );
+
+    // Assert
+    expect(page.find(NavigationBar)).to.have.lengthOf(1);
   });
 });

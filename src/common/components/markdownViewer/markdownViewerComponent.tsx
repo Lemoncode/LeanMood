@@ -29,3 +29,5 @@ export const MarkDownViewerComponent: React.StatelessComponent<MarkDownViewerCom
     </div>
   );
 };
+
+MarkDownViewerComponent.displayName = 'MarkDownViewerComponent';

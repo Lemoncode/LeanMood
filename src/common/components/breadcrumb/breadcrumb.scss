@@ -1,0 +1,9 @@
+.without-separator {
+  &:before {
+    content: none !important;
+  }
+}
+
+.right-item {
+  float: right;
+}

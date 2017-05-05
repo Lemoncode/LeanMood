@@ -8,117 +8,42 @@ describe('PanelComponent', () => {
     // Arrange
     // Act
     const panelComponent = shallow(
-      <PanelComponent panelList={[]} activePanelId={''}/>,
+      <PanelComponent panelList={[]} activePanelId={''} />,
     );
 
     // Assert
     expect(panelComponent).not.to.be.undefined;
   });
 
-  it('should render empty div when empty panel is selected', () => {
+  it('should render empty div when there is no panel ids matching activePanelId', () => {
     // Arrange
     // Act
     const panelComponent = shallow(
-      <PanelComponent panelList={[]} activePanelId={''}/>,
+      <PanelComponent panelList={[]} activePanelId={''} />,
     );
 
     // Assert
     const expectedDomTree = `<div></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
+    expect(panelComponent.html()).to.contain(expectedDomTree);
   });
 
-  it('should render an inner component a given panel is selected', () => {
+  it('should render only the panel matching its id with activePanelId', () => {
     // Arrange
-    const innerComponent = () => <div><span>dummy component</span></div>;
+    const innerComponentA = () => <div><span>Inner Component A</span></div>;
+    const innerComponentB = () => <div><span>Inner Component B</span></div>;
+    const activePanelId = 'panel B';
+    const panelList = [
+      { panelId: 'panel A', component: innerComponentA },
+      { panelId: 'panel B', component: innerComponentB },
+    ];
 
     // Act
     const panelComponent = shallow(
-      <PanelComponent panelList={[{panelId: 'mypanel', component: innerComponent}]} activePanelId={'mypanel'}/>,
+      <PanelComponent panelList={panelList} activePanelId={activePanelId} />,
     );
 
     // Assert
-    const expectedDomTree = `<div><span>dummy component</span></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
-  });
-
-  it('should render an empty div if no a given panel is selected and there are elements', () => {
-    // Arrange
-    const innerComponent = () => <div><span>dummy component</span></div>;
-
-    // Act
-    const panelComponent = shallow(
-      <PanelComponent panelList={[{panelId: '', component: innerComponent}]} activePanelId={'mypanel'}/>,
-    );
-
-    // Assert
-    const expectedDomTree = `<div></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
-  });
-
-  it('should render an second innercomponent when thwo inners and second panel id selected', () => {
-    // Arrange
-    const innerComponentA = () => <div><span>inner A</span></div>;
-    const innerComponentB = () => <div><span>inner B</span></div>;
-    const panelList = [{
-                        panelId: 'a',
-                        component: innerComponentA,
-                       },
-                       {
-                        panelId: 'b',
-                        component: innerComponentB,
-                       },
-                      ];
-    // Act
-    const panelComponent = shallow(
-      <PanelComponent panelList={panelList} activePanelId={'b'}/>,
-    );
-
-    // Assert
-    const expectedDomTree = `<div><span>inner B</span></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
-  });
-  it('should render an first innercomponent when thwo inners and first panel id selected', () => {
-    // Arrange
-    const innerComponentA = () => <div><span>inner A</span></div>;
-    const innerComponentB = () => <div><span>inner B</span></div>;
-    const panelList = [{
-                        panelId: 'a',
-                        component: innerComponentA,
-                       },
-                       {
-                        panelId: 'b',
-                        component: innerComponentB,
-                       },
-                      ];
-    // Act
-    const panelComponent = shallow(
-      <PanelComponent panelList={panelList} activePanelId={'a'}/>,
-    );
-
-    // Assert
-    const expectedDomTree = `<div><span>inner A</span></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
-  });
-  it('should render an empty div when thwo inners and selectin points to garbage', () => {
-    // Arrange
-    const innerComponentA = () => <div><span>inner A</span></div>;
-    const innerComponentB = () => <div><span>inner B</span></div>;
-    const panelList = [{
-                        panelId: 'a',
-                        component: innerComponentA,
-                       },
-                       {
-                        panelId: 'b',
-                        component: innerComponentB,
-                       },
-                      ];
-    // Act
-    const panelComponent = shallow(
-      <PanelComponent panelList={panelList} activePanelId={'whatever'}/>,
-    );
-
-    // Assert
-    const expectedDomTree = `<div></div>`;
-    expect(panelComponent.html()).to.be.equals(expectedDomTree);
+    expect(panelComponent.html()).to.contain('<div><span>Inner Component B</span></div>');
+    expect(panelComponent.html()).to.not.contain('<div><span>Inner Component A</span></div>');
   });
 });

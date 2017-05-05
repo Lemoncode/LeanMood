@@ -3,6 +3,8 @@ import { RouteComponentProps } from 'react-router';
 import { GeneralRoutes } from './pages/general/';
 import { HeaderComponent } from './common/components/header/header';
 import { UserProfile } from './model/userProfile';
+import { FooterComponent } from './common/components/footer/footer';
+const styles: any = require('./app.scss');
 
 interface Props extends RouteComponentProps<{}, {}> {
   userProfile: UserProfile;
@@ -19,9 +21,10 @@ export const App: React.StatelessComponent<Props> = (props) => {
   return (
     <div>
       {header}
-      <main className="container-fluid">
+      <main className={`${styles.container} container-fluid`}>
         {props.children}
       </main>
+      <FooterComponent />
     </div>
   );
 };

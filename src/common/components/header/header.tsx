@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { UserProfile } from '../../../model/userProfile';
-const styles: any = require('./styles.scss');
+const styles: any = require('./header.scss');
 
 interface Props {
   userProfile: UserProfile;

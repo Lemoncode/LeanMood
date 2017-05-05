@@ -1,14 +1,9 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import { LoginFormContainerComponent } from './components/loginForm';
 
 export const LoginPage = () => {
-    return (
-      <div>
-        <LoginFormContainerComponent />
-        <footer className="footer">
-          <Link to="/nonexistingpage">Navigate to a 404 page.</Link>
-        </footer>
-      </div>
-    );
+  return (
+    <LoginFormContainerComponent />
+  );
 };
