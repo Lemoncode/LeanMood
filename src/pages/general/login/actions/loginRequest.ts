@@ -4,23 +4,33 @@ import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from '../../../../model/login/loginResponse';
 import { navigationHelper } from '../../../../common/helper/navigationHelper/';
+import { loginFormValidation } from '../components/loginForm/login.validation';
+import { FormValidationResult } from 'lc-form-validation';
+
+const LOGIN_ERROR = 'Please, review your email or password';
 
 export const loginRequestStartedAction = (loginCredentials: LoginCredentials) => {
   return (dispatcher) => {
-    const promise = loginApi.login(loginCredentials);
-
     // Let's remove any previous toast
     toastr.remove();
 
-    promise.then((data) => {
-      dispatcher(loginRequestCompletedAction(data));
+    const promise = loginFormValidation.validateForm(loginCredentials);
 
-      if (data.succeded) {
-        navigationHelper.navigateToPath(`/${data.userProfile.role}`);
-      } else {
-        toastr.error('Please, review your email or password');
-      }
-    });
+    promise
+      .then((formValidationResult) => {
+        if (formValidationResult.succeeded) {
+          loginApi.login(loginCredentials).then((response) => {
+            if (response.succeded) {
+              dispatcher(loginRequestCompletedAction(response));
+              navigationHelper.navigateToPath(`/${response.userProfile.role}`);
+            } else {
+              toastr.error(LOGIN_ERROR);
+            }
+          });
+        } else {
+          toastr.error(LOGIN_ERROR);
+        }
+      });
 
     return promise;
   };

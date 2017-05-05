@@ -15,4 +15,4 @@ const loginValidationConstraints: ValidationConstraints = {
   },
 };
 
-export const loginValidation = createFormValidation(loginValidationConstraints);
+export const loginFormValidation = createFormValidation(loginValidationConstraints);

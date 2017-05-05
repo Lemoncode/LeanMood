@@ -1,20 +1,20 @@
-import {FieldValidationResult} from 'lc-form-validation';
+import { FieldValidationResult } from 'lc-form-validation';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { LoginCredentials } from '../../../../../model/login/loginCredentials';
-import {loginActionEnums} from '../../../../../common/actionEnums/login';
-import {loginValidation} from '../../components/loginForm/login.validation';
+import { loginActionEnums } from '../../../../../common/actionEnums/login';
+import { loginFormValidation } from '../../components/loginForm/login.validation';
 import {
   loginContentChangedStartedAction,
   loginContentChangedCompletedAction,
 } from './../loginContentChanged';
 
-const middlewares = [ ReduxThunk ];
+const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
 describe('loginContentChangedStartedAction', () => {
-  it('should be defined', () => {
-    expect(loginContentChangedStartedAction).not.to.be.undefined;
+  it('should be a function', () => {
+    expect(loginContentChangedStartedAction).to.be.a('function');
   });
 
   it('should calls to validateField', sinon.test((done) => {
@@ -26,7 +26,7 @@ describe('loginContentChangedStartedAction', () => {
     const value = 'test value';
 
     const expectedValidationResult = new FieldValidationResult();
-    const validateFieldStub = sinon.stub(loginValidation,
+    const validateFieldStub = sinon.stub(loginFormValidation,
       'validateField', () => {
         return {
           then: (callback) => {
