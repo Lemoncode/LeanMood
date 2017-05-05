@@ -1,49 +1,20 @@
 import * as toastr from 'toastr';
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
-import { FormValidationResult } from 'lc-form-validation';
+import { FormValidationResult, FieldValidationResult } from 'lc-form-validation';
 import { navigationHelper } from '../../../../../common/helper/navigationHelper';
 import { loginApi } from '../../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from '../../../../../model/login/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from '../../../../../model/login/loginResponse';
 import { loginActionEnums } from './../../../../../common/actionEnums/login';
-import { loginRequestStartedAction, loginRequestCompletedAction } from '../loginRequest';
+import { loginRequestStartedAction, loginErrorMessages } from '../loginRequest';
 import { loginFormValidation } from '../../components/loginForm/login.validation';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
-describe('loginRequestCompleted', () => {
-  it('should be an object', () => {
-    expect(loginRequestCompletedAction).not.to.be.an('object').not.null;
-  });
-
-  it('contains the expected type LOGIN_REQUEST', () => {
-    // Act
-    const actionResult = loginRequestCompletedAction(null);
-
-    // Assert
-    expect(actionResult.type).to.equals(loginActionEnums.LOGIN_REQUEST);
-  });
-
-  it('contains the expected payload including the login response', () => {
-    // Arrange
-    const loginResponse: LoginResponse = {
-      succeded: false,
-      userProfile: new UserProfile(),
-    };
-
-    // Act
-    const actionResult = loginRequestCompletedAction(loginResponse);
-
-    // Assert
-    expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload).to.equal(loginResponse);
-  });
-});
-
-describe.only('loginRequestStarted', () => {
+describe('loginRequestStartedAction', () => {
   it('should be a function', () => {
     // Assert
     expect(loginRequestStartedAction).to.be.a('function');
@@ -112,39 +83,40 @@ describe.only('loginRequestStarted', () => {
       }).catch(done);
   }));
 
-  it('should dispatch LOGIN_REQUEST with the loginResponse when login is successful', sinon.test(function(done) {
-    // Arrange
-    const sinon: sinon.SinonStatic = this;
-    const store = mockStore([]);
-    const loginCredentials = new LoginCredentials();
-    const validationResult = new FormValidationResult();
-    validationResult.succeeded = true;
-    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
-      then: (callback) => {
-        callback(validationResult);
-      },
-    });
-    const loginResponse = new LoginResponse();
-    loginResponse.succeded = true;
-    const loginStub = sinon.stub(loginApi, 'login').returns({
-      then: (callback) => {
-        callback(loginResponse);
-      },
-    });
-    const expectedAction = {
-      type: loginActionEnums.LOGIN_REQUEST,
-      payload: loginResponse,
-    };
+  it('should dispatch LOGIN_REQUEST_SUCCESS with the loginResponse when login is successful',
+    sinon.test(function(done) {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const store = mockStore([]);
+      const loginCredentials = new LoginCredentials();
+      const validationResult = new FormValidationResult();
+      validationResult.succeeded = true;
+      const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+        then: (callback) => {
+          callback(validationResult);
+        },
+      });
+      const loginResponse = new LoginResponse();
+      loginResponse.succeded = true;
+      const loginStub = sinon.stub(loginApi, 'login').returns({
+        then: (callback) => {
+          callback(loginResponse);
+        },
+      });
+      const expectedAction = {
+        type: loginActionEnums.LOGIN_REQUEST_SUCCESS,
+        payload: loginResponse,
+      };
 
-    // Act
-    store.dispatch(loginRequestStartedAction(loginCredentials))
-      .then(() => {
-        // Assert
-        const [action] = store.getActions();
-        expect(action).to.be.deep.equals(expectedAction);
-        done();
-      }).catch(done);
-  }));
+      // Act
+      store.dispatch(loginRequestStartedAction(loginCredentials))
+        .then(() => {
+          // Assert
+          const [action] = store.getActions();
+          expect(action).to.be.deep.equals(expectedAction);
+          done();
+        }).catch(done);
+    }));
 
   it('should call navigationHelper with the loginResponse when login is successful', sinon.test(function(done) {
     // Arrange
@@ -202,10 +174,44 @@ describe.only('loginRequestStarted', () => {
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
         // Assert
-        expect(toastrErrorStub.called).to.be.true;
+        expect(toastrErrorStub.calledWithExactly(loginErrorMessages.validation)).to.be.true;
         done();
       }).catch(done);
   }));
+
+  it('should dispatch LOGIN_REQUEST_ERROR with validation errors when validation is not successful',
+    sinon.test(function(done) {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const store = mockStore([]);
+      const loginCredentials = new LoginCredentials();
+      const fieldErrors: FieldValidationResult[] = [
+        { ...new FieldValidationResult(), key: 'login' },
+        { ...new FieldValidationResult(), key: 'password' },
+      ];
+      const validationResult = new FormValidationResult();
+      validationResult.succeeded = false;
+      validationResult.fieldErrors = fieldErrors;
+      const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+        then: (callback) => {
+          callback(validationResult);
+        },
+      });
+      const loginStub = sinon.stub(loginApi, 'login').returns(Promise.resolve());
+      const expectedAction = {
+        type: loginActionEnums.LOGIN_REQUEST_ERROR,
+        payload: fieldErrors,
+      };
+
+      // Act
+      store.dispatch(loginRequestStartedAction(loginCredentials))
+        .then(() => {
+          // Assert
+          const [action] = store.getActions();
+          expect(action).to.be.deep.equals(expectedAction);
+          done();
+        }).catch(done);
+    }));
 
   it('should not call toast.error when validation is successful', sinon.test(function(done) {
     // Arrange
@@ -286,7 +292,7 @@ describe.only('loginRequestStarted', () => {
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
         // Assert
-        expect(toastrErrorStub.called).to.be.true;
+        expect(toastrErrorStub.calledWithExactly(loginErrorMessages.credentials)).to.be.true;
         done();
       }).catch(done);
   }));
