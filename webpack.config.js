@@ -8,7 +8,7 @@ var basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx'],
     alias: {
       'globalStyles': path.join(basePath, "src/content/sass/"),
       // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
@@ -66,61 +66,87 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.(ts|tsx)$/,
+        enforce: 'pre',
         loader: 'tslint-loader'
-      }
-    ],
-    loaders: [
+      },
       {
-        test: /\.(ts|tsx)$/,
-        loaders: ['react-hot', 'ts-loader']
+        test: /\.tsx?$/,
+        loaders: ['react-hot-loader', 'ts-loader']
       },
       //NOTE: Bootstrap css configuration
       {
         test: /\.css$/,
         include: /node_modules/,
-        loader: ExtractTextPlugin.extract('style', 'css')
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {
+            loader: 'css-loader',
+          },
+        })
       },
       //NOTE: src css configuration
       {
         test: /\.scss$/,
         exclude: /(node_modules|animations)/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                camelCase: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+            { loader: 'sass-loader', },
+          ],
+        }),
       },
       {
         test: /\.scss$/,
         include: /animations/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', },
+            { loader: 'sass-loader', },
+          ],
+        }),
       },
       // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
       // Using here url-loader and file-loader
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream'
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file'
+        loader: 'file-loader'
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
       },
       {
         test: /\.(png|jpg|ico)?$/,
-        loader: 'url?limit=10000&mimetype=image/png'
+        loader: 'url-loader?limit=10000&mimetype=image/png'
       }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+    }),
     new ExtractTextPlugin('[name].css'),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
