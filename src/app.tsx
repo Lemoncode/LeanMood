@@ -29,7 +29,7 @@ export const App: React.StatelessComponent<Props> = (props) => {
   );
 };
 
-function isNotLoginRoute(path): boolean {
+function isNotLoginRoute(path: string): boolean {
   const loginRoutes = ['/', '/home'];
   return loginRoutes.indexOf(path) === -1;
 }

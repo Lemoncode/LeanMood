@@ -1,42 +1,37 @@
-var path = require("path");
-var webpack = require("webpack");
+var path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var basePath = __dirname;
 
 module.exports = {
-  context: path.join(basePath, "src"),
+  context: path.join(basePath, 'src'),
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
-    alias: {
-      'globalStyles': path.join(basePath, "src/content/sass/"),
-      // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
-      // https://github.com/gaearon/react-hot-loader/issues/417
-      //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
-    },
   },
   entry: {
     app: [
-      "webpack-dev-server/client?http://localhost:8080",
-      "webpack/hot/only-dev-server",
-      "./index.tsx"
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      './index.tsx'
     ],
     vendor: [
-      "lc-form-validation",
-      "marksy",
-      "moment",
-      "react",
-      "react-addons-shallow-compare",
-      "react-css-transition-replace",
-      "react-dom",
-      "redux",
-      "react-redux",
-      "react-router",
-      "react-router-redux",
-      "react-virtualized",
-      "redux-thunk",
-      "toastr",
+      'lc-form-validation',
+      'marksy',
+      'moment',
+      'react',
+      'react-addons-shallow-compare',
+      'react-css-transition-replace',
+      'react-dom',
+      'redux',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'react-virtualized',
+      'redux-thunk',
+      'toastr',
     ],
     appStyles: [
       './content/sass/styles.scss',
@@ -50,31 +45,46 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(basePath, "dist"),
-    filename: "[name].js"
+    path: path.join(basePath, 'dist'),
+    filename: '[name].js',
+    publicPath: '/', // Necessary for HMR to know where to load the hot update chunks
   },
 
   devtool: 'source-map',
 
   devServer: {
-    contentBase: './dist', //Content base
-    inline: true, //Enable watch and live reload
+    contentBase: './dist', // Content base
+    inline: true, // Enable watch and live reload
     hot: true,
     host: 'localhost',
     port: 8080,
-    stats: 'errors-only'
+    stats: 'errors-only',
+    publicPath: '/', // Match the output.publicPath
   },
 
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         enforce: 'pre',
         loader: 'tslint-loader'
       },
       {
         test: /\.tsx?$/,
-        loaders: ['react-hot-loader', 'ts-loader']
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              useCache: true,
+            },
+          },
+        ],
       },
       //NOTE: Bootstrap css configuration
       {
@@ -143,7 +153,10 @@ module.exports = {
     ]
   },
   plugins: [
+    // enable HMR globally
     new webpack.HotModuleReplacementPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
     }),
