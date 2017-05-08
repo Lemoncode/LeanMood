@@ -4,29 +4,48 @@ import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from '../../../../model/login/loginResponse';
 import { navigationHelper } from '../../../../common/helper/navigationHelper/';
+import { loginFormValidation } from '../components/loginForm/login.validation';
+import { FormValidationResult, FieldValidationResult } from 'lc-form-validation';
+
+export const loginErrorMessages = {
+  validation: 'There are errors in form. Please fix them before continuing',
+  credentials: 'Incorrect credentials. Please, review your email or password',
+};
 
 export const loginRequestStartedAction = (loginCredentials: LoginCredentials) => {
-  return (dispatcher) => {
-    const promise = loginApi.login(loginCredentials);
-
+  return (dispatch) => {
     // Let's remove any previous toast
     toastr.remove();
 
-    promise.then((data) => {
-      dispatcher(loginRequestCompletedAction(data));
+    const promise = loginFormValidation.validateForm(loginCredentials);
 
-      if (data.succeded) {
-        navigationHelper.navigateToPath(`/${data.userProfile.role}`);
-      } else {
-        toastr.error('Please, review your email or password');
-      }
-    });
+    promise
+      .then((formValidationResult) => {
+        if (formValidationResult.succeeded) {
+          loginApi.login(loginCredentials).then((response) => {
+            if (response.succeded) {
+              dispatch(loginRequestSuccessAction(response));
+              navigationHelper.navigateToPath(`/${response.userProfile.role}`);
+            } else {
+              toastr.error(loginErrorMessages.credentials);
+            }
+          });
+        } else {
+          dispatch(loginRequestErrorAction(formValidationResult.fieldErrors));
+          toastr.error(loginErrorMessages.validation);
+        }
+      });
 
     return promise;
   };
 };
 
-export const loginRequestCompletedAction = (loginResponse: LoginResponse) => ({
-  type: loginActionEnums.LOGIN_REQUEST,
+const loginRequestSuccessAction = (loginResponse: LoginResponse) => ({
+  type: loginActionEnums.LOGIN_REQUEST_SUCCESS,
   payload: loginResponse,
+});
+
+const loginRequestErrorAction = (formValidationErrors: FieldValidationResult[]) => ({
+  type: loginActionEnums.LOGIN_REQUEST_ERROR,
+  payload: formValidationErrors,
 });

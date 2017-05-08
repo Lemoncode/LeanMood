@@ -1,123 +1,145 @@
 import * as toastr from 'toastr';
+import ReduxThunk from 'redux-thunk';
+import configureStore from 'redux-mock-store';
+import { FormValidationResult, FieldValidationResult } from 'lc-form-validation';
 import { navigationHelper } from '../../../../../common/helper/navigationHelper';
 import { loginApi } from '../../../../../rest-api/login/loginAPI';
 import { LoginCredentials } from '../../../../../model/login/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from '../../../../../model/login/loginResponse';
 import { loginActionEnums } from './../../../../../common/actionEnums/login';
-import { loginRequestStartedAction, loginRequestCompletedAction } from '../loginRequest';
-import ReduxThunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
+import { loginRequestStartedAction, loginErrorMessages } from '../loginRequest';
+import { loginFormValidation } from '../../components/loginForm/login.validation';
 
-const middlewares = [ ReduxThunk ];
+const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
-describe('loginRequestCompleted', () => {
-  it('is defined', () => {
-    expect(loginRequestCompletedAction).not.to.be.undefined;
-  });
-
-  it('contains the expected type LOGIN_REQUEST', () => {
-    // Act
-    const actionResult = loginRequestCompletedAction(null);
-
+describe('loginRequestStartedAction', () => {
+  it('should be a function', () => {
     // Assert
-    expect(actionResult.type).to.equals(loginActionEnums.LOGIN_REQUEST);
+    expect(loginRequestStartedAction).to.be.a('function');
   });
 
-  it('contains the expected payload including the login response', () => {
-    // Arrange
-    const loginResponse: LoginResponse = {
-      succeded: false,
-      userProfile: new UserProfile(),
-    };
-
-    // Act
-    const actionResult = loginRequestCompletedAction(loginResponse);
-
-    // Assert
-    expect(actionResult.payload).not.to.be.undefined;
-    expect(actionResult.payload).to.equal(loginResponse);
-  });
-});
-
-describe('loginRequestStarted', () => {
-  it('should be defined', () => {
-    // Assert
-    expect(loginRequestStartedAction).not.to.be.undefined;
-  });
-
-  it('should return request action type completed', (done) => {
-    // Arrange
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
-
-    // Act
-    const store = mockStore([]);
-    store.dispatch(loginRequestStartedAction(loginCredentials))
-      .then(() => {
-          // Assert
-          expect(store.getActions()[0].type).to.equal(loginActionEnums.LOGIN_REQUEST);
-          done();
-      });
-  });
-
-  it('should return expected login Response', sinon.test((done) => {
+  it('should call toast.remove to clear previous popups', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
-
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const toastrRemoveStub = sinon.stub(toastr, 'remove');
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns(Promise.resolve());
     const loginStub = sinon.stub(loginApi, 'login');
 
-    loginStub.returns({
+    // Act
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+        // Assert
+        expect(toastrRemoveStub.calledOnce).to.be.true;
+        done();
+      }).catch(done);
+  }));
+
+  it('should call loginFormValidation "validateForm" method to validate credentials', sinon.test(function(done) {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
       then: (callback) => {
-        callback(loginCredentials);
+        callback(validationResult);
       },
     });
+    const loginStub = sinon.stub(loginApi, 'login');
 
     // Act
-    const store = mockStore([]);
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
-          // Assert
-          expect(store.getActions()[0].payload).to.be.equal(loginCredentials);
-          expect(loginStub.called).to.be.true;
-          done();
-      });
-  }).bind(this));
+        // Assert
+        expect(validateForm.calledWithExactly(loginCredentials)).to.be.true;
+        done();
+      }).catch(done);
+  }));
 
-  it('should calls to navigateToPath when login response equals true', sinon.test((done) => {
+  it('should call loginApi.login when validation is succeeded', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = true;
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginStub = sinon.stub(loginApi, 'login').returns(Promise.resolve());
 
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
+    // Act
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+        // Assert
+        expect(loginStub.called).to.be.true;
+        done();
+      }).catch(done);
+  }));
 
-    const userProfile = new UserProfile();
-    userProfile.role = 'test';
+  it('should dispatch LOGIN_REQUEST_SUCCESS with the loginResponse when login is successful',
+    sinon.test(function(done) {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const store = mockStore([]);
+      const loginCredentials = new LoginCredentials();
+      const validationResult = new FormValidationResult();
+      validationResult.succeeded = true;
+      const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+        then: (callback) => {
+          callback(validationResult);
+        },
+      });
+      const loginResponse = new LoginResponse();
+      loginResponse.succeded = true;
+      const loginStub = sinon.stub(loginApi, 'login').returns({
+        then: (callback) => {
+          callback(loginResponse);
+        },
+      });
+      const expectedAction = {
+        type: loginActionEnums.LOGIN_REQUEST_SUCCESS,
+        payload: loginResponse,
+      };
 
-    const loginResponse: LoginResponse = {
-      succeded: true,
-      userProfile,
-    };
+      // Act
+      store.dispatch(loginRequestStartedAction(loginCredentials))
+        .then(() => {
+          // Assert
+          const [action] = store.getActions();
+          expect(action).to.be.deep.equals(expectedAction);
+          done();
+        }).catch(done);
+    }));
 
-    const loginStub = sinon.stub(loginApi, 'login');
-    loginStub.returns({
+  it('should call navigationHelper with the loginResponse when login is successful', sinon.test(function(done) {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = true;
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginResponse = new LoginResponse();
+    loginResponse.succeded = true;
+    loginResponse.userProfile.role = 'test';
+    const loginStub = sinon.stub(loginApi, 'login').returns({
       then: (callback) => {
         callback(loginResponse);
       },
     });
 
     const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
-
     navigateToPath.returns({
       then: (callback) => {
         callback(loginResponse.userProfile.role);
@@ -125,98 +147,153 @@ describe('loginRequestStarted', () => {
     });
 
     // Act
-    const store = mockStore([]);
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
-          // Assert
-          expect(navigateToPath.called).to.be.true;
-          expect(navigateToPath.calledWith('/test')).to.be.true;
-          done();
-      });
-  }).bind(this));
+        // Assert
+        expect(navigateToPath.calledWithExactly('/test')).to.be.true;
+        done();
+      }).catch(done);
+  }));
 
-  it('should does not call to toastr.error when login response equals true', sinon.test((done) => {
+  it('should call toast.error when validation is not successful', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = false;
+    const validateFormStub = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginStub = sinon.stub(loginApi, 'login').returns(Promise.resolve());
+    const toastrErrorStub = sinon.stub(toastr, 'error');
 
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
+    // Act
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+        // Assert
+        expect(toastrErrorStub.calledWithExactly(loginErrorMessages.validation)).to.be.true;
+        done();
+      }).catch(done);
+  }));
 
-    const userProfile = new UserProfile();
-    userProfile.role = 'test';
+  it('should dispatch LOGIN_REQUEST_ERROR with validation errors when validation is not successful',
+    sinon.test(function(done) {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+      const store = mockStore([]);
+      const loginCredentials = new LoginCredentials();
+      const fieldErrors: FieldValidationResult[] = [
+        { ...new FieldValidationResult(), key: 'login' },
+        { ...new FieldValidationResult(), key: 'password' },
+      ];
+      const validationResult = new FormValidationResult();
+      validationResult.succeeded = false;
+      validationResult.fieldErrors = fieldErrors;
+      const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+        then: (callback) => {
+          callback(validationResult);
+        },
+      });
+      const loginStub = sinon.stub(loginApi, 'login').returns(Promise.resolve());
+      const expectedAction = {
+        type: loginActionEnums.LOGIN_REQUEST_ERROR,
+        payload: fieldErrors,
+      };
 
-    const loginResponse: LoginResponse = {
-      succeded: true,
-      userProfile,
-    };
+      // Act
+      store.dispatch(loginRequestStartedAction(loginCredentials))
+        .then(() => {
+          // Assert
+          const [action] = store.getActions();
+          expect(action).to.be.deep.equals(expectedAction);
+          done();
+        }).catch(done);
+    }));
 
-    const loginStub = sinon.stub(loginApi, 'login');
-    loginStub.returns({
+  it('should not call toast.error when validation is successful', sinon.test(function(done) {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = true;
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginStub = sinon.stub(loginApi, 'login').returns(Promise.resolve());
+    const toastrErrorStub = sinon.stub(toastr, 'error');
+
+    // Act
+    store.dispatch(loginRequestStartedAction(loginCredentials))
+      .then(() => {
+        // Assert
+        expect(toastrErrorStub.called).to.be.false;
+        done();
+      }).catch(done);
+  }));
+
+  it('should not call toast.error when login is successful', sinon.test(function(done) {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = true;
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginResponse = new LoginResponse();
+    loginResponse.succeded = true;
+    const loginStub = sinon.stub(loginApi, 'login').returns({
       then: (callback) => {
         callback(loginResponse);
       },
     });
-
-    const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
-    const toastrRemoveStub = sinon.stub(toastr, 'remove');
     const toastrErrorStub = sinon.stub(toastr, 'error');
 
-    navigateToPath.returns({
-      then: (callback) => {
-        callback(loginResponse.userProfile.role);
-      },
-    });
-
     // Act
-    const store = mockStore([]);
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
-          // Assert
-          expect(toastrRemoveStub.called).to.be.true;
-          expect(toastrErrorStub.called).to.be.false;
-          done();
-      });
-  }).bind(this));
+        // Assert
+        expect(toastrErrorStub.called).to.be.false;
+        done();
+      }).catch(done);
+  }));
 
-  it('should calls to toastr.error when login response equals false', sinon.test((done) => {
+  it('should call toast.error when login is not successful', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-
-    const loginCredentials: LoginCredentials = {
-      login: 'admin',
-      password: 'test',
-    };
-
-    const userProfile = new UserProfile();
-    userProfile.role = 'test';
-
-    const loginResponse: LoginResponse = {
-      succeded: false,
-      userProfile,
-    };
-
-    const loginStub = sinon.stub(loginApi, 'login');
-    loginStub.returns({
+    const store = mockStore([]);
+    const loginCredentials = new LoginCredentials();
+    const validationResult = new FormValidationResult();
+    validationResult.succeeded = true;
+    const validateForm = sinon.stub(loginFormValidation, 'validateForm').returns({
+      then: (callback) => {
+        callback(validationResult);
+      },
+    });
+    const loginResponse = new LoginResponse();
+    loginResponse.succeded = false;
+    const loginStub = sinon.stub(loginApi, 'login').returns({
       then: (callback) => {
         callback(loginResponse);
       },
     });
-
-    const navigateToPath = sinon.stub(navigationHelper, 'navigateToPath');
-    const toastrRemoveStub = sinon.stub(toastr, 'remove');
     const toastrErrorStub = sinon.stub(toastr, 'error');
 
     // Act
-    const store = mockStore([]);
     store.dispatch(loginRequestStartedAction(loginCredentials))
       .then(() => {
-          // Assert
-          expect(toastrRemoveStub.called).to.be.true;
-          expect(toastrErrorStub.called).to.be.true;
-          expect(toastrErrorStub.calledWith('Please, review your email or password')).to.be.true;
-          done();
-      });
-  }).bind(this));
+        // Assert
+        expect(toastrErrorStub.calledWithExactly(loginErrorMessages.credentials)).to.be.true;
+        done();
+      }).catch(done);
+  }));
 });
