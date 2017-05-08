@@ -12,3 +12,4 @@ typings/
 /src/**/*.scss.d.ts
 yarn.lock
 *.log
+.awcache/
