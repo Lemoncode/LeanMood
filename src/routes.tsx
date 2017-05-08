@@ -7,7 +7,7 @@ import { GeneralRoutes, NotFoundPage } from './pages/general';
 import { StudentsRoutes } from './pages/student';
 import { TrainingRoutes } from './pages/trainer';
 
-export const AppRoutes = (
+export const routes = (
   <Route path="/" component={AppContainer}>
 
     {GeneralRoutes}

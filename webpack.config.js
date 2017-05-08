@@ -15,7 +15,7 @@ module.exports = {
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
-      './index.tsx'
+      './index.tsx',
     ],
     vendor: [
       'lc-form-validation',
@@ -34,6 +34,9 @@ module.exports = {
       'toastr',
     ],
     appStyles: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
       './content/sass/styles.scss',
       './content/sass/animations/cross-fade.scss',
     ],
@@ -47,19 +50,19 @@ module.exports = {
   output: {
     path: path.join(basePath, 'dist'),
     filename: '[name].js',
-    publicPath: '/', // Necessary for HMR to know where to load the hot update chunks
+    publicPath: '/',
   },
 
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 
   devServer: {
     contentBase: './dist', // Content base
     inline: true, // Enable watch and live reload
-    hot: true,
     host: 'localhost',
     port: 8080,
     stats: 'errors-only',
-    publicPath: '/', // Match the output.publicPath
+    hot: true,
+    publicPath: '/',
   },
 
   module: {
@@ -67,22 +70,18 @@ module.exports = {
       {
         test: /\.tsx?$/,
         enforce: 'pre',
-        loader: 'tslint-loader'
+        loader: 'tslint-loader',
       },
       {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
-          },
           {
             loader: 'awesome-typescript-loader',
             options: {
               useCache: true,
-            },
+              useBabel: true,
+            }
           },
         ],
       },
@@ -95,7 +94,7 @@ module.exports = {
           use: {
             loader: 'css-loader',
           },
-        })
+        }),
       },
       //NOTE: src css configuration
       {
@@ -113,7 +112,7 @@ module.exports = {
                 localIdentName: '[name]__[local]___[hash:base64:5]',
               },
             },
-            { loader: 'sass-loader', },
+            { loader: 'sass-loader' },
           ],
         }),
       },
@@ -123,7 +122,12 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            { loader: 'css-loader', },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
             { loader: 'sass-loader', },
           ],
         }),
@@ -132,41 +136,45 @@ module.exports = {
       // Using here url-loader and file-loader
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
       {
         test: /\.(png|jpg|ico)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/png'
-      }
-    ]
+        loader: 'url-loader?limit=10000&mimetype=image/png',
+      },
+    ],
   },
   plugins: [
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin(),
-    // prints more readable module names in the browser console on HMR updates
+    // Display in console what modules are hot reloaded
     new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
     }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin({
+      filename: '[chunkhash].[name].css',
+      disable: true,
+      allChunks: true,
+    }),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html', //Name of file in ./dist/
       template: 'index.html', //Name of template in ./src
       favicon: 'content/image/logo.png',
-      hash: true
-    })
-  ]
-}
+      hash: true,
+    }),
+  ],
+};

@@ -1,17 +1,21 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "declaration": false,
-      "noImplicitAny": false,
-      "sourceMap": true,
-      "jsx": "react",
-      "noLib": false,
-      "suppressImplicitAnyIndexErrors": true,
-      "types": ["karma-chai-sinon", "webpack-env"]
-    },
-    "compileOnSave": false,
-    "exclude": [
-        "node_modules"
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "jsx": "react",
+    "noLib": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "karma-chai-sinon",
+      "webpack-env"
     ]
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules"
+  ]
 }

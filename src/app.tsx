@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { GeneralRoutes } from './pages/general/';
 import { HeaderComponent } from './common/components/header/header';
 import { UserProfile } from './model/userProfile';
 import { FooterComponent } from './common/components/footer/footer';
@@ -28,6 +27,8 @@ export const App: React.StatelessComponent<Props> = (props) => {
     </div>
   );
 };
+
+App.displayName = 'App';
 
 function isNotLoginRoute(path: string): boolean {
   const loginRoutes = ['/', '/home'];
