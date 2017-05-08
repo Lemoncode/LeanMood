@@ -1,10 +1,9 @@
-var webpackConfig = require('./webpack.config');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require("path");
-var basePath = __dirname;
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function (config) {
-  const configObject = {
+  config.set({
     basePath: '',
     frameworks: ['mocha', 'sinon-chai'],
     files: [
@@ -15,54 +14,93 @@ module.exports = function (config) {
     preprocessors: {
       './test/test_index.js': ['webpack', 'sourcemap']
     },
-    customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.tsx?$/,
             exclude: /node_modules/,
-            loader: 'ts-loader'
+            loader: 'awesome-typescript-loader',
+            options: {
+              useBabel: true,
+            },
           },
-          //Configuration required by enzyme
+          //NOTE: Bootstrap css configuration
           {
-            test: /\.json$/,
-            loader: 'json'
+            test: /\.css$/,
+            include: /node_modules/,
+            use: [
+              { loader: 'style-loader' },
+              { loader: 'css-loader' },
+            ],
+          },
+          //NOTE: src css configuration
+          {
+            test: /\.scss$/,
+            exclude: /(node_modules|animations)/,
+            use: [
+              { loader: 'style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  camelCase: true,
+                  importLoaders: 1,
+                  localIdentName: '[local]',
+                },
+              },
+              { loader: 'sass-loader' },
+            ],
           },
           {
             test: /\.scss$/,
-            exclude: /node_modules/,
-            //NOTE: Avoid import like [name]__[local]___[hash:base64:5] to create a well known class name
-            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[local]!sass-loader')
+            include: /animations/,
+            use: [
+              { loader: 'style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1,
+                },
+              },
+              { loader: 'sass-loader' },
+            ],
+          },
+          // Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+          // Using here url-loader and file-loader
+          {
+            test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+          },
+          {
+            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
           },
           {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&mimetype=image/svg+xml'
+            loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+          },
+          {
+            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'file-loader',
           },
           {
             test: /\.(png|jpg|ico)?$/,
-            loader: 'url?limit=10000&mimetype=image/png'
-          }
+            loader: 'url-loader?limit=10000&mimetype=image/png',
+          },
         ],
         //Configuration required to import sinon on spec.ts files
         noParse: [
           /node_modules(\\|\/)sinon/,
-        ],
+        ]
       },
       resolve: {
-        //Added .json extension required by cheerio (enzyme dependency)
-        extensions: ['', '.js', '.ts', '.tsx', '.json'],
+        extensions: ['.js', '.ts', '.tsx'],
         //Configuration required to import sinon on spec.ts files
         // https://github.com/webpack/webpack/issues/304
         alias: {
-          sinon: 'sinon/pkg/sinon',
-          'globalStyles': path.join(basePath, "src/content/sass/")
+          sinon: 'sinon/pkg/sinon'
         }
       },
       //Configuration required by enzyme
@@ -70,10 +108,7 @@ module.exports = function (config) {
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
-      },
-      plugins: [
-        new ExtractTextPlugin('[name].css')
-      ]
+      }
     },
     webpackMiddleware: {
       // webpack-dev-middleware configuration
@@ -92,11 +127,5 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity
-  }
-
-  if (process.env.TRAVIS) {
-    config.browsers = ['Chrome_travis_ci'];
-  }
-
-  config.set(configObject);
+  })
 }

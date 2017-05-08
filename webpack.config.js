@@ -1,12 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var basePath = __dirname;
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: path.join(basePath, 'src'),
+  context: path.join(__dirname, 'src'),
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
@@ -48,21 +46,19 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(basePath, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/',
   },
 
   devtool: 'inline-source-map',
 
   devServer: {
-    contentBase: './dist', // Content base
+    contentBase: path.join(__dirname, 'dist'), // Content base
     inline: true, // Enable watch and live reload
     host: 'localhost',
     port: 8080,
     stats: 'errors-only',
     hot: true,
-    publicPath: '/',
   },
 
   module: {
@@ -75,15 +71,11 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              useCache: true,
-              useBabel: true,
-            }
-          },
-        ],
+        loader: 'awesome-typescript-loader',
+        options: {
+          useCache: true,
+          useBabel: true,
+        }
       },
       //NOTE: Bootstrap css configuration
       {
