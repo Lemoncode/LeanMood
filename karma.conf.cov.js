@@ -1,4 +1,3 @@
-const webpackConfig = require('./webpack.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require("path");
 
@@ -21,7 +20,7 @@ module.exports = function (config) {
       module: {
         rules: [
           {
-            test: /\.tsx?$/,
+            test: /\.spec\.tsx?$/,
             exclude: /node_modules/,
             loader: 'awesome-typescript-loader',
             options: {
@@ -29,11 +28,16 @@ module.exports = function (config) {
             },
           },
           {
-            test: /\.tsx?$/,
+            test: /((?!spec).)*.tsx?$/,
             exclude: /node_modules/,
             enforce: 'post',
             use: [
-              { loader: 'istanbul-instrumenter-loader' },
+              {
+                loader: 'istanbul-instrumenter-loader',
+                options: {
+                  esModules: true,
+                }
+              },
               {
                 loader: 'awesome-typescript-loader',
                 options: {
