@@ -115,7 +115,12 @@ module.exports = function (config) {
       // i. e.
       noInfo: true
     },
-
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['mocha'],
     mochaReporter: {
       showDiff: true,
@@ -127,5 +132,9 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity
-  })
+  });
+
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
+  }
 }
