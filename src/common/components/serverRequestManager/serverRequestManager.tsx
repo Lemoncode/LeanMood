@@ -1,7 +1,7 @@
-import * as React from 'React';
-import {isEqual} from 'lodash.lodash.isequal'
+import * as React from 'react';
 
-const command = (props) => {
+
+const doCommand = (props: ServerRequestManagerProps) => {
   props.command(props.payload);
 };
 
@@ -10,22 +10,21 @@ interface ServerRequestManagerProps  extends React.Props<ServerRequestManagerPro
    command: (payload) => void;
 }
 
-
 export class ServerRequestManager extends React.Component<ServerRequestManagerProps, {}> {
   public componentWillMount() {
-    command(this.props.payload);
+    doCommand(this.props);
   }
 
   public componentWillReceiveProps(newProps) {
-    if (!isEqual(this.props.payload, newProps.payload)) {
-      command(this.props.payload);
+    if (this.props.payload !== newProps.payload) {
+      doCommand(this.props);
     }
   }
 
   public render() {
     return (
       <div>
-      {this.props.children}
+       {this.props.children}
       </div>
     );
   }
