@@ -4,7 +4,7 @@
   "description": "LeanMood web application",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config config/webpack/webpack.dev.js",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
     "test": "karma start --single-run",
     "test:watch": "karma start --no-single-run",

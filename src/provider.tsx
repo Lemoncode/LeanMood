@@ -1,20 +1,16 @@
 import * as React from 'react';
-import { Router } from 'react-router';
 import { Provider } from 'react-redux';
+import { Router, hashHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { routes } from './routes';
 import { store } from './store';
+import { history } from './history';
 
-interface Props {
-  store: any;
-  history: any;
-}
-
-export class Root extends React.Component<Props, {}> {
+export class AppProvider extends React.Component<{}, {}> {
   public render() {
-    const { store, history } = this.props;
     return (
       <Provider store={store}>
-        <Router key={Math.random()} history={history}>
+        <Router history={history}>
           {routes}
         </Router>
       </Provider>

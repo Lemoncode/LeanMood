@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
     "declaration": false,
     "noImplicitAny": false,
     "sourceMap": true,
     "jsx": "react",
     "noLib": false,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "karma-chai-sinon",
+      "webpack-env"
+    ],
+    "typeRoots": [
+      "../../node_modules/@types"
+    ]
   },
   "compileOnSave": false,
   "exclude": [
