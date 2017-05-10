@@ -5,9 +5,11 @@ const helpers = require('../helpers');
 
 module.exports = {
   context: helpers.root('src'),
+
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
+
   entry: {
     app: [
       './index.tsx',
@@ -74,6 +76,7 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

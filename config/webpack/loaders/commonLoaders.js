@@ -11,17 +11,6 @@ module.exports.typescriptLoader = {
   },
 };
 
-module.exports.typescriptLoaderTest = {
-  test: /\.tsx?$/,
-  exclude: /node_modules/,
-  loader: 'awesome-typescript-loader',
-  options: {
-    useCache: true,
-    useBabel: true,
-    configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
-  },
-};
-
 module.exports.vendorCSSLoaderDev = {
   test: /\.css$/,
   include: /node_modules/,

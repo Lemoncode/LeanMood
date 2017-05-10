@@ -1,7 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { typescriptLoader, vendorCSSLoaderProd } = require('./commonLoaders');
 
-module.filenameexports = [
+module.exports = [
   typescriptLoader,
   vendorCSSLoaderProd,
   {

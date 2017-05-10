@@ -1,24 +1,23 @@
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.common');
+const merge = require('webpack-merge');
+const commonWebpackConfig = require('./webpack.config.common');
 const helpers = require('../helpers');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { prodLoaders } = require('./loaders');
 
-webpackConfig.devtool = 'source-map';
-
-webpackConfig.module.rules = [
-  ...prodLoaders,
-  ...webpackConfig.module.rules,
-];
-
-webpackConfig.plugins = [
-  ...webpackConfig.plugins,
-  // Extract styles to separated files
-  new ExtractTextPlugin({
-    filename: '[chunkhash].[name].css',
-    disable: true,
-    allChunks: true,
-  }),
-];
-
-exports = webpackConfig;
+module.exports = merge({
+  // Prepend new config sections for arrays
+  customizeArray: (commonConfig, newConfig) => [...newConfig, ...commonConfig],
+})(commonWebpackConfig, {
+  devtool: 'source-map',
+  module: {
+    rules: prodLoaders,
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: '[chunkhash].[name].css',
+      disable: true,
+      allChunks: true,
+    }),
+  ],
+});

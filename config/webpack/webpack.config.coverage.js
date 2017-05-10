@@ -1,32 +1,39 @@
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.common');
+const merge = require('webpack-merge');
+const commonWebpackConfig = require('./webpack.config.common');
 const helpers = require('../helpers');
-const { testLoaders } = require('./loaders');
+const { coverageLoaders } = require('./loaders');
 
-delete webpackConfig.context;
-delete webpackConfig.entry;
-delete webpackConfig.output;
-delete webpackConfig.plugins;
+const newWebpackConfig = merge({
+  customizeArray: (commonConfig, newConfig, key) => {
+    if (key === 'plugins') {
+      return newConfig;
+    }
+  },
+})(commonWebpackConfig, {
+  devtool: 'inline-source-map',
+  resolve: {
+    alias: {
+      sinon: 'sinon/pkg/sinon',
+    },
+  },
+  module: {
+    rules: coverageLoaders,
+    noParse: [
+      /node_modules(\\|\/)sinon/,
+    ],
+  },
+  plugins: [],
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': 'window',
+  },
+});
 
-webpackConfig.devtool = 'inline-source-map';
+// Remove handled properties by karma
+delete newWebpackConfig.context;
+delete newWebpackConfig.entry;
+delete newWebpackConfig.output;
 
-webpackConfig.module.rules = [
-  ...testLoaders,
-  ...webpackConfig.module.rules,
-];
-
-webpackConfig.module.noParse = [
-  /node_modules(\\|\/)sinon/,
-];
-
-webpackConfig.resolve.alias = {
-  sinon: 'sinon/pkg/sinon'
-};
-
-webpackConfig.externals = {
-  'react/addons': true,
-  'react/lib/ExecutionEnvironment': true,
-  'react/lib/ReactContext': 'window',
-};
-
-module.exports = webpackConfig;
+module.exports = newWebpackConfig;

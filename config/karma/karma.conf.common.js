@@ -7,12 +7,11 @@ module.exports = {
   exclude: [
   ],
   preprocessors: {
-    './spec.bundle.js': ['webpack', 'sourcemap']
+    './spec.bundle.js': ['webpack', 'sourcemap'],
   },
   webpackMiddleware: {
     // webpack-dev-middleware configuration
-    // i. e.
-    noInfo: true
+    noInfo: true,
   },
   reporters: ['mocha'],
   mochaReporter: {
@@ -23,5 +22,5 @@ module.exports = {
   autoWatch: true,
   browsers: ['Chrome'],
   singleRun: false,
-  concurrency: Infinity
+  concurrency: Infinity,
 };
