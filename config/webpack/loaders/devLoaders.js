@@ -2,6 +2,7 @@ const { typescriptLoader, vendorCSSLoaderDev } = require('./commonLoaders');
 
 module.exports = [
   typescriptLoader,
+  vendorCSSLoaderDev,
   {
     test: /\.scss$/,
     exclude: /node_modules/,
@@ -19,5 +20,4 @@ module.exports = [
       { loader: 'sass-loader' },
     ],
   },
-  vendorCSSLoaderDev,
 ];

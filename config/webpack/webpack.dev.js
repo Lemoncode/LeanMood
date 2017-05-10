@@ -13,12 +13,12 @@ const hotReloadingEntries = [
 webpackConfig.entry.app = [...hotReloadingEntries, ...webpackConfig.entry.app];
 webpackConfig.entry.appStyles = [...hotReloadingEntries, ...webpackConfig.entry.appStyles];
 
-webpackConfig.module.rules = [
-  ...webpackConfig.module.rules,
-  ...devLoaders,
-];
-
 webpackConfig.devtool = 'inline-source-map';
+
+webpackConfig.module.rules = [
+  ...devLoaders,
+  ...webpackConfig.module.rules,
+];
 
 webpackConfig.plugins = [
   // enable HMR globally
