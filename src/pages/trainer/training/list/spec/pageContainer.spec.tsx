@@ -13,7 +13,7 @@ import { TrainingSummary } from '../../../../../model/trainingSummary';
 const createStore = configureStore<IAppState>();
 
 describe('Trainer Module: TrainingListPageContainer', () => {
-  it('should connect a TrainingListPage', sinon.test(function () {
+  it('should connect a TrainingListPage', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const store: any = createStore({

@@ -7,8 +7,10 @@ const mapStateToProps = (state: IAppState) => ({
    payload: state.login.userProfile.id,
 });
 
-const mapDispatchToProps = ({
-   subscribe: fetchTrainingList ,
+const mapDispatchToProps = (dispatch) => ({
+   subscribe: (userId) => dispatch(fetchTrainingList(userId)) ,
 });
+
+
 
 export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(ServerRequestManager);
