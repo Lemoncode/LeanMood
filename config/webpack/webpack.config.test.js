@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.common');
+const webpackConfig = require('./webpack.config.common');
 const helpers = require('../helpers');
 const { testLoaders } = require('./loaders');
 

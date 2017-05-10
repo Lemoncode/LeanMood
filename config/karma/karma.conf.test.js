@@ -1,5 +1,5 @@
-const commonConfig = require('./karma.common');
-const webpackConfig = require('../webpack/webpack.test.js');
+const commonConfig = require('./karma.conf.common');
+const webpackConfig = require('../webpack/webpack.config.test');
 
 module.exports = (config) => {
   const karmaConfig = Object.assign({}, commonConfig, {

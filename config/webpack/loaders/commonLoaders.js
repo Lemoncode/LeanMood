@@ -18,7 +18,7 @@ module.exports.typescriptLoaderTest = {
   options: {
     useCache: true,
     useBabel: true,
-    configFileName: helpers.root('config', 'karma', 'tsconfig.karma.json'),
+    configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
   },
 };
 
