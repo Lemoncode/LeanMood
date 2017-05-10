@@ -13,7 +13,7 @@ import { TrainingSummary } from '../../../../../model/trainingSummary';
 const createStore = configureStore<IAppState>();
 
 describe('Trainer Module: TrainingListPageContainer', () => {
-  it('should connect a TrainingListPage', sinon.test(function () {
+  it('should connect a TrainingListPage', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const store: any = createStore({
@@ -38,7 +38,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     expect(container.find(TrainingListPage)).to.have.lengthOf(1);
   }));
 
-  it('should inject to TrainingListPage a trainingList prop from state', sinon.test(function () {
+  it('should inject to TrainingListPage a trainingList prop from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const list: TrainingSummary[] = [
@@ -71,7 +71,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     expect(trainingListPage.prop('trainingList')).to.be.an('array').that.is.deep.equals(training.list);
   }));
 
-  it('should inject to TrainingListPage a trainerId property from state', sinon.test(function () {
+  it('should inject to TrainingListPage a trainerId property from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const trainerId = 123;
@@ -101,7 +101,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
   }));
 
   it('should inject to TrainingListPage a fetchTrainingList property that dispatches a fetchTrainingList action',
-    sinon.test(function () {
+    sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const trainerId = 123;

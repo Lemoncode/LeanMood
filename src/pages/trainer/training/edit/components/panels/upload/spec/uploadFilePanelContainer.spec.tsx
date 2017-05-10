@@ -36,7 +36,7 @@ describe('UploadFilePanelContainer', () => {
   });
 
   it('should pass togglePanel to UploadFilePanelComponent dispatching ' +
-    'a TRAINING_MODULE/ SET_ACTIVE_PANEL action with empty payload', sinon.test(function () {
+    'a TRAINING_MODULE/ SET_ACTIVE_PANEL action with empty payload', sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const setActivePanelAction = sinon.stub(actions, 'setActivePanelAction').returns({ type: 'ACTION' });
