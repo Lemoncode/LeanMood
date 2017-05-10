@@ -1,10 +1,10 @@
 import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import * as router from 'react-router';
-import { hashHistory } from 'react-router';
-import { navigationHelper } from '../index';
+import { navigationHelper } from '../';
+import { history } from '../../../../history';
 
-const middlewares = [ ReduxThunk ];
+const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
 describe('navigateBasedOnRole', () => {
@@ -17,7 +17,7 @@ describe('navigateBasedOnRole', () => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
-    const hashHistoryStub = sinon.stub(hashHistory, 'push');
+    const hashHistoryStub = sinon.stub(history, 'push');
 
     // Act
     navigationHelper.navigateToPath('/testPath');

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
-    "test": "karma start --single-run",
-    "test:watch": "karma start --no-single-run",
+    "test": "karma start ./config/karma/karma.conf.test.js --single-run",
+    "test:watch": "karma start config/karma/karma.conf.test.js --no-single-run",
     "test:coverage": "karma start karma.conf.cov.js --single-run"
   },
   "repository": {

@@ -7,8 +7,8 @@ const { prodLoaders } = require('./loaders');
 webpackConfig.devtool = 'source-map';
 
 webpackConfig.module.rules = [
-  ...webpackConfig.module.rules,
   ...prodLoaders,
+  ...webpackConfig.module.rules,
 ];
 
 webpackConfig.plugins = [

@@ -3,6 +3,7 @@ const { typescriptLoader, vendorCSSLoaderProd } = require('./commonLoaders');
 
 module.filenameexports = [
   typescriptLoader,
+  vendorCSSLoaderProd,
   {
     test: /\.scss$/,
     exclude: /node_modules/,
@@ -22,5 +23,4 @@ module.filenameexports = [
       ],
     }),
   },
-  vendorCSSLoaderProd,
 ];
