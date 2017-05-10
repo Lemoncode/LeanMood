@@ -8,7 +8,7 @@ const mapStateToProps = (state: IAppState) => ({
 });
 
 const mapDispatchToProps = ({
-   command: fetchTrainingList ,
+   subscribe: fetchTrainingList ,
 });
 
 export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(ServerRequestManager);

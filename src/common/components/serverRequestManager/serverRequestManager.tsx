@@ -1,23 +1,35 @@
 import * as React from 'react';
 
-const doCommand = (props: ServerRequestManagerProps) => {
-  props.command(props.payload);
+const subscribe = (props: ServerRequestManagerProps) => {
+  props.subscribe(props.payload);
+};
+
+const unsubscribe = (props: ServerRequestManagerProps) => {
+  if (props.unsubscribe) {
+    props.unsubscribe(props.payload);
+  }
 };
 
 interface ServerRequestManagerProps  extends React.Props<ServerRequestManagerProps> {
    payload: any;
-   command: (payload) => void;
+   subscribe: (payload) => void;
+   unsubscribe?: (payload) => void;
 }
 
 export class ServerRequestManager extends React.Component<ServerRequestManagerProps, {}> {
   public componentWillMount() {
-    doCommand(this.props);
+    subscribe(this.props);
   }
 
   public componentWillReceiveProps(newProps) {
     if (this.props.payload !== newProps.payload) {
-      doCommand(this.props);
+      unsubscribe(this.props);
+      subscribe(newProps);
     }
+  }
+
+  public componentWillUnmount() {
+    unsubscribe(this.props);
   }
 
   public render() {
