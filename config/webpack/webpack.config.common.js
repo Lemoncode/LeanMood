@@ -87,6 +87,7 @@ module.exports = {
       template: 'index.html', //Name of template in ./src
       favicon: 'content/image/logo.png',
       hash: true,
+      chunksSortMode: helpers.sortChunks(['vendor', 'vendorStyles', 'appStyles', 'app']),
     }),
   ],
 };
