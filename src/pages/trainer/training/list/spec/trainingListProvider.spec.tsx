@@ -8,7 +8,7 @@ import { LoginState } from '../../../../../reducers/login';
 import * as actions from '../actions/trainingActions';
 import { TrainingSummary } from '../../../../../model/trainingSummary';
 import { TrainingListProvider } from '../trainingListProvider';
-import { ServerRequestManager } from '../../../../../common/components';
+import { SubscriptionManager } from '../../../../../common/components';
 
 const createStore = configureStore<IAppState>();
 
@@ -35,6 +35,6 @@ describe('Trainer Module: TrainingListProvider', () => {
     );
 
     // Assert
-    expect(container.find(ServerRequestManager)).to.have.lengthOf(1);
+    expect(container.find(SubscriptionManager)).to.have.lengthOf(1);
   }));
 });

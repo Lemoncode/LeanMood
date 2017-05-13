@@ -1,22 +1,22 @@
 import * as React from 'react';
 
-const subscribe = (props: ServerRequestManagerProps) => {
+const subscribe = (props: Props) => {
   props.subscribe(props.payload);
 };
 
-const unsubscribe = (props: ServerRequestManagerProps) => {
+const unsubscribe = (props: Props) => {
   if (props.unsubscribe) {
     props.unsubscribe(props.payload);
   }
 };
 
-interface ServerRequestManagerProps  extends React.Props<ServerRequestManagerProps> {
+interface Props  extends React.Props<Props> {
    payload: any;
    subscribe: (payload) => void;
    unsubscribe?: (payload) => void;
 }
 
-export class ServerRequestManager extends React.Component<ServerRequestManagerProps, {}> {
+export class SubscriptionManager extends React.Component<Props, {}> {
   public componentWillMount() {
     subscribe(this.props);
   }

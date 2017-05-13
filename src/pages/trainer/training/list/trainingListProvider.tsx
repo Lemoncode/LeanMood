@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import { IAppState } from '../../../../reducers';
-import { ServerRequestManager } from '../../../../common/components';
+import { SubscriptionManager } from '../../../../common/components';
 import { fetchTrainingList } from './actions/trainingActions';
 
 const mapStateToProps = (state: IAppState) => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 
-export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(ServerRequestManager);
+export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(SubscriptionManager);
