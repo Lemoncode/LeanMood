@@ -11,6 +11,4 @@ const mapDispatchToProps = (dispatch) => ({
    subscribe: (userId) => dispatch(fetchTrainingList(userId)) ,
 });
 
-
-
 export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(SubscriptionManager);
