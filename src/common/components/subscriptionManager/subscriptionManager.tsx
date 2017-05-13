@@ -11,7 +11,7 @@ const unsubscribe = (props: Props) => {
 };
 
 interface Props  extends React.Props<Props> {
-   payload: any;
+   payload?: any;
    subscribe: (payload) => void;
    unsubscribe?: (payload) => void;
 }
