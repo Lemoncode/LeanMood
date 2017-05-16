@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline",
+    "build": "webpack",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
     "test": "karma start --single-run",
     "test:watch": "karma start --no-single-run",
