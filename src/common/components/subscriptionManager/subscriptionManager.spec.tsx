@@ -9,8 +9,9 @@ describe('common/subscriptionManager', () => {
     expect(SubscriptionManager).not.to.be.undefined;
   });
 
-  it('calls the subscribe action on componentWillMount', () => {
+  it('calls the subscribe action on componentWillMount', sinon.test(function() {
     // Arrange
+    const sinon: sinon.SinonStatic = this;
     const subscribeAction = sinon.spy((payload) => { });
     const payload = {};
     const unsubscribeAction = sinon.spy(() => { });
@@ -26,10 +27,11 @@ describe('common/subscriptionManager', () => {
 
     // Assert
     expect(subscribeAction.called).to.be.true;
-  });
+  }));
 
-  it('calls the unsubscribe action on componentunMount', () => {
+  it('calls the unsubscribe action on componentunMount', sinon.test(function() {
     // Arrange
+    const sinon: sinon.SinonStatic = this;
     const subscribeAction = sinon.spy((payload) => { });
     const payload = {};
     const unsubscribeAction = sinon.spy(() => { });
@@ -48,7 +50,31 @@ describe('common/subscriptionManager', () => {
     // Assert
     expect(subscribeAction.called).to.be.true;
     expect(unsubscribeAction.called).to.be.true;
-  });
+  }));
 
-  // Pending Null values, default values
+  it('calls the subscribe and unsubcribe action when payload is null (no exception)', sinon.test(function() {
+    // Arrange
+    const sinon: sinon.SinonStatic = this;
+    const subscribeAction = sinon.spy((payload) => { });
+    const payload = null;
+    const unsubscribeAction = sinon.spy(() => { });
+
+    // Act
+    const progressBarComponent = mount(
+      <SubscriptionManager
+        subscribe={subscribeAction}
+        payload={payload}
+        unsubscribe={unsubscribeAction}
+       />,
+    );
+
+    progressBarComponent.unmount();
+
+    // Assert
+    expect(subscribeAction.called).to.be.true;
+    expect(unsubscribeAction.called).to.be.true;
+  }));
+
+
+  // Pending Null value unsubscribe, and default values
 });
