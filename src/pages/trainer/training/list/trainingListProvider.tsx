@@ -9,6 +9,7 @@ const mapStateToProps = (state: IAppState) => ({
 
 const mapDispatchToProps = (dispatch) => ({
    subscribe: (userId) => dispatch(fetchTrainingList(userId)) ,
+   unsubscribe: (userId) => {},
 });
 
 export const TrainingListProvider = connect(mapStateToProps, mapDispatchToProps)(SubscriptionManager);

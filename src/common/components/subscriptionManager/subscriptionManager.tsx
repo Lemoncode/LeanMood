@@ -12,25 +12,12 @@ const unsubscribe = (props: Props) => {
 };
 
 interface Props  extends React.Props<Props> {
-   payload?: any | undefined;
+   payload: any;
    subscribe: (payload) => void;
-   unsubscribe?: (payload) => void | undefined;
+   unsubscribe: (payload) => void;
 }
 
 export class SubscriptionManager extends React.Component<Props, {}> {
-
-  public static propTypes = {
-    children: PropTypes.node.isRequired,
-    payload: PropTypes.any,
-    subscribe: PropTypes.func.isRequired,
-    unsubscribe: PropTypes.func,
-  };
-
-  public static defaultProps: Partial<Props>  = {
-    payload: undefined,
-    unsubscribe: undefined,
-  };
-
   public componentWillMount() {
     subscribe(this.props);
   }
