@@ -1,20 +1,10 @@
 import * as React from 'react';
 import { PropTypes } from 'react';
 
-const subscribe = (props: Props) => {
-  props.subscribe(props.payload);
-};
-
-const unsubscribe = (props: Props) => {
-  if (props.unsubscribe) {
-    props.unsubscribe(props.payload);
-  }
-};
-
-interface Props  extends React.Props<Props> {
-   payload: any;
-   subscribe: (payload) => void;
-   unsubscribe: (payload) => void;
+interface Props {
+  payload: any;
+  subscribe: (payload) => void;
+  unsubscribe: (payload) => void;
 }
 
 export class SubscriptionManager extends React.Component<Props, {}> {
@@ -36,8 +26,18 @@ export class SubscriptionManager extends React.Component<Props, {}> {
   public render() {
     return (
       <div>
-       {this.props.children}
+        {this.props.children}
       </div>
     );
   }
 }
+
+const subscribe = (props: Props) => {
+  props.subscribe(props.payload);
+};
+
+const unsubscribe = (props: Props) => {
+  if (props.unsubscribe) {
+    props.unsubscribe(props.payload);
+  }
+};
