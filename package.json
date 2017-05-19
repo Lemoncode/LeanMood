@@ -4,11 +4,16 @@
   "description": "LeanMood web application",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline",
+    "start": "nf start",
+    "start:dev": "webpack-dev-server",
+    "start:prod": "node server",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
     "test": "karma start --single-run",
     "test:watch": "karma start --no-single-run",
-    "test:coverage": "karma start karma.conf.cov.js --single-run"
+    "test:coverage": "karma start karma.conf.cov.js --single-run",
+    "build:dev": "npm run clean && webpack",
+    "build:prod": "npm run clean && webpack -p",
+    "clean": "rimraf public"
   },
   "repository": {
     "type": "git",
@@ -55,6 +60,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.7.0",
+    "foreman": "^2.0.0",
     "html-webpack-plugin": "^2.22.0",
     "istanbul-instrumenter-loader": "^1.0.0",
     "json-loader": "^0.5.4",
@@ -88,6 +94,8 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
+    "if-env": "^1.0.0",
     "jquery": "^3.1.1",
     "lc-form-validation": "^1.0.0",
     "marksy": "^0.3.0",
@@ -102,6 +110,7 @@
     "react-virtualized": "^9.1.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "rimraf": "^2.6.1",
     "toastr": "^2.1.2"
   }
 }
