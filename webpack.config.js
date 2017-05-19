@@ -50,7 +50,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(basePath, "dist"),
+    path: path.join(basePath, "public"),
     filename: "[name].js"
   },
 
