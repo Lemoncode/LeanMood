@@ -4,7 +4,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var env = require('./env.config');
 
-
 var basePath = __dirname;
 //TODO: Remove when we migrate to webpack 2 issue
 var outputPath = env.LM_NODE_ENV == 'production' ?
