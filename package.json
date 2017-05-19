@@ -13,8 +13,7 @@
     "test:coverage": "karma start karma.conf.cov.js --single-run",
     "build:dev": "npm run clean && webpack",
     "build:prod": "npm run clean && webpack -p",
-    "clean": "rimraf public",
-    "postinstall": "npm run build:prod"
+    "clean": "rimraf public"
   },
   "repository": {
     "type": "git",
@@ -95,6 +94,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
     "if-env": "^1.0.0",
     "jquery": "^3.1.1",
     "lc-form-validation": "^1.0.0",
