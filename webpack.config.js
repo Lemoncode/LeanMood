@@ -2,8 +2,14 @@ var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var env = require('./env.config');
+
 
 var basePath = __dirname;
+//TODO: Remove when we migrate to webpack 2 issue
+var outputPath = env.LM_NODE_ENV == 'production' ?
+  'public':
+  'dist';
 
 module.exports = {
   context: path.join(basePath, "src"),
@@ -47,11 +53,11 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(basePath, "public"),
+    path: path.join(basePath, outputPath),
     filename: "[name].js"
   },
 
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
 
   devServer: {
     contentBase: './dist', //Content base
