@@ -1,0 +1,2 @@
+html{height:100%}body{min-height:100%;display:flex}[data-reactroot],body>div{display:flex;flex:1}[data-reactroot]{flex-direction:column}.cross-fade-leave{opacity:1}.cross-fade-leave.cross-fade-leave-active{opacity:0;transition:opacity .15s ease-in}.cross-fade-enter{opacity:0}.cross-fade-enter.cross-fade-enter-active{opacity:1;transition:opacity .15s ease-in}.cross-fade-height{transition:height .15s ease-in-out}
+/*# sourceMappingURL=appStyles.css.map*/
