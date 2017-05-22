@@ -5,10 +5,7 @@ const helpers = require('../helpers');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { prodLoaders } = require('./loaders');
 
-module.exports = merge({
-  // Prepend new config sections for arrays
-  customizeArray: (commonConfig, newConfig) => [...newConfig, ...commonConfig],
-})(commonWebpackConfig, {
+module.exports = merge(commonWebpackConfig, {
   devtool: 'cheap-module-source-map',
   output: {
     path: helpers.root('public'),
@@ -19,7 +16,7 @@ module.exports = merge({
   plugins: [
     new ExtractTextPlugin({
       filename: '[chunkhash].[name].css',
-      disable: true,
+      disable: false,
       allChunks: true,
     }),
   ],

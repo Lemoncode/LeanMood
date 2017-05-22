@@ -1,5 +1,4 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const helpers = require('../../helpers');
 
 module.exports.typescriptLoader = {
   test: /\.tsx?$/,
@@ -41,7 +40,6 @@ module.exports.sassLoaderTest = {
       options: {
         modules: true,
         camelCase: true,
-        importLoaders: 1,
         localIdentName: '[local]',
       },
     },

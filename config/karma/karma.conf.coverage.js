@@ -18,14 +18,6 @@ module.exports = (config) => {
       reports: ['html', 'text-summary'],
       fixWebpackSourcePaths: true,
     },
-    // coverageReporter: {
-    //   reporters: [
-        // { type: 'html', subdir: 'report-html' },
-    //     // { type: 'text', subdir: 'report-txt', file: 'index.txt' },
-    //     // { type: 'text' },
-    //     { type: 'text-summary', subdir: '.', file: 'summary.txt' },
-    //   ]
-    // },
   });
 
   config.set(karmaConfig);

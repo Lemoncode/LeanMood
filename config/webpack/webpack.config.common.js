@@ -8,6 +8,9 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
+    alias: {
+      'globalStyles': helpers.root("src/content/sass"),
+    },
   },
 
   entry: {
@@ -15,6 +18,7 @@ module.exports = {
       './index.tsx',
     ],
     vendor: [
+      'core-js',
       'lc-form-validation',
       'marksy',
       'moment',
@@ -22,11 +26,11 @@ module.exports = {
       'react-addons-shallow-compare',
       'react-css-transition-replace',
       'react-dom',
-      'redux',
       'react-redux',
       'react-router',
       'react-router-redux',
       'react-virtualized',
+      'redux',
       'redux-thunk',
       'toastr',
     ],

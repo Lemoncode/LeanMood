@@ -6,12 +6,10 @@ const { devLoaders } = require('./loaders');
 
 const hotReloadingEntries = [
   'react-hot-loader/patch',
-  'webpack-dev-server/client?http://localhost:8080',
-  'webpack/hot/only-dev-server',
 ];
 
 module.exports = merge({
-  // Prepend new config sections for arrays
+  // Prepend hotReloadingEntries first
   customizeArray: (commonConfig, newConfig) => [...newConfig, ...commonConfig],
 })(commonWebpackConfig, {
   devtool: 'inline-source-map',
@@ -20,8 +18,8 @@ module.exports = merge({
     appStyles: hotReloadingEntries,
   },
   devServer: {
-    contentBase: helpers.root('dist'), // Content base
-    inline: true, // Enable watch and live reload
+    contentBase: helpers.root('dist'),
+    inline: true,
     host: 'localhost',
     port: 8080,
     stats: 'errors-only',

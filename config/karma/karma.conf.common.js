@@ -4,13 +4,10 @@ module.exports = {
   files: [
     './spec.bundle.js',
   ],
-  exclude: [
-  ],
   preprocessors: {
     './spec.bundle.js': ['webpack', 'sourcemap'],
   },
   webpackMiddleware: {
-    // webpack-dev-middleware configuration
     noInfo: true,
   },
   reporters: ['mocha'],
@@ -21,6 +18,6 @@ module.exports = {
   colors: true,
   autoWatch: true,
   browsers: ['Chrome'],
-  singleRun: false,
+  singleRun: true,
   concurrency: Infinity,
 };
