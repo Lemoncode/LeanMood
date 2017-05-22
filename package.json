@@ -4,6 +4,7 @@
   "description": "LeanMood web application",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run build:prod",
     "start": "nf start",
     "start:dev": "webpack-dev-server",
     "start:prod": "node server",
