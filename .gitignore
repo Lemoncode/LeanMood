@@ -13,3 +13,4 @@ typings/
 yarn.lock
 *.log
 .awcache/
+public/

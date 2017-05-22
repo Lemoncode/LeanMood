@@ -1,4 +1,4 @@
-import { FieldValidationResult } from 'lc-form-validation';
+import { FieldValidationResult, FormValidationResult } from 'lc-form-validation';
 import { UserProfile } from '../../model/userProfile';
 import { LoginResponse } from '../../model/login/loginResponse';
 import { LoginCredentials } from '../../model/login/loginCredentials';
@@ -22,14 +22,16 @@ export const loginReducer = (state: LoginState = new LoginState(), action) => {
   switch (action.type) {
     case loginActionEnums.LOGIN_CONTENT_CHANGED:
       return handleLoginContentChanged(state, action.payload);
-    case loginActionEnums.LOGIN_REQUEST:
-      return handleLoginRequest(state, action.payload);
+    case loginActionEnums.LOGIN_REQUEST_SUCCESS:
+      return handleLoginRequestSuccess(state, action.payload);
+    case loginActionEnums.LOGIN_REQUEST_ERROR:
+      return handleLoginRequestError(state, action.payload);
     default:
       return state;
   }
 };
 
-const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChangedCompletedPayload) => ({
+const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChangedCompletedPayload): LoginState => ({
   ...state,
   editingLogin: {
     ...state.editingLogin,
@@ -41,7 +43,19 @@ const handleLoginContentChanged = (state: LoginState, payload: ILoginContentChan
   },
 });
 
-const handleLoginRequest = (state: LoginState, payload: LoginResponse) => ({
+const handleLoginRequestSuccess = (state: LoginState, payload: LoginResponse): LoginState => ({
   ...state,
   userProfile: payload.userProfile,
 });
+
+const handleLoginRequestError = (state: LoginState, payload: FieldValidationResult[]): LoginState => {
+  const loginErrors = payload.reduce((errors, fieldValidationResult) => ({
+    ...errors,
+    [fieldValidationResult.key]: fieldValidationResult,
+  }), {} as ILoginErrors);
+
+  return {
+    ...state,
+    loginErrors,
+  };
+};
