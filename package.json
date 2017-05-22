@@ -12,8 +12,8 @@
     "test": "karma start ./config/karma/karma.conf.test.js --single-run",
     "test:watch": "karma start ./config/karma/karma.conf.test.js --no-single-run",
     "test:coverage": "node --max_old_space_size=4096 node_modules/karma/bin/karma start ./config/karma/karma.conf.coverage.js --single-run",
-    "build:dev": "rimraf dist && webpack",
-    "build:prod": "rimraf public && cross-env NODE_ENV=production webpack -p",
+    "build:dev": "rimraf dist && webpack --config ./config/webpack/webpack.config.dev.js",
+    "build:prod": "rimraf public && cross-env NODE_ENV=production webpack --config ./config/webpack/webpack.config.prod.js -p",
     "clean": "rimraf public"
   },
   "repository": {

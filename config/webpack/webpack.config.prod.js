@@ -9,7 +9,10 @@ module.exports = merge({
   // Prepend new config sections for arrays
   customizeArray: (commonConfig, newConfig) => [...newConfig, ...commonConfig],
 })(commonWebpackConfig, {
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
+  output: {
+    path: helpers.root('public'),
+  },
   module: {
     rules: prodLoaders,
   },
