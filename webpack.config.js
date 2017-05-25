@@ -2,8 +2,13 @@ var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var env = require('./env.config');
 
 var basePath = __dirname;
+//TODO: Remove when we migrate to webpack 2 issue
+var outputPath = env.LM_NODE_ENV == 'production' ?
+  'public':
+  'dist';
 
 module.exports = {
   context: path.join(basePath, "src"),
@@ -11,9 +16,6 @@ module.exports = {
     extensions: ['', '.js', '.ts', '.tsx'],
     alias: {
       'globalStyles': path.join(basePath, "src/content/sass/"),
-      // Temporary workaround for React-Hot-Loading V1, til we migrate to 3
-      // https://github.com/gaearon/react-hot-loader/issues/417
-      //'react/lib/ReactMount': 'react-dom/lib/ReactMount'
     },
   },
   entry: {
@@ -50,11 +52,11 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(basePath, "dist"),
+    path: path.join(basePath, outputPath),
     filename: "[name].js"
   },
 
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
 
   devServer: {
     contentBase: './dist', //Content base
