@@ -9,7 +9,6 @@ const mapStateToProps = (state: IAppState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrainingList: (trainerId) => dispatch(fetchTrainingList(trainerId)),
 });
 
 export const TrainingListPageContainer = connect(mapStateToProps, mapDispatchToProps)(TrainingListPage);

@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "npm run build:prod",
     "start": "nf start",
+    "build": "webpack",
     "start:dev": "webpack-dev-server",
     "start:prod": "node server",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
@@ -48,7 +49,6 @@
     "@types/react-router-redux": "^4.0.42",
     "@types/react-virtualized": "^9.4.0",
     "@types/redux-mock-store": "0.0.6",
-    "@types/redux-thunk": "^2.1.31",
     "@types/sinon": "^1.16.32",
     "@types/toastr": "^2.1.32",
     "@types/webpack-env": "^1.12.1",
