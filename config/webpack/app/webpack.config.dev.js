@@ -1,21 +1,24 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const commonWebpackConfig = require('./webpack.config.base');
-const helpers = require('../helpers');
-const { devLoaders } = require('./loaders');
+const base = require('./webpack.config.base');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const helpers = require('../../helpers');
 
 const hotReloadingEntries = [
   'react-hot-loader/patch',
 ];
 
-module.exports = merge({
-  // Prepend hotReloadingEntries first
-  customizeArray: (commonConfig, newConfig) => [...newConfig, ...commonConfig],
-})(commonWebpackConfig, {
+module.exports = merge.strategy({
+  entry: 'prepend',
+})(base, {
   devtool: 'inline-source-map',
   entry: {
     app: hotReloadingEntries,
     appStyles: hotReloadingEntries,
+  },
+  output: {
+    path: helpers.root('dist'),
+    filename: '[name].js',
   },
   devServer: {
     contentBase: helpers.root('dist'),
@@ -25,13 +28,13 @@ module.exports = merge({
     stats: 'errors-only',
     hot: true,
   },
-  module: {
-    rules: devLoaders,
-  },
   plugins: [
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin(),
     // Display in console what modules are hot reloaded
     new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin({
+      disable: true,
+    }),
   ],
 });

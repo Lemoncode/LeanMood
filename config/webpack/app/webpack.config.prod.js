@@ -1,17 +1,14 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const commonWebpackConfig = require('./webpack.config.base');
-const helpers = require('../helpers');
+const base = require('./webpack.config.base');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { prodLoaders } = require('./loaders');
+const helpers = require('../../helpers');
 
-module.exports = merge(commonWebpackConfig, {
+module.exports = merge(base, {
   devtool: 'cheap-module-source-map',
   output: {
     path: helpers.root('public'),
-  },
-  module: {
-    rules: prodLoaders,
+    filename: '[chunkhash].[name].js',
   },
   plugins: [
     new ExtractTextPlugin({

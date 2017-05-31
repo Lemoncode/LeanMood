@@ -1,15 +1,12 @@
 const webpack = require('webpack');
+const merge = require('webpack-merge');
+const common = require('../webpack.config.common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const helpers = require('../helpers');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const helpers = require('../../helpers');
 
-module.exports = {
+module.exports = merge(common, {
   context: helpers.root('src'),
-  resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
-    alias: {
-      'globalStyles': helpers.root("src/content/sass"),
-    },
-  },
   entry: {
     app: [
       './index.tsx',
@@ -43,37 +40,44 @@ module.exports = {
     ]
   },
 
-  output: {
-    path: helpers.root('dist'),
-    filename: '[name].js',
-  },
-
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          useBabel: true,
+          useCache: true,
+        },
       },
       {
-        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {
+            loader: 'css-loader',
+          },
+        }),
       },
       {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-      },
-      {
-        test: /\.(png|jpg|ico)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/png',
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                camelCase: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+            { loader: 'sass-loader' },
+          ],
+        }),
       },
     ],
   },
@@ -91,4 +95,4 @@ module.exports = {
       chunksSortMode: helpers.sortChunks(['vendor', 'vendorStyles', 'appStyles', 'app']),
     }),
   ],
-};
+});

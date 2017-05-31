@@ -10,8 +10,8 @@ module.exports = merge(base, {
         exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
         options: {
-          useCache: true,
           useBabel: true,
+          useCache: true,
           configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
         },
       },
