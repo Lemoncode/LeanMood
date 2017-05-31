@@ -29,20 +29,3 @@ module.exports.vendorCSSLoaderProd = {
     },
   }),
 };
-
-module.exports.sassLoaderTest = {
-  test: /\.scss$/,
-  exclude: /node_modules/,
-  use: [
-    { loader: 'style-loader' },
-    {
-      loader: 'css-loader',
-      options: {
-        modules: true,
-        camelCase: true,
-        localIdentName: '[local]',
-      },
-    },
-    { loader: 'sass-loader' },
-  ],
-};

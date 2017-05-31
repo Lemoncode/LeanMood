@@ -13,6 +13,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+      },
+      {
         test: /\.css$/,
         include: /node_modules/,
         use: [

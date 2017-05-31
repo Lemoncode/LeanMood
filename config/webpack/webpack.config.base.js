@@ -1,18 +1,15 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('../helpers');
 
 module.exports = {
   context: helpers.root('src'),
-
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     alias: {
       'globalStyles': helpers.root("src/content/sass"),
     },
   },
-
   entry: {
     app: [
       './index.tsx',

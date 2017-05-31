@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const commonWebpackConfig = require('./webpack.config.common');
+const commonWebpackConfig = require('./webpack.config.base');
 const helpers = require('../helpers');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { prodLoaders } = require('./loaders');
