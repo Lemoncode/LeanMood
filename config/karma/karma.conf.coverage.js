@@ -1,5 +1,5 @@
 const commonConfig = require('./karma.conf.common');
-const webpackConfig = require('../webpack/webpack.config.coverage');
+const webpackConfig = require('../webpack/test/webpack.config.coverage');
 const helpers = require('../helpers');
 
 module.exports = (config) => {
