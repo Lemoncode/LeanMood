@@ -4,9 +4,6 @@ module.exports = {
   files: [
     './spec.bundle.js',
   ],
-  preprocessors: {
-    './spec.bundle.js': ['webpack', 'sourcemap'],
-  },
   webpackMiddleware: {
     noInfo: true,
   },

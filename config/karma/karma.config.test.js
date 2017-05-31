@@ -1,8 +1,11 @@
-const commonConfig = require('./karma.conf.common');
+const base = require('./karma.config.base');
 const webpackConfig = require('../webpack/test/webpack.config.test');
 
 module.exports = (config) => {
-  const karmaConfig = Object.assign({}, commonConfig, {
+  const karmaConfig = Object.assign({}, base, {
+    preprocessors: {
+      './spec.bundle.js': ['webpack', 'sourcemap'],
+    },
     webpack: webpackConfig,
     logLevel: config.LOG_INFO,
   });
