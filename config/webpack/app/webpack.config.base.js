@@ -84,7 +84,7 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      names: ['vendor', 'manifest']
     }),
     //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
@@ -92,7 +92,7 @@ module.exports = merge(common, {
       template: 'index.html', //Name of template in ./src
       favicon: 'content/image/logo.png',
       hash: true,
-      chunksSortMode: helpers.sortChunks(['vendor', 'vendorStyles', 'appStyles', 'app']),
+      chunksSortMode: helpers.sortChunks(['manifest', 'vendor', 'vendorStyles', 'appStyles', 'app']),
     }),
   ],
 });
