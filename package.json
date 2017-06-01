@@ -8,13 +8,13 @@
     "start": "nf start",
     "start:dev": "webpack-dev-server --config ./config/webpack/app/webpack.config.dev.js",
     "start:prod": "node server",
+    "build": "npm run build:dev",
+    "build:dev": "rimraf dist && webpack --config ./config/webpack/app/webpack.config.dev.js",
+    "build:prod": "rimraf public && cross-env NODE_ENV=production webpack -p --config ./config/webpack/app/webpack.config.prod.js",
     "lint": "tslint -c ./tslint.json --force src/**/*.ts src/**/*.tsx",
     "test": "karma start ./config/karma/karma.config.test.js",
     "test:watch": "karma start ./config/karma/karma.config.test.js --no-single-run",
-    "test:coverage": "node --max_old_space_size=4096 node_modules/karma/bin/karma start ./config/karma/karma.config.coverage.js",
-    "build:dev": "rimraf dist && webpack --config ./config/webpack/app/webpack.config.dev.js",
-    "build:prod": "rimraf public && cross-env NODE_ENV=production webpack -p --config ./config/webpack/app/webpack.config.prod.js",
-    "clean": "rimraf public"
+    "test:coverage": "node --max_old_space_size=4096 node_modules/karma/bin/karma start ./config/karma/karma.config.coverage.js"
   },
   "repository": {
     "type": "git",
