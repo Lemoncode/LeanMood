@@ -153,7 +153,6 @@ describe('trainingReducer', () => {
     expect(originalState).to.be.frozen;
   });
 
-
   it(`should return next state when passing action type equals TOGGLE_EDITOR_PREVIEW
     and newState.showPreview == !prevState.showPreview (false case)`, () => {
     // Arrange

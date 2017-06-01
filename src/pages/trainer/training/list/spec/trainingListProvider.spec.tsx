@@ -13,7 +13,7 @@ import { SubscriptionManager } from '../../../../../common/components';
 const createStore = configureStore<IAppState>();
 
 describe('Trainer Module: TrainingListProvider', () => {
-  it('should connect a serverRequestManager', sinon.test(function () {
+  it('should connect a serverRequestManager', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const store: any = createStore({

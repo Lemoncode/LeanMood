@@ -89,7 +89,7 @@ describe('TrainingApi', () => {
     it('Get the expected summary training list for a given student', sinon.test((done) => {
       // Arrange
       let expectedSummaryList: TrainingSummary[];
-      let studentId = 3;
+      const studentId = 3;
 
       // Act
       expectedSummaryList = trainingList.filter((training) => {
@@ -107,5 +107,4 @@ describe('TrainingApi', () => {
       });
     }).bind(this));
   });
-
 });

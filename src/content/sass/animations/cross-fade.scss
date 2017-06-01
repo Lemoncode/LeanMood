@@ -1,21 +1,21 @@
-.cross-fade-leave {
+:global(.cross-fade-leave) {
   opacity: 1;
 }
 
-.cross-fade-leave.cross-fade-leave-active {
+:global(.cross-fade-leave.cross-fade-leave-active) {
   opacity: 0;
   transition: opacity 150ms ease-in;
 }
 
-.cross-fade-enter {
+:global(.cross-fade-enter) {
   opacity: 0;
 }
 
-.cross-fade-enter.cross-fade-enter-active {
+:global(.cross-fade-enter.cross-fade-enter-active) {
   opacity: 1;
   transition: opacity 150ms ease-in;
 }
 
-.cross-fade-height {
+:global(.cross-fade-height) {
   transition: height 150ms ease-in-out;
 }

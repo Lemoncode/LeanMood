@@ -188,7 +188,6 @@ describe('EditorComponent', () => {
       const activePanelId = '';
       const dummySetActivePanelId = () => { };
 
-
       const expectedContent = 'test content with caret';
       const insertAtCaretGetTextStub = sinon.stub(textAreaTool,
         'insertAtCaretGetText', () => {

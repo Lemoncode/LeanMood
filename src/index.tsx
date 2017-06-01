@@ -1,28 +1,24 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { hashHistory, Router } from 'react-router';
+import { AppContainer } from 'react-hot-loader';
+import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
-import reduxThunk from 'redux-thunk';
-import { AppRoutes } from './routes';
-import { reducers } from './reducers';
+import { store } from './store';
+import { AppProvider } from './provider';
 
-const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(reduxThunk),
-    /* tslint:disable-next-line */
-    window["devToolsExtension"] ? window["devToolsExtension"]() : (f) => f,
-  ),
-);
-const history = syncHistoryWithStore(hashHistory, store);
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('root'),
+  );
+};
 
-// The ...component, spread operator: like object assign just add the new
-// properties to the Route control (and preserves the existing ones)
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history} routes={AppRoutes} />
-  </Provider>,
-  document.getElementById('root'),
-);
+render(AppProvider);
+
+if (module.hot) {
+  module.hot.accept('./provider', () => {
+    render(AppProvider);
+  });
+}

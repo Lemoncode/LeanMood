@@ -1,8 +1,8 @@
-import { hashHistory } from 'react-router';
+import { history } from '../../../history';
 
 class NavigationHelper {
   public navigateToPath = (path: string) => {
-    hashHistory.push(`${path}`);
+    history.push(`${path}`);
   }
 }
 

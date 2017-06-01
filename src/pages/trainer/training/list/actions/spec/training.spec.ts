@@ -15,7 +15,7 @@ describe('Trainer Module: fetchTrainingList action', () => {
   });
 
   it('should dispatch a GET_SUMMARY_TRAINING_REQUEST_COMPLETED action with the fetched training list',
-    sinon.test(function (done) {
+    sinon.test(function(done) {
       // Arrange
       const sinon: sinon.SinonStatic = this;
       const trainerId = 123;

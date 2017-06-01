@@ -39,7 +39,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     expect(container.find(TrainingListPage)).to.have.lengthOf(1);
   }));
 
-  it('should inject to TrainingListPage a trainingList prop from state', sinon.test(function () {
+  it('should inject to TrainingListPage a trainingList prop from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const list: TrainingSummary[] = [
@@ -72,7 +72,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     expect(trainingListPage.prop('trainingList')).to.be.an('array').that.is.deep.equals(training.list);
   }));
 
-  it('should inject to TrainingListPage a trainerId property from state', sinon.test(function () {
+  it('should inject to TrainingListPage a trainerId property from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const trainerId = 123;
