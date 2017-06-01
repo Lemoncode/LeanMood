@@ -12,7 +12,7 @@ module.exports = (config) => {
     reporters: [...base.reporters, 'coverage-istanbul'],
     coverageIstanbulReporter: {
       dir: helpers.root('test', 'coverage'),
-      reports: ['html', 'text-summary'],
+      reports: ['html', 'text'],
       fixWebpackSourcePaths: true,
     },
   });
