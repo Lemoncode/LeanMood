@@ -12,7 +12,7 @@ module.exports = merge(base, {
         options: {
           useBabel: true,
           useCache: true,
-          configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
+          configFileName: helpers.resolveFromRootPath('config', 'karma', 'karma.tsconfig.json'),
         },
       },
     ]

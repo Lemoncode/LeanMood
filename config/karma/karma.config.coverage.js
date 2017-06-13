@@ -11,7 +11,7 @@ module.exports = (config) => {
     logLevel: config.LOG_DISABLE,
     reporters: [...base.reporters, 'coverage-istanbul'],
     coverageIstanbulReporter: {
-      dir: helpers.root('test', 'coverage'),
+      dir: helpers.resolveFromRootPath('test', 'coverage'),
       reports: ['html', 'text'],
       fixWebpackSourcePaths: true,
     },

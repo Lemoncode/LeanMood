@@ -17,11 +17,11 @@ module.exports = merge.strategy({
     appStyles: hotReloadingEntries,
   },
   output: {
-    path: helpers.root('dist'),
+    path: helpers.resolveFromRootPath('dist'),
     filename: '[name].js',
   },
   devServer: {
-    contentBase: helpers.root('dist'),
+    contentBase: helpers.resolveFromRootPath('dist'),
     inline: true,
     host: 'localhost',
     port: 8080,
