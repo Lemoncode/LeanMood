@@ -28,7 +28,7 @@ export const StudentDeliveryListRowComponent: React.StatelessComponent<Props> = 
           <Link to={props.studentDelivery.link}>Download</Link>
         }
       </div>
-      <div className={styles.col} style={{ alignItems: 'normal' }}>
+      <div className={styles.col}>
         <div>Grade</div>
         <SelectComponent
           label=""
