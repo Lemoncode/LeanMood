@@ -71,7 +71,7 @@ export class DroppableFileComponent extends React.PureComponent<Props, State> {
     this.onFileChange(event.dataTransfer.files[0]);
   }
 
-  private onChange(event: React.MouseEvent<HTMLInputElement>) {
+  private onChange(event: React.FormEvent<HTMLInputElement>) {
     this.onFileChange(event.currentTarget.files[0]);
   }
 
