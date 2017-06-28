@@ -1,6 +1,8 @@
 import {expect} from 'chai';
 import * as trainerMockData from '../trainerMockData';
+import * as exerciseEvaluationMockData from '../exerciseEvaluationMockedData';
 import {EditTrainingSummary} from '../../../model/trainer/editTrainingSummary';
+import { ExerciseEvaluation } from '../../../model/trainer/deliveryEvaluation';
 import {trainerApi} from '../trainerApi';
 
 describe('TrainerApi', () => {
@@ -62,5 +64,35 @@ describe('TrainerApi', () => {
         done();
       });
     }).bind(this));
+  });
+
+  describe('getExerciseEvaluationById', () => {
+    it('returns expected Exercise Evaluation by id equals 1', sinon.test((done) => {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+
+      const id = 123;
+
+      const expectedMockEvaluation: ExerciseEvaluation = {
+        id: 123,
+        name: 'Exercise delivery - Module UX + Design',
+        studentDelivery:null
+      };
+
+      const exerciseEvaluationMockDataStub = sinon.stub(exerciseEvaluationMockData, 'exerciseEvaluationMockedData',
+        [expectedMockEvaluation],
+      );
+
+      // Act
+      // const promise = trainerApi.getTrainingConentByTrainingId(id);
+      const promise = trainerApi.getExerciseEvaluationById(id);
+
+      promise.then((content) => {
+        // Assert
+        expect(content.name).to.equal(expectedMockEvaluation.name);
+        done();
+      });
+    }).bind(this));
+
   });
 });
