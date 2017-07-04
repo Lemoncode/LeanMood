@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Link} from 'react-router';
-import {adminRouteEnums} from '../../../../common/routeEnums/admin';
+import { Link } from 'react-router';
+import { adminRouteEnums } from '../../../../common/routeEnums/admin';
 import { StudentSummary } from '../../../../model/studentSummary';
 
 interface Props  {
@@ -17,8 +17,12 @@ export class EditStudentPage extends React.Component<Props, {}> {
 
     render() {
        return (
-         <div>
-             {/*<span>Test, student name {this.props.student.fullname}</span>*/}
+         <div>      
+             <span>Student name: {this.props.student.fullname}</span>
+              <br/>
+             <span>Email: {this.props.student.email}</span>
+              <br/>
+             <span>Is Active?: {this.props.student.isActive ? 'Yes' : 'No'}</span>
            <br/>
            <Link to={adminRouteEnums.student.list}>Back to student list</Link>
            <Link to={adminRouteEnums.default}>Back to Dashboard</Link>

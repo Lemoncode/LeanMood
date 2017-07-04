@@ -65,4 +65,31 @@ describe('adminStudentReducer', () => {
     // Assert
     expect(newState.studentSummaryList).to.eql(students);
   });
+
+   it(`should return a new state including a specific student when
+    passing a GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED`, () => {
+    // Arrange
+    const originalState = new AdminStudentState();
+
+    deepFreeze(originalState);
+
+    const student: StudentSummary = 
+      {
+        id: 2,
+        fullname: 'John Doe',
+        email: 'test@test.com',
+        isActive: true,
+      };
+
+    const actionResult = {
+      type: adminActionEnums.GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED,
+      payload: student,
+    };
+
+    // Act
+    const newState = adminStudentReducer(originalState, actionResult);
+
+    // Assert
+    expect(newState.editingStudentSummary).to.eql(student);
+  });
 });
