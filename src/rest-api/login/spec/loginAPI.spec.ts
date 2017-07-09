@@ -1,7 +1,7 @@
 import {LoginCredentials} from '../../../model/login/loginCredentials';
 import {LoginResponse} from '../../../model/login/loginResponse';
 import * as loginMockData from '../loginMockData';
-import {loginApi} from '../loginAPI';
+import {loginApi} from '../';
 
 describe('loginApi', () => {
   it('should be defined', () => {

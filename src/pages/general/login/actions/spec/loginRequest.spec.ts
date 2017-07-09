@@ -3,7 +3,7 @@ import ReduxThunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { FormValidationResult, FieldValidationResult } from 'lc-form-validation';
 import { navigationHelper } from '../../../../../common/helper/navigationHelper';
-import { loginApi } from '../../../../../rest-api/login/loginAPI';
+import { loginApi } from '../../../../../rest-api/login';
 import { LoginCredentials } from '../../../../../model/login/loginCredentials';
 import { UserProfile } from './../../../../../model/userProfile';
 import { LoginResponse } from '../../../../../model/login/loginResponse';

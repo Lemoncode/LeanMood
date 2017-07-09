@@ -1,5 +1,5 @@
 import * as toastr from 'toastr';
-import { loginApi } from '../../../../rest-api/login/loginAPI';
+import { loginApi } from '../../../../rest-api/login';
 import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from '../../../../model/login/loginResponse';
