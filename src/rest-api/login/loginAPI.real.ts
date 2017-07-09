@@ -14,6 +14,5 @@ export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<Login
     loginResponse.succeded = false;
     loginResponse.userProfile = null;
   }
-
   return Promise.resolve(loginResponse);
 };
