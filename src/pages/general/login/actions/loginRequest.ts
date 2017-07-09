@@ -1,5 +1,5 @@
 import * as toastr from 'toastr';
-import { loginApi } from '../../../../rest-api/login';
+import { login } from '../../../../rest-api/login';
 import { LoginCredentials } from '../../../../model/login/loginCredentials';
 import { loginActionEnums } from './../../../../common/actionEnums/login';
 import { LoginResponse } from '../../../../model/login/loginResponse';
@@ -22,7 +22,7 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
     promise
       .then((formValidationResult) => {
         if (formValidationResult.succeeded) {
-          loginApi.login(loginCredentials).then((response) => {
+            login(loginCredentials).then((response) => {
             if (response.succeded) {
               dispatch(loginRequestSuccessAction(response));
               navigationHelper.navigateToPath(`/${response.userProfile.role}`);

@@ -1,8 +1,9 @@
-export * from './loginAPI.double';
+import * as apiDouble from './loginAPI.double';
+import * as apiReal from './loginAPI.real';
+import { LoginFunction } from './loginAPI.contract';
 import { config } from '../config';
 
-if (config.useRealAPI) {
-  console.log('using real api');
-} else {
-  console.log('using double');
-}
+export const login: LoginFunction  = (config.useRealAPI) ?
+                  apiReal.login
+                  :
+                  apiDouble.login;
