@@ -7,9 +7,13 @@ import { TrainingTableComponent } from '../trainingTable';
 
 describe('TrainingTableComponent', () => {
   it('Should not be undefined', () => {
+    // Arrange
+    const trainingList = [];
+    const width = 0;
+
     // Act
     const trainingTableComponent = shallow(
-      <TrainingTableComponent trainingList={[]}/>,
+      <TrainingTableComponent width={width} trainingList={trainingList}/>,
     );
 
     // Assert
@@ -36,9 +40,11 @@ describe('TrainingTableComponent', () => {
       },
     ];
 
+    const width = 600;
+
     // Act
     const trainingTableComponent = shallow(
-      <TrainingTableComponent trainingList={trainings}/>,
+      <TrainingTableComponent width={width} trainingList={trainings}/>,
     );
 
     // Assert

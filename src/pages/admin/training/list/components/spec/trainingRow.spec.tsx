@@ -9,13 +9,18 @@ describe('TrainingRowComponent', () => {
   it('should be defined', () => {
     // Arrange
     const training = new TrainingSummary();
-    training.id = 1;
-    training.name = 'john';
-    training.isActive = true;
+    const props = {
+      className: '',
+      columns: [],
+      index: 0,
+      isScrolling: false,
+      rowData: training,
+      style: {},
+    };
 
     // Act
     const trainingRowComponent = shallow(
-            <TrainingRowComponent training={training}/>,
+            <TrainingRowComponent {...props}/>,
     );
     // Assert
     expect(trainingRowComponent).not.to.be.undefined;
@@ -27,10 +32,18 @@ describe('TrainingRowComponent', () => {
     trainingSummary.id = 1;
     trainingSummary.name = 'john';
     trainingSummary.isActive = true;
+    const props = {
+      className: '',
+      columns: [],
+      index: 0,
+      isScrolling: false,
+      rowData: trainingSummary,
+      style: {},
+    };
 
     // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent training={trainingSummary}/>,
+      <TrainingRowComponent {...props}/>,
     );
 
     // Assert
