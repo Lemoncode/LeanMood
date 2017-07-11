@@ -3,7 +3,7 @@ import {trainerApi} from '../../../../../rest-api';
 
 export const fetchTrainingContentStarted = (trainingId: number) => {
   return (dispatcher) => {
-    const promise = trainerApi.getTrainingConentByTrainingId(trainingId);
+    const promise = trainerApi.getTrainingContentByTrainingId(trainingId);
 
     promise.then(
       (data) => dispatcher(fetchTrainingContentCompleted(data)),

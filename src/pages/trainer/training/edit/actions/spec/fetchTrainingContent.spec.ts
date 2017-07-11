@@ -52,7 +52,7 @@ describe('fetchTrainingContentStarted', () => {
       });
   });
 
-  it('should calls to getTrainingConentByTrainingId and expect payload', sinon.test((done) => {
+  it('should calls to getTrainingContentByTrainingId and expect payload', sinon.test((done) => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
@@ -60,7 +60,7 @@ describe('fetchTrainingContentStarted', () => {
     const expectedContent = 'Test content';
     const store = mockStore([]);
 
-    const getTrainingConentByTrainingIdStub = sinon.stub(trainerApi, 'getTrainingConentByTrainingId', () => {
+    const getTrainingContentByTrainingIdStub = sinon.stub(trainerApi, 'getTrainingContentByTrainingId', () => {
       return {
         then: (callback) => {
           callback(expectedContent);
@@ -72,7 +72,7 @@ describe('fetchTrainingContentStarted', () => {
     store.dispatch(fetchTrainingContentStarted(trainingId))
       .then(() => {
         // Assert
-        expect(getTrainingConentByTrainingIdStub.calledWith(trainingId)).to.be.true;
+        expect(getTrainingContentByTrainingIdStub.calledWith(trainingId)).to.be.true;
         expect(store.getActions()[0].payload).to.equal(expectedContent);
 
         done();

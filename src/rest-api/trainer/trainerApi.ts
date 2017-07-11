@@ -3,7 +3,7 @@ import {exerciseEvaluationMockedData} from './exerciseEvaluationMockedData';
 import { ExerciseEvaluation } from '../../model/trainer/deliveryEvaluation';
 
 class TrainerApi {
-  public getTrainingConentByTrainingId(id: number): Promise<string> {
+  public getTrainingContentByTrainingId(id: number): Promise<string> {
     let content: string;
 
     const trainingContent = trainingContentMockData.filter((trainingMockData) => {
@@ -19,15 +19,19 @@ class TrainerApi {
   public getExerciseEvaluationById(id: number): Promise<ExerciseEvaluation> {
     let evaluation: ExerciseEvaluation;
 
-    const evaluationData = exerciseEvaluationMockedData.filter((evaluationItem) => {
+    const evaluationData = exerciseEvaluationMockedData.find((evaluationItem) => {
       return evaluationItem.id === id;
     });
 
-    if (evaluationData && evaluationData.length > 0) {
-      evaluation = evaluationData[0];
+    if (evaluationData) {
+      evaluation = evaluationData;
     }
 
-    return Promise.resolve(evaluation);
+    return Promise.resolve(evaluationData);
+  }
+
+  public saveExerciseEvaluation(exerciseEvaluation:ExerciseEvaluation){
+    return Promise.resolve(exerciseEvaluation);
   }
 }
 

@@ -11,7 +11,7 @@ describe('TrainerApi', () => {
     expect(trainerApi).not.to.be.undefined;
   });
 
-  describe('getTrainingConentByTrainingId', () => {
+  describe('getTrainingContentByTrainingId', () => {
     it('returns expected content by id equals 1', sinon.test((done) => {
       // Arrange
       const sinon: sinon.SinonStatic = this;
@@ -28,7 +28,7 @@ describe('TrainerApi', () => {
       );
 
       // Act
-      const promise = trainerApi.getTrainingConentByTrainingId(id);
+      const promise = trainerApi.getTrainingContentByTrainingId(id);
 
       promise.then((content) => {
         // Assert
@@ -56,7 +56,7 @@ describe('TrainerApi', () => {
       );
 
       // Act
-      const promise = trainerApi.getTrainingConentByTrainingId(id);
+      const promise = trainerApi.getTrainingContentByTrainingId(id);
 
       promise.then((content) => {
         // Assert
@@ -70,21 +70,17 @@ describe('TrainerApi', () => {
     it('returns expected Exercise Evaluation by id equals 1', sinon.test((done) => {
       // Arrange
       const sinon: sinon.SinonStatic = this;
-
       const id = 123;
-
       const expectedMockEvaluation: ExerciseEvaluation = {
         id: 123,
         name: 'Exercise delivery - Module UX + Design',
         studentDelivery:null
       };
-
       const exerciseEvaluationMockDataStub = sinon.stub(exerciseEvaluationMockData, 'exerciseEvaluationMockedData',
         [expectedMockEvaluation],
       );
 
       // Act
-      // const promise = trainerApi.getTrainingConentByTrainingId(id);
       const promise = trainerApi.getExerciseEvaluationById(id);
 
       promise.then((content) => {
