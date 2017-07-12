@@ -194,7 +194,7 @@ describe('StudentRowComponent', () => {
         // Assert
         expect(link.type()).to.be.equals(Link);
         expect(link.prop('className')).to.be.equals('btn btn-primary');
-        expect(link.prop('to')).to.be.equals(`${adminRouteEnums.student.edit}/32`);
+        expect(link.prop('to')).to.be.equals(`${adminRouteEnums.student.base}/32/edit`);
         expect(icon.type()).to.be.equals('i');
         expect(icon.prop('className')).to.be.equals('glyphicon glyphicon-pencil');
       });

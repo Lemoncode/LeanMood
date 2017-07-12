@@ -5,17 +5,17 @@ import { StudentSummary } from '../../../../model/studentSummary';
 
 interface Props  {
   student: StudentSummary;
-  getstudent : (id: number) => void;
-  params? : any;
+  getstudent: (id: number) => void;
+  studentId: number;
 }
 
 export class EditStudentPage extends React.Component<Props, {}> {
-   componentDidMount() {
-       const studentId: number = Number(this.props.params.id);
+   public componentDidMount() {
+       const studentId: number = Number(this.props.studentId);
        this.props.getstudent(studentId);
   }
 
-    render() {
+    public render() {
        return (
          <div>      
              <span>Student name: {this.props.student.fullname}</span>

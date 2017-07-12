@@ -1,5 +1,1 @@
-import { EditStudentPageContainer } from './pageContainer';
-
-export {
-  EditStudentPageContainer
-}
+export { EditStudentPageContainer } from './pageContainer';

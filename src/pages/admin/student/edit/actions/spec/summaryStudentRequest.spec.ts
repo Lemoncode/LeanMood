@@ -9,9 +9,9 @@ import { studentApi } from '../../../../../../rest-api';
 const mockStore = configureStore([thunk]);
 
 describe('summaryStudentByIdRequestCompleted', () => {
-  it('should be an object', () => {
+  it('should be a function', () => {
     // Assert
-    expect(summaryStudentByIdRequestCompleted).not.to.be.an('object');
+    expect(summaryStudentByIdRequestCompleted).to.be.a('function');
   });
 
   it('contains the expected type GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED', () => {

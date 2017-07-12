@@ -3,12 +3,13 @@ import { IAppState } from '../../../../reducers';
 import { EditStudentPage } from './page';
 import { summaryStudentByIdRequestStarted } from './actions/summaryStudentRequest';
 
-const mapStateToProps = (state : IAppState) => ({
-  student: state.adminStudent.editingStudentSummary
+const mapStateToProps = (state: IAppState, ownProps) => ({
+  studentId: Number(ownProps.params.id) || 0,
+  student: state.adminStudent.editingStudentSummary,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getstudent: (id : number) => dispatch(summaryStudentByIdRequestStarted(id)),
+  getstudent: (studentId: number) => dispatch(summaryStudentByIdRequestStarted(studentId)),
 });
 
 export const EditStudentPageContainer = connect(

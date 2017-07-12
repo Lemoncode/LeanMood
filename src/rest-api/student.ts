@@ -27,9 +27,8 @@ class StudentApi {
     return Promise.resolve(studentSummaryList);
   }
 
-   public getStudentById(id : number): Promise<StudentSummary> 
-   {
-    const studentSummary: StudentSummary = this.studentList.find(st => st.id === id);
+   public getStudentById(id: number): Promise<StudentSummary> {
+    const studentSummary: StudentSummary = this.studentList.find((st) => st.id === id);
     return Promise.resolve(studentSummary);
   }
 }
