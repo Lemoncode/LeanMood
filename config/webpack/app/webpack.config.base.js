@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('../../helpers');
 
 module.exports = merge(common, {
-  context: helpers.root('src'),
+  context: helpers.resolveFromRootPath('src'),
   entry: {
     app: [
       './index.tsx',
