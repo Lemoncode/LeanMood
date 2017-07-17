@@ -33,7 +33,7 @@ describe('admin/training/list/page', () => {
     expect(page).not.to.be.undefined;
   });
 
-  it('renders a training table Shallow', () => {
+  it('should renders a header', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
@@ -59,8 +59,12 @@ describe('admin/training/list/page', () => {
       <ListTrainingPage trainingList={trainings} fetchTrainings={dummyFetchTrainings}/>,
     );
 
+    const header = pageWrapper.childAt(0);
+
     // Assert
-    expect(pageWrapper.children().at(0).type()).to.be.equal(TrainingTableComponent);
+    expect(header.type()).to.be.equals('h1');
+    expect(header.childAt(0).text()).to.be.equals('Active Trainigs');
+
   });
 
   // sinon.test(

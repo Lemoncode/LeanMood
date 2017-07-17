@@ -26,19 +26,19 @@ describe('TrainingRowComponent', () => {
     expect(trainingRowComponent).not.to.be.undefined;
   });
 
-  it('should render the student name', () => {
+  it('should render the training name', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
     trainingSummary.id = 1;
-    trainingSummary.name = 'john';
+    trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
-      className: '',
+      className: 'rowClassName',
       columns: [],
       index: 0,
       isScrolling: false,
       rowData: trainingSummary,
-      style: {},
+      style: { color: 'red' },
     };
 
     // Act
@@ -47,22 +47,11 @@ describe('TrainingRowComponent', () => {
     );
 
     // Assert
-    const expectedDomTree = `
-      <tr>
-        <td>
-          <span>
-            1
-          </span>
-        </td>
-        <td>
-          <span>
-            john
-          </span>
-        </td>
-      </tr>
-      `;
-
-    expect(trainingRowComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
+    expect(trainingRowComponent.hasClass('rowClassName')).to.be.true;
+    expect(trainingRowComponent.prop('columns')).to.be.deep.equals([]);
+    expect(trainingRowComponent.prop('index')).to.be.equals(0);
+    expect(trainingRowComponent.prop('isScrolling')).to.be.false;
+    expect(trainingRowComponent.prop('rowData')).to.be.equals(trainingSummary);
+    expect(trainingRowComponent.prop('style')).to.be.deep.equals({ color: 'red' });
   });
-
 });

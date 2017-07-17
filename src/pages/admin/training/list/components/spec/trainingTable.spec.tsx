@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
@@ -21,7 +21,7 @@ describe('TrainingTableComponent', () => {
 
   });
 
-  it('Should display trainings tabular data', () => {
+  it('Should render as many rows as trainigs', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
@@ -43,42 +43,11 @@ describe('TrainingTableComponent', () => {
     const width = 600;
 
     // Act
-    const trainingTableComponent = shallow(
+    const trainingTableComponent = mount(
       <TrainingTableComponent width={width} trainingList={trainings}/>,
     );
 
     // Assert
-    const expectedDomTree = `
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <span>
-                2
-              </span>
-            </td>
-            <td>
-              <span>
-                John Doe
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span>
-                3
-              </span>
-            </td>
-            <td>
-              <span>
-                Mark Somez
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      `;
-
-    expect(trainingTableComponent.html()).to.be.equal(multilineTrim(expectedDomTree));
+    expect(trainingTableComponent.find('.ReactVirtualized__Table__row').length).to.be.equals(2);
   });
 });
