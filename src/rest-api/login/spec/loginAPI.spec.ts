@@ -1,12 +1,12 @@
 import {LoginCredentials} from '../../../model/login/loginCredentials';
 import {LoginResponse} from '../../../model/login/loginResponse';
 import * as loginMockData from '../loginMockData';
-import {loginApi} from '../loginAPI';
+import {login} from '../';
 
 describe('loginApi', () => {
   it('should be defined', () => {
     // Assert
-    expect(loginApi).not.to.be.undefined;
+    expect(login).not.to.be.undefined;
   });
 
   it(`returns loginResponse.succeded equals false and loginResponse.userProfile equals null
@@ -17,7 +17,7 @@ describe('loginApi', () => {
     loginCredentials.password = 'error';
 
     // Act
-    const result = loginApi.login(loginCredentials);
+    const result = login(loginCredentials);
 
     result.then((loginResponse) => {
       // Assert
@@ -35,7 +35,7 @@ describe('loginApi', () => {
     loginCredentials.password = 'error';
 
     // Act
-    const result = loginApi.login(loginCredentials);
+    const result = login(loginCredentials);
 
     result.then((loginResponse) => {
       // Assert
@@ -63,7 +63,7 @@ describe('loginApi', () => {
     );
 
     // Act
-    const result = loginApi.login(loginCredentials);
+    const result = login(loginCredentials);
 
     result.then((loginResponse) => {
       // Assert
