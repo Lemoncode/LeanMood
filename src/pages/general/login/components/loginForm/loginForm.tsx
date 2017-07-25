@@ -10,6 +10,7 @@ interface IProps {
   loginErrors: ILoginErrors;
   updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) => void;
   loginRequest: (loginCredentials: LoginCredentials) => void;
+  test?: () => void; // TODO: Remove this.
 }
 
 export const LoginFormComponent = (props: IProps) => {
@@ -27,6 +28,11 @@ export const LoginFormComponent = (props: IProps) => {
             />
           </div>
         </div>
+      </div>
+      <div className="row">
+        <button className="btn btn-default pull-right" onClick={props.test}>
+          TEST POST
+        </button>
       </div>
     </div>
   );

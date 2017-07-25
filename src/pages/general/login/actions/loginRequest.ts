@@ -19,9 +19,18 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
 
     const promise = loginFormValidation.validateForm(loginCredentials);
 
+    console.log('API login GET call starts');
+    fetch('/api/login', { method: 'GET', credentials: 'include' }) // credentials: 'include'
+      .then((response) => {
+        return response.text;
+      })
+      .then((test) => {(test) => console.log(test)})
+      .catch((err) => console.log(err));
+
     promise
       .then((formValidationResult) => {
         if (formValidationResult.succeeded) {
+          // TODO: Call real LeanMood back.
           loginApi.login(loginCredentials).then((response) => {
             if (response.succeded) {
               dispatch(loginRequestSuccessAction(response));

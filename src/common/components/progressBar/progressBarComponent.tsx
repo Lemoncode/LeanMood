@@ -8,6 +8,6 @@ interface IProps {
 
 export const ProgressBarComponent = (props: IProps) => {
   return (
-    <progress style={{ width: '100%' }} min={props.min} max={props.max} value={props.current} />
+    <progress style={{ width: '100%' }} max={props.max} value={props.current} />
   );
 };
