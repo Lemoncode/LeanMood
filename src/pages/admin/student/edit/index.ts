@@ -1,0 +1,1 @@
+export { EditStudentPageContainer } from './pageContainer';

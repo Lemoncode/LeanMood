@@ -23,7 +23,7 @@ export const StudentRowComponent: React.StatelessComponent<Props> = (props) => {
       <span>{props.rowData.fullname}</span>
       <span>{props.rowData.email}</span>
       <div className={classNames.btnGroup}>
-        <Link to={`${adminRouteEnums.student.edit}/${props.rowData.id}`} className="btn btn-primary">
+        <Link to={`${adminRouteEnums.student.base}/${props.rowData.id}/edit`} className="btn btn-primary">        
           <i className="glyphicon glyphicon-pencil" />
         </Link>
         <button type="button" className="btn btn-danger">

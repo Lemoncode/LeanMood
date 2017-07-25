@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route } from 'react-router';
 import { DashboardPage} from './dashboard/page';
-import { EditStudentPage } from './student/edit/page';
+import { EditStudentPageContainer } from './student/edit/pageContainer';
 import { ListStudentPageContainer } from './student/list/pageContainer';
 import { EditTrainingPage } from './training/edit/page';
 import { ListTrainingPageContainer } from './training/list/pageContainer';
@@ -14,7 +14,7 @@ export const AdminRoutes = (
     <div>
       <Route path={adminRouteEnums.default} component={DashboardPage}/>
       <Route path={adminRouteEnums.student.list} component={ListStudentPageContainer}/>
-      <Route path={adminRouteEnums.student.edit} component={EditStudentPage}/>
+      <Route path={adminRouteEnums.student.edit} component={EditStudentPageContainer} />
       <Route path={adminRouteEnums.training.list} component={ListTrainingPageContainer}/>
       <Route path={adminRouteEnums.training.edit} component={EditTrainingPage}/>
     </div>
