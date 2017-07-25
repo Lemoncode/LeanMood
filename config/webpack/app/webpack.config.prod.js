@@ -7,7 +7,7 @@ const helpers = require('../../helpers');
 module.exports = merge(base, {
   devtool: 'cheap-module-source-map',
   output: {
-    path: helpers.root('public'),
+    path: helpers.resolveFromRootPath('public'),
     filename: '[chunkhash].[name].js',
   },
   plugins: [

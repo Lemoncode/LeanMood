@@ -2,9 +2,9 @@ const path = require('path');
 
 const rootPath = path.resolve(__dirname, '..');
 
-const root = (...args) => path.join(rootPath, ...args);
+exports.resolveFromRootPath = (...args) => path.join(rootPath, ...args);
 
-function sortChunks(chunks) {
+exports.sortChunks = function (chunks) {
   return function sort(left, right) {
     var leftIndex = chunks.indexOf(left.names[0]);
     var rightindex = chunks.indexOf(right.names[0]);
@@ -20,6 +20,3 @@ function sortChunks(chunks) {
     return -1;
   }
 };
-
-exports.root = root;
-exports.sortChunks = sortChunks;
