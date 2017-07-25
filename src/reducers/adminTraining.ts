@@ -14,8 +14,9 @@ export const adminTrainingReducer = (state: AdminTrainingState = new AdminTraini
     case adminActionEnums.GET_SUMMARY_TRAINING_REQUEST_COMPLETED:
       return handleGetSummaryTrainingRequestCompleted(state, action.payload);
     default:
-      return state;
   }
+
+  return state;
 };
 
 const handleGetSummaryTrainingRequestCompleted = (state: AdminTrainingState, payload: TrainingSummary[]) => {

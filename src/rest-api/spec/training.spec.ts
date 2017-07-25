@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {} from 'mocha';
 import {} from 'core-js';
 import { Training } from '../../model/training';
-import { Student } from '../../model/student';
+import { Student } from '../../model/student/student';
 import { Trainer } from '../../model/trainer';
 import { TrainingSummary } from '../../model/trainingSummary';
 import { trainingApi } from '../training';

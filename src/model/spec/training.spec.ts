@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {} from 'mocha';
 import {} from 'core-js';
 import {Training} from '../training';
-import {Student} from '../student';
+import {Student} from '../student/student';
 import {Trainer} from '../trainer';
 
 describe('Training', () => {

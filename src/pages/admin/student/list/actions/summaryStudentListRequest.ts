@@ -1,5 +1,5 @@
 import { adminActionEnums } from '../../../../../common/actionEnums/admin';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary} from '../../../../../model/student/studentSummary';
 import { studentApi } from '../../../../../rest-api';
 
 export const summaryStudentListRequestStarted = () => {

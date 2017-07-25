@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Link } from 'react-router';
 import { adminRouteEnums } from '../../../../../../common/routeEnums/admin';
 import { TableRowComponent } from '../../../../../../common/components/virtualized/tableRow';
-import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../../model/student/studentSummary';
 import { StudentRowComponent } from '../studentRow';
 
 describe('StudentRowComponent', () => {

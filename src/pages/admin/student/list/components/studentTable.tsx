@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Table, Column } from 'react-virtualized';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/student/studentSummary';
 import { StudentRowComponent } from './studentRow';
 import { getSizeByPercentage } from '../../../../../common/helper/percentage/getSizeByPercentage';
 const classNames: any = require('./studentTableStyles.scss');

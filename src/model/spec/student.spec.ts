@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {} from 'mocha';
 import {} from 'core-js';
-import {Student} from '../student';
+import {Student} from '../student/student';
 
 describe('Student', () => {
   let student: Student = null;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { TableRowProps } from 'react-virtualized';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/student/studentSummary';
 import { TableRowComponent } from '../../../../../common/components/virtualized/tableRow';
 import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 

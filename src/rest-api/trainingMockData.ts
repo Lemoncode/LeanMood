@@ -1,4 +1,4 @@
-import { Student } from '../model/student';
+import { Student } from '../model/student/student';
 import { Trainer } from '../model/trainer';
 import { Training } from '../model/training';
 

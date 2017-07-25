@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router';
 import { AutoSizer } from 'react-virtualized';
-import { StudentSummary } from '../../../../model/studentSummary';
+import { StudentSummary } from '../../../../model/student/studentSummary';
 import { StudentTableComponent } from './components/studentTable';
 import { adminRouteEnums } from '../../../../common/routeEnums/admin';
 

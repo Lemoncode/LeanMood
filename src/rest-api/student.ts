@@ -1,5 +1,5 @@
-import { Student } from '../model/student';
-import { StudentSummary } from '../model/studentSummary';
+import { Student } from '../model/student/student';
+import { StudentSummary } from '../model/student/studentSummary';
 import { studentMockData } from './studentMockData';
 
 class StudentApi {
@@ -25,6 +25,17 @@ class StudentApi {
     });
 
     return Promise.resolve(studentSummaryList);
+  }
+
+  public getStudentById(id: number): Promise<Student> {
+    const student: Student = this.studentList.find( (s) => s.id === id);
+    return Promise.resolve(student);
+  }
+
+  public saveStudent(student: Student): Promise<boolean> {
+    let currentStudent: Student = this.studentList.find( (s) => s.id === student.id);
+    currentStudent = student;
+    return Promise.resolve(true);
   }
 }
 

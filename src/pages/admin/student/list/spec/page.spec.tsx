@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Link } from 'react-router';
-import { StudentSummary } from '../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../model/student/studentSummary';
 import { StudentTableComponent } from '../components/studentTable';
 import { ListStudentPage } from '../page';
 import { adminRouteEnums } from '../../../../../common/routeEnums/admin';

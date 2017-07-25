@@ -2,7 +2,7 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Table } from 'react-virtualized';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
-import { StudentSummary } from '../../../../../../model/studentSummary';
+import { StudentSummary } from '../../../../../../model/student/studentSummary';
 import { StudentTableComponent } from '../studentTable';
 import { StudentRowComponent } from '../studentRow';
 
