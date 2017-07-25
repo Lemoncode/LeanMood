@@ -1,5 +1,5 @@
+const env = require('../../env.config');
 
-// Default values
 export const config = {
-  useRealAPI: (process.env.REST_SRC === 'real'),
+  useRealAPI: (env.LM_REST_ENV === 'real'),
 };

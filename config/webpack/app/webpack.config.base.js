@@ -94,9 +94,5 @@ module.exports = merge(common, {
       hash: true,
       chunksSortMode: helpers.sortChunks(['manifest', 'vendor', 'vendorStyles', 'appStyles', 'app']),
     }),
-    new webpack.DefinePlugin({
-      'process.env.REST_SRC': JSON.stringify(process.env.REST_ENV || ''),
-    }),
-    
   ],
 });

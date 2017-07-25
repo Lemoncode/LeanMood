@@ -8,7 +8,6 @@
     "start": "nf start",
     "start:dev": "webpack-dev-server --config ./config/webpack/app/webpack.config.dev.js",
     "start:prod": "node server",
-    "start:double": "webpack-dev-server --config ./config/webpack/app/webpack.config.dev.js",
     "start:rest": "cross-env REST_ENV=real webpack-dev-server --config ./config/webpack/app/webpack.config.dev.js",
     "build": "npm run build:dev",
     "build:dev": "rimraf dist && webpack --config ./config/webpack/app/webpack.config.dev.js",

@@ -22,7 +22,7 @@ export const loginRequestStartedAction = (loginCredentials: LoginCredentials) =>
     promise
       .then((formValidationResult) => {
         if (formValidationResult.succeeded) {
-            login(loginCredentials).then((response) => {
+          login(loginCredentials).then((response) => {
             if (response.succeded) {
               dispatch(loginRequestSuccessAction(response));
               navigationHelper.navigateToPath(`/${response.userProfile.role}`);
