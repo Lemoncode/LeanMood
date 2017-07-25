@@ -12,8 +12,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "types": [
       "karma-chai-sinon",
-      "webpack-env",
-      "node"
+      "webpack-env"
     ],
     "typeRoots": [
       "../../node_modules/@types"
