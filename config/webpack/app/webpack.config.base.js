@@ -4,6 +4,7 @@ const common = require('../webpack.config.common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('../../helpers');
+const env = require('../../../env.config');
 
 module.exports = merge(common, {
   context: helpers.resolveFromRootPath('src'),
@@ -93,6 +94,9 @@ module.exports = merge(common, {
       favicon: 'content/image/logo.png',
       hash: true,
       chunksSortMode: helpers.sortChunks(['manifest', 'vendor', 'vendorStyles', 'appStyles', 'app']),
+    }),
+    new webpack.DefinePlugin({
+      'process.env.LM_REST_ENV': JSON.stringify(env.LM_REST_ENV),
     }),
   ],
 });
