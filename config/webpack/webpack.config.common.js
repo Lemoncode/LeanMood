@@ -5,7 +5,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     alias: {
-      'globalStyles': helpers.root("src/content/sass"),
+      'globalStyles': helpers.resolveFromRootPath("src/content/sass"),
     },
   },
   module: {

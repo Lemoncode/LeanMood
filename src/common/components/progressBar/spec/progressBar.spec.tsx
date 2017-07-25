@@ -8,7 +8,7 @@ describe('ProgressBarComponent', () => {
   it('should render a progress element', () => {
     // Act
     const progressBarComponent = shallow(
-      <ProgressBarComponent current={5} max={10} min={0} />,
+      <ProgressBarComponent current={5} max={10} />,
     );
 
     // Assert
@@ -18,11 +18,10 @@ describe('ProgressBarComponent', () => {
   it('should render the progress tag', () => {
     // Act
     const progressBarComponent = shallow(
-      <ProgressBarComponent current={5} max={10} min={0} />,
+      <ProgressBarComponent current={5} max={10} />,
     );
 
     // Assert
-    expect(progressBarComponent.prop('min')).to.be.equal(0);
     expect(progressBarComponent.prop('max')).to.be.equal(10);
     expect(progressBarComponent.prop('value')).to.be.equal(5);
   });
