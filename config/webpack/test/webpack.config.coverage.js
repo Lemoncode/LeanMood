@@ -11,7 +11,7 @@ module.exports = merge(base, {
         exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
         options: {
-          configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
+          configFileName: helpers.resolveFromRootPath('config', 'karma', 'karma.tsconfig.json'),
           useBabel: true,
           useCache: true,
         },
@@ -32,7 +32,7 @@ module.exports = merge(base, {
           {
             loader: 'awesome-typescript-loader',
             options: {
-              configFileName: helpers.root('config', 'karma', 'karma.tsconfig.json'),
+              configFileName: helpers.resolveFromRootPath('config', 'karma', 'karma.tsconfig.json'),
               useBabel: true,
               useCache: true,
             },

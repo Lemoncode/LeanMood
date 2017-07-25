@@ -9,7 +9,7 @@ export const ExerciseAssessmentPage: React.StatelessComponent<never> = () => {
       <NavigationBar />
       <h1>Asessment - Layout exercise</h1>
       <h3 className={`text-center ${styles.assessmentPercentage}`}>90%</h3>
-      <ProgressBarComponent min={0} max={100} current={90} />
+      <ProgressBarComponent max={100} current={90} />
       <div className={styles.commentsSummary}>
         <h4>Trainer comments</h4>
         <div className={styles.comment}>
