@@ -3,6 +3,8 @@ import * as React from 'react';
 import { TrainingSummary } from '../../../../../model/trainingSummary';
 import { TrainingTableComponent } from '../components/trainingTable';
 import { ListTrainingPage } from '../page';
+import { Link } from 'react-router';
+import { adminRouteEnums } from '../../../../../common/routeEnums/admin';
 
 describe('admin/training/list/page', () => {
   it('is defined', () => {
@@ -33,7 +35,37 @@ describe('admin/training/list/page', () => {
     expect(page).not.to.be.undefined;
   });
 
-  it('renders a training table Shallow', () => {
+  it('should return a div', () => {
+    // Arrage
+    const trainings: TrainingSummary[] = [
+      {
+       id : 1,
+       isActive: true,
+       name : 'Antonio',
+       start: new Date(),
+       end: new Date(),
+      },
+      {
+        id: 2,
+        isActive: true,
+        name : 'Santi',
+        start: new Date(),
+        end: new Date(),
+      },
+    ];
+
+    const dummyFetchTrainings = () => {};
+
+    // Act
+    const page = shallow(
+      <ListTrainingPage trainingList={trainings} fetchTrainings={dummyFetchTrainings}/>,
+    );
+
+    // Assert
+    expect(page.type()).to.be.equals('div');
+  });
+
+  it('should renders a header', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
@@ -59,8 +91,12 @@ describe('admin/training/list/page', () => {
       <ListTrainingPage trainingList={trainings} fetchTrainings={dummyFetchTrainings}/>,
     );
 
+    const header = pageWrapper.childAt(0);
+
     // Assert
-    expect(pageWrapper.children().at(0).type()).to.be.equal(TrainingTableComponent);
+    expect(header.type()).to.be.equals('h1');
+    expect(header.childAt(0).text()).to.be.equals('Active Trainigs');
+
   });
 
   // sinon.test(
@@ -92,6 +128,39 @@ describe('admin/training/list/page', () => {
 
     // Assert
     expect(dummyFetchTrainingsSpy.calledOnce).to.be.true;
+  });
+
+  it('should render a trainings table', () => {
+    // Arrange
+    const trainings = [];
+    const fetchTrainings = () => {};
+
+    // Act
+    const listTrainingPage = mount(
+      <ListTrainingPage trainingList={trainings} fetchTrainings={fetchTrainings} />,
+    );
+    const trainingTable = listTrainingPage.childAt(1);
+
+    //Assert
+    expect(trainingTable.find(TrainingTableComponent).length).to.be.equals(1);
+  });
+
+  it('should render a link to go back to training edit', () => {
+    // Arrange
+    const trainings = [];
+    const fetchTrainings = () => {};
+
+    // Act
+    const listTrainingPage = shallow(
+      <ListTrainingPage trainingList={trainings} fetchTrainings={fetchTrainings} />,
+    );
+
+    const link = listTrainingPage.childAt(2);
+
+    // Assert
+    expect(link.type()).to.be.equals(Link);
+    expect(link.prop('to')).to.be.equals(adminRouteEnums.training.edit);
+    expect(link.childAt(0).text()).to.be.equals('Go to training Edit');
   });
 
 });
