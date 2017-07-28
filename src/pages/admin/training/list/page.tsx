@@ -5,12 +5,12 @@ import { TrainingSummary } from '../../../../model/trainingSummary';
 import { TrainingTableComponent } from '../list/components/trainingTable';
 import {adminRouteEnums} from '../../../../common/routeEnums/admin';
 
-interface IProps extends React.Props<ListTrainingPage> {
+interface Props extends React.Props<ListTrainingPage> {
   trainingList: TrainingSummary[];
   fetchTrainings: () => void;
 }
 
-export class ListTrainingPage extends React.Component<IProps, {}> {
+export class ListTrainingPage extends React.Component<Props, {}> {
   public componentDidMount() {
      this.props.fetchTrainings();
   }
@@ -22,7 +22,7 @@ export class ListTrainingPage extends React.Component<IProps, {}> {
         <AutoSizer disableHeight={true}>
           {({ width }) => <TrainingTableComponent width={width} trainingList={this.props.trainingList} />} 
         </AutoSizer>
-        <Link to={adminRouteEnums.training.edit}>Go to training Edit</Link>  
+        <Link to={adminRouteEnums.default}>Go back to dashboard</Link>  
       </div>
     );
   }

@@ -145,7 +145,7 @@ describe('admin/training/list/page', () => {
     expect(trainingTable.find(TrainingTableComponent).length).to.be.equals(1);
   });
 
-  it('should render a link to go back to training edit', () => {
+  it('should render a link to go back to dashboard', () => {
     // Arrange
     const trainings = [];
     const fetchTrainings = () => {};
@@ -159,8 +159,8 @@ describe('admin/training/list/page', () => {
 
     // Assert
     expect(link.type()).to.be.equals(Link);
-    expect(link.prop('to')).to.be.equals(adminRouteEnums.training.edit);
-    expect(link.childAt(0).text()).to.be.equals('Go to training Edit');
+    expect(link.prop('to')).to.be.equals(adminRouteEnums.default);
+    expect(link.childAt(0).text()).to.be.equals('Go back to dashboard');
   });
 
 });

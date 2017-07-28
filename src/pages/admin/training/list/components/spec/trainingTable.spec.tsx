@@ -52,7 +52,7 @@ describe('TrainingTableComponent', () => {
       expect(headerColumns.length).to.be.equals(3);
       expect(headerColumns.at(0).prop('label')).to.be.equals('Active');
       expect(headerColumns.at(0).prop('dataKey')).to.be.equals('isActive');
-      expect(headerColumns.at(0).prop('width')).to.be.equals(10); // 10% of 100px
+      expect(headerColumns.at(0).prop('width')).to.be.equals(10);
     });
 
     it('should render an header column to show the "name" training property', () => {
@@ -70,11 +70,29 @@ describe('TrainingTableComponent', () => {
       expect(headerColumns.length).to.be.equals(3);
       expect(headerColumns.at(1).prop('label')).to.be.equals('Name');
       expect(headerColumns.at(1).prop('dataKey')).to.be.equals('name');
-      expect(headerColumns.at(1).prop('width')).to.be.equals(70); // 10% of 100px
+      expect(headerColumns.at(1).prop('width')).to.be.equals(70);
+    });
+
+    it('should render an header column to show the "action" training property', () => {
+       // Arrange
+      const trainingList = [];
+      const width = 100;
+
+      // Act
+      const trainingTableComponent = shallow(
+      <TrainingTableComponent width={width} trainingList={trainingList}/>,
+      );
+      const headerColumns = trainingTableComponent.children();
+
+      // Assert
+      expect(headerColumns.length).to.be.equals(3);
+      expect(headerColumns.at(2).prop('label')).to.be.undefined;
+      expect(headerColumns.at(2).prop('dataKey')).to.be.equals('');
+      expect(headerColumns.at(2).prop('width')).to.be.equals(20);
     });
 
     describe('rows tests', () => {
-      it('should use StudentRowComponent to render rows', () => {
+      it('should use TrainingRowComponent to render rows', () => {
          // Arrange
         const trainingList = [];
         const width = 100;

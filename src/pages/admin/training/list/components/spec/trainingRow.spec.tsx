@@ -114,7 +114,7 @@ describe('when passing columns to TableRowComponent', () => {
 
   });
 
-  it('should pass as 2nd child a span showing the trining.name', () => {
+  it('should pass as 2nd child a span showing the training.name', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
     trainingSummary.id = 1;
