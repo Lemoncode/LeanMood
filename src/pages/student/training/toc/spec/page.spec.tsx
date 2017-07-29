@@ -93,12 +93,12 @@ describe('TrainingTOCPage', () => {
     expect(fetchTrainingTOC.calledTwice).to.be.true;
   });
 
-  it('should not call "fetchTrainingTOC" method if "trainingId" is 0 or NaN', () => {
+  it('should not call "fetchTrainingTOC" method if "trainingId" is empty', () => {
     // Arrange
     const fetchTrainingTOC = sinon.spy();
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
-      trainingId: '0',
+      trainingId: '',
       trainingTOC: new TrainingTOC(),
     };
 
@@ -106,7 +106,7 @@ describe('TrainingTOCPage', () => {
     const trainingTOCPage = mount(
       <TrainingTOCPage {...props} />,
     );
-    trainingTOCPage.setProps({ trainingId: NaN });
+    trainingTOCPage.setProps({ trainingId: '' });
 
     // Assert
     expect(fetchTrainingTOC.called).to.be.false;

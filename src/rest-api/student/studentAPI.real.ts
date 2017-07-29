@@ -9,8 +9,8 @@ import {
 
 const studentModuleURL = 'api/student/';
 const trainingsURL = `${studentModuleURL}trainings/`;
-const trainingIdURL = `${trainingsURL}id`;
-const studentsURL = `${studentModuleURL}students`;
+const trainingIdURL = `${trainingsURL}id/`;
+const studentsURL = `${studentModuleURL}students/`;
 
 // TODO: Extract into business
 const get: any = { method: 'GET', credentials: 'include' };
