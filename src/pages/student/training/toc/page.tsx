@@ -7,9 +7,9 @@ import { TrainingTOC } from '../../../../model/student/trainingToc';
 import { NavigationBar } from './components/navigation';
 
 export interface TrainingTOCPageProps {
-  trainingId: number;
+  trainingId: string;
   trainingTOC: TrainingTOC;
-  fetchTrainingTOC(trainingId: number): void;
+  fetchTrainingTOC(trainingId: string): void;
 }
 
 export class TrainingTOCPage extends React.Component<TrainingTOCPageProps, {}> {

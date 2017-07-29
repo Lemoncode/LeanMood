@@ -43,7 +43,7 @@ describe('trainingTOCReducer', () => {
     // Arrange
     const state = new TrainingTOC();
     const payload: TrainingTOC = {
-      id: 123,
+      id: '123',
       content: 'Training TOC',
       name: 'Training name',
     };

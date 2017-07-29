@@ -11,7 +11,7 @@ describe('TrainingTOCPage', () => {
     // Arrange
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC: () => { },
-      trainingId: 0,
+      trainingId: '0',
       trainingTOC: new TrainingTOC(),
     };
 
@@ -27,7 +27,7 @@ describe('TrainingTOCPage', () => {
   it('should call "fetchTrainingTOC" method when mounted', () => {
     // Arrange
     const fetchTrainingTOC = sinon.spy();
-    const trainingId = 123;
+    const trainingId = '123';
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
       trainingId,
@@ -48,9 +48,9 @@ describe('TrainingTOCPage', () => {
     const fetchTrainingTOC = sinon.spy();
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
-      trainingId: 123,
+      trainingId: '123',
       trainingTOC: {
-        id: 123,
+        id: '123',
         name: 'Training name',
         content: 'Training content',
       },
@@ -73,9 +73,9 @@ describe('TrainingTOCPage', () => {
     const fetchTrainingTOC = sinon.spy();
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
-      trainingId: 123,
+      trainingId: '123',
       trainingTOC: {
-        id: 123,
+        id: '123',
         name: 'Training name',
         content: 'Training content',
       },
@@ -98,7 +98,7 @@ describe('TrainingTOCPage', () => {
     const fetchTrainingTOC = sinon.spy();
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC,
-      trainingId: 0,
+      trainingId: '0',
       trainingTOC: new TrainingTOC(),
     };
 
@@ -120,9 +120,9 @@ describe('TrainingTOCPage', () => {
     ].join('\n');
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC: () => { },
-      trainingId: 123,
+      trainingId: '123',
       trainingTOC: {
-        id: 123,
+        id: '123',
         content,
         name: 'Training name',
       },
@@ -144,9 +144,9 @@ describe('TrainingTOCPage', () => {
     const trainingTOCName = 'Training name';
     const props: TrainingTOCPageProps = {
       fetchTrainingTOC: () => { },
-      trainingId: 123,
+      trainingId: '123',
       trainingTOC: {
-        id: 123,
+        id: '123',
         content: '',
         name: trainingTOCName,
       },

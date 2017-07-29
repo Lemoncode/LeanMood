@@ -1,19 +1,28 @@
 import { TrainingTOC } from '../../model/student/trainingToc';
 import { StudentSummary } from '../../model/studentSummary';
 import { Student } from '../../model/student';
-import { trainingTOCMockData, studentMockData } from './mockData';
 import { GetTOCByTraining, GetStudentSummaryList } from './studentAPI.contract';
-import { mapStudentsToStudentSummaryList } from './mappers';
+import {
+  mapStudentsToStudentSummaryList,
+  mapTrainingToTrainingTOC,
+} from './mappers';
 
-const trainings: TrainingTOC[] = trainingTOCMockData;
-const students: Student[] = studentMockData;
+const studentModuleURL = 'api/student/';
+const trainingsURL = `${studentModuleURL}trainings/`;
+const trainingIdURL = `${trainingsURL}id`;
+const studentsURL = `${studentModuleURL}students`;
 
-export const getTOCByTraining: GetTOCByTraining = (id: number): Promise<TrainingTOC> => {
-  const trainingTOC = trainings.find((training) => training.id === id);
-  return Promise.resolve(trainingTOC);
-};
+// TODO: Extract into business
+const get: any = { method: 'GET', credentials: 'include' };
 
-export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => {
-  const studentSummaryList = mapStudentsToStudentSummaryList(students);
-  return Promise.resolve(studentSummaryList);
-};
+export const getTOCByTraining: GetTOCByTraining = (id: string): Promise<TrainingTOC> => (
+  fetch(trainingIdURL, get)
+    .then((response) => response.json())
+    .then((training) => mapTrainingToTrainingTOC(training))
+);
+
+export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => (
+  fetch(studentsURL, get)
+    .then((response) => response.json())
+    .then((students) => mapStudentsToStudentSummaryList(students))
+);

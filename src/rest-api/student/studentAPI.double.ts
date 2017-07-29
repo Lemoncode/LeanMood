@@ -8,7 +8,7 @@ import { mapStudentsToStudentSummaryList } from './mappers';
 const trainings: TrainingTOC[] = trainingTOCMockData;
 const students: Student[] = studentMockData;
 
-export const getTOCByTraining: GetTOCByTraining = (id: number): Promise<TrainingTOC> => {
+export const getTOCByTraining: GetTOCByTraining = (id: string): Promise<TrainingTOC> => {
   const trainingTOC = trainings.find((training) => training.id === id);
   return Promise.resolve(trainingTOC);
 };
