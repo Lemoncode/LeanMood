@@ -1,5 +1,6 @@
-import { studentAPI } from '../studentApi';
+import { studentAPI } from '../index';
 import { TrainingTOC } from '../../../model/student/trainingToc';
+import * as mockData from '../trainingTocMockData';
 
 describe('StudentAPI', () => {
   it('should be an object', () => {
@@ -15,8 +16,10 @@ describe('StudentAPI', () => {
     expect(promise).to.be.an.instanceOf(Promise);
   });
 
-  it('should return a "TrainingTOC" instance if id exists', (done) => {
+  it('should return a "TrainingTOC" instance if id exists', sinon.test(function(done) {
     // Arrange
+    const sinon: sinon.SinonStatic = this;
+
     const trainingId = 1;
     const trainingName = 'Training 1';
     const trainingContent = 'Content of TOC from training 1';
@@ -27,7 +30,7 @@ describe('StudentAPI', () => {
         content: trainingContent,
       },
     ];
-    studentAPI.setMockedTrainings(trainingList);
+    const trainingTOCMockDataStub = sinon.stub(mockData, 'trainingTOCMockData', () => trainingList);
 
     // Act
     studentAPI.getTOCByTraining(trainingId).then((trainingTOC) => {
@@ -38,7 +41,7 @@ describe('StudentAPI', () => {
       expect(trainingTOC.content).to.be.equals(trainingContent);
       done();
     }).catch(done);
-  });
+  }));
 
   it('should return "undefined" for a non existing id', (done) => {
     // Arrange
