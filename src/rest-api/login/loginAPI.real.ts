@@ -10,8 +10,9 @@ export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<Login
 
     // TODO: Use env variable for the base URL
     // 'http://localhost:5000/api/login'
-    fetch('/api/login', {
+    fetch('http://localhost:5000/api/login', {
       method: 'POST',
+       mode : 'cors',
       credentials : 'include',
       headers: {
         'Accept': 'application/json',

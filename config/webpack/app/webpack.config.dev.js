@@ -27,9 +27,9 @@ module.exports = merge.strategy({
     port: 8080,
     stats: 'errors-only',
     hot: true,
-    proxy: {
+    /*proxy: {
       "/api": "http://localhost:5000", // Discuss port with team
-    },    
+    },*/    
   },
   plugins: [
     // enable HMR globally
