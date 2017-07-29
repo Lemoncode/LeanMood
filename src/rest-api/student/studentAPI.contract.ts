@@ -1,4 +1,5 @@
 import { TrainingTOC } from '../../model/student/trainingToc';
-import { trainingTOCMockData } from './trainingTocMockData';
+import { StudentSummary } from '../../model/studentSummary';
 
 export type GetTOCByTraining = (id: number) => Promise<TrainingTOC>;
+export type GetStudents = () => Promise<StudentSummary[]>;
