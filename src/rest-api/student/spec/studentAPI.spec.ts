@@ -57,5 +57,52 @@ describe('StudentAPI', () => {
     });
   });
 
-  describe('get')
+  describe('getStudents', () => {
+    it('should have a "getStudents" method that returns a promise', () => {
+      // Act
+      const promise = studentAPI.getStudents();
+
+      // Assert
+      expect(promise).to.be.an.instanceOf(Promise);
+    });
+
+    it('should return a student summary list instance if id exists', sinon.test(function(done) {
+      // Arrange
+      const sinon: sinon.SinonStatic = this;
+
+      const trainingId = 1;
+      const trainingName = 'Training 1';
+      const trainingContent = 'Content of TOC from training 1';
+      const trainingList: TrainingTOC[] = [
+        {
+          id: trainingId,
+          name: trainingName,
+          content: trainingContent,
+        },
+      ];
+      const trainingTOCMockDataStub = sinon.stub(mockData, 'trainingTOCMockData', () => trainingList);
+
+      // Act
+      studentAPI.getStudents(trainingId).then((trainingTOC) => {
+        // Assert
+        expect(trainingTOC).to.be.an('object');
+        expect(trainingTOC.id).to.be.equals(trainingId);
+        expect(trainingTOC.name).to.be.equals(trainingName);
+        expect(trainingTOC.content).to.be.equals(trainingContent);
+        done();
+      }).catch(done);
+    }));
+
+    it('should return "undefined" for a non existing id', (done) => {
+      // Arrange
+      const trainingId = null;
+
+      // Act
+      studentAPI.getStudents(trainingId).then((trainingTOC) => {
+        // Assert
+        expect(trainingTOC).to.be.undefined;
+        done();
+      }).catch(done);
+    });
+  });
 });

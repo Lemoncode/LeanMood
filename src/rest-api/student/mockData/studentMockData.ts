@@ -1,4 +1,4 @@
-import { Student } from '../model/student';
+import { Student } from '../../../model/student';
 
 export const studentMockData: Student[] = [
   {

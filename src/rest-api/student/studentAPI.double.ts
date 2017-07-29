@@ -1,10 +1,12 @@
 import { TrainingTOC } from '../../model/student/trainingToc';
 import { StudentSummary } from '../../model/studentSummary';
+import { Student } from '../../model/student';
 import { trainingTOCMockData, studentMockData } from './mockData';
 import { GetTOCByTraining, GetStudents } from './studentAPI.contract';
+import { mapStudentsToStudentSummaryList } from './mappers';
 
 const trainings: TrainingTOC[] = trainingTOCMockData;
-const students: StudentSummary[] = studentMockData;
+const students: Student[] = studentMockData;
 
 export const getTOCByTraining: GetTOCByTraining = (id: number): Promise<TrainingTOC> => {
   const trainingTOC = trainings.find((training) => training.id === id);
@@ -12,5 +14,6 @@ export const getTOCByTraining: GetTOCByTraining = (id: number): Promise<Training
 };
 
 export const getStudents: GetStudents = (): Promise<StudentSummary[]> => {
-  return Promise.resolve([...students]);
+  const studentSummaryList = mapStudentsToStudentSummaryList(students);
+  return Promise.resolve(studentSummaryList);
 };
