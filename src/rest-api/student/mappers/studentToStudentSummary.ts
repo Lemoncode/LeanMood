@@ -8,7 +8,7 @@ export const mapStudentsToStudentSummaryList = (students: Student[]): StudentSum
         id: student.id,
         email: student.email,
         fullname: student.fullname,
-        isActive: student.isActive
+        isActive: student.isActive,
       } as StudentSummary
     )) :
     []

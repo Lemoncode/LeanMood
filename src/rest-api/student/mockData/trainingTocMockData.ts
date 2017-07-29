@@ -1,5 +1,5 @@
-import { TrainingTOC } from '../../model/student/trainingToc';
-import { studentRouteEnums } from '../../common/routeEnums/student/';
+import { TrainingTOC } from '../../../model/student/trainingToc';
+import { studentRouteEnums } from '../../../common/routeEnums/student/';
 
 /* tslint:disable:max-line-length */
 export const trainingTOCMockData: TrainingTOC[] = [

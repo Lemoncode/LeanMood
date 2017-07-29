@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import configureStore, { IStore } from 'redux-mock-store';
 import { fetchTrainingTOCStarted, fetchTrainingTOCCompleted } from '../fetchTrainingToc';
 import { studentActionEnums } from '../../../../../../common/actionEnums/student/';
-import { studentAPI } from '../../../../../../rest-api/student/studentApi';
+import { studentAPI } from '../../../../../../rest-api/student';
 import { TrainingTOC } from '../../../../../../model/student/trainingToc';
 
 const mockStore = configureStore<TrainingTOC>([thunk]);

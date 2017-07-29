@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
 import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
 import { StudentSummary } from '../../../../../../model/studentSummary';
-import { studentApi } from '../../../../../../rest-api';
+import { studentAPI } from '../../../../../../rest-api';
 
 const mockStore = configureStore([thunk]);
 
@@ -87,9 +87,9 @@ describe('summaryStudentListRequestStarted', () => {
       },
     ];
 
-    const getSummaryStudentListStub = sinon.stub(studentApi, 'getSummaryStudentList');
+    const getStudentSummaryListStub = sinon.stub(studentAPI, 'getStudentSummaryList');
 
-    getSummaryStudentListStub.returns({
+    getStudentSummaryListStub.returns({
       then: (callback) => {
         callback(students);
       },
@@ -100,7 +100,7 @@ describe('summaryStudentListRequestStarted', () => {
     store.dispatch(summaryStudentListRequestStarted()).then(() => {
       // Assert
       expect(store.getActions()[0].payload).to.be.equal(students);
-      expect(getSummaryStudentListStub.called).to.be.true;
+      expect(getStudentSummaryListStub.called).to.be.true;
       done();
     });
   }));

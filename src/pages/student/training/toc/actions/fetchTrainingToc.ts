@@ -1,5 +1,5 @@
 import { studentActionEnums } from '../../../../../common/actionEnums/student/';
-import { studentApi } from '../../../../../rest-api/student';
+import { studentAPI } from '../../../../../rest-api/student';
 import { TrainingTOC } from '../../../../../model/student/trainingToc';
 
 export const fetchTrainingTOCStarted = (trainingId: number) => {
