@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const base = require('./webpack.config.base');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('../../helpers');
+const env = require('../../../env.config');
 
 const hotReloadingEntries = [
   'react-hot-loader/patch',
@@ -27,6 +28,9 @@ module.exports = merge.strategy({
     port: 8080,
     stats: 'errors-only',
     hot: true,
+    proxy: {
+      '/api': `http://localhost:${env.LM_BACKEND_PORT}`,
+    },
   },
   plugins: [
     // enable HMR globally
