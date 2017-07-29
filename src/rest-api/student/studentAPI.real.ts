@@ -7,22 +7,26 @@ import {
   mapTrainingToTrainingTOC,
 } from './mappers';
 
-const studentModuleURL = 'api/student/';
-const trainingsURL = `${studentModuleURL}trainings/`;
-const trainingIdURL = `${trainingsURL}id/`;
-const studentsURL = `${studentModuleURL}students/`;
+const studentModuleURL = '/api/studentModule';
+const trainingsURL = `${studentModuleURL}/trainings`;
+const trainingIdURL = `${trainingsURL}/id=`;
+const studentsURL = `${studentModuleURL}/students`;
 
 // TODO: Extract into business
 const get: any = { method: 'GET', credentials: 'include' };
 
 export const getTOCByTraining: GetTOCByTraining = (id: string): Promise<TrainingTOC> => (
-  fetch(trainingIdURL, get)
+  fetch(`${trainingIdURL}${id}`, get)
     .then((response) => response.json())
     .then((training) => mapTrainingToTrainingTOC(training))
+    // tslint:disable-next-line:no-console
+    .catch((err) => console.log(err))
 );
 
 export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => (
   fetch(studentsURL, get)
     .then((response) => response.json())
     .then((students) => mapStudentsToStudentSummaryList(students))
+    // tslint:disable-next-line:no-console
+    .catch((err) => console.log(err))
 );
