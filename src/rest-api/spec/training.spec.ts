@@ -17,7 +17,7 @@ beforeEach(() => {
       isActive: true,
       name: 'React/Redux',
       start: new Date(1, 1, 2017),
-      students: [{id: 3, fullname: 'Student', isActive: true, email: 'student', phoneNumber: ''}],
+      students: [{id: '3', fullname: 'Student', isActive: true, email: 'student', phoneNumber: ''}],
       trainers: new Array<Trainer>(),
     },
     {
@@ -89,7 +89,7 @@ describe('TrainingApi', () => {
     it('Get the expected summary training list for a given student', sinon.test((done) => {
       // Arrange
       let expectedSummaryList: TrainingSummary[];
-      const studentId = 3;
+      const studentId = '3';
 
       // Act
       expectedSummaryList = trainingList.filter((training) => {

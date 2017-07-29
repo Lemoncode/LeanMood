@@ -40,7 +40,7 @@ describe('mapStudentsToStudentSummaryList', () => {
     // Arrange
     const students: Student[] = [
       {
-        id: 1,
+        id: '1',
         email: 'test email',
         fullname: 'test fullname',
         phoneNumber: 'test phoneNumber',

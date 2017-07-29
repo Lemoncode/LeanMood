@@ -19,14 +19,20 @@ export const getTOCByTraining: GetTOCByTraining = (id: string): Promise<Training
   fetch(`${trainingIdURL}${id}`, get)
     .then((response) => response.json())
     .then((training) => mapTrainingToTrainingTOC(training))
-    // tslint:disable-next-line:no-console
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      // tslint:disable-next-line:no-console
+      console.log(err);
+      return null;
+    })
 );
 
 export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => (
   fetch(studentsURL, get)
     .then((response) => response.json())
     .then((students) => mapStudentsToStudentSummaryList(students))
-    // tslint:disable-next-line:no-console
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      // tslint:disable-next-line:no-console
+      console.log(err);
+      return [];
+    })
 );
