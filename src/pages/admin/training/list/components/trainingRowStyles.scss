@@ -1,0 +1,9 @@
+.row-striped:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.btn-group {
+  a, button {
+    margin-right: 5px;
+  }
+}
