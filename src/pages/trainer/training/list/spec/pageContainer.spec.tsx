@@ -75,7 +75,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
   it('should inject to TrainingListPage a trainerId property from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-    const trainerId = 123;
+    const trainerId = '123';
     const login = new LoginState();
     login.userProfile = { avatar: '', email: '', fullname: '', id: trainerId, role: 'none' };
     const store: any = createStore({

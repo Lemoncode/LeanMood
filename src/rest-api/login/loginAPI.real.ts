@@ -2,6 +2,8 @@ import { LoginCredentials } from '../../model/login/loginCredentials';
 import { LoginResponse } from '../../model/login/loginResponse';
 import { loginMockResponses } from './loginMockData';
 import { LoginFunction } from './loginAPI.contract';
+import { User } from '../model/general';
+import { mapUserToModel } from '../mappers/general';
 
 export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<LoginResponse> => {
   return fetch('http://localhost:5000/api/login', {
@@ -16,26 +18,23 @@ export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<Login
       email: loginInfo.login,
       password: loginInfo.password,
     }),
-  }).then((response) => (
-    response.ok ?
-      handleSuccessLogin(response) :
-      handleFailLogin(response)
-  )).catch((err) => {
-    Promise.reject(err);
-  });
+  })
+    .then((response) => (
+      response.ok ?
+        response
+          .json()
+          .then(handleSuccessLogin) :
+        handleFailLogin(response)
+    ))
+    .catch((err) => {
+      Promise.reject(err);
+    });
 };
 
-const handleSuccessLogin = (response: Response): Promise<LoginResponse> => {
+const handleSuccessLogin = (user: User): Promise<LoginResponse> => {
   const loginResponse = new LoginResponse();
   loginResponse.succeded = true;
-  // TODO: Temporary get this info from api
-  loginResponse.userProfile = {
-    id: 2,
-    fullname: 'Trainer',
-    role: 'trainer',
-    email: 'trainer',
-    avatar: 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-64.png',
-  };
+  loginResponse.userProfile = mapUserToModel(user);
 
   return Promise.resolve(loginResponse);
 };
