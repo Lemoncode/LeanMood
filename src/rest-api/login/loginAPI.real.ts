@@ -4,16 +4,11 @@ import { loginMockResponses } from './loginMockData';
 import { LoginFunction } from './loginAPI.contract';
 import { User } from '../model/general';
 import { mapUserToModel } from '../mappers/general';
+import { formatURL, post } from '../helpers';
 
 export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<LoginResponse> => {
-  return fetch('http://localhost:5000/api/login', {
-    method: 'POST',
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetch(formatURL('/login'), {
+    ...post,
     body: JSON.stringify({
       email: loginInfo.login,
       password: loginInfo.password,
