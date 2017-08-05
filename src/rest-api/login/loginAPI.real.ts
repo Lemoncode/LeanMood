@@ -21,9 +21,7 @@ export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<Login
           .then(handleSuccessLogin) :
         handleFailLogin(response)
     ))
-    .catch((err) => {
-      Promise.reject(err);
-    });
+    .catch((err) => Promise.reject(err));
 };
 
 const handleSuccessLogin = (user: User): Promise<LoginResponse> => {
