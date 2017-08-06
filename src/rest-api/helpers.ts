@@ -7,7 +7,7 @@ const methodBase = {
   },
 };
 
-export const formatURL = (url) => (`${process.env.API_URL}${url}`);
+export const formatURL = (url) => (`${process.env.BASE_API_URL}${url}`);
 
 export const post: Partial<RequestInit> = {
   ...methodBase,

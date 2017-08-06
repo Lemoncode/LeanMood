@@ -97,7 +97,7 @@ module.exports = merge(common, {
     }),
     new webpack.DefinePlugin({
       'process.env.LM_REST_ENV': JSON.stringify(env.LM_REST_ENV),
-      'process.env.API_URL': JSON.stringify(env.API_URL),
+      'process.env.BASE_API_URL': JSON.stringify(env.BASE_API_URL),
     }),
   ],
 });

@@ -1,7 +1,7 @@
 import { User } from '../../model/general';
 import { UserProfile } from '../../../model/userProfile';
 
-export const mapUserToModel = (user: User): UserProfile => (
+export const mapUserToStateModel = (user: User): UserProfile => (
   Boolean(user) ?
     {
       id: user._id,

@@ -1,12 +1,12 @@
 import { User } from '../../model/general';
 import { UserProfile } from '../../../model/userProfile';
-import { mapUserToModel } from './mappers';
+import { mapUserToStateModel } from './mappers';
 
 describe('rest-api/general mappers', () => {
   describe('mapUserToModel', () => {
     it('should be a function', () => {
       // Assert
-      expect(mapUserToModel).to.be.a('function');
+      expect(mapUserToStateModel).to.be.a('function');
     });
 
     it('should return empty values when model is undefined', () => {
@@ -14,7 +14,7 @@ describe('rest-api/general mappers', () => {
       const model: User = undefined;
 
       // Act
-      const result = mapUserToModel(model);
+      const result = mapUserToStateModel(model);
       // Assert
       expect(result).to.deep.equal(new UserProfile());
     });
@@ -24,7 +24,7 @@ describe('rest-api/general mappers', () => {
       const model: User = null;
 
       // Act
-      const result = mapUserToModel(model);
+      const result = mapUserToStateModel(model);
       // Assert
       expect(result).to.deep.equal(new UserProfile());
     });
@@ -42,7 +42,7 @@ describe('rest-api/general mappers', () => {
       };
 
       // Act
-      const result = mapUserToModel(model);
+      const result = mapUserToStateModel(model);
       // Assert
       expect(result.id).to.be.empty;
       expect(result.email).to.be.empty;
@@ -64,7 +64,7 @@ describe('rest-api/general mappers', () => {
       };
 
       // Act
-      const result = mapUserToModel(model);
+      const result = mapUserToStateModel(model);
       // Assert
       expect(result.id).to.equal('test id');
       expect(result.email).to.equal('test email');
