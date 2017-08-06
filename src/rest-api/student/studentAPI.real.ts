@@ -5,34 +5,25 @@ import { GetTOCByTraining, GetStudentSummaryList } from './studentAPI.contract';
 import {
   mapStudentsToStudentSummaryList,
   mapTrainingToTrainingTOC,
-} from './mappers';
+} from '../mappers/student';
+import { formatURL, get } from '../helpers';
 
-const studentModuleURL = '/api/studentModule';
+const studentModuleURL = '/studentModule';
 const trainingsURL = `${studentModuleURL}/trainings`;
 const trainingIdURL = `${trainingsURL}/id=`;
 const studentsURL = `${studentModuleURL}/students`;
 
-// TODO: Extract into business
-const get: any = { method: 'GET', credentials: 'include' };
-
 export const getTOCByTraining: GetTOCByTraining = (id: string): Promise<TrainingTOC> => (
-  fetch(`${trainingIdURL}${id}`, get)
+  fetch(formatURL(`${trainingIdURL}${id}`), get)
     .then((response) => response.json())
     .then((training) => mapTrainingToTrainingTOC(training))
-    .catch((err) => {
-      // tslint:disable-next-line:no-console
-      console.log(err);
-      return null;
-    })
+    .catch((err) => Promise.reject(err))
 );
 
-export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => (
-  fetch(studentsURL, get)
+export const getStudentSummaryList: GetStudentSummaryList = (): Promise<StudentSummary[]> => {
+
+  return fetch(formatURL(studentsURL), get)
     .then((response) => response.json())
     .then((students) => mapStudentsToStudentSummaryList(students))
-    .catch((err) => {
-      // tslint:disable-next-line:no-console
-      console.log(err);
-      return [];
-    })
-);
+    .catch((err) => Promise.reject(err));
+};

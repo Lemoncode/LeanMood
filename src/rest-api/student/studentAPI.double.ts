@@ -3,7 +3,7 @@ import { StudentSummary } from '../../model/studentSummary';
 import { Student } from '../../model/student';
 import { trainingTOCMockData, studentMockData } from './mockData';
 import { GetTOCByTraining, GetStudentSummaryList } from './studentAPI.contract';
-import { mapStudentsToStudentSummaryList } from './mappers';
+import { mapStudentsToStudentSummaryList } from '../mappers/student';
 
 const trainings: TrainingTOC[] = trainingTOCMockData;
 const students: Student[] = studentMockData;

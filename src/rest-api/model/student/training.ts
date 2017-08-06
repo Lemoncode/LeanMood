@@ -1,5 +1,5 @@
 export interface Training {
-  id: string;
+  _id: string;
   name: string;
   markdownContent: string;
   // TODO: Add files[]: ComplexStructure;
