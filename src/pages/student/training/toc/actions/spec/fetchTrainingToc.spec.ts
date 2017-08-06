@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import configureStore, { IStore } from 'redux-mock-store';
 import { fetchTrainingTOCStarted, fetchTrainingTOCCompleted } from '../fetchTrainingToc';
 import { studentActionEnums } from '../../../../../../common/actionEnums/student/';
-import { studentAPI } from '../../../../../../rest-api/student/studentApi';
+import { studentAPI } from '../../../../../../rest-api/student';
 import { TrainingTOC } from '../../../../../../model/student/trainingToc';
 
 const mockStore = configureStore<TrainingTOC>([thunk]);
@@ -33,7 +33,7 @@ describe('Student Module --> Training TOC actions', () => {
     it('should dispatch the a fetched trainingTOC', sinon.test(function(done) {
       // Arrange
       const sinon: sinon.SinonStatic = this;
-      const trainingId = 123;
+      const trainingId = '123';
       const mockedTOC = 'Markdown content';
       const getTOCByTraining = sinon.stub(studentAPI, 'getTOCByTraining', () => {
         return Promise.resolve(mockedTOC);
@@ -60,7 +60,7 @@ describe('Student Module --> Training TOC actions', () => {
     it('should return an action of type STUDENT_FETCH_TRAINING_TOC with the content as payload', () => {
       // Arrange
       const trainingTOC: TrainingTOC = {
-        id: 123,
+        id: '123',
         name: 'Training name',
         content: 'Training content',
       };

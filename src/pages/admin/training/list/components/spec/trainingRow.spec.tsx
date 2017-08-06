@@ -23,7 +23,7 @@ describe('TrainingRowComponent', () => {
 
     // Act
     const trainingRowComponent = shallow(
-            <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
     // Assert
     expect(trainingRowComponent).not.to.be.undefined;
@@ -70,7 +70,7 @@ describe('TrainingRowComponent', () => {
 
     // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
 
     // Assert
@@ -98,10 +98,10 @@ describe('when passing columns to TableRowComponent', () => {
       rowData: trainingSummary,
       style: { color: 'red' },
     };
-    
-     // Act
+
+    // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
 
     const checkbox = trainingRowComponent.childAt(0);
@@ -128,10 +128,10 @@ describe('when passing columns to TableRowComponent', () => {
       rowData: trainingSummary,
       style: { color: 'red' },
     };
-    
-     // Act
+
+    // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
 
     const span = trainingRowComponent.childAt(1);
@@ -155,10 +155,10 @@ describe('when passing columns to TableRowComponent', () => {
       rowData: trainingSummary,
       style: { color: 'red' },
     };
-    
-     // Act
+
+    // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
 
     const div = trainingRowComponent.childAt(2);
@@ -184,10 +184,10 @@ describe('when passing columns to TableRowComponent', () => {
         rowData: trainingSummary,
         style: { color: 'red' },
       };
-      
+
       // Act
       const trainingRowComponent = shallow(
-        <TrainingRowComponent {...props}/>,
+        <TrainingRowComponent {...props} />,
       );
       const div = trainingRowComponent.childAt(2);
       const link = div.childAt(0);
@@ -216,17 +216,17 @@ describe('when passing columns to TableRowComponent', () => {
       rowData: trainingSummary,
       style: { color: 'red' },
     };
-    
+
     // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
     const div = trainingRowComponent.childAt(2);
     const button = div.childAt(1);
     const icon = button.childAt(0);
 
     // Assert
-    expect(button.type()).to.be.equals("button");
+    expect(button.type()).to.be.equals('button');
     expect(button.prop('className')).to.be.equals('btn btn-warning');
     expect(icon.type()).to.be.equals('i');
     expect(icon.prop('className')).to.be.equals('glyphicon glyphicon-duplicate');
@@ -246,17 +246,17 @@ describe('when passing columns to TableRowComponent', () => {
       rowData: trainingSummary,
       style: { color: 'red' },
     };
-    
+
     // Act
     const trainingRowComponent = shallow(
-      <TrainingRowComponent {...props}/>,
+      <TrainingRowComponent {...props} />,
     );
     const div = trainingRowComponent.childAt(2);
     const button = div.childAt(2);
     const icon = button.childAt(0);
 
     // Assert
-    expect(button.type()).to.be.equals("button");
+    expect(button.type()).to.be.equals('button');
     expect(button.prop('className')).to.be.equals('btn btn-danger');
     expect(icon.type()).to.be.equals('i');
     expect(icon.prop('className')).to.be.equals('glyphicon glyphicon-trash');

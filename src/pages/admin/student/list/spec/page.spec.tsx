@@ -13,13 +13,13 @@ describe('ListStudentPage', () => {
       {
         email: 'test@test.com',
         fullname: 'John Doe',
-        id: 2,
+        id: '2',
         isActive: true,
       },
       {
         email: 'mark@test.com',
         fullname: 'Mark Somez',
-        id: 3,
+        id: '3',
         isActive: true,
       },
     ];

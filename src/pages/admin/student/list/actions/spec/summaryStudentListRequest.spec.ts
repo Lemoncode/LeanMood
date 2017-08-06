@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import { adminActionEnums } from '../../../../../../common/actionEnums/admin';
 import { summaryStudentListRequestStarted, summaryStudentListRequestCompleted } from '../summaryStudentListRequest';
 import { StudentSummary } from '../../../../../../model/studentSummary';
-import { studentApi } from '../../../../../../rest-api';
+import { studentAPI } from '../../../../../../rest-api';
 
 const mockStore = configureStore([thunk]);
 
@@ -26,13 +26,13 @@ describe('summaryStudentListRequestCompleted', () => {
     // Arrange
     const students: StudentSummary[] = [
       {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
       },
       {
-        id: 3,
+        id: '3',
         fullname: 'Mark Somez',
         email: 'mark@test.com',
         isActive: true,
@@ -74,22 +74,22 @@ describe('summaryStudentListRequestStarted', () => {
 
     const students: StudentSummary[] = [
       {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
       },
       {
-        id: 3,
+        id: '3',
         fullname: 'Mark Somez',
         email: 'mark@test.com',
         isActive: true,
       },
     ];
 
-    const getSummaryStudentListStub = sinon.stub(studentApi, 'getSummaryStudentList');
+    const getStudentSummaryListStub = sinon.stub(studentAPI, 'getStudentSummaryList');
 
-    getSummaryStudentListStub.returns({
+    getStudentSummaryListStub.returns({
       then: (callback) => {
         callback(students);
       },
@@ -100,7 +100,7 @@ describe('summaryStudentListRequestStarted', () => {
     store.dispatch(summaryStudentListRequestStarted()).then(() => {
       // Assert
       expect(store.getActions()[0].payload).to.be.equal(students);
-      expect(getSummaryStudentListStub.called).to.be.true;
+      expect(getStudentSummaryListStub.called).to.be.true;
       done();
     });
   }));

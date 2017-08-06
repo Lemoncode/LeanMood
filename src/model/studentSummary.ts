@@ -1,12 +1,12 @@
 
 export class StudentSummary {
+  public id: string;
   public fullname: string;
   public email: string;
-  public id: number;
   public isActive: boolean;
 
   constructor() {
-    this.id = -1;
+    this.id = '';
     this.fullname = '';
     this.email = '';
     this.isActive = false;

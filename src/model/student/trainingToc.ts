@@ -1,10 +1,10 @@
 export class TrainingTOC {
-  public id: number;
+  public id: string;
   public name: string;
   public content = '';
 
   constructor() {
-    this.id = NaN;
+    this.id = '';
     this.name = '';
     this.content = '';
   }

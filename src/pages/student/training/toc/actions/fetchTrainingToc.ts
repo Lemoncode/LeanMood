@@ -1,8 +1,8 @@
 import { studentActionEnums } from '../../../../../common/actionEnums/student/';
-import { studentAPI } from '../../../../../rest-api/student/studentApi';
+import { studentAPI } from '../../../../../rest-api/student';
 import { TrainingTOC } from '../../../../../model/student/trainingToc';
 
-export const fetchTrainingTOCStarted = (trainingId: number) => {
+export const fetchTrainingTOCStarted = (trainingId: string) => {
   return (dispatch) => {
     return studentAPI.getTOCByTraining(trainingId).then((trainingTOC) => {
       if (trainingTOC) {
