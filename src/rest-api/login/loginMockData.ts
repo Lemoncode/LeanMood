@@ -4,7 +4,7 @@ export const loginMockResponses: LoginResponse[] = [
   {
     succeded: true,
     userProfile: {
-      id: 1,
+      id: '1',
       fullname: 'Admin',
       role: 'admin',
       email: 'admin',
@@ -14,7 +14,7 @@ export const loginMockResponses: LoginResponse[] = [
   {
     succeded: true,
     userProfile: {
-      id: 2,
+      id: '2',
       fullname: 'Trainer',
       role: 'trainer',
       email: 'trainer',
@@ -24,7 +24,7 @@ export const loginMockResponses: LoginResponse[] = [
   {
     succeded: true,
     userProfile: {
-      id: 3,
+      id: '3',
       fullname: 'Student',
       role: 'student',
       email: 'student',

@@ -1,13 +1,12 @@
 export class UserProfile {
-  public id: number;
+  public id: string;
   public fullname: string;
   public role: string;
   public email: string;
   public avatar: string;
 
   constructor() {
-    // Likely to be changed by string or guid
-    this.id = -1;
+    this.id = '';
     this.fullname = '';
     this.role = '';
     this.email = '';

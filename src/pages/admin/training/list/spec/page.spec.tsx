@@ -141,7 +141,7 @@ describe('admin/training/list/page', () => {
     );
     const trainingTable = listTrainingPage.childAt(1);
 
-    //Assert
+    // Assert
     expect(trainingTable.find(TrainingTableComponent).length).to.be.equals(1);
   });
 
