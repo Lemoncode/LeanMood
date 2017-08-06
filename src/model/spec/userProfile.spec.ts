@@ -24,7 +24,7 @@ describe('userProfile', () => {
       // Arrange
       // Act
       // Assert
-      expect(userProfile.id).to.be.equal(-1);
+      expect(userProfile.id).to.be.equal('');
       expect(userProfile.fullname).to.be.equal('');
       expect(userProfile.email).to.be.equal('');
       expect(userProfile.role).to.be.equal('');
