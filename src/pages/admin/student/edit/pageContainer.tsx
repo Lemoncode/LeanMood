@@ -9,7 +9,7 @@ const mapStateToProps = (state: IAppState, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getstudent: (studentId: number) => dispatch(summaryStudentByIdRequestStarted(studentId)),
+  getStudent: (studentId: number) => dispatch(summaryStudentByIdRequestStarted(studentId)),
 });
 
 export const EditStudentPageContainer = connect(

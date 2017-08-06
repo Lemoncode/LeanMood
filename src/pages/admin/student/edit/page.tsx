@@ -5,14 +5,14 @@ import { StudentSummary } from '../../../../model/studentSummary';
 
 interface Props  {
   student: StudentSummary;
-  getstudent: (id: number) => void;
+  getStudent: (id: number) => void;
   studentId: number;
 }
 
 export class EditStudentPage extends React.Component<Props, {}> {
    public componentDidMount() {
        const studentId: number = Number(this.props.studentId);
-       this.props.getstudent(studentId);
+       this.props.getStudent(studentId);
   }
 
     public render() {
