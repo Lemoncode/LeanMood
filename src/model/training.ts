@@ -2,7 +2,7 @@ import { Student } from './student';
 import { Trainer } from './trainer';
 
 export class Training {
-  public id: number;
+  public id: string;
   public name: string;
   public isActive: boolean;
   public start: Date;
@@ -11,7 +11,7 @@ export class Training {
   public students: Student[];
 
   constructor() {
-    this.id = -1;
+    this.id = '-1';
     this.name = '';
     this.isActive = false;
     this.start = new Date();

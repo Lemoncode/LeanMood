@@ -21,21 +21,21 @@ describe('Trainer Module: fetchTrainingList action', () => {
       const trainerId = 123;
       const trainings: TrainingSummary[] = [
         {
-          id: 32,
+          id: '32',
           name: 'React/Redux',
           isActive: true,
           start: new Date(),
           end: new Date(),
         },
         {
-          id: 12,
+          id: '12',
           name: 'Responsive web design',
           isActive: true,
           start: new Date(),
           end: new Date(),
         },
         {
-          id: 33,
+          id: '33',
           name: 'AngularJS 2.0',
           isActive: true,
           start: new Date(),

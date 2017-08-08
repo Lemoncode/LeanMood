@@ -35,14 +35,14 @@ import { adminTrainingReducer, AdminTrainingState } from './../adminTraining';
         // Arrange
         const trainings: TrainingSummary[] = [
             {
-                id: 2,
+                id: '2',
                 name: 'Jaime Doe',
                 isActive: true,
                 start: new Date(),
                 end: new Date(),
             },
             {
-                id: 3,
+                id: '3',
                 name: 'Braulio Somez',
                 isActive: true,
                 start: new Date(),
