@@ -4,7 +4,7 @@ import { IAppState } from '../../../../reducers';
 import { TrainingTOCPage } from './page';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
-  trainingId: String(ownProps.params.trainingId) || 0,
+  trainingId: ownProps.params.trainingId,
   trainingTOC: state.student.training.toc,
 });
 
