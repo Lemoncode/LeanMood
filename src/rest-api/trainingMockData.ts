@@ -36,7 +36,7 @@ export const trainingMockData: Training[] = [
     isActive: true,
     name: 'Full Stack Online Máster',
     start: new Date(2017, 0, 1),
-    students: [{ id: 3, fullname: 'Student', isActive: true, email: 'student', phoneNumber: '' }],
-    trainers: [{ id: 2 }],
+    students: [{ id: '3', fullname: 'Student', isActive: true, email: 'student', phoneNumber: '' }],
+    trainers: [{ id: '2' }],
   },
 ];

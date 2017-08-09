@@ -17,7 +17,7 @@ describe('StudentAPI', () => {
 
   it('should return a "TrainingTOC" instance if id exists', (done) => {
     // Arrange
-    const trainingId = 1;
+    const trainingId = '1';
     const trainingName = 'Training 1';
     const trainingContent = 'Content of TOC from training 1';
     const trainingList: TrainingTOC[] = [

@@ -4,12 +4,12 @@ import { IAppState } from '../../../../reducers';
 import { TrainingTOCPage } from './page';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
-  trainingId: Number(ownProps.params.trainingId) || 0,
+  trainingId: String(ownProps.params.trainingId) || 0,
   trainingTOC: state.student.training.toc,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrainingTOC: (trainingId: number) => {
+  fetchTrainingTOC: (trainingId: string) => {
     dispatch(fetchTrainingTOCStarted(trainingId));
   },
 });

@@ -18,7 +18,7 @@ describe('Trainer Module: fetchTrainingList action', () => {
     sinon.test(function(done) {
       // Arrange
       const sinon: sinon.SinonStatic = this;
-      const trainerId = 123;
+      const trainerId = '123';
       const trainings: TrainingSummary[] = [
         {
           id: '32',
