@@ -43,9 +43,9 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const list: TrainingSummary[] = [
-      { id: 123, end: new Date(), isActive: false, name: 'Training 1', start: new Date() },
-      { id: 124, end: new Date(), isActive: false, name: 'Training 2', start: new Date() },
-      { id: 125, end: new Date(), isActive: false, name: 'Training 3', start: new Date() },
+      { id: '123', end: new Date(), isActive: false, name: 'Training 1', start: new Date() },
+      { id: '124', end: new Date(), isActive: false, name: 'Training 2', start: new Date() },
+      { id: '125', end: new Date(), isActive: false, name: 'Training 3', start: new Date() },
     ];
     const training = new TrainingState();
     training.list = list;

@@ -2,7 +2,7 @@ import { TrainingSummary } from './../../../../../model/trainingSummary';
 import { trainingApi } from './../../../../../rest-api/training';
 import { trainerActionEnums } from '../../../../../common/actionEnums/trainer/index';
 
-export const fetchTrainingList = (trainerId: number) => {
+export const fetchTrainingList = (trainerId: string) => {
   return (dispatcher) => {
     const promise = trainingApi.getTrainingListByTrainer(trainerId);
 

@@ -110,14 +110,14 @@ describe('TrainingTableComponent', () => {
         // Arrange
         const trainings: TrainingSummary[] = [
           {
-            id: 2,
+            id: '2',
             isActive: true,
             name: 'John Doe',
             start: new Date(),
             end: new Date(),
           },
           {
-            id: 3,
+            id: '3',
             isActive: false,
             name: 'Mark Somez',
             start: new Date(),

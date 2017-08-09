@@ -11,14 +11,14 @@ describe('admin/training/list/page', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
-       id : 1,
+       id : '1',
        isActive: true,
        name : 'Antonio',
        start: new Date(),
        end: new Date(),
       },
       {
-        id: 2,
+        id: '2',
         isActive: true,
         name : 'Santi',
         start: new Date(),
@@ -39,14 +39,14 @@ describe('admin/training/list/page', () => {
     // Arrage
     const trainings: TrainingSummary[] = [
       {
-       id : 1,
+       id : '1',
        isActive: true,
        name : 'Antonio',
        start: new Date(),
        end: new Date(),
       },
       {
-        id: 2,
+        id: '2',
         isActive: true,
         name : 'Santi',
         start: new Date(),
@@ -69,14 +69,14 @@ describe('admin/training/list/page', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
-        id: 2,
+        id: '2',
         isActive: true,
         name: 'John Doe',
         start: new Date(),
         end: new Date(),
       },
       {
-        id: 3,
+        id: '3',
         isActive: false,
         name: 'Mark Somez',
         start: new Date(),
@@ -104,14 +104,14 @@ describe('admin/training/list/page', () => {
     // Arrange
     const trainings: TrainingSummary[] = [
       {
-        id: 2,
+        id: '2',
         isActive: true,
         name: 'John Doe',
         start: new Date(),
         end: new Date(),
       },
       {
-        id: 3,
+        id: '3',
         isActive: false,
         name: 'Mark Somez',
         start: new Date(),

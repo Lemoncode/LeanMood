@@ -20,7 +20,7 @@ describe('Training', () => {
 
   describe('#constructor', () => {
     it('Is initialized with the expected values on properties', () => {
-      expect(training.id).to.be.equal(-1);
+      expect(training.id).to.be.equal('-1');
       expect(training.name).to.be.equal('');
       expect(training.isActive).to.be.false;
       expect(training.start.getDay()).to.be.equal(new Date().getDay());

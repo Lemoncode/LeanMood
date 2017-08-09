@@ -26,13 +26,13 @@ describe('summaryStudentListRequestCompleted', () => {
     // Arrange
     const students: StudentSummary[] = [
       {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
       },
       {
-        id: 3,
+        id: '3',
         fullname: 'Mark Somez',
         email: 'mark@test.com',
         isActive: true,
@@ -74,13 +74,13 @@ describe('summaryStudentListRequestStarted', () => {
 
     const students: StudentSummary[] = [
       {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
       },
       {
-        id: 3,
+        id: '3',
         fullname: 'Mark Somez',
         email: 'mark@test.com',
         isActive: true,

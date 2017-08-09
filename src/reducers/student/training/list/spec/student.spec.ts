@@ -44,7 +44,7 @@ describe('trainingListReducer', () => {
     const originalState: TrainingSummary[] = [];
     const trainingSummary: TrainingSummary[] = [
       {
-        id: 123,
+        id: '123',
         end: new Date(),
         isActive: false,
         name: 'Training',

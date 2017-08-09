@@ -32,7 +32,7 @@ describe('TrainingRowComponent', () => {
   it('should return a TableRowComponent', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -56,7 +56,7 @@ describe('TrainingRowComponent', () => {
   it('should pass its properties to TableRowComponent', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -87,7 +87,7 @@ describe('when passing columns to TableRowComponent', () => {
   it('should pass as 1st child a disabled checkbox with the checked property according to training.isActive', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -117,7 +117,7 @@ describe('when passing columns to TableRowComponent', () => {
   it('should pass as 2nd child a span showing the training.name', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -144,7 +144,7 @@ describe('when passing columns to TableRowComponent', () => {
   it('should pass as 3th child a div with three childs', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -173,7 +173,7 @@ describe('when passing columns to TableRowComponent', () => {
     it('should have as a 1st child a link to edit the trining', () => {
       // Arrange
       const trainingSummary = new TrainingSummary();
-      trainingSummary.id = 1;
+      trainingSummary.id = '1';
       trainingSummary.name = 'React';
       trainingSummary.isActive = true;
       const props = {
@@ -205,7 +205,7 @@ describe('when passing columns to TableRowComponent', () => {
   it('should have as a 2nd child a button to clone the trining', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {
@@ -235,7 +235,7 @@ describe('when passing columns to TableRowComponent', () => {
   it('should have as a 3nd child a button to delete the training', () => {
     // Arrange
     const trainingSummary = new TrainingSummary();
-    trainingSummary.id = 1;
+    trainingSummary.id = '1';
     trainingSummary.name = 'React';
     trainingSummary.isActive = true;
     const props = {

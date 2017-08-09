@@ -18,7 +18,7 @@ describe('TrainingSummary', () => {
 
   describe('#constructor', () => {
     it('Is initialized with the expected values on properties', () => {
-      expect(trainingSummary.id).to.be.equal(-1);
+      expect(trainingSummary.id).to.be.equal('-1');
       expect(trainingSummary.name).to.be.equal('');
       expect(trainingSummary.isActive).to.be.false;
     });

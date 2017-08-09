@@ -18,7 +18,7 @@ describe('StudentSummary', () => {
 
   describe('#constructor', () => {
     it('Is initialized with the expected values on properties', () => {
-      expect(student.id).to.be.equal(-1);
+      expect(student.id).to.be.equal('-1');
       expect(student.fullname).to.be.equal('');
       expect(student.email).to.be.equal('');
     });

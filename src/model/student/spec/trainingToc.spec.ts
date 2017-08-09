@@ -12,9 +12,9 @@ describe('Student Module: TrainingTOC', () => {
     expect(trainingTOC).to.be.an.instanceOf(TrainingTOC);
   });
 
-  it('should have a property "id" initialized with NaN', () => {
+  it('should have a property "id" initialized with empty', () => {
     // Assert
-    expect(trainingTOC.id).to.be.NaN;
+    expect(trainingTOC.id).to.be.empty;
   });
 
   it('should have a property "content" initialized being an empty string', () => {
