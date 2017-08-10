@@ -84,17 +84,20 @@ export class EditorComponent extends React.Component<Props, {}> {
         />
         <div className={styles.editorContainer}>
           <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
-          {
-            !this.props.showPreview ?
-              <textarea
-                className={styles.textArea}
-                onChange={this.onContentChange}
-                ref={this.refHandlers.textArea}
-                value={this.props.content}
-              />
-              :
-              <PreviewComponent content={this.props.content} />
-          }
+          <div className={styles.textContainer}>
+            <textarea
+              className={styles.textArea}
+              onChange={this.onContentChange}
+              ref={this.refHandlers.textArea}
+              value={this.props.content}
+            />
+            {
+              this.props.showPreview ?
+                <PreviewComponent className={styles.previewArea}
+                  content={this.props.content} />
+                : null
+            }
+          </div>
         </div>
       </div>
     );

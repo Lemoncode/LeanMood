@@ -3,11 +3,12 @@ import { MarkDownViewerComponent } from '../../../../../../common/components/mar
 
 interface Props {
   content: string;
+  className?: string;
 }
 
-export const PreviewComponent: React.StatelessComponent<Props> = ({ content }) => {
+export const PreviewComponent: React.StatelessComponent<Props> = ({ content, className = '' }) => {
   return (
-    <MarkDownViewerComponent content={content} />
+    <MarkDownViewerComponent className={className} content={content} />
   );
 };
 

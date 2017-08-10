@@ -10,6 +10,7 @@ const compile = marksy({
 
 export interface MarkDownViewerComponentProps {
   content: string;
+  className?: string;
 }
 
 const getMarkDownChildren = (content: string): React.ReactNode => {
@@ -22,12 +23,13 @@ const getMarkDownChildren = (content: string): React.ReactNode => {
   return childrenComponent;
 };
 
-export const MarkDownViewerComponent: React.StatelessComponent<MarkDownViewerComponentProps> = ({ content }) => {
-  return (
-    <div>
-      {getMarkDownChildren(content)}
-    </div>
-  );
+export const MarkDownViewerComponent: React.StatelessComponent<MarkDownViewerComponentProps> =
+  ({ content, className = '' }) => {
+    return (
+      <div className={className}>
+        {getMarkDownChildren(content)}
+      </div>
+    );
 };
 
 MarkDownViewerComponent.displayName = 'MarkDownViewerComponent';
