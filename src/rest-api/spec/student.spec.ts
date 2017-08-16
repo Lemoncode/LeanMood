@@ -16,14 +16,14 @@ describe('StudentApi', () => {
         {
           email: 'john@test.com',
           fullname: 'John Doe',
-          id: 32,
+          id: '32',
           isActive: true,
           phoneNumber: '123',
         },
         {
           email: 'mark@email.com',
           fullname: 'Mark Perez',
-          id: 44,
+          id: '44',
           isActive: true,
           phoneNumber: '',
         },
@@ -44,14 +44,14 @@ describe('StudentApi', () => {
         {
           email: 'john@test.com',
           fullname: 'John Doe',
-          id: 32,
+          id: '32',
           isActive: true,
           phoneNumber: '123',
         },
         {
           email: 'mark@email.com',
           fullname: 'Mark Perez',
-          id: 44,
+          id: '44',
           isActive: true,
           phoneNumber: '',
         },

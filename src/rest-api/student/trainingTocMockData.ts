@@ -4,7 +4,7 @@ import { studentRouteEnums } from '../../common/routeEnums/student/';
 /* tslint:disable:max-line-length */
 export const trainingTOCMockData: TrainingTOC[] = [
   {
-    id: 34,
+    id: '34',
     name: 'Full Stack Online Máster',
     content: `
 ## Module 1 - UX + Design

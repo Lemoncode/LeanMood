@@ -43,9 +43,9 @@ describe('Trainer Module: TrainingListPageContainer', () => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
     const list: TrainingSummary[] = [
-      { id: 123, end: new Date(), isActive: false, name: 'Training 1', start: new Date() },
-      { id: 124, end: new Date(), isActive: false, name: 'Training 2', start: new Date() },
-      { id: 125, end: new Date(), isActive: false, name: 'Training 3', start: new Date() },
+      { id: '123', end: new Date(), isActive: false, name: 'Training 1', start: new Date() },
+      { id: '124', end: new Date(), isActive: false, name: 'Training 2', start: new Date() },
+      { id: '125', end: new Date(), isActive: false, name: 'Training 3', start: new Date() },
     ];
     const training = new TrainingState();
     training.list = list;
@@ -75,7 +75,7 @@ describe('Trainer Module: TrainingListPageContainer', () => {
   it('should inject to TrainingListPage a trainerId property from state', sinon.test(function() {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-    const trainerId = 123;
+    const trainerId = '123';
     const login = new LoginState();
     login.userProfile = { avatar: '', email: '', fullname: '', id: trainerId, role: 'none' };
     const store: any = createStore({

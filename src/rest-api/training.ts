@@ -27,7 +27,7 @@ class TrainingApi {
     return Promise.resolve(trainingSummaryList);
   }
 
-  public getSummaryTrainingListByStudent(studentId: number) {
+  public getSummaryTrainingListByStudent(studentId: string) {
     const trainingSummaryList: TrainingSummary[] = this.trainingList.filter((training) => {
       return (training.students && training.students.findIndex((s) => s.id === studentId) >= 0);
     });
@@ -35,7 +35,7 @@ class TrainingApi {
     return Promise.resolve(trainingSummaryList);
   }
 
-  public getTrainingListByTrainer(trainerId: number) {
+  public getTrainingListByTrainer(trainerId: string) {
     const trainingSummaryList: TrainingSummary[] = this.trainingList.filter((training) => {
       return (training.trainers.findIndex((trainer) => trainer.id === trainerId) >= 0);
     });

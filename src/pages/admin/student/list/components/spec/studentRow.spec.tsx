@@ -58,7 +58,7 @@ describe('StudentRowComponent', () => {
     it('should pass as 1st child a disabled checkbox with the checked property according to student.isActive', () => {
       // Arrange
       const student = new StudentSummary();
-      student.id = 32;
+      student.id = '32';
       student.fullname = 'John Doe';
       student.email = 'jdoe@example.com';
       student.isActive = true;
@@ -87,7 +87,7 @@ describe('StudentRowComponent', () => {
     it('should pass as 2nd child a span showing the student.fullname', () => {
       // Arrange
       const student = new StudentSummary();
-      student.id = 32;
+      student.id = '32';
       student.fullname = 'John Doe';
       student.email = 'jdoe@example.com';
       student.isActive = true;
@@ -114,7 +114,7 @@ describe('StudentRowComponent', () => {
     it('should pass as 3rd child a span showing the student.email', () => {
       // Arrange
       const student = new StudentSummary();
-      student.id = 32;
+      student.id = '32';
       student.fullname = 'John Doe';
       student.email = 'jdoe@example.com';
       student.isActive = true;
@@ -141,7 +141,7 @@ describe('StudentRowComponent', () => {
     it('should pass as 4th child a div with two childs', () => {
       // Arrange
       const student = new StudentSummary();
-      student.id = 32;
+      student.id = '32';
       student.fullname = 'John Doe';
       student.email = 'jdoe@example.com';
       student.isActive = true;
@@ -170,7 +170,7 @@ describe('StudentRowComponent', () => {
       it('should have as a 1st child a link to edit the student', () => {
         // Arrange
         const student = new StudentSummary();
-        student.id = 32;
+        student.id = '32';
         student.fullname = 'John Doe';
         student.email = 'jdoe@example.com';
         student.isActive = true;
@@ -202,7 +202,7 @@ describe('StudentRowComponent', () => {
       it('should have as a 2nd child a button to delete the student', () => {
         // Arrange
         const student = new StudentSummary();
-        student.id = 32;
+        student.id = '32';
         student.fullname = 'John Doe';
         student.email = 'jdoe@example.com';
         student.isActive = true;

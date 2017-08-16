@@ -82,7 +82,7 @@ describe('TrainingTOCPageContainer', () => {
     const sinon: sinon.SinonStatic = this;
     const trainingId = 123;
     const trainingTOC: TrainingTOC = {
-      id: 123,
+      id: '123',
       content: 'Markdown content',
       name: 'Training name',
     };
@@ -120,7 +120,7 @@ describe('TrainingTOCPageContainer', () => {
     sinon.test(function() {
       // Arrange
       const sinon: sinon.SinonStatic = this;
-      const trainingId = 123;
+      const trainingId = '123';
       const fetchTrainingTOCStarted = sinon.stub(
         studentTrainingActions,
         'fetchTrainingTOCStarted',

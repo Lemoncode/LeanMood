@@ -12,7 +12,7 @@ class StudentAPI {
     this.trainingList = newTrainingList;
   }
 
-  public getTOCByTraining(id: number): Promise<TrainingTOC> {
+  public getTOCByTraining(id: string): Promise<TrainingTOC> {
     const trainingTOC = this.trainingList.find((training) => training.id === id);
     return Promise.resolve(trainingTOC);
   }

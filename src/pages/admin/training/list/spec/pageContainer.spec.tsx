@@ -9,7 +9,7 @@ import { ListTrainingPageContainer } from '../pageContainer';
 
 const createStore = configureStore();
 
-describe('pageContainer', () => {
+describe('ListTrainingPageContainer', () => {
   it('Should be defined', sinon.test(() => {
     // Arrange
     const sinon: sinon.SinonStatic = this;

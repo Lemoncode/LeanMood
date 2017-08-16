@@ -8,8 +8,8 @@ import { NavigationBar } from './components/navigation';
 
 interface IProps extends React.Props<TrainingListPage> {
   trainingList: TrainingSummary[];
-  studentId: number;
-  fetchTrainings: (studentId: number) => void;
+  studentId: string;
+  fetchTrainings: (studentId: string) => void;
 }
 
 export class TrainingListPage extends React.Component<IProps, {}> {

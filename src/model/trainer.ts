@@ -1,7 +1,7 @@
 export class Trainer {
-  public id: number;
+  public id: string;
 
   constructor() {
-    this.id = NaN;
+    this.id = '';
   }
 }
