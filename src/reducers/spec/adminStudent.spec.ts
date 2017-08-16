@@ -74,7 +74,7 @@ describe('adminStudentReducer', () => {
     deepFreeze(originalState);
 
     const student: StudentSummary = {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,

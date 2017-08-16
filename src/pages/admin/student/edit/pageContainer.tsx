@@ -4,12 +4,12 @@ import { EditStudentPage } from './page';
 import { summaryStudentByIdRequestStarted } from './actions/summaryStudentRequest';
 
 const mapStateToProps = (state: IAppState, ownProps) => ({
-  studentId: Number(ownProps.params.id) || 0,
+  studentId: ownProps.params.id.toString(),
   student: state.adminStudent.editingStudentSummary,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getStudent: (studentId: number) => dispatch(summaryStudentByIdRequestStarted(studentId)),
+  getStudent: (studentId: string) => dispatch(summaryStudentByIdRequestStarted(studentId)),
 });
 
 export const EditStudentPageContainer = connect(

@@ -28,7 +28,7 @@ describe('summaryStudentByIdRequestCompleted', () => {
   it('contains the expected payload including the student summary', () => {
     // Arrange
     const student: StudentSummary = {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
@@ -48,7 +48,7 @@ describe('summaryStudentByIdRequestCompleted', () => {
 describe('summaryStudentByIdRequestStarted', () => {
   it('should return a function', () => {
     // Arrange
-    const studentId = 1;
+    const studentId = '1';
 
     // Assert
     expect(summaryStudentByIdRequestStarted(studentId)).to.be.a('function');
@@ -57,7 +57,7 @@ describe('summaryStudentByIdRequestStarted', () => {
   it('should return request action type completed', sinon.test(function(done) {
     // Arrange
     const sinon: sinon.SinonStatic = this;
-    const studentId = 1;
+    const studentId = '1';
 
     // Act
     const store = mockStore([]);
@@ -74,7 +74,7 @@ describe('summaryStudentByIdRequestStarted', () => {
     const sinon: sinon.SinonStatic = this;
 
     const student: StudentSummary = {
-        id: 2,
+        id: '2',
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,

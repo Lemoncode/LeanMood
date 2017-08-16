@@ -2,7 +2,7 @@ import { adminActionEnums } from '../../../../../common/actionEnums/admin';
 import { StudentSummary } from '../../../../../model/studentSummary';
 import { studentApi } from '../../../../../rest-api';
 
-export const summaryStudentByIdRequestStarted  = (studentId: number) => {
+export const summaryStudentByIdRequestStarted  = (studentId: string) => {
   return function(dispatcher) {
     const promise = studentApi.getStudentById(studentId);
 
