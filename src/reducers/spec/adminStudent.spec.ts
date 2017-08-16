@@ -66,15 +66,14 @@ describe('adminStudentReducer', () => {
     expect(newState.studentSummaryList).to.eql(students);
   });
 
-   it(`should return a new state including a specific student when
+  it(`should return a new state including a specific student when
     passing a GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED`, () => {
     // Arrange
     const originalState = new AdminStudentState();
 
     deepFreeze(originalState);
 
-    const student: StudentSummary = 
-      {
+    const student: StudentSummary = {
         id: 2,
         fullname: 'John Doe',
         email: 'test@test.com',

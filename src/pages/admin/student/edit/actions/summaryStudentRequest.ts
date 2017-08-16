@@ -16,7 +16,7 @@ export const summaryStudentByIdRequestStarted  = (studentId: number) => {
   };
 };
 
-export const summaryStudentByIdRequestCompleted  = (student: StudentSummary) => {
+export const summaryStudentByIdRequestCompleted = (student: StudentSummary) => {
   return {
     payload: student,
     type: adminActionEnums.GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED,

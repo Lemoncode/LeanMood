@@ -16,7 +16,7 @@ describe('summaryStudentByIdRequestCompleted', () => {
 
   it('contains the expected type GET_SUMMARY_STUDENT_BY_ID_REQUEST_COMPLETED', () => {
     // Arrange
-    const student = new StudentSummary();    
+    const student = new StudentSummary();
 
     // Act
     const action = summaryStudentByIdRequestCompleted(student);
@@ -26,14 +26,14 @@ describe('summaryStudentByIdRequestCompleted', () => {
   });
 
   it('contains the expected payload including the student summary', () => {
-    // Arrange     
+    // Arrange
     const student: StudentSummary = {
         id: 2,
         fullname: 'John Doe',
         email: 'test@test.com',
         isActive: true,
       };
-      
+
     // Act
     const actionResult = summaryStudentByIdRequestCompleted(student);
 
@@ -73,8 +73,7 @@ describe('summaryStudentByIdRequestStarted', () => {
     // Arrange
     const sinon: sinon.SinonStatic = this;
 
-    const student: StudentSummary = 
-      {
+    const student: StudentSummary = {
         id: 2,
         fullname: 'John Doe',
         email: 'test@test.com',
