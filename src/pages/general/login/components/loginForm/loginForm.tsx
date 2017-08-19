@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {LoginCredentials} from '../../../../../model/login/loginCredentials';
-import {ILoginErrors} from '../../../../../model/login/loginErrors';
-import {HeaderComponent} from './components/header';
+import { LoginCredentials } from '../../../../../model/login/loginCredentials';
+import { ILoginErrors } from '../../../../../model/login/loginErrors';
+import { HeaderComponent } from './components/header';
 import { FormComponent } from './components/form';
 const styles: any = require('./loginForm.styles.scss');
 
@@ -10,6 +10,7 @@ interface IProps {
   loginErrors: ILoginErrors;
   updateLoginInfo: (viewModel: LoginCredentials, fieldName: string, value: string) => void;
   loginRequest: (loginCredentials: LoginCredentials) => void;
+  getCookie: () => void;
 }
 
 export const LoginFormComponent = (props: IProps) => {
@@ -27,6 +28,11 @@ export const LoginFormComponent = (props: IProps) => {
             />
           </div>
         </div>
+      </div>
+      <div className="row">
+        <button className="btn btn-danger" type="button" onClick={props.getCookie}>
+          Get Cookie
+        </button>
       </div>
     </div>
   );

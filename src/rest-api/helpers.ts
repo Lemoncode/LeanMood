@@ -13,3 +13,8 @@ export const post: Partial<RequestInit> = {
   ...methodBase,
   method: 'POST',
 };
+
+export const get: Partial<RequestInit> = {
+  ...methodBase,
+  method: 'GET',
+};

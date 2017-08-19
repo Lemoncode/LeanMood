@@ -1,10 +1,10 @@
 import { LoginCredentials } from '../../model/login/loginCredentials';
 import { LoginResponse } from '../../model/login/loginResponse';
 import { loginMockResponses } from './loginMockData';
-import { LoginFunction } from './loginAPI.contract';
+import { LoginFunction, GetCookie } from './loginAPI.contract';
 import { User } from '../model/general';
 import { mapUserToStateModel } from '../mappers/general';
-import { formatURL, post } from '../helpers';
+import { formatURL, post, get } from '../helpers';
 
 export const login: LoginFunction = (loginInfo: LoginCredentials): Promise<LoginResponse> => {
   return fetch(formatURL('/login'), {
@@ -37,4 +37,16 @@ const handleFailLogin = (response: Response): Promise<LoginResponse> => {
   loginResponse.succeded = false;
 
   return Promise.resolve(loginResponse);
+};
+
+export const getCookie: GetCookie = (): Promise<string> => (
+  fetch(formatURL('/login'), {
+    ...get,
+  })
+  .then((response) => response.text())
+  .then(handleSuccessGetCookie)
+);
+
+const handleSuccessGetCookie = (cookie: string): Promise<string> => {
+  return Promise.resolve(cookie);
 };

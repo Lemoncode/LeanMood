@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import {FieldValidationResult} from 'lc-form-validation';
+import { FieldValidationResult } from 'lc-form-validation';
 import { multilineTrim } from '../../../../../../common/parse/multilineTrim';
 import { LoginCredentials } from '../../../../../../model/login/loginCredentials';
-import {ILoginErrors} from '../../../../../../model/login/loginErrors';
+import { ILoginErrors } from '../../../../../../model/login/loginErrors';
 import { LoginFormComponent } from '../loginForm';
 
 describe('LoginFormComponent', () => {
@@ -28,6 +28,7 @@ describe('LoginFormComponent', () => {
         loginErrors={loginErrors}
         loginRequest={onClickSpy}
         updateLoginInfo={onChangeSpy}
+        getCookie={sinon.spy()}
       />,
     );
 
@@ -111,6 +112,7 @@ describe('LoginFormComponent', () => {
         loginErrors={loginErrors}
         loginRequest={onClickSpy}
         updateLoginInfo={onChangeSpy}
+        getCookie={sinon.spy()}
       />,
     );
 
@@ -139,6 +141,7 @@ describe('LoginFormComponent', () => {
         loginErrors={loginErrors}
         loginRequest={onClickSpy}
         updateLoginInfo={onChangeSpy}
+        getCookie={sinon.spy()}
       />,
     );
 
@@ -169,6 +172,7 @@ describe('LoginFormComponent', () => {
         loginErrors={loginErrors}
         loginRequest={onClickSpy}
         updateLoginInfo={onChangeSpy}
+        getCookie={sinon.spy()}
       />,
     );
 
