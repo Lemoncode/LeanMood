@@ -15,7 +15,7 @@ module.exports = merge(common, {
     vendor: [
       'core-js',
       'lc-form-validation',
-      'marksy',
+      'markdown-it',
       'moment',
       'react',
       'react-addons-shallow-compare',

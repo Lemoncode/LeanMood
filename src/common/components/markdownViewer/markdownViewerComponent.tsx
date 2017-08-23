@@ -1,35 +1,53 @@
 import * as React from 'react';
-import { marksy } from 'marksy';
+import MarkdownIt from 'markdown-it';
+import { markdownDefaultRenderOptions } from './markdownRenderOptions';
 
-const compile = marksy({
-  // TODO: extract into a new <DynamicLink /> that analyze "href" and render a <Link /> or <a />
-  a: ({ target, children, ...other }) => (
-    <a target="_self" {...other}>{children}</a>
-  ),
-});
+// TODO: Research custom components and rules. E.g.:
+// Custom rule to analyze "href" and render a <Link /> (react router) or <a />
+// TODO: Image resizing when embedding pictures ¿? (CSS max-width. Tag img with style class).
+// TODO: Code syntax highlight with highlight.js (a new dependency).
 
 export interface MarkDownViewerComponentProps {
   content: string;
   className?: string;
+  renderOptions?: any;
 }
 
-const getMarkDownChildren = (content: string): React.ReactNode => {
-  let childrenComponent: React.ReactNode = null;
-
-  if (content) {
-    childrenComponent = compile(content).tree;
+class MarkDownViewerComponent extends React.Component<MarkDownViewerComponentProps, {}> {
+  constructor(props) {
+    super(props);
   }
 
-  return childrenComponent;
-};
+  public static defaultProps: Partial<MarkDownViewerComponentProps> = {
+    renderOptions: markdownDefaultRenderOptions,
+  };
 
-export const MarkDownViewerComponent: React.StatelessComponent<MarkDownViewerComponentProps> =
-  ({ content, className = '' }) => {
-    return (
-      <div className={className}>
-        {getMarkDownChildren(content)}
-      </div>
+  private CreateMdRender = (options = {}) => {
+    return new MarkdownIt(options);
+  }
+
+  private MdRender: any = this.CreateMdRender(this.props.renderOptions);
+
+  public componentWillUpdate(nextProps, nextState) {
+    // New render instance upon render options update.
+    if (nextProps.renderOptions !== this.props.renderOptions) {
+      this.MdRender = this.CreateMdRender(this.props.renderOptions);
+    }
+  }
+
+  public render() {
+    // Object destructuring to retrieve className with default value.
+    const {className = '', content} = this.props;
+    // TODO: This conversion from plain HTML to JSX with
+    // dangerouslySetInnerHTML could be unsafe (script injection)
+    // depending on the parsing done by the Markdown-it renderer.
+    // Markdonw-it is supposed to be XSS safe, but just in case, make sure.
+    return(
+      <div className={className}
+        dangerouslySetInnerHTML={{__html: this.MdRender.render(content)}}
+      />
     );
+  }
 };
 
-MarkDownViewerComponent.displayName = 'MarkDownViewerComponent';
+export { MarkDownViewerComponent }

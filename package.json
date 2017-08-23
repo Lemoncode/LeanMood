@@ -104,7 +104,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "lc-form-validation": "^1.0.0",
-    "marksy": "^0.3.0",
+    "markdown-it": "^8.3.2",
     "moment": "^2.18.1",
     "react": "^15.4.1",
     "react-addons-shallow-compare": "^15.4.2",
