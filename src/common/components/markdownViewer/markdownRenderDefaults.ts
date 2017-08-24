@@ -1,4 +1,9 @@
-export const markdownDefaultRenderOptions = {
+import hljs from 'highlight.js/lib/highlight';
+
+/**
+ *  Markdown Render options.
+ */
+const markdownRenderDefaultOptions = {
   options: {
     html:         false,        // Enable HTML tags in source. This could be unsafe if enabled (XSS).
     xhtmlOut:     false,        // Use '/' to close single tags (<br />)
@@ -22,7 +27,6 @@ export const markdownDefaultRenderOptions = {
     //
     // function (/*str, lang*/) { return ''; }
     //
-    highlight: null,
   },
 
   components: {
@@ -32,3 +36,17 @@ export const markdownDefaultRenderOptions = {
     inline: {},
   },
 };
+
+const markdownRenderHighlight = (md) => (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code>' +
+              hljs.highlight(lang, str, true).value +
+              '</code></pre>';
+      } catch (__) {}
+    }
+
+    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+};
+
+export { markdownRenderDefaultOptions, markdownRenderHighlight }

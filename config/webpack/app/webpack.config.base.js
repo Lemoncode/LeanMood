@@ -16,6 +16,7 @@ module.exports = merge(common, {
       'core-js',
       'lc-form-validation',
       'markdown-it',
+      'highlight.js',
       'moment',
       'react',
       'react-addons-shallow-compare',
