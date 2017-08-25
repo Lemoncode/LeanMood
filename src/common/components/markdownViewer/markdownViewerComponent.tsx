@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CreateMdRender } from './markdownRender';
+import { CreateMarkdownRender } from './render/markdownRender';
 
 /**
  * TODO: Research custom components and rules. E.g.:
@@ -19,12 +19,12 @@ class MarkDownViewerComponent extends React.Component<MarkDownViewerComponentPro
     super(props);
   }
 
-  private md: any = CreateMdRender(this.props.renderOptions);
+  private md: any = CreateMarkdownRender(this.props.renderOptions);
 
   public componentWillUpdate(nextProps, nextState) {
     // New render instance upon render options update.
     if (nextProps.renderOptions !== this.props.renderOptions) {
-      this.md = CreateMdRender(this.props.renderOptions);
+      this.md = CreateMarkdownRender(this.props.renderOptions);
     }
   }
 

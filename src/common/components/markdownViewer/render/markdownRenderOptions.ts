@@ -1,16 +1,15 @@
+import * as MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js/lib/highlight';
 
 /**
  *  Markdown Render options.
  */
-const markdownRenderDefaultOptions = {
-  options: {
+const mdrDefaultOptions: MarkdownIt.Options = {
     html:         false,        // Enable HTML tags in source. This could be unsafe if enabled (XSS).
     xhtmlOut:     false,        // Use '/' to close single tags (<br />)
     breaks:       false,        // Convert '\n' in paragraphs into <br>
     langPrefix:   'language-',  // CSS language prefix for fenced blocks
     linkify:      true,         // autoconvert URL-like texts to links
-    maxNesting:   100,          // Internal protection, recursion limit
     // Enable some language-neutral replacements + quotes beautification
     typographer:  true,
 
@@ -27,26 +26,18 @@ const markdownRenderDefaultOptions = {
     //
     // function (/*str, lang*/) { return ''; }
     //
-  },
-
-  components: {
-
-    core: {},
-    block: {},
-    inline: {},
-  },
 };
 
-const markdownRenderHighlight = (md) => (str, lang) => {
+const mdrHighlighter = (md: MarkdownIt.MarkdownIt, str, lang) => {
+  const highlighter = () => {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return '<pre class="hljs"><code>' +
-              hljs.highlight(lang, str, true).value +
-              '</code></pre>';
+        return hljs.highlight(lang, str, true).value;
       } catch (__) {}
     }
-
-    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    return md.utils.escapeHtml(str);
+  };
+  return '<pre class="hljs"><code>' + highlighter() + '</code></pre>';
 };
 
-export { markdownRenderDefaultOptions, markdownRenderHighlight }
+export { mdrDefaultOptions, mdrHighlighter }
