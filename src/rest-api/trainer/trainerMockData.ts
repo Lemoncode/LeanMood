@@ -4,19 +4,15 @@ export const trainingContentMockData: EditTrainingSummary[] = [
   {
     id: 1,
     content:
-`---
-__Advertisement :)__
-
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-i18n with plurals support and easy syntax.
-
-You will like those projects!
+`# Markdown 8-)
+## Feature Samples 
 
 ---
 
-# h1 Heading 8-)
+## Headings
+---
+
+# h1 Heading
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
@@ -25,6 +21,7 @@ You will like those projects!
 
 
 ## Horizontal Rules
+---
 
 ___
 
@@ -33,6 +30,7 @@ ___
 ***
 
 ## Typographic replacements
+---
 
 Enable typographer option to see result.
 
@@ -44,7 +42,9 @@ test.. test... test..... test?..... test!....
 
 "Smartypants, double quotes" and 'single quotes'
 
+
 ## Emphasis
+---
 
 **This is bold text**
 
@@ -58,13 +58,16 @@ _This is italic text_
 
 
 ## Blockquotes
+---
 
 
 > Blockquotes can also be nested...
 >> ...by using additional greater-than signs right next to each other...
 > > > ...or with spaces between arrows.
 
+
 ## Lists
+---
 
 Unordered
 
@@ -92,6 +95,7 @@ Start numbering with offset:
 1. bar
 
 ## Code
+---
 
 Inline \`code\`
 
@@ -109,17 +113,66 @@ Block code "fences"
 Sample text here...
 \`\`\`
 
-Syntax highlighting
+## Code Syntax Highlighting
 
+Javascript
 \`\`\` js
-var foo = function (bar) {
-return bar++;
-};
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\\bno\\-highlight\\b/) != -1)
+      return process(block, true, 0x0F) +
+             \` class="\${cls}"\`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
 
-console.log(foo(5));
+export  $initHighlight;
 \`\`\`
 
+HTML
+\`\`\` html
+<!DOCTYPE html>
+<title>Title</title>
+
+<style>body {width: 500px;}</style>
+
+<script type="application/javascript">
+  function $init() {return true;}
+</script>
+
+<body>
+  <p checked class="title" id='title'>Title</p>
+  <!-- here goes the rest of the page -->
+</body>
+\`\`\`
+
+CSS
+\`\`\` css
+@font-face {
+  font-family: Chunkfive; src: url('Chunkfive.otf');
+}
+
+body, .usertext {
+  color: #F0F0F0; background: #600;
+  font-family: Chunkfive, sans;
+}
+
+@import url(print.css);
+@media print {
+  a[href^=http]::after {
+    content: attr(href)
+  }
+}
+\`\`\`
+
+
 ## Tables
+---
 
 | Option | Description |
 | ------ | ----------- |
@@ -137,15 +190,17 @@ Right aligned columns
 
 
 ## Links
+---
 
-[link text](http://dev.nodeca.com)
+[link text](http://lemoncode.net)
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+[link with title](http://lemoncode.net "title text!")
 
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+Autoconverted link https://lemoncode.net (enable linkify to see)
 
 
 ## Images
+---
 
 ![Minion](https://octodex.github.com/images/minion.png)
 ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
@@ -159,37 +214,35 @@ With a reference later in the document defining the URL location:
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
 
-## Plugins
-
-The killer feature of \`markdown-it\` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+## Emojies
+---
 
 > Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
 >
 > Shortcuts (emoticons): :-) :-( 8-) ;)
 
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub)
-### [Superscript](https://github.com/markdown-it/markdown-it-sup)
+## Subscript / Superscript / \<ins> / \<mark>
+---
 
 - 19^th^
 - H~2~O
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
+- ++Inserted text++
+- ==Marked text==
 
 
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
+## Checkboxes
+---
 
-==Marked text==
+Todo List:
+
+[x] Buy some fruit
+
+[ ] Go to gym
 
 
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
+## Footnotes
+---
 
 Footnote 1 link[^first].
 
@@ -206,44 +259,15 @@ Duplicated footnote reference[^second].
 [^second]: Footnote text.
 
 
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-      { some code, part of Definition 2 }
-
-  Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-~ Definition 1
-
-Term 2
-~ Definition 2a
-~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+## Abbreviations
+---
 
 This is HTML abbreviation example.
 
 It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
 *[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::`,
+`,
   },
   {
     id: 2,
