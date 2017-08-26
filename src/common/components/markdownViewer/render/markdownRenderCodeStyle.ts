@@ -1,4 +1,5 @@
 
+// List of available code highlight sytles.
 enum MdrCodeStyle {
   agate = 'agate',
   androidstudio = 'androidstudio',
@@ -81,6 +82,7 @@ enum MdrCodeStyle {
   zenburn = 'zenburn',
 }
 
+// Code highlight style dynamic loader.
 const loadMdrCodeStyle = (style: MdrCodeStyle) => {
   return require(`highlight.js/styles/${style}.css`);
 };

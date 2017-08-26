@@ -20,7 +20,7 @@
   @include genericFlexContainer(column);
 }
 
-.textContainer {
+.markdownArea {
   @include genericFlexContainer(row);
 
   margin: -10px;
@@ -35,6 +35,10 @@
 
 .previewArea {
   @include genericFlexItem();
+
+  & img {
+    max-width: 100%;
+  }
 
   overflow: auto;
 }

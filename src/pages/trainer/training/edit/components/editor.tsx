@@ -84,7 +84,7 @@ export class EditorComponent extends React.Component<Props, {}> {
         />
         <div className={styles.editorContainer}>
           <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
-          <div className={styles.textContainer}>
+          <div className={styles.markdownArea}>
             <textarea
               className={styles.textArea}
               onChange={this.onContentChange}

@@ -1,9 +1,7 @@
 import * as MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js/lib/highlight';
 
-/**
- *  Markdown Render options.
- */
+// Markdown Render options.
 const mdrDefaultOptions: MarkdownIt.Options = {
     html:         false,        // Enable HTML tags in source. This could be unsafe if enabled (XSS).
     xhtmlOut:     false,        // Use '/' to close single tags (<br />)
@@ -19,16 +17,10 @@ const mdrDefaultOptions: MarkdownIt.Options = {
     // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
     // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
     quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
-
-    // Highlighter function. Should return escaped HTML,
-    // or '' if the source string is not changed and should be escaped externaly.
-    // If result starts with <pre... internal wrapper is skipped.
-    //
-    // function (/*str, lang*/) { return ''; }
-    //
 };
 
-const mdrHighlighter = (md: MarkdownIt.MarkdownIt, str, lang) => {
+// Markdown Render code highlighter.
+const mdrCodeHighlighter = (md: MarkdownIt.MarkdownIt, str, lang) => {
   const highlighter = () => {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -40,4 +32,4 @@ const mdrHighlighter = (md: MarkdownIt.MarkdownIt, str, lang) => {
   return '<pre class="hljs"><code>' + highlighter() + '</code></pre>';
 };
 
-export { mdrDefaultOptions, mdrHighlighter }
+export { mdrDefaultOptions, mdrCodeHighlighter }
