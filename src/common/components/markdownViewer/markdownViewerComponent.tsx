@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 
 import { CreateMarkdownRender, Mdr, MdrFactory,
@@ -40,13 +41,31 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     }
   }
 
+  private markdownToMarkup = () => {
+    return {
+      __html: this.mdr.render(this.props.content),
+    };
+  }
+
+  // TODO: Delete this **************
+  public componentDidMount() {
+    console.log("Mount Done");
+    const blockList = ReactDOM.findDOMNode(this).getElementsByClassName('sourceLine');
+    console.log(blockList);
+  }
+  public componentDidUpdate() {
+    console.log("Update Done");
+    console.log(this.props.children);
+  }
+  // ********************************
+
   private handleScroll = (event) => {
     // console.log(`${event.target.scrollTop} pixels`);
   }
 
   public render() {
     // Object destructuring to retrieve className with default value.
-    const {className = '', content} = this.props;
+    const {className = ''} = this.props;
     // WARNING: This conversion from plain HTML to JSX with
     // dangerouslySetInnerHTML could be unsafe (script injection, XSS)
     // depending whether markdown engine blocks malicious code or not.
@@ -54,7 +73,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     // change engine, ensure safety first!
     return(
       <div className={className}
-        dangerouslySetInnerHTML={{__html: this.mdr.render(content)}}
+        dangerouslySetInnerHTML={this.markdownToMarkup()}
         onScroll={this.handleScroll}
       />
     );
