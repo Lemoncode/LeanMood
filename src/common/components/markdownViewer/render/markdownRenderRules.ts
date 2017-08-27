@@ -1,7 +1,7 @@
-import * as MarkdownIt from 'markdown-it';
+import { MarkdownIt as Mdr } from 'markdown-it';
 
 // Factory to build custom rules easily.
-const CustomRuleFactory = (mdr: MarkdownIt.MarkdownIt) => (name: string) => {
+const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
   const originalRule = mdr.renderer.rules[name];
   const customRule = {
     ruleName: name,
@@ -33,7 +33,7 @@ const sourceLineDecorator = (tokens, idx) => {
 };
 
 // Load custom rules for a given markdown render.
-const loadMdrCustomRules = (mdr: MarkdownIt.MarkdownIt) => {
+const loadCustomRules = (mdr: Mdr, routerLocation: string) => {
   const CreateCustomRule = CustomRuleFactory(mdr);
 
   // Add here desired customized rules.
@@ -54,9 +54,30 @@ const loadMdrCustomRules = (mdr: MarkdownIt.MarkdownIt) => {
       .decorate((tokens, idx) => {
         tokens[idx].attrJoin('class', 'table table-striped');
       }),
+    CreateCustomRule('footnote_ref').replace(
+      (tokens, idx, options, env, renderer) => {
+        const id      = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
+        const caption = renderer.rules.footnote_caption(tokens, idx, options, env, renderer);
+        let refid   = id;
+
+        if (tokens[idx].meta.subId > 0) {
+          refid += ':' + tokens[idx].meta.subId;
+        }
+        return `<sup class="footnote-ref"><a href="#${routerLocation}#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
+      }),
+    CreateCustomRule('footnote_anchor').replace(
+      (tokens, idx, options, env, renderer) => {
+        let id = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
+
+        if (tokens[idx].meta.subId > 0) {
+          id += ':' + tokens[idx].meta.subId;
+        }
+        /* ↩ with escape code to prevent display as Apple Emoji on iOS */
+        return ` <a href="#${routerLocation}#fnref${id}" class="footnote-backref">\u21a9\uFE0E</a>`;
+      }),
   ];
 
   customRules.forEach((item) => mdr.renderer.rules[item.ruleName] = item.rule);
 };
 
-export { loadMdrCustomRules }
+export { loadCustomRules }

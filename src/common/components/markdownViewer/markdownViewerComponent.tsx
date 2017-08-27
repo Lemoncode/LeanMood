@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { CreateMarkdownRender } from './render/markdownRender';
+import { withRouter } from 'react-router';
+
+import { CreateMarkdownRender, Mdr, MdrFactory,
+         MdrSetup, MdrOptions, MdrCodeStyle } from './render';
 
 /**
  * TODO: Research custom components and rules. E.g.:
@@ -9,35 +12,46 @@ import { CreateMarkdownRender } from './render/markdownRender';
 interface MarkDownViewerComponentProps {
   content: string;
   className?: string;
-  renderOptions?: any;
+  location?: any; // Router HOC injected.
+  options?: MdrOptions;
+  codeStyle?: MdrCodeStyle;
 }
 
-class MarkDownViewerComponent extends React.Component<MarkDownViewerComponentProps, {}> {
+class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   constructor(props) {
     super(props);
   }
 
-  private mdr: any = CreateMarkdownRender(this.props.renderOptions);
+  private CreateMdrInstance = () => {
+    const setupParams: MdrSetup = {
+      routerLocation: this.props.location.pathname,
+      options: this.props.options,
+      codeStyle: this.props.codeStyle,
+    };
+    return CreateMarkdownRender(setupParams);
+  }
+
+  private mdr: Mdr = this.CreateMdrInstance();
 
   public componentWillUpdate(nextProps, nextState) {
     // New render instance upon render options update.
-    if (nextProps.renderOptions !== this.props.renderOptions) {
-      this.mdr = CreateMarkdownRender(this.props.renderOptions);
+    if (nextProps.options !== this.props.options) {
+      this.mdr = this.CreateMdrInstance();
     }
   }
 
   private handleScroll = (event) => {
-    console.log(`${event.target.scrollTop} pixels`);
+    // console.log(`${event.target.scrollTop} pixels`);
   }
 
   public render() {
     // Object destructuring to retrieve className with default value.
     const {className = '', content} = this.props;
     // WARNING: This conversion from plain HTML to JSX with
-    // dangerouslySetInnerHTML could be unsafe (script injection)
+    // dangerouslySetInnerHTML could be unsafe (script injection, XSS)
     // depending whether markdown engine blocks malicious code or not.
-    // Markdonw-it is XSS safe, but if you plan to change engine,
-    // make sure first!
+    // Markdonw-it is supposed to be XSS safe, but if you plan to
+    // change engine, ensure safety first!
     return(
       <div className={className}
         dangerouslySetInnerHTML={{__html: this.mdr.render(content)}}
@@ -47,4 +61,5 @@ class MarkDownViewerComponent extends React.Component<MarkDownViewerComponentPro
   }
 };
 
-export { MarkDownViewerComponentProps, MarkDownViewerComponent }
+const MarkDownViewerComponent = withRouter(MarkDownViewer);
+export { MarkDownViewerComponent, MarkDownViewerComponentProps }

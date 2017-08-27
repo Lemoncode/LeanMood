@@ -1,8 +1,8 @@
-import * as MarkdownIt from 'markdown-it';
+import { MarkdownIt as Mdr, Options as MdrOptions } from 'markdown-it';
 import hljs from 'highlight.js/lib/highlight';
 
-// Markdown Render options.
-const mdrDefaultOptions: MarkdownIt.Options = {
+// Markdown Render options by default.
+const defaultOptions: MdrOptions = {
     html:         false,        // Enable HTML tags in source. This could be unsafe if enabled (XSS).
     xhtmlOut:     false,        // Use '/' to close single tags (<br />)
     breaks:       false,        // Convert '\n' in paragraphs into <br>
@@ -20,16 +20,16 @@ const mdrDefaultOptions: MarkdownIt.Options = {
 };
 
 // Markdown Render code highlighter.
-const mdrCodeHighlighter = (md: MarkdownIt.MarkdownIt, str, lang) => {
+const codeHighlighter = (mdr: Mdr, str, lang) => {
   const highlighter = () => {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str, true).value;
       } catch (__) {}
     }
-    return md.utils.escapeHtml(str);
+    return mdr.utils.escapeHtml(str);
   };
   return '<pre class="hljs"><code>' + highlighter() + '</code></pre>';
 };
 
-export { mdrDefaultOptions, mdrCodeHighlighter }
+export { MdrOptions, defaultOptions, codeHighlighter }

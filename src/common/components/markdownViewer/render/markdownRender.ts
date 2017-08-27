@@ -1,40 +1,50 @@
-import * as MarkdownIt from 'markdown-it';
-import mdPluginAbbr from 'markdown-it-abbr';
-import mdPluginEmoji from 'markdown-it-emoji';
-import mdPluginFootnote from 'markdown-it-footnote';
-import mdPluginIns from 'markdown-it-ins';
-import mdPluginMark from 'markdown-it-mark';
-import mdPluginSub from 'markdown-it-sub';
-import mdPluginSup from 'markdown-it-sup';
-import mdPluginCheckbox from 'markdown-it-checkbox';
-import hljs from 'highlight.js/lib/highlight';
-import { MdrCodeStyle, loadMdrCodeStyle } from './markdownRenderCodeStyle';
-import { mdrDefaultOptions, mdrCodeHighlighter } from './markdownRenderOptions';
-import { loadMdrCustomRules } from './markdownRenderRules';
+import * as MdrObject from 'markdown-it';
+import { MarkdownIt as Mdr } from 'markdown-it';
+import mdrPluginAbbr from 'markdown-it-abbr';
+import mdrPluginEmoji from 'markdown-it-emoji';
+import mdrPluginFootnote from 'markdown-it-footnote';
+import mdrPluginIns from 'markdown-it-ins';
+import mdrPluginMark from 'markdown-it-mark';
+import mdrPluginSub from 'markdown-it-sub';
+import mdrPluginSup from 'markdown-it-sup';
+import mdrPluginCheckbox from 'markdown-it-checkbox';
+import { loadCustomRules } from './markdownRenderRules';
+import { MdrOptions, defaultOptions, codeHighlighter } from './markdownRenderOptions';
+import { MdrCodeStyle, loadCodeStyle, defaultCodeStyle } from './markdownRenderCodeStyle';
+
+interface MdrSetup {
+  routerLocation: string;
+  options?: MdrOptions;
+  codeStyle?: MdrCodeStyle;
+}
+
+type MdrFactory = (setupParams: MdrSetup) => Mdr;
 
 // Markdown Render Factory. Create render instance and set it up.
-const CreateMarkdownRender = (mdrOptions: MarkdownIt.Options = mdrDefaultOptions,
-  mdrCodeStyle: MdrCodeStyle = MdrCodeStyle.atomOneLight) => {
-    // Create instance with setup options, load plugins.
-    const mdr = new MarkdownIt({
-      ...mdrOptions,
-      highlight: (str, lang) => mdrCodeHighlighter(mdr, str, lang),
-    }).use(mdPluginAbbr)
-      .use(mdPluginEmoji)
-      .use(mdPluginFootnote)
-      .use(mdPluginIns)
-      .use(mdPluginMark)
-      .use(mdPluginSub)
-      .use(mdPluginSup)
-      .use(mdPluginCheckbox);
+const CreateMarkdownRender: MdrFactory = ({
+  routerLocation,
+  options = defaultOptions,
+  codeStyle = defaultCodeStyle}) => {
+    // Create instance with options+highlighter & load plugins.
+    const mdr = new MdrObject({
+      ...options,
+      highlight: (str, lang) => codeHighlighter(mdr, str, lang),
+    }).use(mdrPluginAbbr)
+      .use(mdrPluginEmoji)
+      .use(mdrPluginFootnote)
+      .use(mdrPluginIns)
+      .use(mdrPluginMark)
+      .use(mdrPluginSub)
+      .use(mdrPluginSup)
+      .use(mdrPluginCheckbox);
 
     // Load custom rules.
-    loadMdrCustomRules(mdr);
+    loadCustomRules(mdr, routerLocation);
 
     // Load code highlight style.
-    loadMdrCodeStyle(mdrCodeStyle);
+    loadCodeStyle(codeStyle);
 
     return mdr;
 };
 
-export { CreateMarkdownRender }
+export { CreateMarkdownRender, Mdr, MdrFactory, MdrSetup }

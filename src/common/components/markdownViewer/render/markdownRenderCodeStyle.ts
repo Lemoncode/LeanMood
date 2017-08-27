@@ -1,5 +1,4 @@
-
-// List of available code highlight sytles.
+// List of available code styles.
 enum MdrCodeStyle {
   agate = 'agate',
   androidstudio = 'androidstudio',
@@ -82,9 +81,12 @@ enum MdrCodeStyle {
   zenburn = 'zenburn',
 }
 
-// Code highlight style dynamic loader.
-const loadMdrCodeStyle = (style: MdrCodeStyle) => {
+// Change here code style by default.
+const defaultCodeStyle = MdrCodeStyle.atomOneLight;
+
+// Code style dynamic loader.
+const loadCodeStyle = (style: MdrCodeStyle) => {
   return require(`highlight.js/styles/${style}.css`);
 };
 
-export { MdrCodeStyle, loadMdrCodeStyle }
+export { MdrCodeStyle, loadCodeStyle, defaultCodeStyle }

@@ -214,6 +214,24 @@ With a reference later in the document defining the URL location:
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
 
+## Footnotes
+---
+
+Footnote 1 link[^first].
+
+Footnote 2 link[^second].
+
+Inline footnote^[Text of inline footnote] definition.
+
+Duplicated footnote reference[^second].
+
+[^first]: Footnote **can have markup**
+
+  and multiple paragraphs.
+
+[^second]: Footnote text.
+
+
 ## Emojies
 ---
 
@@ -239,24 +257,6 @@ Todo List:
 [x] Buy some fruit
 
 [ ] Go to gym
-
-
-## Footnotes
----
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-  and multiple paragraphs.
-
-[^second]: Footnote text.
 
 
 ## Abbreviations
