@@ -1,4 +1,5 @@
 import { MarkdownIt as Mdr } from 'markdown-it';
+import { SOURCE_LINE_CLASSNAME, SOURCE_LINE_ATTRIBUTE } from '../syncScroll';
 
 // Factory to build custom rules easily.
 const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
@@ -27,8 +28,8 @@ const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
 const sourceLineDecorator = (tokens, idx) => {
   // Injection only for root-children tokens (level 0).
   if (tokens[idx].map && tokens[idx].map.length && tokens[idx].level === 0) {
-    tokens[idx].attrJoin('class', 'sourceLine');
-    tokens[idx].attrSet('line', String(tokens[idx].map[0]));
+    tokens[idx].attrJoin('class', SOURCE_LINE_CLASSNAME);
+    tokens[idx].attrSet(SOURCE_LINE_ATTRIBUTE, String(tokens[idx].map[0]));
   }
 };
 
