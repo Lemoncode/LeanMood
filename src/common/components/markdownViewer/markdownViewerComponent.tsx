@@ -49,12 +49,12 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
 
   // TODO: Delete this **************
   public componentDidMount() {
-    console.log("Mount Done");
+    console.log("React Life Cycle: Mount Done");
     const blockList = ReactDOM.findDOMNode(this).getElementsByClassName('sourceLine');
     console.log(blockList);
   }
   public componentDidUpdate() {
-    console.log("Update Done");
+    console.log("React Life Cycle: Update Done");
     console.log(this.props.children);
   }
   // ********************************

@@ -1,5 +1,6 @@
 import { MarkdownIt as Mdr } from 'markdown-it';
 import { SOURCE_LINE_CLASSNAME, SOURCE_LINE_ATTRIBUTE } from '../syncScroll';
+import { isHashHistory } from '../../../../history';
 
 // Factory to build custom rules easily.
 const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
@@ -64,7 +65,10 @@ const loadCustomRules = (mdr: Mdr, routerLocation: string) => {
         if (tokens[idx].meta.subId > 0) {
           refid += ':' + tokens[idx].meta.subId;
         }
-        return `<sup class="footnote-ref"><a href="#${routerLocation}#fn${id}" id="fnref${refid}">${caption}</a></sup>`;
+        // Hash history hashed links: Host/#/route/page#elementID.
+        // Browser history hashed links: #elementID.
+        const hrefContent = (isHashHistory() ? `#${routerLocation}` : '') + `#fn${id}`;
+        return `<sup class="footnote-ref"><a href="${hrefContent}" id="fnref${refid}">${caption}</a></sup>`;
       }),
     CreateCustomRule('footnote_anchor').replace(
       (tokens, idx, options, env, renderer) => {
@@ -73,8 +77,9 @@ const loadCustomRules = (mdr: Mdr, routerLocation: string) => {
         if (tokens[idx].meta.subId > 0) {
           id += ':' + tokens[idx].meta.subId;
         }
+        const hrefContent = (isHashHistory() ? `#${routerLocation}` : '') + `#fnref${id}`;
         /* ↩ with escape code to prevent display as Apple Emoji on iOS */
-        return ` <a href="#${routerLocation}#fnref${id}" class="footnote-backref">\u21a9\uFE0E</a>`;
+        return ` <a href="${hrefContent}" class="footnote-backref">\u21a9\uFE0E</a>`;
       }),
   ];
 
