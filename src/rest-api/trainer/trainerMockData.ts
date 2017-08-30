@@ -5,7 +5,7 @@ export const trainingContentMockData: EditTrainingSummary[] = [
     id: 1,
     content:
 `# Markdown 8-)
-## Feature Samples 
+## Implemented Features
 
 ---
 

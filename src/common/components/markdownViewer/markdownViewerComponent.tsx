@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
+import { SOURCE_LINE_CLASSNAME, getRenderedElementsForSourceLine } from './syncScroll';
 
 import { CreateMarkdownRender, Mdr, MdrFactory,
          MdrSetup, MdrOptions, MdrCodeStyle } from './render';
@@ -47,21 +48,20 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     };
   }
 
-  // TODO: Delete this **************
-  public componentDidMount() {
-    console.log("React Life Cycle: Mount Done");
-    const blockList = ReactDOM.findDOMNode(this).getElementsByClassName('sourceLine');
-    console.log(blockList);
-  }
-  public componentDidUpdate() {
-    console.log("React Life Cycle: Update Done");
-    console.log(this.props.children);
-  }
-  // ********************************
-
+  // TODO: Delete this, TEST AREA **************
   private handleScroll = (event) => {
     // console.log(`${event.target.scrollTop} pixels`);
   }
+
+  public componentDidMount() {
+    const result = getRenderedElementsForSourceLine(
+      ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME), 28);
+    console.log(result);
+    if (result.candidate) {
+      result.candidate.element.scrollIntoView();
+    }
+  }
+  // ********************************
 
   public render() {
     // Object destructuring to retrieve className with default value.
