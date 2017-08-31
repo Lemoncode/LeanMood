@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
-import { SOURCE_LINE_CLASSNAME, getRenderedElementsForSourceLine } from './syncScroll';
+import { SOURCE_LINE_CLASSNAME,
+         getRenderedElementsForSourceLine,
+         getRenderedElementsForPixelOffset } from './syncScroll';
 
 import { CreateMarkdownRender, Mdr, MdrFactory,
          MdrSetup, MdrOptions, MdrCodeStyle } from './render';
@@ -53,13 +55,10 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     // console.log(`${event.target.scrollTop} pixels`);
   }
 
-  public componentDidMount() {
-    const result = getRenderedElementsForSourceLine(
-      ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME), 28);
+  private handleClick = (event) => {
+    const result = getRenderedElementsForPixelOffset(
+      ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME), 360);
     console.log(result);
-    if (result.candidate) {
-      result.candidate.element.scrollIntoView();
-    }
   }
   // ********************************
 
@@ -75,6 +74,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
       <div className={className}
         dangerouslySetInnerHTML={this.markdownToMarkup()}
         onScroll={this.handleScroll}
+        onClick={this.handleClick}
       />
     );
   }

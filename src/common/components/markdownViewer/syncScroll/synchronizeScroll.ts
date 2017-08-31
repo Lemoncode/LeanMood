@@ -44,8 +44,32 @@ const getRenderedElementsForSourceLine = (elementList: NodeListOf<Element>, targ
   return { exactMatch: false, candidate };
 };
 
+const getRenderedElementsForPixelOffset = (elementList: NodeListOf<Element>, pixelOffset: number): CandidateSearch => {
+  const targetOffset = pixelOffset - window.pageYOffset;
+  let candidate: Candidate = null;
+  let lineFraction = 0;
+  for (const element of elementList) {
+    const slAttr = element.getAttribute(SOURCE_LINE_ATTRIBUTE);
+    if (isIntegerProperty(slAttr)) {
+      const boundingRect = element.getBoundingClientRect();
+      const current: Candidate = { lineNum: Number(slAttr), element };
+      if (boundingRect.top > targetOffset) {
+        if (candidate && lineFraction < 1) {
+          candidate.lineNum += lineFraction;
+          return { exactMatch: true, candidate };
+        }
+        return { exactMatch: false, candidate, nextCandidate: current };
+      }
+      lineFraction = (targetOffset - boundingRect.top) / boundingRect.height;
+      candidate = current;
+    }
+  }
+  return { exactMatch: false, candidate };
+};
+
 export {
   SOURCE_LINE_CLASSNAME,
   SOURCE_LINE_ATTRIBUTE,
   getRenderedElementsForSourceLine,
+  getRenderedElementsForPixelOffset,
 };
