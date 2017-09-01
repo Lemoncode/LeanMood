@@ -6,20 +6,14 @@
  * For example, "execute this function only if 100 milliseconds
  * have passed without it being called".
  */
-function debounce(func, threshold: number): any {
+function debounce(func, threshold: number = 10): any {
   let timeout;
   return function() {
-    const context = this;
-    const args = arguments;
-    const later = function() {
-      timeout = null;
+    const callLater = () => {
+      func.apply(this, arguments);
     };
-    const callNow = !timeout;
     clearTimeout(timeout);
-    timeout = setTimeout(later, threshold);
-    if (callNow) {
-      return func.apply(context, args);
-    }
+    timeout = setTimeout(callLater, threshold);
   };
 };
 
