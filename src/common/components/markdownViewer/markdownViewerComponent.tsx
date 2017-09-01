@@ -46,7 +46,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
 
   private markdownToMarkup = () => {
     return {
-      __html: this.mdr.render(this.props.content),
+      __html: this.mdr.render(this.props.content || ''),
     };
   }
 
