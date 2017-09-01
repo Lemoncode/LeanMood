@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { MarkDownViewerComponent, MarkDownViewerComponentProps } from '../markdownViewerComponent';
 
 describe('MarkdownViewer Component', () => {
-  it('should render the content as React components', () => {
+  it('should render the content as HTML components', () => {
     // Arrange
     const props: MarkDownViewerComponentProps = {
       content: [
@@ -12,17 +12,14 @@ describe('MarkdownViewer Component', () => {
       ].join('\n'),
     };
 
-    const expectedTitle = <h1 id="main-title">Main title</h1>;
-    const expectedParagraph = <p>Description text with <strong>bold text</strong></p>;
-
     // Act
     const trainingTOCPage = mount(
       <MarkDownViewerComponent {...props} />,
     );
 
     // Assert
-    expect(trainingTOCPage.contains(expectedTitle)).to.be.true;
-    expect(trainingTOCPage.contains(expectedParagraph)).to.be.true;
+    expect(trainingTOCPage.html()).to.match(/<h1.*>Main title<\/h1>/);
+    expect(trainingTOCPage.html()).to.match(/<p.*>Description text with <strong>bold text<\/strong><\/p>/);
   });
 
   it('should render nothing when the content is empty', () => {
@@ -37,7 +34,7 @@ describe('MarkdownViewer Component', () => {
     );
 
     // Assert
-    expect(trainingTOCPage.html()).to.be.equal('<div></div>');
+    expect(trainingTOCPage.html()).to.match(/<div.*><\/div>/);
   });
 
   it('should render nothing when the content is empty', () => {
@@ -52,6 +49,6 @@ describe('MarkdownViewer Component', () => {
     );
 
     // Assert
-    expect(trainingTOCPage.html()).to.be.equal('<div></div>');
+    expect(trainingTOCPage.html()).to.match(/<div.*><\/div>/);
   });
 });

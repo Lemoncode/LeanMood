@@ -8,7 +8,10 @@ interface Props {
 
 export const PreviewComponent: React.StatelessComponent<Props> = ({ content, className = '' }) => {
   return (
-    <MarkDownViewerComponent className={className} content={content} />
+    <MarkDownViewerComponent className={className} content={[
+      '# Main title',
+      'Description text with **bold text**',
+    ].join('\n')} />
   );
 };
 

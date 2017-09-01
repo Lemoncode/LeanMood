@@ -28,7 +28,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
 
   private CreateMdrInstance = () => {
     const setupParams: MdrSetup = {
-      routerLocation: this.props.location.pathname,
+      routerLocation: this.props.location ? this.props.location.pathname : '',
       options: this.props.options,
       codeStyle: this.props.codeStyle,
     };
