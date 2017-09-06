@@ -51,6 +51,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }
 
   private doScrollToSourceLine = (targetSourceLine) => {
+    console.log(`Do scroll in preview: ${targetSourceLine}`);
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const scrollOffset = getPixelOffsetForSourceLine(renderedElements, targetSourceLine);
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
@@ -62,7 +63,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const lineNum = getSourceLineForPixelOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
     this.props.onScrollSourceLine(lineNum);
-  }, 50);
+  }, 25);
 
   private handleScroll = (event) => {
     if (this.props.onScrollSourceLine) {
@@ -71,10 +72,11 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }
 
   public shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.scrollSourceLine !== this.props.scrollSourceLine) {
+    if (nextProps.scrollSourceLine !== undefined && nextProps.scrollSourceLine !== this.props.scrollSourceLine) {
       this.doScrollToSourceLine(nextProps.scrollSourceLine);
       return false;
     }
+    return true;
   }
 
   public componentWillUpdate(nextProps, nextState) {

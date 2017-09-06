@@ -23,8 +23,18 @@ interface Props {
   setActivePanelId: (panelId: string) => void;
 }
 
+enum WhoIsScrolling {
+  Editor,
+  Preview,
+  None,
+}
+
+const PADDING_OFFSET = 50;
+
+// Local state.
 interface State {
-  activeLine: number;
+  syncSourceLine: number;
+  whoIsScrolling: WhoIsScrolling;
 }
 
 export class EditorComponent extends React.Component<Props, State> {
@@ -38,7 +48,8 @@ export class EditorComponent extends React.Component<Props, State> {
     this.onContentChange = this.onContentChange.bind(this);
 
     this.state = {
-      activeLine: 0,
+      syncSourceLine: 0,
+      whoIsScrolling: WhoIsScrolling.None,
     };
   }
 
@@ -79,12 +90,36 @@ export class EditorComponent extends React.Component<Props, State> {
     this.props.onContentChange(value);
   }
 
-  private handleTextAreaScroll = throttle(() => {
+  private handleEditorScroll = throttle((event) => {
+    console.log(`TextArea Scrolling: ${ (this.editor.scrollTop / this.editorLineHeight)}`)
+    // this.setState({
+    //   ...this.state,
+    //   syncSourceLine: ((this.editor.scrollTop + PADDING_OFFSET) / this.editorLineHeight),
+    //   whoIsScrolling: WhoIsScrolling.Editor,
+    // });
+  }, 25);
+
+  private handlePreviewScroll = (sourceLine) => {
     this.setState({
       ...this.state,
-      activeLine: (this.editor.scrollTop / this.editorLineHeight),
+      syncSourceLine: sourceLine,
+      whoIsScrolling: WhoIsScrolling.Preview,
     });
-  }, 50);
+  }
+
+  private doEditorScrollToSourceLine = (targetSourceLine) => {
+      this.editor.scrollTop = (targetSourceLine * this.editorLineHeight) + PADDING_OFFSET;
+  }
+
+  public shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.syncSourceLine !== undefined &&
+        nextState.syncSourceLine !== this.state.syncSourceLine &&
+        nextState.whoIsScrolling !== WhoIsScrolling.Editor) {
+      this.doEditorScrollToSourceLine(nextState.syncSourceLine);
+      return false;
+    }
+    return true;
+  }
 
   public componentDidUpdate() {
     if (this.props.shouldUpdateEditorCursor) {
@@ -111,14 +146,15 @@ export class EditorComponent extends React.Component<Props, State> {
               ref={this.refHandlers.textArea}
               value={this.props.content}
               onChange={this.onContentChange}
-              onScroll={this.handleTextAreaScroll}
+              onScroll={this.handleEditorScroll}
             />
             {
               this.props.showPreview ?
                 <PreviewComponent className={styles.previewArea}
                   content={this.props.content}
-                  onScrollSourceLine={null}
-                  scrollSourceLine={this.state.activeLine}
+                  onScrollSourceLine={this.handlePreviewScroll}
+                  scrollSourceLine={/*this.state.whoIsScrolling !== WhoIsScrolling.Preview ?*/
+                    this.state.syncSourceLine /*: undefined*/}
                 />
                 : null
             }

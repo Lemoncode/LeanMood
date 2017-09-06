@@ -69,7 +69,7 @@ const getRenderedElementsForPixelOffset = (elementList: NodeListOf<Element>, tar
     return { exactMatch: false, candidate };
 };
 
-// Fine tune this constant to place the our reference 'marker' at a certain
+// Fine tune this constant to place our reference 'marker' at a certain
 // distance of the component top border.
 const PADDING_OFFSET = 50;
 
