@@ -3,15 +3,19 @@ import { MarkDownViewerComponent } from '../../../../../../common/components/mar
 
 interface Props {
   content: string;
+  scrollSourceLine?: number;
+  onScrollSourceLine?: (sourceLine) => any;
   className?: string;
 }
 
-export const PreviewComponent: React.StatelessComponent<Props> = ({ content, className = '' }) => {
+export const PreviewComponent: React.StatelessComponent<Props> = (props) => {
+  const { content, className = '', scrollSourceLine, onScrollSourceLine } = props;
   return (
-    <MarkDownViewerComponent className={className} content={[
-      '# Main title',
-      'Description text with **bold text**',
-    ].join('\n')} />
+    <MarkDownViewerComponent className={className}
+      content={content}
+      onScrollSourceLine={onScrollSourceLine}
+      scrollSourceLine={scrollSourceLine}
+    />
   );
 };
 

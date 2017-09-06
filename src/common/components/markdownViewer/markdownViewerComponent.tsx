@@ -2,19 +2,21 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import { SOURCE_LINE_CLASSNAME,
-         getRenderedElementsForSourceLine,
-         getRenderedElementsForPixelOffset } from './syncScroll';
-
+         getPixelOffsetForSourceLine,
+         getSourceLineForPixelOffset } from './syncScroll';
 import { CreateMarkdownRender, Mdr, MdrFactory,
          MdrSetup, MdrOptions, MdrCodeStyle } from './render';
+import { throttle } from '../../../common/helper/limitExecution';
 
 /**
- * TODO: Research custom components and rules. E.g.:
+ * TODO:
  * Custom rule to analyze "href" and render a <Link /> (react router) or <a />
  */
 
 interface MarkDownViewerComponentProps {
   content: string;
+  scrollSourceLine?: number;
+  onScrollSourceLine?: (sourceLine) => any;
   className?: string;
   location?: any; // Router HOC injected.
   options?: MdrOptions;
@@ -36,12 +38,10 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }
 
   private mdr: Mdr = this.CreateMdrInstance();
+  private scrollableContainerRef: HTMLElement = null;
 
-  public componentWillUpdate(nextProps, nextState) {
-    // New render instance upon render options update.
-    if (nextProps.options !== this.props.options) {
-      this.mdr = this.CreateMdrInstance();
-    }
+  private setScrollableContainerRef = (input) => {
+    this.scrollableContainerRef = input;
   }
 
   private markdownToMarkup = () => {
@@ -50,17 +50,39 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     };
   }
 
-  // TODO: Delete this, TEST AREA **************
-  private handleScroll = (event) => {
-    // console.log(`${event.target.scrollTop} pixels`);
+  private doScrollToSourceLine = (targetSourceLine) => {
+    const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
+    const scrollOffset = getPixelOffsetForSourceLine(renderedElements, targetSourceLine);
+    const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
+    this.scrollableContainerRef.scrollTop += scrollOffset - ((componentPosition > 0) ? componentPosition : 0);
   }
 
-  private handleClick = (event) => {
-    const result = getRenderedElementsForPixelOffset(
-      ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME), 360);
-    console.log(result);
+  private getSourceLineForScroll = throttle(() => {
+    const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
+    const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
+    const lineNum = getSourceLineForPixelOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
+    this.props.onScrollSourceLine(lineNum);
+  }, 50);
+
+  private handleScroll = (event) => {
+    if (this.props.onScrollSourceLine) {
+      this.getSourceLineForScroll();
+    }
   }
-  // ********************************
+
+  public shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.scrollSourceLine !== this.props.scrollSourceLine) {
+      this.doScrollToSourceLine(nextProps.scrollSourceLine);
+      return false;
+    }
+  }
+
+  public componentWillUpdate(nextProps, nextState) {
+    // New render instance upon render options update.
+    if (nextProps.options !== this.props.options) {
+      this.mdr = this.CreateMdrInstance();
+    }
+  }
 
   public render() {
     // Object destructuring to retrieve className with default value.
@@ -71,10 +93,9 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     // Markdonw-it is supposed to be XSS safe, but if you plan to
     // change engine, ensure safety first!
     return(
-      <div className={className}
+      <div className={className} ref={this.setScrollableContainerRef}
         dangerouslySetInnerHTML={this.markdownToMarkup()}
         onScroll={this.handleScroll}
-        onClick={this.handleClick}
       />
     );
   }

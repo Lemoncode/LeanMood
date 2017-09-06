@@ -1,6 +1,7 @@
 
 const SOURCE_LINE_CLASSNAME = 'sourceLine';
 const SOURCE_LINE_ATTRIBUTE = 'line';
+const SOURCE_LINE_HIGHLIGHT_CLASSNAME = 'highlightSourceLine';
 
 interface Candidate {
   lineNum: number;
@@ -44,32 +45,69 @@ const getRenderedElementsForSourceLine = (elementList: NodeListOf<Element>, targ
   return { exactMatch: false, candidate };
 };
 
-const getRenderedElementsForPixelOffset = (elementList: NodeListOf<Element>, pixelOffset: number): CandidateSearch => {
-  const targetOffset = pixelOffset - window.pageYOffset;
-  let candidate: Candidate = null;
-  let lineFraction = 0;
-  for (const element of elementList) {
-    const slAttr = element.getAttribute(SOURCE_LINE_ATTRIBUTE);
-    if (isIntegerProperty(slAttr)) {
-      const boundingRect = element.getBoundingClientRect();
-      const current: Candidate = { lineNum: Number(slAttr), element };
-      if (boundingRect.top > targetOffset) {
-        if (candidate && lineFraction < 1) {
-          candidate.lineNum += lineFraction;
-          return { exactMatch: true, candidate };
+// Retrieve the candidate(s) elements that are located in a certain pixel offset
+// position from an input list of rendered elements.
+const getRenderedElementsForPixelOffset = (elementList: NodeListOf<Element>, targetOffset: number): CandidateSearch => {
+    let candidate: Candidate = null;
+    let lineFraction = 0;
+    for (const element of elementList) {
+      const slAttr = element.getAttribute(SOURCE_LINE_ATTRIBUTE);
+      if (isIntegerProperty(slAttr)) {
+        const boundingRect = element.getBoundingClientRect();
+        const current: Candidate = { lineNum: Number(slAttr), element };
+        if (boundingRect.top > targetOffset) {
+          if (candidate && lineFraction < 1) {
+            candidate.lineNum += lineFraction;
+            return { exactMatch: true, candidate };
+          }
+          return { exactMatch: false, candidate, nextCandidate: current };
         }
-        return { exactMatch: false, candidate, nextCandidate: current };
+        lineFraction = (targetOffset - boundingRect.top) / boundingRect.height;
+        candidate = current;
       }
-      lineFraction = (targetOffset - boundingRect.top) / boundingRect.height;
-      candidate = current;
     }
+    return { exactMatch: false, candidate };
+};
+
+// Fine tune this constant to place the our reference 'marker' at a certain
+// distance of the component top border.
+const PADDING_OFFSET = 50;
+
+// For a given list of rendered elements (each element coming from a source line) and
+// a target line, returns the pixel offser for the viewport to show the element matching
+// the target line.
+const getPixelOffsetForSourceLine = (elementList: NodeListOf<Element>, targetLine: number): number => {
+  const cs = getRenderedElementsForSourceLine(elementList, targetLine);
+  if (cs.candidate && cs.candidate.element) {
+    const inBetween = cs.nextCandidate ?
+      (targetLine - cs.candidate.lineNum)
+      * (cs.nextCandidate.element.getBoundingClientRect().top - cs.candidate.element.getBoundingClientRect().top)
+      / (cs.nextCandidate.lineNum - cs.candidate.lineNum)
+      : 0;
+    return cs.candidate.element.getBoundingClientRect().top + inBetween - PADDING_OFFSET;
   }
-  return { exactMatch: false, candidate };
+  return 0;
+};
+
+// For a given list of rendered elements (each element coming from a source line) and
+// a target offset, returns the line number of the element located in that target offset.
+const getSourceLineForPixelOffset = (elementList: NodeListOf<Element>, targetOffset: number): number => {
+  const adjustedOffset = targetOffset + PADDING_OFFSET;
+  const cs = getRenderedElementsForPixelOffset(elementList, adjustedOffset);
+  if (cs.candidate) {
+    const inBetween = cs.nextCandidate ?
+    (adjustedOffset - cs.candidate.element.getBoundingClientRect().top)
+    / (cs.nextCandidate.element.getBoundingClientRect().top - cs.candidate.element.getBoundingClientRect().top)
+    * (cs.nextCandidate.lineNum - cs.candidate.lineNum)
+    : 0;
+    return cs.candidate.lineNum + inBetween;
+  }
+  return 0;
 };
 
 export {
   SOURCE_LINE_CLASSNAME,
   SOURCE_LINE_ATTRIBUTE,
-  getRenderedElementsForSourceLine,
-  getRenderedElementsForPixelOffset,
+  getPixelOffsetForSourceLine,
+  getSourceLineForPixelOffset,
 };

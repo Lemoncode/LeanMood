@@ -7,6 +7,7 @@ import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { PreviewComponent } from './preview';
 import { panelIds, panelList } from './panels';
 import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
+import { throttle } from '../../../../../common/helper/limitExecution';
 const styles: any = require('./editorStyles.scss');
 
 interface Props {
@@ -22,14 +23,23 @@ interface Props {
   setActivePanelId: (panelId: string) => void;
 }
 
-export class EditorComponent extends React.Component<Props, {}> {
+interface State {
+  activeLine: number;
+}
+
+export class EditorComponent extends React.Component<Props, State> {
   private editor: HTMLTextAreaElement;
+  private editorLineHeight: number;
 
   constructor() {
     super();
 
     this.insertMarkdownEntry = this.insertMarkdownEntry.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+
+    this.state = {
+      activeLine: 0,
+    };
   }
 
   private refHandlers = {
@@ -64,15 +74,26 @@ export class EditorComponent extends React.Component<Props, {}> {
     this.props.updateEditorCursor(cursorStartPosition);
   }
 
+  private onContentChange(event) {
+    const value = event.target.value;
+    this.props.onContentChange(value);
+  }
+
+  private handleTextAreaScroll = throttle(() => {
+    this.setState({
+      ...this.state,
+      activeLine: (this.editor.scrollTop / this.editorLineHeight),
+    });
+  }, 50);
+
   public componentDidUpdate() {
     if (this.props.shouldUpdateEditorCursor) {
       textAreaTool.placeCursor(this.editor, this.props.cursorStartPosition);
     }
   }
 
-  private onContentChange(event) {
-    const value = event.target.value;
-    this.props.onContentChange(value);
+  public componentDidMount() {
+    this.editorLineHeight = parseInt(window.getComputedStyle(this.editor, null).getPropertyValue('line-height'), 10);
   }
 
   public render() {
@@ -87,14 +108,18 @@ export class EditorComponent extends React.Component<Props, {}> {
           <div className={styles.markdownArea}>
             <textarea
               className={styles.textArea}
-              onChange={this.onContentChange}
               ref={this.refHandlers.textArea}
               value={this.props.content}
+              onChange={this.onContentChange}
+              onScroll={this.handleTextAreaScroll}
             />
             {
               this.props.showPreview ?
                 <PreviewComponent className={styles.previewArea}
-                  content={this.props.content} />
+                  content={this.props.content}
+                  onScrollSourceLine={null}
+                  scrollSourceLine={this.state.activeLine}
+                />
                 : null
             }
           </div>
