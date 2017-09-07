@@ -24,7 +24,7 @@
   @include genericFlexContainer(row);
 
   margin: -10px;
-  height: 800px;
+  height: 400px; // TODO: why? 
 }
 
 .textArea {

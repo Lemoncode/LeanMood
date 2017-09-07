@@ -71,7 +71,7 @@ const getRenderedElementsForPixelOffset = (elementList: NodeListOf<Element>, tar
 
 // Fine tune this constant to place our reference 'marker' at a certain
 // distance of the component top border.
-const PADDING_OFFSET = 50;
+const PADDING_OFFSET = 0;
 
 // For a given list of rendered elements (each element coming from a source line) and
 // a target line, returns the pixel offser for the viewport to show the element matching

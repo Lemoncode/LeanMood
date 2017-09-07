@@ -15,7 +15,7 @@ interface Props {
   onScrollSourceLine?: (sourceLine) => any;
 }
 
-const PADDING_OFFSET = 50;
+const PADDING_OFFSET = 0;
 
  // this.setState({
     //   ...this.state,
@@ -28,14 +28,26 @@ export class TextEditorComponent extends React.Component<Props, {}> {
     super();
   }
 
-  private editorRef: HTMLTextAreaElement;
-  private editorLineHeight: number;
+  private editorRef: HTMLTextAreaElement = null;
+  private editorLineHeight: number = 20;
+  private allowNotifyScroll: boolean = true;
 
   private setEditorRef = (input) => { this.editorRef = input; };
 
-  private handleEditorScroll = throttle((event) => {
-
+  private notifySourceLine = throttle(() => {
+    const sourceLine = (this.editorRef.scrollTop + PADDING_OFFSET) / this.editorLineHeight;
+    this.props.onScrollSourceLine(sourceLine);
   }, 25);
+
+  private handleScroll = (event) => {
+    if (this.allowNotifyScroll) {
+      if (this.props.onScrollSourceLine) {
+        this.notifySourceLine();
+      }
+    } else {
+      this.allowNotifyScroll = true;
+    }
+  }
 
   private handleContentChange = (event) => {
     const value = event.target.value;
@@ -43,6 +55,7 @@ export class TextEditorComponent extends React.Component<Props, {}> {
   }
 
   private doEditorScrollToSourceLine = (targetSourceLine) => {
+    this.allowNotifyScroll = false;
     this.editorRef.scrollTop = (targetSourceLine * this.editorLineHeight) + PADDING_OFFSET;
   }
 
@@ -88,7 +101,7 @@ export class TextEditorComponent extends React.Component<Props, {}> {
       <textarea className={className}
         value={content}
         ref={this.setEditorRef}
-        onScroll={this.handleEditorScroll}
+        onScroll={this.handleScroll}
         onChange={this.handleContentChange}
       />
     );

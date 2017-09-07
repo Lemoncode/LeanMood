@@ -32,7 +32,7 @@ enum WhoIsScrolling {
 // Local state.
 interface State {
   mdEntry: IMarkdownEntry;
-  syncSourceLine: number;
+  activeSourceLine: number;
   whoIsScrolling: WhoIsScrolling;
 }
 
@@ -42,7 +42,7 @@ export class EditorComponent extends React.Component<Props, State> {
 
     this.state = {
       mdEntry: {mdCaret: '', caretCursorPosition: 0},
-      syncSourceLine: 0,
+      activeSourceLine: 0,
       whoIsScrolling: WhoIsScrolling.None,
     };
   }
@@ -67,17 +67,19 @@ export class EditorComponent extends React.Component<Props, State> {
   }
 
   private handleEditorScroll = (sourceLine) => {
+console.log(`EDITOR: ${sourceLine}`);
     this.setState({
       ...this.state,
-      syncSourceLine: sourceLine,
+      activeSourceLine: sourceLine,
       whoIsScrolling: WhoIsScrolling.Editor,
     });
   }
 
   private handlePreviewScroll = (sourceLine) => {
+console.log(`PREVIEW: ${sourceLine}`);
     this.setState({
       ...this.state,
-      syncSourceLine: sourceLine,
+      activeSourceLine: sourceLine,
       whoIsScrolling: WhoIsScrolling.Preview,
     });
   }
@@ -99,21 +101,17 @@ export class EditorComponent extends React.Component<Props, State> {
               onContentChange={this.props.onContentChange}
               updateEditorCursor={this.props.updateEditorCursor}
               markdownEntry={this.state.mdEntry}
+              onScrollSourceLine={this.handleEditorScroll}
+              scrollSourceLine={this.state.whoIsScrolling !== WhoIsScrolling.Editor ?
+                this.state.activeSourceLine : undefined}
             />
-            {/* <textarea
-              className={styles.textArea}
-              ref={this.refHandlers.textArea}
-              value={this.props.content}
-              onChange={this.onContentChange}
-              onScroll={this.handleEditorScroll}
-            /> */}
             {
               this.props.showPreview ?
                 <PreviewComponent className={styles.previewArea}
                   content={this.props.content}
                   onScrollSourceLine={this.handlePreviewScroll}
-                  scrollSourceLine={/*this.state.whoIsScrolling !== WhoIsScrolling.Preview ?*/
-                    this.state.syncSourceLine /*: undefined*/}
+                  scrollSourceLine={this.state.whoIsScrolling !== WhoIsScrolling.Preview ?
+                    this.state.activeSourceLine : undefined}
                 />
                 : null
             }

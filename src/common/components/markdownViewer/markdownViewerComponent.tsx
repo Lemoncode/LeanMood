@@ -39,26 +39,25 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
 
   private mdr: Mdr = this.CreateMdrInstance();
   private scrollableContainerRef: HTMLElement = null;
+  private allowNotifyScroll: boolean = true;
 
-  private setScrollableContainerRef = (input) => {
-    this.scrollableContainerRef = input;
-  }
+  private setScrollableContainerRef = (input) => { this.scrollableContainerRef = input; };
 
-  private markdownToMarkup = () => {
+  private markdownToHTML = () => {
     return {
       __html: this.mdr.render(this.props.content || ''),
     };
   }
 
   private doScrollToSourceLine = (targetSourceLine) => {
-    console.log(`Do scroll in preview: ${targetSourceLine}`);
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const scrollOffset = getPixelOffsetForSourceLine(renderedElements, targetSourceLine);
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
+    this.allowNotifyScroll = false;
     this.scrollableContainerRef.scrollTop += scrollOffset - ((componentPosition > 0) ? componentPosition : 0);
   }
 
-  private getSourceLineForScroll = throttle(() => {
+  private notifySourceLine = throttle(() => {
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const lineNum = getSourceLineForPixelOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
@@ -66,8 +65,12 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }, 25);
 
   private handleScroll = (event) => {
-    if (this.props.onScrollSourceLine) {
-      this.getSourceLineForScroll();
+    if (this.allowNotifyScroll) {
+      if (this.props.onScrollSourceLine) {
+        this.notifySourceLine();
+      }
+    } else {
+      this.allowNotifyScroll = true;
     }
   }
 
@@ -96,7 +99,7 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     // change engine, ensure safety first!
     return(
       <div className={className} ref={this.setScrollableContainerRef}
-        dangerouslySetInnerHTML={this.markdownToMarkup()}
+        dangerouslySetInnerHTML={this.markdownToHTML()}
         onScroll={this.handleScroll}
       />
     );
