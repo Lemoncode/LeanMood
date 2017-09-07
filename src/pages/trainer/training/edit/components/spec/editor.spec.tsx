@@ -144,7 +144,7 @@ describe('EditorComponent', () => {
     );
 
     // Act
-    const component = shallow(
+    const component = mount(
       <EditorComponent
         content={content}
         cursorStartPosition={cursorStartPosition}
@@ -201,7 +201,7 @@ describe('EditorComponent', () => {
       );
 
       // Act
-      const component = shallow(
+      const component = mount(
         <EditorComponent
           content={content}
           cursorStartPosition={cursorStartPosition}
