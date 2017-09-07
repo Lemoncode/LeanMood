@@ -17,12 +17,6 @@ interface Props {
 
 const PADDING_OFFSET = 0;
 
- // this.setState({
-    //   ...this.state,
-    //   syncSourceLine: ((this.editor.scrollTop + PADDING_OFFSET) / this.editorLineHeight),
-    //   whoIsScrolling: WhoIsScrolling.Editor,
-    // });
-
 export class TextEditorComponent extends React.Component<Props, {}> {
   constructor() {
     super();
@@ -98,7 +92,7 @@ export class TextEditorComponent extends React.Component<Props, {}> {
   public render() {
     const { content, className = '', scrollSourceLine, onScrollSourceLine } = this.props;
     return (
-      <textarea className={className}
+      <textarea className={className} wrap="off" /** TODO: Add support to word wrap and sync scroll */
         value={content}
         ref={this.setEditorRef}
         onScroll={this.handleScroll}

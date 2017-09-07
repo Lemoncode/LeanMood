@@ -67,7 +67,6 @@ export class EditorComponent extends React.Component<Props, State> {
   }
 
   private handleEditorScroll = (sourceLine) => {
-console.log(`EDITOR: ${sourceLine}`);
     this.setState({
       ...this.state,
       activeSourceLine: sourceLine,
@@ -76,7 +75,6 @@ console.log(`EDITOR: ${sourceLine}`);
   }
 
   private handlePreviewScroll = (sourceLine) => {
-console.log(`PREVIEW: ${sourceLine}`);
     this.setState({
       ...this.state,
       activeSourceLine: sourceLine,
