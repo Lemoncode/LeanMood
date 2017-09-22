@@ -90,7 +90,6 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }
 
   public render() {
-    // Object destructuring to retrieve className with default value.
     const {className = ''} = this.props;
     // WARNING: This conversion from plain HTML to JSX with
     // dangerouslySetInnerHTML could be unsafe (script injection, XSS)
