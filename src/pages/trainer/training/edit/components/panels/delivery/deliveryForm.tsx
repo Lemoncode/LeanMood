@@ -3,10 +3,14 @@ import {
   InputComponent,
   TextAreaComponent,
 } from '../../../../../../../common/components/form';
+import {IMarkdownEntry} from '../../../../../../../model/trainer/markdownEntry';
+import {markdownEntryConstants} from '../../markdownEntryConstants';
+
 const styles: any = require('./styles.scss');
 
 interface Props {
   togglePanel(): void;
+  insertMarkdownEntry(): void;
 }
 
 interface State {
@@ -80,5 +84,7 @@ export class DeliveryFormComponent extends React.Component<Props, State> {
   private onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     this.props.togglePanel();
+    this.props.insertMarkdownEntry();
+    // console.log('clincking save...' + this.state.title);
   }
 }
