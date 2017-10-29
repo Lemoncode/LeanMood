@@ -55,9 +55,14 @@ export class EditStudentPage extends React.Component<Props, State> {
           <TabContainer>
               <EditionUserTrainingsPanel />
           </TabContainer>}
-
         </div>
-       
+        <br />
+        <div className="form-group">
+            <div className="saveButton col-sm-10">
+              <button className="btn btn-primary" type="submit">Save</button>
+            </div>
+          </div>
+
         <br />
         
         <Link to={adminRouteEnums.student.list}>Back to student list</Link>

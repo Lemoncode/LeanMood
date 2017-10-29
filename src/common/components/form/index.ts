@@ -10,3 +10,6 @@ export {
 export {
   SelectComponent,
 } from './select';
+export {
+  CheckboxComponent,
+} from './checkbox';
