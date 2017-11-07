@@ -42,7 +42,7 @@ export const CommandGroupComponent = (props: IProps) => {
             caretCursorPosition={markdownEntryConstants.link.cursorPosition}
             onClick={props.insertMarkdownEntry}
             paneldId={panelIds.delivery}
-            label="Add Delivery asdf asdf"
+            label="Add Delivery"
           >
             <Icon icon={iconEnums.delivery} />
           </ToolbarLabeledMarkdownButton>

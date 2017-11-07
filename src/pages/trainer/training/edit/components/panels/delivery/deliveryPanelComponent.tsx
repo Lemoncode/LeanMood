@@ -5,7 +5,7 @@ import {markdownEntryConstants} from '../../markdownEntryConstants';
 
 interface Props {
   togglePanel(): void;
-  insertMarkdownEntry: () => void;
+  insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
 }
 
 export const DeliveryPanelComponent: React.StatelessComponent<Props> = (props) => {

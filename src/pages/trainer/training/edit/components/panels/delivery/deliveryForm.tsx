@@ -10,7 +10,7 @@ const styles: any = require('./styles.scss');
 
 interface Props {
   togglePanel(): void;
-  insertMarkdownEntry(): void;
+  insertMarkdownEntry: (markdownEntry: IMarkdownEntry) => void;
 }
 
 interface State {
@@ -84,7 +84,11 @@ export class DeliveryFormComponent extends React.Component<Props, State> {
   private onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     this.props.togglePanel();
-    this.props.insertMarkdownEntry();
-    // console.log('clincking save...' + this.state.title);
+    this.props.insertMarkdownEntry(
+      { mdCaret: `${markdownEntryConstants.link.mdCaret.slice(0, 1)}${this.state.title}`
+               + `${markdownEntryConstants.link.mdCaret.slice(1)}`,
+        caretCursorPosition: markdownEntryConstants.link.cursorPosition,
+      },
+    );
   }
 }

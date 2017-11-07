@@ -187,5 +187,6 @@ describe('trainingReducer', () => {
     // Assert
     expect(nextState.showPreview).to.be.false;
     expect(originalState).to.be.frozen;
+    expect(nextState.shouldUpdateEditorCursor).to.be.false;
   });
 });

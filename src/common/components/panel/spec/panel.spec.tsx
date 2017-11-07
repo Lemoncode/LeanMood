@@ -36,14 +36,18 @@ describe('PanelComponent', () => {
       { panelId: 'panel A', component: innerComponentA },
       { panelId: 'panel B', component: innerComponentB },
     ];
+    const insertMarkdownEntry = sinon.spy();
 
     // Act
     const panelComponent = shallow(
-      <PanelComponent panelList={panelList} activePanelId={activePanelId} />,
+      <PanelComponent panelList={panelList} activePanelId={activePanelId}
+                      insertMarkdownEntry={insertMarkdownEntry}
+      />,
     );
 
     // Assert
     expect(panelComponent.html()).to.contain('<div><span>Inner Component B</span></div>');
     expect(panelComponent.html()).to.not.contain('<div><span>Inner Component A</span></div>');
+    expect(panelComponent.instance().props.insertMarkdownEntry).not.to.be.undefined;
   });
 });
