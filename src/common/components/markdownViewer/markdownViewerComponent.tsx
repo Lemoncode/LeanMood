@@ -13,39 +13,38 @@ import { throttle } from '../../../common/helper/limitExecution';
  * Custom rule to analyze "href" and render a <Link /> (react router) or <a />
  */
 
-interface MarkDownViewerComponentProps {
+interface Props {
   content: string;
   scrollSourceLine?: number;
   onScrollSourceLine?: (sourceLine) => any;
   className?: string;
   location?: any; // Router HOC injected.
-  options?: MdrOptions;
-  codeStyle?: MdrCodeStyle;
 }
 
-class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
+interface State {
+  mdr: Mdr;
+  allowNotifyScroll: boolean;
+}
+
+class MarkDownViewer extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-  }
 
-  private CreateMdrInstance = () => {
-    const setupParams: MdrSetup = {
-      routerLocation: this.props.location ? this.props.location.pathname : '',
-      options: this.props.options,
-      codeStyle: this.props.codeStyle,
+    this.state = {
+      mdr: CreateMarkdownRender({routerLocation: props.location ? props.location.pathname : ''}),
+      allowNotifyScroll: true,
     };
-    return CreateMarkdownRender(setupParams);
   }
 
-  private mdr: Mdr = this.CreateMdrInstance();
   private scrollableContainerRef: HTMLElement = null;
-  private allowNotifyScroll: boolean = true;
 
-  private setScrollableContainerRef = (input) => { this.scrollableContainerRef = input; };
+  private setScrollableContainerRef = (input) => {
+    this.scrollableContainerRef = input;
+  }
 
   private markdownToHTML = () => {
     return {
-      __html: this.mdr.render(this.props.content || ''),
+      __html: this.state.mdr.render(this.props.content || ''),
     };
   }
 
@@ -53,7 +52,10 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const scrollOffset = getPixelOffsetForSourceLine(renderedElements, targetSourceLine);
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
-    this.allowNotifyScroll = false;
+    this.setState({
+      ...this.state,
+      allowNotifyScroll: false,
+    });
     this.scrollableContainerRef.scrollTop += scrollOffset - ((componentPosition > 0) ? componentPosition : 0);
   }
 
@@ -65,12 +67,15 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
   }, 25);
 
   private handleScroll = (event) => {
-    if (this.allowNotifyScroll) {
+    if (this.state.allowNotifyScroll) {
       if (this.props.onScrollSourceLine) {
         this.notifySourceLine();
       }
     } else {
-      this.allowNotifyScroll = true;
+      this.setState({
+        ...this.state,
+        allowNotifyScroll: true,
+      });
     }
   }
 
@@ -80,13 +85,6 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
       return false;
     }
     return true;
-  }
-
-  public componentWillUpdate(nextProps, nextState) {
-    // New render instance upon render options update.
-    if (nextProps.options !== this.props.options) {
-      this.mdr = this.CreateMdrInstance();
-    }
   }
 
   public render() {
@@ -106,4 +104,4 @@ class MarkDownViewer extends React.Component<MarkDownViewerComponentProps, {}> {
 };
 
 const MarkDownViewerComponent = withRouter(MarkDownViewer);
-export { MarkDownViewerComponent, MarkDownViewerComponentProps }
+export { MarkDownViewerComponent, Props as MarkDownViewerComponentProps }
