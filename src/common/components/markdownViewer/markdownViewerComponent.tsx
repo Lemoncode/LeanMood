@@ -5,7 +5,7 @@ import { SOURCE_LINE_CLASSNAME,
          getPixelOffsetForSourceLine,
          getSourceLineForPixelOffset } from './syncScroll';
 import { CreateMarkdownRender, Mdr } from './render';
-import { throttle } from '../../../common/helper/limitExecution';
+import throttle from 'lodash.throttle';
 
 /**
  * TODO:

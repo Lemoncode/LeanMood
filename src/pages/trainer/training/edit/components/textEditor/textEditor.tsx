@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { throttle } from '../../../../../../common/helper/limitExecution';
+import throttle from 'lodash.throttle';
 import { textAreaTool } from '../../../../../../common/ui/tools/textAreaTool';
 import { IMarkdownEntry } from '../../../../../../model/trainer/markdownEntry';
 
