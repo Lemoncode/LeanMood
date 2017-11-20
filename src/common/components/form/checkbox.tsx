@@ -7,16 +7,19 @@ export interface CheckboxComponentProps {
   labelClassName: string;
   name: string;
   onChange: any;
+  wrapperClassName?: string;
 }
 
 export const CheckboxComponent: React.StatelessComponent<CheckboxComponentProps> = (props) => {
   return (
-     <div>  
-        <label htmlFor={props.name} className={props.labelClassName}>
+    <div>
+      <label htmlFor={props.name} className={props.labelClassName}>
         {props.label}
-      </label>           
-        <Checkbox  checked={props.value} onChange={props.onChange} /> 
-     </ div>
+      </label>
+      <div className={props.wrapperClassName}>
+        <Checkbox checked={props.value} onChange={props.onChange} />
+      </ div>
+    </ div>
   );
 };
 

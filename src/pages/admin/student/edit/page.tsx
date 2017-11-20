@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import { adminRouteEnums } from '../../../../common/routeEnums/admin';
 import { StudentSummary } from '../../../../model/studentSummary';
 import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import { TabContainer , EditionUserPanel , EditionUserTrainingsPanel} from './components';
+import { TabContainer, EditionUserPanel, EditionUserTrainingsPanel } from './components';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const styles: any = require('./pageStyles.scss');
 
 interface Props {
@@ -39,35 +39,36 @@ export class EditStudentPage extends React.Component<Props, State> {
 
     return (
       <div>
-          <h1>{this.props.student.fullname}</h1>
-        <div>
-          <AppBar className={styles.tabHeader}>
-            <Tabs value={value} onChange={this.handleChange}>
-              <Tab label="Main" />
-              <Tab label="Trainings" />
+        <MuiThemeProvider>
+          <div>
+            <h1>{this.props.student.fullname}</h1>
+
+            <Tabs>
+              <Tab label="Main" className={styles.tabHeader}>
+                <TabContainer>
+                  <EditionUserPanel student={this.props.student} />
+                </TabContainer>
+              </Tab>
+              <Tab label="Trainings" className={styles.tabHeader}>
+                <TabContainer>
+                  <EditionUserTrainingsPanel />
+                </TabContainer>
+              </Tab>
             </Tabs>
-          </AppBar>
-          {value === 0 &&
-            <TabContainer>
-              <EditionUserPanel student={this.props.student}/>
-            </TabContainer>}
-          {value === 1 &&
-          <TabContainer>
-              <EditionUserTrainingsPanel />
-          </TabContainer>}
-        </div>
-        <br />
-        <div className="form-group">
-            <div className="saveButton col-sm-10">
-              <button className="btn btn-primary" type="submit">Save</button>
+
+            <br />
+            <div className="form-group">
+              <div className="saveButton col-sm-10">
+                <button className="btn btn-primary" type="submit">Save</button>
+              </div>
             </div>
+
+            <br />
+
+            <Link to={adminRouteEnums.student.list}>Back to student list</Link>
+            <Link to={adminRouteEnums.default}>Back to Dashboard</Link>
           </div>
-
-        <br />
-        
-        <Link to={adminRouteEnums.student.list}>Back to student list</Link>
-        <Link to={adminRouteEnums.default}>Back to Dashboard</Link>
-
+        </MuiThemeProvider>
       </div>
     );
   }

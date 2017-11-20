@@ -116,7 +116,8 @@
     "react-virtualized": "^9.1.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "material-ui": "^0.19.4"
   },
   "engines": {
     "node": "6.11.1"

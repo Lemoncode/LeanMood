@@ -16,7 +16,7 @@ export const EditionUserPanel: React.StatelessComponent<Props> = (props) => {
             labelClassName={`col-sm-2 control-label`}
             wrapperClassName="col-sm-8"
             name="Name"
-            onChange={() => {}}
+            onChange={newFunction()}
             value={props.student.fullname}
             placeholder="Student name"
           />
@@ -27,7 +27,7 @@ export const EditionUserPanel: React.StatelessComponent<Props> = (props) => {
             labelClassName={`col-sm-2 control-label`}
             wrapperClassName="col-sm-8"
             name="Email"
-            onChange={() => {}}
+            onChange={newFunction()}
             value={props.student.email}
             placeholder="Student email"
           />  
@@ -36,11 +36,16 @@ export const EditionUserPanel: React.StatelessComponent<Props> = (props) => {
             label="Is Active?"
             labelClassName={`col-sm-2 control-label`}
             name="Active"
+            wrapperClassName="col-sm-8"
             value={props.student.isActive}
-            onChange={() => {}}
+            onChange={newFunction()}
           />  
   </div>
   );
 };
 
 EditionUserPanel.displayName = 'EditionUserPanel';
+function newFunction(): any {
+  // WIP
+  return () => { };
+}
