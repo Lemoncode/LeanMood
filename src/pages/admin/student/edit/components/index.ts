@@ -1,3 +1,3 @@
 export { TabContainer } from './tabContainer';
-export { EditionUserPanel } from './editionuserPanel';
+export { EditionUserPanel } from './editionUserPanel';
 export { EditionUserTrainingsPanel } from './editionUserTrainingsPanel';
