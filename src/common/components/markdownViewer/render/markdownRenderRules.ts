@@ -1,18 +1,25 @@
-import { MarkdownIt as Mdr } from 'markdown-it';
+import { MarkdownIt as Mdr, Token, TokenRender } from 'markdown-it';
 import { SOURCE_LINE_CLASSNAME, SOURCE_LINE_ATTRIBUTE } from '../syncScroll';
 import { isHashHistory } from '../../../../history';
 
+interface CustomRule {
+  ruleName: string;
+  rule: TokenRender;
+  replace(newRule: TokenRender): CustomRule;
+  decorate(decorator: TokenRender): CustomRule;
+}
+
 // Factory to build custom rules easily.
 const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
-  const originalRule = mdr.renderer.rules[name];
-  const customRule = {
+  const originalRule: TokenRender = mdr.renderer.rules[name];
+  const customRule: CustomRule = {
     ruleName: name,
-    rule: originalRule || mdr.renderer.renderToken.bind(mdr.renderer),
-    replace(newRule) {
+    rule: originalRule || mdr.renderer.renderToken.bind(mdr.renderer) as TokenRender,
+    replace(newRule: TokenRender) {
       this.rule = newRule;
       return this;
     },
-    decorate(decorator) {
+    decorate(decorator: TokenRender) {
       const previousRule = this.rule;
       this.rule = (tokens, idx, options, env, renderer) => {
         decorator(tokens, idx, options, env, renderer);
@@ -26,7 +33,7 @@ const CustomRuleFactory = (mdr: Mdr) => (name: string) => {
 };
 
 // Decorator. It injects the source line number aimed for synch scroll.
-const sourceLineDecorator = (tokens, idx) => {
+const sourceLineDecorator: TokenRender = (tokens, idx) => {
   // Injection only for root-children tokens (level 0).
   if (tokens[idx].map && tokens[idx].map.length && tokens[idx].level === 0) {
     tokens[idx].attrJoin('class', SOURCE_LINE_CLASSNAME);
@@ -58,13 +65,10 @@ const loadCustomRules = (mdr: Mdr, routerLocation: string) => {
       }),
     CreateCustomRule('footnote_ref').replace(
       (tokens, idx, options, env, renderer) => {
-        const id      = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
+        const id = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
         const caption = renderer.rules.footnote_caption(tokens, idx, options, env, renderer);
-        let refid   = id;
+        const refid = (tokens[idx].meta.subId > 0) ? id + ':' + tokens[idx].meta.subId : id;
 
-        if (tokens[idx].meta.subId > 0) {
-          refid += ':' + tokens[idx].meta.subId;
-        }
         // Hash history hashed links: Host/#/route/page#elementID.
         // Browser history hashed links: #elementID.
         const hrefContent = (isHashHistory() ? `#${routerLocation}` : '') + `#fn${id}`;
@@ -72,12 +76,10 @@ const loadCustomRules = (mdr: Mdr, routerLocation: string) => {
       }),
     CreateCustomRule('footnote_anchor').replace(
       (tokens, idx, options, env, renderer) => {
-        let id = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
+        const id = renderer.rules.footnote_anchor_name(tokens, idx, options, env, renderer);
+        const refid = (tokens[idx].meta.subId > 0) ? id + ':' + tokens[idx].meta.subId : id;
 
-        if (tokens[idx].meta.subId > 0) {
-          id += ':' + tokens[idx].meta.subId;
-        }
-        const hrefContent = (isHashHistory() ? `#${routerLocation}` : '') + `#fnref${id}`;
+        const hrefContent = (isHashHistory() ? `#${routerLocation}` : '') + `#fnref${refid}`;
         /* ↩ with escape code to prevent display as Apple Emoji on iOS */
         return ` <a href="${hrefContent}" class="footnote-backref">\u21a9\uFE0E</a>`;
       }),
