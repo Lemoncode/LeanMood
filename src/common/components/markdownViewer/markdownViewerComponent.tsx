@@ -4,8 +4,7 @@ import { withRouter } from 'react-router';
 import { SOURCE_LINE_CLASSNAME,
          getPixelOffsetForSourceLine,
          getSourceLineForPixelOffset } from './syncScroll';
-import { CreateMarkdownRender, Mdr, MdrFactory,
-         MdrSetup, MdrOptions, MdrCodeStyle } from './render';
+import { CreateMarkdownRender, Mdr } from './render';
 import { throttle } from '../../../common/helper/limitExecution';
 
 /**
@@ -89,13 +88,8 @@ class MarkDownViewer extends React.Component<Props, State> {
 
   public render() {
     const {className = ''} = this.props;
-    // WARNING: This conversion from plain HTML to JSX with
-    // dangerouslySetInnerHTML could be unsafe (script injection, XSS)
-    // depending whether markdown engine blocks malicious code or not.
-    // Markdonw-it is supposed to be XSS safe, but if you plan to
-    // change engine, ensure safety first!
     return(
-      <div className={className} ref={this.setScrollableContainerRef}
+      <div className={className} ref={this.setScrollableContainerRef} // See Footnote [1].
         dangerouslySetInnerHTML={this.markdownToHTML()}
         onScroll={this.handleScroll}
       />
@@ -105,3 +99,9 @@ class MarkDownViewer extends React.Component<Props, State> {
 
 const MarkDownViewerComponent = withRouter(MarkDownViewer);
 export { MarkDownViewerComponent, Props as MarkDownViewerComponentProps }
+
+// [1] WARNING: This conversion from plain HTML to JSX with
+// dangerouslySetInnerHTML could be unsafe (script injection, XSS)
+// depending whether markdown engine blocks malicious code or not.
+// Markdonw-it is supposed to be XSS safe, but if you plan to
+// change engine, ensure safety first!

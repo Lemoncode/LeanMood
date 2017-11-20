@@ -37,7 +37,7 @@ describe('MarkdownViewer Component', () => {
     expect(trainingTOCPage.html()).to.match(/<div.*><\/div>/);
   });
 
-  it('should render nothing when the content is empty', () => {
+  it('should render nothing when the content is null', () => {
     // Arrange
     const props: MarkDownViewerComponentProps = {
       content: null,

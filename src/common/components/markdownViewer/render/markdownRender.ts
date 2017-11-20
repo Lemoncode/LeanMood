@@ -1,17 +1,16 @@
-import * as MdrObject from 'markdown-it';
 import { MarkdownIt as Mdr } from 'markdown-it';
+import * as MdrObject from 'markdown-it';
+import * as mdrPluginAbbr from 'markdown-it-abbr';
+import * as mdrPluginEmoji from 'markdown-it-emoji';
+import * as mdrPluginFootnote from 'markdown-it-footnote';
+import * as mdrPluginIns from 'markdown-it-ins';
+import * as mdrPluginMark from 'markdown-it-mark';
+import * as mdrPluginSub from 'markdown-it-sub';
+import * as mdrPluginSup from 'markdown-it-sup';
+import * as mdrPluginCheckbox from 'markdown-it-checkbox';
 import { loadCustomRules } from './markdownRenderRules';
 import { MdrOptions, defaultOptions, codeHighlighter } from './markdownRenderOptions';
 import { MdrCodeStyle, loadCodeStyle, defaultCodeStyle } from './markdownRenderCodeStyle';
-// Keep old import statements, otherwise it won't work with enzyme.
-const mdrPluginAbbr = require('markdown-it-abbr');
-const mdrPluginEmoji = require('markdown-it-emoji');
-const mdrPluginFootnote = require('markdown-it-footnote');
-const mdrPluginIns = require('markdown-it-ins');
-const mdrPluginMark = require('markdown-it-mark');
-const mdrPluginSub = require('markdown-it-sub');
-const mdrPluginSup = require('markdown-it-sup');
-const mdrPluginCheckbox = require('markdown-it-checkbox');
 
 interface MdrSetup {
   routerLocation: string;
@@ -48,4 +47,4 @@ const CreateMarkdownRender: MdrFactory = ({
     return mdr;
 };
 
-export { CreateMarkdownRender, Mdr, MdrFactory, MdrSetup }
+export { CreateMarkdownRender, MdrFactory, MdrSetup, Mdr }
