@@ -4,7 +4,7 @@ import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { TextEditorComponent } from '../components/textEditor';
-import { PreviewComponent } from './preview';
+import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer';
 import { panelIds, panelList } from './panels';
 import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
 
@@ -105,7 +105,7 @@ export class EditorComponent extends React.Component<Props, State> {
             />
             {
               this.props.showPreview ?
-                <PreviewComponent className={styles.previewArea}
+                <MarkDownViewerComponent className={styles.previewArea}
                   content={this.props.content}
                   onScrollSourceLine={this.handlePreviewScroll}
                   scrollSourceLine={this.state.whoIsScrolling !== WhoIsScrolling.Preview ?
