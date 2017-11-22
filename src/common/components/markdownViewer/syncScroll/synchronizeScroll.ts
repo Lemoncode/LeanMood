@@ -76,7 +76,7 @@ const interpolateLine = (targetOffset: number, [c1, c2]: Candidate[]): number =>
   if (c1 && c2) {
     lineFraction = (targetOffset - c1Offset) * (c2.line - c1.line) / (getOffset(c2) - c1Offset);
   }
-  return c1.line + lineFraction;
+  return (c1 ? c1.line : 0) + lineFraction;
 };
 
 // This offset represents the distance from the component top border where
