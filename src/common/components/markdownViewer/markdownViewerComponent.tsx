@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import { SOURCE_LINE_CLASSNAME,
-         getPixelOffsetForSourceLine,
-         getSourceLineForPixelOffset } from './syncScroll';
+         calculateOffsetFromLine,
+         calculateLineFromOffset } from './syncScroll';
 import { CreateMarkdownRender, Mdr } from './render';
 import throttle from 'lodash.throttle';
 
@@ -49,7 +49,7 @@ class MarkDownViewer extends React.Component<Props, State> {
 
   private doScrollToSourceLine = (targetSourceLine) => {
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const scrollOffset = getPixelOffsetForSourceLine(renderedElements, targetSourceLine);
+    const scrollOffset = calculateOffsetFromLine(renderedElements, targetSourceLine);
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
     this.setState({
       ...this.state,
@@ -61,7 +61,7 @@ class MarkDownViewer extends React.Component<Props, State> {
   private notifySourceLine = throttle(() => {
     const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
     const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const lineNum = getSourceLineForPixelOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
+    const lineNum = calculateLineFromOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
     this.props.onScrollSourceLine(lineNum);
   }, 25);
 
