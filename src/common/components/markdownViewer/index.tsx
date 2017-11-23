@@ -1,5 +1,2 @@
-import { MarkDownViewerComponent } from './markdownViewerComponent';
-
-export {
-  MarkDownViewerComponent
-};
+export { MarkDownViewerComponent } from './markdownViewerComponent';
+export { calculateLineFromOffset, calculateOffsetFromLine, SOURCE_LINE_CLASSNAME } from './syncScroll';

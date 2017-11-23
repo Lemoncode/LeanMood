@@ -1,5 +1,5 @@
 import * as React from 'react';
-import throttle from 'lodash.throttle';
+import * as ReactDOM from 'react-dom';
 import { textAreaTool } from '../../../../../../common/ui/tools/textAreaTool';
 import { IMarkdownEntry } from '../../../../../../model/trainer/markdownEntry';
 
@@ -11,36 +11,38 @@ interface Props {
   updateEditorCursor: (cursorStartPosition: number) => void;
   markdownEntry?: IMarkdownEntry;
   className?: string;
-  scrollSourceLine?: number;
-  onScrollSourceLine?: (sourceLine) => any;
+  scrollToLine?: number;
+  onLineScroll?: (line) => any;
+  registerRef: (ref) => void;
 }
 
-const PADDING_OFFSET = 0;
+interface State {
+  editorLineHeight: number;
+}
 
-export class TextEditorComponent extends React.Component<Props, {}> {
+export class TextEditorComponent extends React.Component<Props, State> {
   constructor() {
     super();
+
+    this.state = {
+      editorLineHeight: 20,
+    };
   }
 
-  private editorRef: HTMLTextAreaElement = null;
-  private editorLineHeight: number = 20;
-  private allowNotifyScroll: boolean = true;
+  private nodeRef: HTMLTextAreaElement = null;
 
-  private setEditorRef = (input) => { this.editorRef = input; };
-
-  private notifySourceLine = throttle(() => {
-    const sourceLine = (this.editorRef.scrollTop + PADDING_OFFSET) / this.editorLineHeight;
-    this.props.onScrollSourceLine(sourceLine);
-  }, 25);
+  private setNodeRef = (input) => {
+    this.nodeRef = input;
+  }
 
   private handleScroll = (event) => {
-    if (this.allowNotifyScroll) {
-      if (this.props.onScrollSourceLine) {
-        this.notifySourceLine();
-      }
-    } else {
-      this.allowNotifyScroll = true;
-    }
+    // if (this.props.onLineScroll) {
+    //   console.log(" NOTIFY |       ");
+    //   window.requestAnimationFrame(() => {
+    //     const line = (this.nodeRef.scrollTop) / this.state.editorLineHeight;
+    //     this.props.onLineScroll(line);
+    //   });
+    // }
   }
 
   private handleContentChange = (event) => {
@@ -48,32 +50,39 @@ export class TextEditorComponent extends React.Component<Props, {}> {
     this.props.onContentChange(value);
   }
 
-  private doEditorScrollToSourceLine = (targetSourceLine) => {
-    this.allowNotifyScroll = false;
-    this.editorRef.scrollTop = (targetSourceLine * this.editorLineHeight) + PADDING_OFFSET;
+  private doEditorScrollToSourceLine = (targetLine) => {
+    // this.nodeRef.scroll = null;
+    // this.nodeRef.scrollTop = targetLine * this.state.editorLineHeight;
+    // window.requestAnimationFrame(() => {
+    //   this.nodeRef.onscroll = this.handleScroll;
+    // });
   }
 
   private updateContentWithMarkdownEntry(markdownEntry: IMarkdownEntry) {
-    const editorContent = textAreaTool.insertAtCaretGetText(this.editorRef, markdownEntry.mdCaret,
-      markdownEntry.caretCursorPosition);
-    this.props.onContentChange(editorContent);
+    // const editorContent = textAreaTool.insertAtCaretGetText(this.nodeRef, markdownEntry.mdCaret,
+    //   markdownEntry.caretCursorPosition);
+    // this.props.onContentChange(editorContent);
   }
 
   private updateEditorCursor(caretCursorPosition: number) {
-    const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.editorRef,
-      caretCursorPosition);
-    this.props.updateEditorCursor(cursorStartPosition);
+    // const cursorStartPosition = textAreaTool.calculateStartCursorPositionPlusOffset(this.nodeRef,
+    //   caretCursorPosition);
+    // this.props.updateEditorCursor(cursorStartPosition);
   }
 
   public componentDidMount() {
-    this.editorLineHeight = parseInt(window.getComputedStyle(this.editorRef, null).getPropertyValue('line-height'), 10);
+    this.props.registerRef(this.nodeRef)
+    // this.nodeRef.onscroll = this.handleScroll;
+    // this.setState({
+    //   ...this.state,
+    //   editorLineHeight: parseInt(window.getComputedStyle(this.nodeRef, null).getPropertyValue('line-height'), 10),
+    // });
   }
 
   public shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.scrollSourceLine !== undefined &&
-        nextProps.scrollSourceLine !== this.props.scrollSourceLine) {
-      this.doEditorScrollToSourceLine(nextProps.scrollSourceLine);
-      return false;
+    if (nextProps.scrollToLine && nextProps.scrollToLine !== this.props.scrollToLine) {
+      // this.doEditorScrollToSourceLine(nextProps.scrollToLine);
+      // return false;
     } else if (nextProps.markdownEntry &&
       nextProps.markdownEntry !== this.props.markdownEntry) {
        this.updateContentWithMarkdownEntry(nextProps.markdownEntry);
@@ -83,19 +92,22 @@ export class TextEditorComponent extends React.Component<Props, {}> {
     return true;
   }
 
-  public componentDidUpdate() {
-    if (this.props.shouldUpdateEditorCursor) {
-      textAreaTool.placeCursor(this.editorRef, this.props.cursorStartPosition);
-    }
-  }
+  // public componentDidUpdate() {
+  //   if (this.props.shouldUpdateEditorCursor) {
+  //     textAreaTool.placeCursor(this.nodeRef, this.props.cursorStartPosition);
+  //   }
+  // }
+
+  // public componentWillUnmount() {
+  //   this.nodeRef.onscroll = null;
+  // }
 
   public render() {
-    const { content, className = '', scrollSourceLine, onScrollSourceLine } = this.props;
+    const { content, className = ''} = this.props;
     return (
-      <textarea className={className} wrap="off" /** TODO: Add support to word wrap and sync scroll */
+      <textarea className={className} wrap="off" /** TODO: Add support to word wrap */
         value={content}
-        ref={this.setEditorRef}
-        onScroll={this.handleScroll}
+        ref={this.setNodeRef}
         onChange={this.handleContentChange}
       />
     );

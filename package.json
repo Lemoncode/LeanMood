@@ -107,7 +107,7 @@
     "highlight.js": "^9.12.0",
     "jquery": "^3.1.1",
     "lc-form-validation": "^1.0.0",
-    "lodash.throttle": "^4.1.1",
+    "lodash.debounce": "^4.0.8",
     "markdown-it": "^8.3.2",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-checkbox": "^1.1.0",

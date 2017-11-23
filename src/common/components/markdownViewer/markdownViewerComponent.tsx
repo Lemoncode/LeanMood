@@ -5,7 +5,7 @@ import { SOURCE_LINE_CLASSNAME,
          calculateOffsetFromLine,
          calculateLineFromOffset } from './syncScroll';
 import { CreateMarkdownRender, Mdr } from './render';
-import throttle from 'lodash.throttle';
+
 
 /**
  * TODO:
@@ -14,15 +14,15 @@ import throttle from 'lodash.throttle';
 
 interface Props {
   content: string;
-  scrollSourceLine?: number;
-  onScrollSourceLine?: (sourceLine) => any;
+  scrollToLine?: number;
+  onLineScroll?: (line) => any;
   className?: string;
   location?: any; // Router HOC injected.
+  registerRef?: (ref) => void;
 }
 
 interface State {
   mdr: Mdr;
-  allowNotifyScroll: boolean;
 }
 
 class MarkDownViewer extends React.Component<Props, State> {
@@ -31,14 +31,13 @@ class MarkDownViewer extends React.Component<Props, State> {
 
     this.state = {
       mdr: CreateMarkdownRender({routerLocation: props.location ? props.location.pathname : ''}),
-      allowNotifyScroll: true,
     };
   }
 
-  private scrollableContainerRef: HTMLElement = null;
+  private nodeRef: HTMLDivElement = null;
 
-  private setScrollableContainerRef = (input) => {
-    this.scrollableContainerRef = input;
+  private setNodeRef = (input) => {
+    this.nodeRef = input;
   }
 
   private markdownToHTML = () => {
@@ -47,51 +46,57 @@ class MarkDownViewer extends React.Component<Props, State> {
     };
   }
 
-  private doScrollToSourceLine = (targetSourceLine) => {
-    const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const scrollOffset = calculateOffsetFromLine(renderedElements, targetSourceLine);
-    const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
-    this.setState({
-      ...this.state,
-      allowNotifyScroll: false,
-    });
-    this.scrollableContainerRef.scrollTop += scrollOffset - ((componentPosition > 0) ? componentPosition : 0);
+  // private convertLineToOffset = (line) => {
+  //   const elements = this.nodeRef.getElementsByClassName(SOURCE_LINE_CLASSNAME);
+  //   const lineOffset = calculateOffsetFromLine(elements, line);
+  //   const componentPosition = this.nodeRef.getBoundingClientRect().top;
+  //   return lineOffset - ((componentPosition > 0) ? componentPosition : 0);
+  // }
+
+  // private convertOffsetToLine = () => {
+  //   const componentPosition = this.nodeRef.getBoundingClientRect().top;
+  //   const elements = this.nodeRef.getElementsByClassName(SOURCE_LINE_CLASSNAME);
+  //   return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
+  // }
+
+  // private handleScroll = (event) => {
+  //   if (this.props.onLineScroll) {
+  //     console.log("        | NOTIFY");
+  //     window.requestAnimationFrame(() => {
+  //       this.props.onLineScroll(this.convertOffsetToLine());
+  //     });
+  //   }
+  // }
+
+  // private doScrollToLine = (targetLine) => {
+  //   this.nodeRef.onscroll = null;
+  //   this.nodeRef.scrollTop += this.convertLineToOffset(targetLine);
+  //   window.requestAnimationFrame(() => {
+  //     this.nodeRef.onscroll = this.handleScroll;
+  //   });
+  // }
+
+  public componentDidMount() {
+    this.props.registerRef(this.nodeRef);
   }
 
-  private notifySourceLine = throttle(() => {
-    const componentPosition = this.scrollableContainerRef.getBoundingClientRect().top;
-    const renderedElements = ReactDOM.findDOMNode(this).getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const lineNum = calculateLineFromOffset(renderedElements, componentPosition > 0 ? componentPosition : 0);
-    this.props.onScrollSourceLine(lineNum);
-  }, 25);
+  // public shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps.scrollToLine && nextProps.scrollToLine !== this.props.scrollToLine) {
+  //     this.doScrollToLine(nextProps.scrollToLine);
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  private handleScroll = (event) => {
-    if (this.state.allowNotifyScroll) {
-      if (this.props.onScrollSourceLine) {
-        this.notifySourceLine();
-      }
-    } else {
-      this.setState({
-        ...this.state,
-        allowNotifyScroll: true,
-      });
-    }
-  }
-
-  public shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.scrollSourceLine !== undefined && nextProps.scrollSourceLine !== this.props.scrollSourceLine) {
-      this.doScrollToSourceLine(nextProps.scrollSourceLine);
-      return false;
-    }
-    return true;
-  }
+  // public componentWillUnmount() {
+  //   this.nodeRef.onscroll = null;
+  // }
 
   public render() {
     const {className = ''} = this.props;
     return(
-      <div className={className} ref={this.setScrollableContainerRef} // See Footnote [1].
-        dangerouslySetInnerHTML={this.markdownToHTML()}
-        onScroll={this.handleScroll}
+      <div className={className} ref={this.setNodeRef}
+        dangerouslySetInnerHTML={this.markdownToHTML()} // See Footnote [1].
       />
     );
   }

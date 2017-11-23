@@ -7,6 +7,11 @@ import { TextEditorComponent } from '../components/textEditor';
 import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer';
 import { panelIds, panelList } from './panels';
 import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
+import debounce from 'lodash.debounce';
+
+import { SOURCE_LINE_CLASSNAME,
+  calculateOffsetFromLine,
+  calculateLineFromOffset } from '../../../../../common/components/markdownViewer';
 
 const styles: any = require('./editorStyles.scss');
 
@@ -23,17 +28,10 @@ interface Props {
   setActivePanelId: (panelId: string) => void;
 }
 
-enum WhoIsScrolling {
-  Editor,
-  Preview,
-  None,
-}
-
 // Local state.
 interface State {
   mdEntry: IMarkdownEntry;
-  activeSourceLine: number;
-  whoIsScrolling: WhoIsScrolling;
+  editorLineHeight: number;
 }
 
 export class EditorComponent extends React.Component<Props, State> {
@@ -42,9 +40,19 @@ export class EditorComponent extends React.Component<Props, State> {
 
     this.state = {
       mdEntry: {mdCaret: '', caretCursorPosition: 0},
-      activeSourceLine: 0,
-      whoIsScrolling: WhoIsScrolling.None,
+      editorLineHeight: 20,
     };
+  }
+
+  private nodeRefPreview: HTMLElement = null;
+  private nodeRefEditor: HTMLElement = null;
+
+  private setNodeRefPreview = (input) => {
+    this.nodeRefPreview = input;
+  }
+
+  private setNodeRefEditor = (input) => {
+    this.nodeRefEditor = input;
   }
 
   private handlePanel(panelId) {
@@ -66,20 +74,69 @@ export class EditorComponent extends React.Component<Props, State> {
     }
   }
 
-  private handleEditorScroll = (sourceLine) => {
-    this.setState({
-      ...this.state,
-      activeSourceLine: sourceLine,
-      whoIsScrolling: WhoIsScrolling.Editor,
+  // private handleLineScroll = (whoIsScrolling) => (line) => {
+  //   console.log(`Scrolling ${whoIsScrolling} line ${line}`);
+  //   this.setState({
+  //     ...this.state,
+  //     whoIsScrolling,
+  //     activeLine: line,
+  //   });
+  // }
+
+  private convertLineToOffset = (line) => {
+    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
+    const lineOffset = calculateOffsetFromLine(elements, line);
+    const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
+    return lineOffset - ((componentPosition > 0) ? componentPosition : 0);
+  }
+
+  private convertOffsetToLine = () => {
+    const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
+    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
+    return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
+  }
+
+  private debouncedTogglePreviewScroll = debounce(() => {
+    this.nodeRefPreview.onscroll = this.nodeRefPreview.onscroll ? null : this.handleScrollPreview;
+  }, 250, {'leading': true, 'trailing': true});
+
+  private debouncedToggleEditorScroll = debounce(() => {
+    this.nodeRefEditor.onscroll = this.nodeRefEditor.onscroll ? null : this.handleScrollEditor;
+  }, 250, {'leading': true, 'trailing': true});
+
+  private handleScrollEditor = () => {
+    this.debouncedTogglePreviewScroll();
+    window.requestAnimationFrame(() => {
+      const line = (this.nodeRefEditor.scrollTop) / this.state.editorLineHeight;
+      console.log(`EDITOR scrolling ${line}`);
+      this.nodeRefPreview.scrollTop += this.convertLineToOffset(line);
     });
   }
 
-  private handlePreviewScroll = (sourceLine) => {
-    this.setState({
-      ...this.state,
-      activeSourceLine: sourceLine,
-      whoIsScrolling: WhoIsScrolling.Preview,
+  private handleScrollPreview = () => {
+    this.debouncedToggleEditorScroll();
+    window.requestAnimationFrame(() => {
+      const line = this.convertOffsetToLine();
+      console.log(`PREVIEW scrolling ${line}`);
+      this.nodeRefEditor.scrollTop = line * this.state.editorLineHeight;
     });
+  }
+
+  public componentDidMount() {
+    this.nodeRefEditor.onscroll = this.handleScrollEditor;
+    this.nodeRefPreview.onscroll = this.handleScrollPreview;
+    console.log(this.nodeRefEditor);
+    console.log(this.nodeRefPreview);
+
+    // this.setState({
+    //   ...this.state,
+    //   editorLineHeight: parseInt(window.getComputedStyle(this.nodeRefEditor, null).getPropertyValue('line-height'), 10),
+    // });
+  }
+
+  public componentWillUnmount() {
+    this.nodeRefEditor.onscroll = null;
+    this.nodeRefPreview.onscroll = null;
   }
 
   public render() {
@@ -92,24 +149,24 @@ export class EditorComponent extends React.Component<Props, State> {
         <div className={styles.editorContainer}>
           <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
           <div className={styles.markdownArea}>
-            <TextEditorComponent className={styles.textArea}
+            <TextEditorComponent registerRef={this.setNodeRefEditor}
+              className={styles.textArea}
               content={this.props.content}
               cursorStartPosition={this.props.cursorStartPosition}
               shouldUpdateEditorCursor={this.props.shouldUpdateEditorCursor}
               onContentChange={this.props.onContentChange}
               updateEditorCursor={this.props.updateEditorCursor}
               markdownEntry={this.state.mdEntry}
-              onScrollSourceLine={this.handleEditorScroll}
-              scrollSourceLine={this.state.whoIsScrolling !== WhoIsScrolling.Editor ?
-                this.state.activeSourceLine : undefined}
+              // onLineScroll={this.handleLineScroll('editor')}
+              //scrollToLine={this.state.whoIsScrolling === 'preview' ? this.state.activeLine : null}
             />
             {
-              this.props.showPreview ?
-                <MarkDownViewerComponent className={styles.previewArea}
+              /*this.props.showPreview*/ true ?
+                <MarkDownViewerComponent registerRef={this.setNodeRefPreview}
+                  className={styles.previewArea}
                   content={this.props.content}
-                  onScrollSourceLine={this.handlePreviewScroll}
-                  scrollSourceLine={this.state.whoIsScrolling !== WhoIsScrolling.Preview ?
-                    this.state.activeSourceLine : undefined}
+                  //onLineScroll={this.handleLineScroll('preview')}
+                  //scrollToLine={this.state.whoIsScrolling === 'editor' ? this.state.activeLine : null}
                 />
                 : null
             }
