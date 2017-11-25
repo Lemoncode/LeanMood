@@ -22,10 +22,10 @@ export class TextEditorComponent extends React.Component<Props, {}> {
 
   private nodeRef: HTMLTextAreaElement = null;
 
-  private setNodeRef = (ref) => {
-    this.nodeRef = ref;
+  private setNodeRef = (input) => {
+    this.nodeRef = input;
     if (this.props.registerRef) {
-      this.props.registerRef(ref);
+      this.props.registerRef(this.nodeRef);
     }
   }
 
