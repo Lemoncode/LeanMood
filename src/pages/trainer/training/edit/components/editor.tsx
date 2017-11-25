@@ -5,13 +5,11 @@ import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { TextEditorComponent } from '../components/textEditor';
 import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer';
-import { panelIds, panelList } from './panels';
-import { trainerRouteEnums } from '../../../../../common/routeEnums/trainer';
-import debounce from 'lodash.debounce';
-
+import { panelList } from './panels';
 import { SOURCE_LINE_CLASSNAME,
   calculateOffsetFromLine,
   calculateLineFromOffset } from '../../../../../common/components/markdownViewer';
+import debounce from 'lodash.debounce';
 
 const styles: any = require('./editorStyles.scss');
 
@@ -47,12 +45,18 @@ export class EditorComponent extends React.Component<Props, State> {
   private nodeRefPreview: HTMLElement = null;
   private nodeRefEditor: HTMLElement = null;
 
-  private setNodeRefPreview = (input) => {
-    this.nodeRefPreview = input;
-  }
-
   private setNodeRefEditor = (input) => {
     this.nodeRefEditor = input;
+    this.nodeRefEditor.onscroll = this.handleScrollEditor;
+  }
+
+  private setNodeRefPreview = (input) => {
+    this.nodeRefPreview = input;
+    this.nodeRefPreview.onscroll = this.handleScrollPreview;
+  }
+
+  private syncScrollEnabled = () => {
+    return this.nodeRefEditor && this.nodeRefPreview;
   }
 
   private handlePanel(panelId) {
@@ -74,15 +78,6 @@ export class EditorComponent extends React.Component<Props, State> {
     }
   }
 
-  // private handleLineScroll = (whoIsScrolling) => (line) => {
-  //   console.log(`Scrolling ${whoIsScrolling} line ${line}`);
-  //   this.setState({
-  //     ...this.state,
-  //     whoIsScrolling,
-  //     activeLine: line,
-  //   });
-  // }
-
   private convertLineToOffset = (line) => {
     const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
     const lineOffset = calculateOffsetFromLine(elements, line);
@@ -96,17 +91,18 @@ export class EditorComponent extends React.Component<Props, State> {
     return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
   }
 
-  private debouncedTogglePreviewScroll = debounce(() => {
-    this.nodeRefPreview.onscroll = this.nodeRefPreview.onscroll ? null : this.handleScrollPreview;
-  }, 250, {'leading': true, 'trailing': true});
-
-  private debouncedToggleEditorScroll = debounce(() => {
+  private pauseEditorScrollEvent = debounce(() => {
     this.nodeRefEditor.onscroll = this.nodeRefEditor.onscroll ? null : this.handleScrollEditor;
-  }, 250, {'leading': true, 'trailing': true});
+  }, 250, {leading: true, trailing: true});
+
+  private pausePreviewScrollEvent = debounce(() => {
+    this.nodeRefPreview.onscroll = this.nodeRefPreview.onscroll ? null : this.handleScrollPreview;
+  }, 250, {leading: true, trailing: true});
 
   private handleScrollEditor = () => {
-    this.debouncedTogglePreviewScroll();
+    if (!this.syncScrollEnabled()) { return; }
     window.requestAnimationFrame(() => {
+      this.pausePreviewScrollEvent();
       const line = (this.nodeRefEditor.scrollTop) / this.state.editorLineHeight;
       console.log(`EDITOR scrolling ${line}`);
       this.nodeRefPreview.scrollTop += this.convertLineToOffset(line);
@@ -114,29 +110,20 @@ export class EditorComponent extends React.Component<Props, State> {
   }
 
   private handleScrollPreview = () => {
-    this.debouncedToggleEditorScroll();
+    if (!this.syncScrollEnabled()) { return; }
     window.requestAnimationFrame(() => {
+      this.pauseEditorScrollEvent();
       const line = this.convertOffsetToLine();
       console.log(`PREVIEW scrolling ${line}`);
       this.nodeRefEditor.scrollTop = line * this.state.editorLineHeight;
     });
   }
 
-  public componentDidMount() {
-    this.nodeRefEditor.onscroll = this.handleScrollEditor;
-    this.nodeRefPreview.onscroll = this.handleScrollPreview;
-    console.log(this.nodeRefEditor);
-    console.log(this.nodeRefPreview);
-
-    // this.setState({
-    //   ...this.state,
-    //   editorLineHeight: parseInt(window.getComputedStyle(this.nodeRefEditor, null).getPropertyValue('line-height'), 10),
-    // });
-  }
-
-  public componentWillUnmount() {
-    this.nodeRefEditor.onscroll = null;
-    this.nodeRefPreview.onscroll = null;
+  private handleOnLineHeightChange = (lineHeight) => {
+    this.setState({
+      ...this.state,
+      editorLineHeight: lineHeight,
+    });
   }
 
   public render() {
@@ -156,19 +143,16 @@ export class EditorComponent extends React.Component<Props, State> {
               shouldUpdateEditorCursor={this.props.shouldUpdateEditorCursor}
               onContentChange={this.props.onContentChange}
               updateEditorCursor={this.props.updateEditorCursor}
+              onLineHeightChange={this.handleOnLineHeightChange}
               markdownEntry={this.state.mdEntry}
-              // onLineScroll={this.handleLineScroll('editor')}
-              //scrollToLine={this.state.whoIsScrolling === 'preview' ? this.state.activeLine : null}
             />
             {
-              /*this.props.showPreview*/ true ?
+              this.props.showPreview === true ?
                 <MarkDownViewerComponent registerRef={this.setNodeRefPreview}
                   className={styles.previewArea}
                   content={this.props.content}
-                  //onLineScroll={this.handleLineScroll('preview')}
-                  //scrollToLine={this.state.whoIsScrolling === 'editor' ? this.state.activeLine : null}
                 />
-                : null
+              : null
             }
           </div>
         </div>

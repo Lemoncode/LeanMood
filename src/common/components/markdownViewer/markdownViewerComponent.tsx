@@ -1,11 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
-import { SOURCE_LINE_CLASSNAME,
-         calculateOffsetFromLine,
-         calculateLineFromOffset } from './syncScroll';
 import { CreateMarkdownRender, Mdr } from './render';
-
 
 /**
  * TODO:
@@ -14,11 +10,9 @@ import { CreateMarkdownRender, Mdr } from './render';
 
 interface Props {
   content: string;
-  scrollToLine?: number;
-  onLineScroll?: (line) => any;
+  registerRef?: (ref: HTMLElement) => void;
   className?: string;
   location?: any; // Router HOC injected.
-  registerRef?: (ref) => void;
 }
 
 interface State {
@@ -46,56 +40,10 @@ class MarkDownViewer extends React.Component<Props, State> {
     };
   }
 
-  // private convertLineToOffset = (line) => {
-  //   const elements = this.nodeRef.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-  //   const lineOffset = calculateOffsetFromLine(elements, line);
-  //   const componentPosition = this.nodeRef.getBoundingClientRect().top;
-  //   return lineOffset - ((componentPosition > 0) ? componentPosition : 0);
-  // }
-
-  // private convertOffsetToLine = () => {
-  //   const componentPosition = this.nodeRef.getBoundingClientRect().top;
-  //   const elements = this.nodeRef.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-  //   return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
-  // }
-
-  // private handleScroll = (event) => {
-  //   if (this.props.onLineScroll) {
-  //     console.log("        | NOTIFY");
-  //     window.requestAnimationFrame(() => {
-  //       this.props.onLineScroll(this.convertOffsetToLine());
-  //     });
-  //   }
-  // }
-
-  // private doScrollToLine = (targetLine) => {
-  //   this.nodeRef.onscroll = null;
-  //   this.nodeRef.scrollTop += this.convertLineToOffset(targetLine);
-  //   window.requestAnimationFrame(() => {
-  //     this.nodeRef.onscroll = this.handleScroll;
-  //   });
-  // }
-
-  public componentDidMount() {
-    this.props.registerRef(this.nodeRef);
-  }
-
-  // public shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.scrollToLine && nextProps.scrollToLine !== this.props.scrollToLine) {
-  //     this.doScrollToLine(nextProps.scrollToLine);
-  //     return false;
-  //   }
-  //   return true;
-  // }
-
-  // public componentWillUnmount() {
-  //   this.nodeRef.onscroll = null;
-  // }
-
   public render() {
     const {className = ''} = this.props;
     return(
-      <div className={className} ref={this.setNodeRef}
+      <div className={className} ref={this.props.registerRef  || (() => {})}
         dangerouslySetInnerHTML={this.markdownToHTML()} // See Footnote [1].
       />
     );
