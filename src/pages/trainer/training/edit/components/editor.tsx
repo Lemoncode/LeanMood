@@ -7,8 +7,8 @@ import { TextEditorComponent } from '../components/textEditor';
 import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer';
 import { panelList } from './panels';
 import { SOURCE_LINE_CLASSNAME,
-  calculateOffsetFromLine,
-  calculateLineFromOffset } from '../../../../../common/components/markdownViewer';
+  mapLineToOffset,
+  mapOffsetToLine } from '../../../../../common/components/markdownViewer';
 import debounce from 'lodash.debounce';
 
 const styles: any = require('./editorStyles.scss');
@@ -45,14 +45,18 @@ export class EditorComponent extends React.Component<Props, State> {
   private nodeRefPreview: HTMLElement = null;
   private nodeRefEditor: HTMLElement = null;
 
-  private setNodeRefEditor = (input) => {
-    this.nodeRefEditor = input;
-    this.nodeRefEditor.onscroll = this.handleScrollEditor;
+  private setNodeRefEditor = (ref) => {
+    this.nodeRefEditor = ref;
+    if (ref) {
+      this.nodeRefEditor.onscroll = this.handleScrollEditor;
+    }
   }
 
-  private setNodeRefPreview = (input) => {
-    this.nodeRefPreview = input;
-    this.nodeRefPreview.onscroll = this.handleScrollPreview;
+  private setNodeRefPreview = (ref) => {
+    this.nodeRefPreview = ref;
+    if (ref) {
+      this.nodeRefPreview.onscroll = this.handleScrollPreview;
+    }
   }
 
   private syncScrollEnabled = () => {
@@ -78,17 +82,27 @@ export class EditorComponent extends React.Component<Props, State> {
     }
   }
 
-  private convertLineToOffset = (line) => {
-    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const lineOffset = calculateOffsetFromLine(elements, line);
-    const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
-    return lineOffset - ((componentPosition > 0) ? componentPosition : 0);
+  private mapLineToEditorOffset = (line) => {
+    return line * this.state.editorLineHeight;
   }
 
-  private convertOffsetToLine = () => {
+  private mapEditorOffsetToLine = () => {
+    return this.nodeRefEditor.scrollTop / this.state.editorLineHeight;
+  }
+
+  private getPreviewPosition = () => {
     const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
+    return componentPosition > 0 ? componentPosition : 0;
+  }
+
+  private mapLineToPreviewOffset = (line) => {
     const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
+    return mapLineToOffset(elements, line) - this.getPreviewPosition();
+  }
+
+  private mapPreviewOffsetToLine = () => {
+    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
+    return mapOffsetToLine(elements,  this.getPreviewPosition());
   }
 
   private pauseEditorScrollEvent = debounce(() => {
@@ -101,21 +115,19 @@ export class EditorComponent extends React.Component<Props, State> {
 
   private handleScrollEditor = () => {
     if (!this.syncScrollEnabled()) { return; }
+    this.pausePreviewScrollEvent(); this.pausePreviewScrollEvent(); // Call it twice [1]
     window.requestAnimationFrame(() => {
-      this.pausePreviewScrollEvent();
-      const line = (this.nodeRefEditor.scrollTop) / this.state.editorLineHeight;
-      console.log(`EDITOR scrolling ${line}`);
-      this.nodeRefPreview.scrollTop += this.convertLineToOffset(line);
+      const line = this.mapEditorOffsetToLine();
+      this.nodeRefPreview.scrollTop += this.mapLineToPreviewOffset(line);
     });
   }
 
   private handleScrollPreview = () => {
     if (!this.syncScrollEnabled()) { return; }
+    this.pauseEditorScrollEvent(); this.pauseEditorScrollEvent(); // Call it twice [1]
     window.requestAnimationFrame(() => {
-      this.pauseEditorScrollEvent();
-      const line = this.convertOffsetToLine();
-      console.log(`PREVIEW scrolling ${line}`);
-      this.nodeRefEditor.scrollTop = line * this.state.editorLineHeight;
+      const line = this.mapPreviewOffsetToLine();
+      this.nodeRefEditor.scrollTop = this.mapLineToEditorOffset(line);
     });
   }
 
@@ -160,3 +172,8 @@ export class EditorComponent extends React.Component<Props, State> {
     );
   }
 }
+
+// [1]. This is not the most elegant solution but it is effective. As an alternative
+// we can avoid the double call by implementing a custom debounce function with leading
+// and trailing edge also for a single call. Lodash does not perform the trailing edge
+// when only a single call to the debounced function has been made.

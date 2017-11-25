@@ -28,12 +28,6 @@ class MarkDownViewer extends React.Component<Props, State> {
     };
   }
 
-  private nodeRef: HTMLDivElement = null;
-
-  private setNodeRef = (input) => {
-    this.nodeRef = input;
-  }
-
   private markdownToHTML = () => {
     return {
       __html: this.state.mdr.render(this.props.content || ''),

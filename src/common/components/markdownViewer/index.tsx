@@ -1,2 +1,2 @@
 export { MarkDownViewerComponent } from './markdownViewerComponent';
-export { calculateLineFromOffset, calculateOffsetFromLine, SOURCE_LINE_CLASSNAME } from './syncScroll';
+export { mapOffsetToLine, mapLineToOffset, SOURCE_LINE_CLASSNAME } from './syncScroll';

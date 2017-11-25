@@ -86,7 +86,7 @@ const PADDING_OFFSET = 0;
 // For a given list of rendered elements (each element coming from a source line) and
 // a target line, returns the viewport offset needed to reveal the element matching
 // the target line. Offset will be interpolated if no exact match is achieved.
-const calculateOffsetFromLine = (elementList: NodeListOf<Element>, targetLine: number): number => {
+const mapLineToOffset = (elementList: NodeListOf<Element>, targetLine: number): number => {
   const candidates = searchElement(elementList, getEvaluationFunctionForLine(targetLine));
   return interpolateOffset(targetLine, candidates) - PADDING_OFFSET;
 };
@@ -94,7 +94,7 @@ const calculateOffsetFromLine = (elementList: NodeListOf<Element>, targetLine: n
 // For a given list of rendered elements (each element coming from a source line) and
 // a target offset, returns the line number of the element located in that target offset.
 // In case no exact match is found, line number will be interpolated.
-const calculateLineFromOffset = (elementList: NodeListOf<Element>, targetOffset: number): number => {
+const mapOffsetToLine = (elementList: NodeListOf<Element>, targetOffset: number): number => {
   const adjustedOffset = targetOffset + PADDING_OFFSET;
   const candidates = searchElement(elementList, getEvaluationFunctionForOffset(adjustedOffset));
   return interpolateLine(adjustedOffset, candidates);
@@ -103,6 +103,6 @@ const calculateLineFromOffset = (elementList: NodeListOf<Element>, targetOffset:
 export {
   SOURCE_LINE_CLASSNAME,
   SOURCE_LINE_ATTRIBUTE,
-  calculateOffsetFromLine,
-  calculateLineFromOffset,
+  mapLineToOffset,
+  mapOffsetToLine,
 };
