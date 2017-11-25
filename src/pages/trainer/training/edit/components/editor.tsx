@@ -4,11 +4,12 @@ import { ToolbarComponent } from './toolbar';
 import { IMarkdownEntry } from '../../../../../model/trainer/markdownEntry';
 import { PanelComponent, PanelItem } from '../../../../../common/components';
 import { TextEditorComponent } from '../components/textEditor';
-import { MarkDownViewerComponent } from '../../../../../common/components/markdownViewer';
 import { panelList } from './panels';
-import { SOURCE_LINE_CLASSNAME,
-  calculateOffsetFromLine,
-  calculateLineFromOffset } from '../../../../../common/components/markdownViewer';
+import {
+  MarkDownViewerComponent,
+  mapLineToOffset,
+  mapOffsetToLine,
+} from '../../../../../common/components/markdownViewer';
 import debounce from 'lodash.debounce';
 
 const styles: any = require('./editorStyles.scss');
@@ -42,8 +43,8 @@ export class EditorComponent extends React.Component<Props, State> {
     };
   }
 
-  private nodeRefPreview: HTMLElement = null;
   private nodeRefEditor: HTMLElement = null;
+  private nodeRefPreview: HTMLElement = null;
 
   private setNodeRefEditor = (input) => {
     this.nodeRefEditor = input;
@@ -78,17 +79,18 @@ export class EditorComponent extends React.Component<Props, State> {
     }
   }
 
-  private convertLineToOffset = (line) => {
-    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    const lineOffset = calculateOffsetFromLine(elements, line);
+  private convertLineToPreviewOffset = (line) => {
+    const offset = mapLineToOffset(line);
+    console.log(`-- converted to offset ${offset}`)
     const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
-    return lineOffset - ((componentPosition > 0) ? componentPosition : 0);
+    return offset - ((componentPosition > 0) ? componentPosition : 0);
   }
 
-  private convertOffsetToLine = () => {
+  private convertPreviewOffsetToLine = () => {
     const componentPosition = this.nodeRefPreview.getBoundingClientRect().top;
-    const elements = this.nodeRefPreview.getElementsByClassName(SOURCE_LINE_CLASSNAME);
-    return calculateLineFromOffset(elements, componentPosition > 0 ? componentPosition : 0);
+    const line = mapOffsetToLine(componentPosition > 0 ? componentPosition : 0);
+    console.log(`-- converted to line ${line}`)
+    return line;
   }
 
   private pauseEditorScrollEvent = debounce(() => {
@@ -104,8 +106,8 @@ export class EditorComponent extends React.Component<Props, State> {
     window.requestAnimationFrame(() => {
       this.pausePreviewScrollEvent();
       const line = (this.nodeRefEditor.scrollTop) / this.state.editorLineHeight;
-      console.log(`EDITOR scrolling ${line}`);
-      this.nodeRefPreview.scrollTop += this.convertLineToOffset(line);
+      console.log(`EDITOR scrolling line ${line}`);
+      this.nodeRefPreview.scrollTop = this.convertLineToPreviewOffset(line);
     });
   }
 
@@ -113,8 +115,8 @@ export class EditorComponent extends React.Component<Props, State> {
     if (!this.syncScrollEnabled()) { return; }
     window.requestAnimationFrame(() => {
       this.pauseEditorScrollEvent();
-      const line = this.convertOffsetToLine();
-      console.log(`PREVIEW scrolling ${line}`);
+      const line = this.convertPreviewOffsetToLine();
+      console.log(`PREVIEW scrolling line ${line}`);
       this.nodeRefEditor.scrollTop = line * this.state.editorLineHeight;
     });
   }

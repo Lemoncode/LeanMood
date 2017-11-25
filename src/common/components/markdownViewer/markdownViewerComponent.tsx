@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import { CreateMarkdownRender, Mdr } from './render';
+import { setNodeCollection, updateLineOffsetMap } from './syncScroll';
+import debounce from 'lodash.debounce';
 
 /**
  * TODO:
@@ -30,8 +32,12 @@ class MarkDownViewer extends React.Component<Props, State> {
 
   private nodeRef: HTMLDivElement = null;
 
-  private setNodeRef = (input) => {
-    this.nodeRef = input;
+  private setNodeRef = (ref) => {
+    if (this.props.registerRef) {
+      this.props.registerRef(ref);
+      setNodeCollection(ref);
+      updateLineOffsetMap();
+    }
   }
 
   private markdownToHTML = () => {
@@ -40,10 +46,21 @@ class MarkDownViewer extends React.Component<Props, State> {
     };
   }
 
+  private updateSyncScrollMap = debounce(() => {
+    updateLineOffsetMap();
+  }, 1000, {leading: false, trailing: true});
+
+  public shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>) {
+    if (nextProps.content !== this.props.content) {
+      this.updateSyncScrollMap();
+    }
+    return true;
+  }
+
   public render() {
     const {className = ''} = this.props;
     return(
-      <div className={className} ref={this.props.registerRef  || (() => {})}
+      <div className={className} ref={this.setNodeRef}
         dangerouslySetInnerHTML={this.markdownToHTML()} // See Footnote [1].
       />
     );
