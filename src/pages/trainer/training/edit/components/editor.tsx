@@ -105,29 +105,31 @@ export class EditorComponent extends React.Component<Props, State> {
     return mapOffsetToLine(elements,  this.getPreviewPosition());
   }
 
-  private pauseEditorScrollEvent = debounce(() => {
-    this.nodeRefEditor.onscroll = this.nodeRefEditor.onscroll ? null : this.handleScrollEditor;
-  }, 250, {leading: true, trailing: true});
+  private attachEditorScrollEvent = debounce(() => {
+    this.nodeRefEditor.onscroll = this.handleScrollEditor;
+  }, 250, {leading: false, trailing: true});
 
-  private pausePreviewScrollEvent = debounce(() => {
-    this.nodeRefPreview.onscroll = this.nodeRefPreview.onscroll ? null : this.handleScrollPreview;
-  }, 250, {leading: true, trailing: true});
+  private attachPreviewScrollEvent = debounce(() => {
+    this.nodeRefPreview.onscroll = this.handleScrollPreview;
+  }, 250, {leading: false, trailing: true});
 
   private handleScrollEditor = () => {
     if (!this.syncScrollEnabled()) { return; }
-    this.pausePreviewScrollEvent(); this.pausePreviewScrollEvent(); // Call it twice [1]
     window.requestAnimationFrame(() => {
       const line = this.mapEditorOffsetToLine();
+      this.nodeRefPreview.onscroll = null;
       this.nodeRefPreview.scrollTop += this.mapLineToPreviewOffset(line);
+      this.attachPreviewScrollEvent();
     });
   }
 
   private handleScrollPreview = () => {
     if (!this.syncScrollEnabled()) { return; }
-    this.pauseEditorScrollEvent(); this.pauseEditorScrollEvent(); // Call it twice [1]
     window.requestAnimationFrame(() => {
       const line = this.mapPreviewOffsetToLine();
+      this.nodeRefEditor.onscroll = null;
       this.nodeRefEditor.scrollTop = this.mapLineToEditorOffset(line);
+      this.attachEditorScrollEvent();
     });
   }
 
@@ -172,8 +174,3 @@ export class EditorComponent extends React.Component<Props, State> {
     );
   }
 }
-
-// [1]. This is not the most elegant solution but it is effective. As an alternative
-// we can avoid the double call by implementing a custom debounce function with leading
-// and trailing edge also for a single call. Lodash does not perform the trailing edge
-// when only a single call to the debounced function has been made.
