@@ -1,5 +1,5 @@
 import { MarkdownIt as Mdr, Options as MdrOptions } from 'markdown-it';
-import hljs from 'highlight.js/lib/highlight';
+import highlightjs from 'highlight.js/lib/highlight';
 
 // Markdown Render options by default.
 const defaultOptions: MdrOptions = {
@@ -22,9 +22,9 @@ const defaultOptions: MdrOptions = {
 // Markdown Render code highlighter.
 const codeHighlighter = (mdr: Mdr, str, lang) => {
   const highlighter = () => {
-    if (lang && hljs.getLanguage(lang)) {
+    if (lang && highlightjs.getLanguage(lang)) {
       try {
-        return hljs.highlight(lang, str, true).value;
+        return highlightjs.highlight(lang, str, true).value;
       } catch (__) {}
     }
     return mdr.utils.escapeHtml(str);
