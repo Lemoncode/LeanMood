@@ -62,6 +62,7 @@ const handleSetActivePanel = (state: TrainingState, payload: string) => ({
 const handleToggleEditorPreview = (state: TrainingState) => ({
   ...state,
   showPreview: !state.showPreview,
+  shouldUpdateEditorCursor: false,
 });
 
 const handleGetSummaryTrainingRequestCompleted = (state: TrainingState, payload: TrainingSummary[]) => ({

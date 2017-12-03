@@ -83,7 +83,11 @@ export class EditorComponent extends React.Component<Props, {}> {
           togglePreviewMode={this.props.togglePreviewMode}
         />
         <div className={styles.editorContainer}>
-          <PanelComponent activePanelId={this.props.activePanelId} panelList={panelList} />
+          <PanelComponent
+            activePanelId={this.props.activePanelId}
+            panelList={panelList}
+            insertMarkdownEntry={this.insertMarkdownEntry}
+          />
           {
             !this.props.showPreview ?
               <textarea

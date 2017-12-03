@@ -38,8 +38,8 @@ export const CommandGroupComponent = (props: IProps) => {
 
         <div className={classNames.horizontalContainer}>
           <ToolbarLabeledMarkdownButton
-            mdCaret={markdownEntryConstants.header.mdCaret}
-            caretCursorPosition={markdownEntryConstants.header.cursorPosition}
+            mdCaret={markdownEntryConstants.link.mdCaret}
+            caretCursorPosition={markdownEntryConstants.link.cursorPosition}
             onClick={props.insertMarkdownEntry}
             paneldId={panelIds.delivery}
             label="Add Delivery"
