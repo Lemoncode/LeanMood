@@ -9,7 +9,7 @@ import { panelList } from './panels';
 import { SOURCE_LINE_CLASSNAME,
   mapLineToOffset,
   mapOffsetToLine } from '../../../../../common/components/markdownViewer';
-import { debounce } from 'lodash';
+import * as debounce from 'lodash.debounce';
 
 const styles: any = require('./editorStyles.scss');
 
