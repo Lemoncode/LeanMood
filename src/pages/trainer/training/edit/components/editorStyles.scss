@@ -1,11 +1,46 @@
-.textArea {
-  margin-top: 10px;
-  resize: none;
-  height: 800px;
-  width: 100%;
+// TODO: I am not very keen on hardcoding measures in pixels, otherwise
+// we will end up with pixels everywhere, and adjusting the layout will
+// be a matter of tweaking here and there.
+// Heights, widths and similar important measures should go relative.
+// Margins and paddings could be in pixels for ease of use, but at least
+// they sould be centralized in one place.
+
+@mixin genericFlexContainer($direction) {
+  display: flex;
+  flex-direction: $direction;
+  flex: 1 1 auto;
 }
 
-// FIXME: revert to 75% when aside is implemented
-.editor-container {
-  flex-basis: 100%;
+@mixin genericFlexItem {
+  flex: 1 1 0;
+  margin: 10px;
 }
+
+.editorContainer {
+  @include genericFlexContainer(column);
+}
+
+.markdownArea {
+  @include genericFlexContainer(row);
+
+  margin: -10px;
+  height: 400px; // TODO: why? 
+}
+
+.textArea {
+  @include genericFlexItem();
+
+  resize: none;
+}
+
+.previewArea {
+  @include genericFlexItem();
+
+  & img {
+    max-width: 100%;
+  }
+
+  overflow: auto;
+}
+
+

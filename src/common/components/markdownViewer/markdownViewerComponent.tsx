@@ -1,33 +1,54 @@
 import * as React from 'react';
-import { marksy } from 'marksy';
+import * as ReactDOM from 'react-dom';
+import { withRouter } from 'react-router';
+import { CreateMarkdownRender, Mdr } from './render';
 
-const compile = marksy({
-  // TODO: extract into a new <DynamicLink /> that analyze "href" and render a <Link /> or <a />
-  a: ({ target, children, ...other }) => (
-    <a target="_self" {...other}>{children}</a>
-  ),
-});
+/**
+ * TODO:
+ * Custom rule to analyze "href" and render a <Link /> (react router) or <a />
+ */
 
-export interface MarkDownViewerComponentProps {
+interface Props {
   content: string;
+  registerRef?: (ref: HTMLElement) => void;
+  className?: string;
+  location?: any; // Router HOC injected.
 }
 
-const getMarkDownChildren = (content: string): React.ReactNode => {
-  let childrenComponent: React.ReactNode = null;
+interface State {
+  mdr: Mdr;
+}
 
-  if (content) {
-    childrenComponent = compile(content).tree;
+class MarkDownViewer extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mdr: CreateMarkdownRender({routerLocation: props.location ? props.location.pathname : ''}),
+    };
   }
 
-  return childrenComponent;
+  private markdownToHTML = () => {
+    return {
+      __html: this.state.mdr.render(this.props.content || ''),
+    };
+  }
+
+  public render() {
+    const {className = ''} = this.props;
+    return(
+      <div className={className} ref={this.props.registerRef  || (() => {})}
+        dangerouslySetInnerHTML={this.markdownToHTML()} // See Footnote [1].
+      />
+    );
+  }
 };
 
-export const MarkDownViewerComponent: React.StatelessComponent<MarkDownViewerComponentProps> = ({ content }) => {
-  return (
-    <div>
-      {getMarkDownChildren(content)}
-    </div>
-  );
-};
+const MarkDownViewerComponent = withRouter(MarkDownViewer);
+export { MarkDownViewerComponent, Props as MarkDownViewerComponentProps }
 
-MarkDownViewerComponent.displayName = 'MarkDownViewerComponent';
+// [1] WARNING: This conversion from plain HTML to JSX with
+// dangerouslySetInnerHTML could be unsafe (script injection, XSS)
+// depending whether markdown engine blocks malicious code or not.
+// Markdonw-it is supposed to be XSS safe, but if you plan to
+// change engine, ensure safety first!

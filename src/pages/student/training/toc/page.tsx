@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { marksy } from 'marksy';
 import { Link } from 'react-router';
 import { MarkDownViewerComponent } from '../../../../common/components/markdownViewer';
 import { studentRouteEnums } from '../../../../common/routeEnums/student';
